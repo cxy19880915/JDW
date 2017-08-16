@@ -1,0 +1,166 @@
+Time[18:22:14]       Slave[0x54]     Address[0x02]     Data[0x00]
+Time[18:22:15]       Slave[0x54]     Address[0x00]     Data[0x00]
+Time[18:22:15]       Slave[0x54]     Address[0x2E]     Data[0xCF]
+Time[18:22:15]       Slave[0x54]     Address[0x2D]     Data[0x00]
+Time[18:22:15]       Slave[0x54]     Address[0x2F]     Data[0xCF]
+Time[18:22:15]       Slave[0x54]     Address[0x30]     Data[0xCF]
+Time[18:22:15]       Slave[0x54]     Address[0x31]     Data[0xCF]
+Time[18:22:15]       Slave[0x54]     Address[0x15]     Data[0xE7]
+Time[18:22:15]       Slave[0x54]     Address[0x16]     Data[0xB3]
+Time[18:22:15]       Slave[0x54]     Address[0x2C]     Data[0x43]
+Time[18:22:15]       Slave[0x54]     Address[0x52]     Data[0x90]
+Time[18:22:15]       Slave[0x54]     Address[0x62]     Data[0x1A]
+Time[18:22:15]       Slave[0x54]     Address[0x01]     Data[0x00]
+Time[18:22:15]       Slave[0x54]     Address[0x03]     Data[0x4E]
+Time[18:22:15]       Slave[0x54]     Address[0x04]     Data[0x00]
+Time[18:22:15]       Slave[0x54]     Address[0x05]     Data[0x00]
+Time[18:22:15]       Slave[0x54]     Address[0x06]     Data[0x4E]
+Time[18:22:15]       Slave[0x54]     Address[0x07]     Data[0x36]
+Time[18:22:15]       Slave[0x54]     Address[0x08]     Data[0x36]
+Time[18:22:15]       Slave[0x54]     Address[0x32]     Data[0x00]
+Time[18:22:15]       Slave[0x54]     Address[0x0F]     Data[0x00]
+Time[18:22:15]       Slave[0x54]     Address[0x10]     Data[0x00]
+Time[18:22:15]       Slave[0x54]     Address[0x11]     Data[0x00]
+Time[18:22:15]       Slave[0x54]     Address[0x12]     Data[0x00]
+Time[18:22:15]       Slave[0x54]     Address[0x13]     Data[0x00]
+Time[18:22:15]       Slave[0x54]     Address[0x14]     Data[0x00]
+Time[18:22:15]       Slave[0x54]     Address[0x33]     Data[0x00]
+Time[18:22:15]       Slave[0x54]     Address[0x34]     Data[0x00]
+Time[18:22:15]       Slave[0x54]     Address[0x55]     Data[0x0F]
+Time[18:22:15]       Slave[0x54]     Address[0x2B]     Data[0x0B]
+Time[18:22:15]       Slave[0x54]     Address[0x35]     Data[0x08]
+Time[18:22:15]       Slave[0x54]     Address[0x36]     Data[0x1A]
+Time[18:22:15]       Slave[0x54]     Address[0x37]     Data[0x2C]
+Time[18:22:16]       Slave[0x54]     Address[0x1C]     Data[0x80]
+Time[18:22:16]       Slave[0x54]     Address[0x1D]     Data[0x01]
+Time[18:22:16]       Slave[0x54]     Address[0x1E]     Data[0x00]
+Time[18:22:16]       Slave[0x54]     Address[0x25]     Data[0x00]
+Time[18:22:16]       Slave[0x54]     Address[0x22]     Data[0x00]
+Time[18:22:16]       Slave[0x54]     Address[0x20]     Data[0x00]
+Time[18:22:16]       Slave[0x54]     Address[0x7E]     Data[0x03]
+Time[18:22:16]       Slave[0x54]     Address[0x00]     Data[0x107F66FF]
+Time[18:22:16]       Slave[0x54]     Address[0x01]     Data[0x11FF66FF]
+Time[18:22:16]       Slave[0x54]     Address[0x02]     Data[0x107F66FF]
+Time[18:22:16]       Slave[0x54]     Address[0x03]     Data[0x117F66D2]
+Time[18:22:16]       Slave[0x54]     Address[0x04]     Data[0x10FECE56]
+Time[18:22:16]       Slave[0x54]     Address[0x05]     Data[0x11000000]
+Time[18:22:16]       Slave[0x54]     Address[0x06]     Data[0x20000000]
+Time[18:22:16]       Slave[0x54]     Address[0x07]     Data[0x20000000]
+Time[18:22:16]       Slave[0x54]     Address[0x08]     Data[0x20000000]
+Time[18:22:16]       Slave[0x54]     Address[0x09]     Data[0x20000000]
+Time[18:22:16]       Slave[0x54]     Address[0x14]     Data[0x11000000]
+Time[18:22:16]       Slave[0x54]     Address[0x15]     Data[0x20000000]
+Time[18:22:16]       Slave[0x54]     Address[0x16]     Data[0x20000000]
+Time[18:22:16]       Slave[0x54]     Address[0x17]     Data[0x20000000]
+Time[18:22:16]       Slave[0x54]     Address[0x18]     Data[0x20000000]
+Time[18:22:16]       Slave[0x54]     Address[0x19]     Data[0x11000000]
+Time[18:22:16]       Slave[0x54]     Address[0x1A]     Data[0x20000000]
+Time[18:22:16]       Slave[0x54]     Address[0x1B]     Data[0x20000000]
+Time[18:22:16]       Slave[0x54]     Address[0x1C]     Data[0x20000000]
+Time[18:22:16]       Slave[0x54]     Address[0x1D]     Data[0x20000000]
+Time[18:22:16]       Slave[0x54]     Address[0x1E]     Data[0x11000000]
+Time[18:22:16]       Slave[0x54]     Address[0x1F]     Data[0x20000000]
+Time[18:22:16]       Slave[0x54]     Address[0x20]     Data[0x20000000]
+Time[18:22:16]       Slave[0x54]     Address[0x21]     Data[0x20000000]
+Time[18:22:16]       Slave[0x54]     Address[0x22]     Data[0x20000000]
+Time[18:22:16]       Slave[0x54]     Address[0x23]     Data[0x11000000]
+Time[18:22:16]       Slave[0x54]     Address[0x24]     Data[0x20000000]
+Time[18:22:16]       Slave[0x54]     Address[0x25]     Data[0x20000000]
+Time[18:22:16]       Slave[0x54]     Address[0x26]     Data[0x20000000]
+Time[18:22:16]       Slave[0x54]     Address[0x27]     Data[0x20000000]
+Time[18:22:16]       Slave[0x54]     Address[0x28]     Data[0x11000000]
+Time[18:22:16]       Slave[0x54]     Address[0x29]     Data[0x20000000]
+Time[18:22:16]       Slave[0x54]     Address[0x2A]     Data[0x20000000]
+Time[18:22:16]       Slave[0x54]     Address[0x2B]     Data[0x20000000]
+Time[18:22:16]       Slave[0x54]     Address[0x2C]     Data[0x20000000]
+Time[18:22:16]       Slave[0x54]     Address[0x2D]     Data[0x11000000]
+Time[18:22:16]       Slave[0x54]     Address[0x2E]     Data[0x20000000]
+Time[18:22:16]       Slave[0x54]     Address[0x2F]     Data[0x20000000]
+Time[18:22:16]       Slave[0x54]     Address[0x30]     Data[0x20000000]
+Time[18:22:16]       Slave[0x54]     Address[0x31]     Data[0x20000000]
+Time[18:22:16]       Slave[0x54]     Address[0x32]     Data[0x11000000]
+Time[18:22:16]       Slave[0x54]     Address[0x33]     Data[0x20000000]
+Time[18:22:16]       Slave[0x54]     Address[0x34]     Data[0x20000000]
+Time[18:22:16]       Slave[0x54]     Address[0x35]     Data[0x20000000]
+Time[18:22:16]       Slave[0x54]     Address[0x36]     Data[0x20000000]
+Time[18:22:16]       Slave[0x54]     Address[0x37]     Data[0x11000000]
+Time[18:22:16]       Slave[0x54]     Address[0x38]     Data[0x20000000]
+Time[18:22:16]       Slave[0x54]     Address[0x39]     Data[0x20000000]
+Time[18:22:16]       Slave[0x54]     Address[0x3A]     Data[0x20000000]
+Time[18:22:17]       Slave[0x54]     Address[0x3B]     Data[0x20000000]
+Time[18:22:17]       Slave[0x54]     Address[0x7E]     Data[0x00]
+Time[18:22:17]       Slave[0x54]     Address[0x0C]     Data[0x3F]
+Time[18:22:17]       Slave[0x54]     Address[0x17]     Data[0x1F]
+Time[18:22:17]       Slave[0x54]     Address[0x19]     Data[0x15]
+Time[18:22:17]       Slave[0x54]     Address[0x18]     Data[0x1F]
+Time[18:22:17]       Slave[0x54]     Address[0x1A]     Data[0x15]
+Time[18:22:17]       Slave[0x54]     Address[0x1B]     Data[0x15]
+Time[18:22:17]       Slave[0x54]     Address[0x28]     Data[0x04]
+Time[18:22:17]       Slave[0x54]     Address[0x27]     Data[0x00]
+Time[18:22:17]       Slave[0x54]     Address[0x26]     Data[0x00]
+
+
+
+
+
+1> Addr 0x7E = 0x03    // write enable  
+2> 5 coefficients of LPF and HPF(32-bit size)  
+Addr 0x2D=0x0855C430 
+Addr 0x2E=0x0855C430 
+Addr 0x2F=0x20000000 
+Addr 0x30=0x107E5440 
+Addr 0x31=0x20000000 
+Addr 0x32=0x1010D9F0 
+Addr 0x33=0x1090D9F0 
+Addr 0x34=0x20000000 
+Addr 0x35=0x0E06CFE0 
+Addr 0x36=0x20000000  
+3> Addr 0x7E = 0x00 
+4> applied to 2 channel  
+Addr 0x19 = 0x0A // refer to Datasheet for detail information. 
+Addr 0x1A = 0x0A  // Loudness Low frequency BQ6 , High frequency BQ7
+5> Addr 0x7E = 0x03  
+6> Addr 0x3E = Loudness filter gain for BQ6 :  About Gain refer to Table 1 
+7> Addr 0x3F = Loudness filter gain for BQ7 
+8> Addr 0x7E = 0x00 
+9> Main volume setting.
+
+
+Used loudness filter gains   
+Low 16dB   
+1> Addr 0x7E = 0x03 
+2> Addr 0x3E = 0x1329E7F0 // Loudness filter gain for BQ6 
+3> Addr 0x3F = 0x125DE0A0  //Loudness filter gain for BQ7  
+4> Addr 0x7E = 0x00  
+Low 14dB  
+1> Addr 0x7E = 0x03 
+2> Addr 0x3E = 0x13006140 // Loudness filter gain for BQ6 
+3> Addr 0x3F = 0x120A62C0  //Loudness filter gain for BQ7  
+4> Addr 0x7E = 0x00  
+Low 12dB  
+1> Addr 0x7E = 0x03 
+2> Addr 0x3E = 0x123EC9E0 // Loudness filter gain for BQ6 
+3> Addr 0x3F = 0x1168C0C0  //Loudness filter gain for BQ7  
+4> Addr 0x7E = 0x00  
+Low 10dB  
+1> Addr 0x7E = 0x03 
+2> Addr 0x3E = 0x120A62C0 // Loudness filter gain for BQ6 
+3> Addr 0x3F = 0x111E8E70  //Loudness filter gain for BQ7  
+4> Addr 0x7E = 0x00 
+
+
+Low 8dB  
+1> Addr 0x7E = 0x03  
+2> Addr 0x3E = 0x11418580 // Loudness filter gain for BQ6 
+3> Addr 0x3F = 0x107EC980  //Loudness filter gain for BQ7  
+4> Addr 0x7E = 0x00  
+Low 6dB  
+1> Addr 0x7E = 0x03 
+2> Addr 0x3E = 0x107EC980 // Loudness filter gain for BQ6 
+3> Addr 0x3F = 0x10473D50  //Loudness filter gain for BQ7  
+4> Addr 0x7E = 0x00  
+Low 4dB  
+1> Addr 0x7E = 0x03 
+2> Addr 0x3E = 0x1015BB90 // Loudness filter gain for BQ6 
+3> Addr 0x3F = 0x1015BB90  //Loudness filter gain for BQ7  
+4> Addr 0x7E = 0x00
