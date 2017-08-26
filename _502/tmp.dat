@@ -451,6 +451,7 @@
 ;分钟
 ;分钟
 ;分钟
+;sec
 
 ;不大于4095
 ;不大于4095
@@ -4514,6 +4515,24 @@
 ;  set1 R_BTLedCtrl.B_BTLedCtrl
 
 ;	set1 R_OpticalLedCtrl.B_OpticalLedCtrl
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

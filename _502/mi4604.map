@@ -54,12 +54,13 @@
           D06E : F_PowerOffLed                      <Absolute>
           D075 : L_DisplayLed                       <Absolute>
           D0AA : L_DisplayBTLed                     <Absolute>
-          D1F5 : T_ChannelTable                     <Absolute>
-          F47A : T_InitialTAS5713EndTable           <Absolute>
+          D0FB : L_PowerOnSignal                    <Absolute>
+          D215 : T_ChannelTable                     <Absolute>
+          F49A : T_InitialTAS5713EndTable           <Absolute>
           C947 : L_CheckAuxSleep_Exit               <Absolute>
           CBF4 : L_CoderAdjustVolume                <Absolute>
           0049 : R_CoderTurnL1                      <Relocatable page0 RAM symbol>
-          D0F4 : L_PowerOnOptical_Exit              <Absolute>
+          D111 : L_PowerOnOptical_Exit              <Absolute>
           CEF4 : L_SetBTChannel                     <Absolute>
           CBB5 : F_ClearCoder                       <Absolute>
           CBCE : L_CoderProcess_Exit2               <Absolute>
@@ -122,7 +123,7 @@
           C874 : F_StoreMode                        <Absolute>
           C889 : F_CheckTime                        <Absolute>
           CAB6 : L_IRBitProcessHigh                 <Absolute>
-          D1E3 : T_ADC2ValueTable                   <Absolute>
+          D203 : T_ADC2ValueTable                   <Absolute>
           C51B : L_TurnToBTMode                     <Absolute>
           001E : R_KeyminderBufferCol2              <Relocatable page0 RAM symbol>
           D06A : F_DisplayLed                       <Absolute>
@@ -155,7 +156,7 @@
           C72C : L_ADCKeyBoardScan_Loop             <Absolute>
           C1DE : L_Delay7_8125ms_Loop               <Absolute>
           C621 : L_BassKey_Exit                     <Absolute>
-          D1E0 : T_ADCKeyValueTable                 <Absolute>
+          D200 : T_ADCKeyValueTable                 <Absolute>
           000F : R_ModeTemp                         <Relocatable page0 RAM symbol>
           000D : R_Flag1                            <Relocatable page0 RAM symbol>
           004F : R_CoderTurnL3                      <Relocatable page0 RAM symbol>
@@ -189,7 +190,7 @@
           C29C : L_BCD_Sub_Hi                       <Absolute>
           C696 : L_RightPressKey                    <Absolute>
           0025 : R_AuxSleepMinute                   <Relocatable page0 RAM symbol>
-          D158 : T_GetKeyColValue                   <Absolute>
+          D178 : T_GetKeyColValue                   <Absolute>
           D074 : L_DisplayLed_Exit                  <Absolute>
           C8DB : L_SetBackNormalTime_Exit           <Absolute>
           CCF8 : L_VolumeRamUp_Exit                 <Absolute>
@@ -200,13 +201,13 @@
           C9E0 : F_CheckERP                         <Absolute>
           0000 : dpint                              <Relocatable page0 RAM symbol>
           C2C7 : L_BCD_Addc_Exit                    <Absolute>
-          D218 : T_InitialTAS5713StartTable         <Absolute>
+          D238 : T_InitialTAS5713StartTable         <Absolute>
           CB65 : L_CoderRFlagHigh1                  <Absolute>
           0031 : R_BTSleepCounterTime               <Relocatable page0 RAM symbol>
           C99F : L_CheckOpticalSignal_L             <Absolute>
           C41E : L_PowerKey                         <Absolute>
           003F : R_IRBit2                           <Relocatable page0 RAM symbol>
-          D1DC : T_ADCValueTable                    <Absolute>
+          D1FC : T_ADCValueTable                    <Absolute>
           CBA1 : F_ResetCoder1                      <Absolute>
           C09A : F_Timer3_INT                       <Absolute>
           C877 : L_StoreBass_Exit                   <Absolute>
@@ -277,7 +278,7 @@
           0034 : R_IRMode                           <Relocatable page0 RAM symbol>
           C3B7 : T_KeyDecoderTable                  <Absolute>
           0043 : R_ERPIITime                        <Relocatable page0 RAM symbol>
-          F47B : No_Interrupt                       <Absolute>
+          F49B : No_Interrupt                       <Absolute>
           C93B : F_InitialAuxSleep                  <Absolute>
           CA5B : L_IRBitProcessLow                  <Absolute>
           C59E : L_VolumeDnKey                      <Absolute>
@@ -319,7 +320,7 @@
           CA02 : L_CheckERP_Exit                    <Absolute>
           CB57 : F_CoderProcess1                    <Absolute>
           CBB4 : L_ResetCoder_Exit1                 <Absolute>
-          D0F5 : F_PowerOffOptical                  <Absolute>
+          D115 : F_PowerOffOptical                  <Absolute>
           0023 : R_AuxSleepBaseTime                 <Relocatable page0 RAM symbol>
           C1CC : L_DelayXms_Loop                    <Absolute>
           CCED : L_ChangeTreble_Exit                <Absolute>
@@ -333,7 +334,8 @@
           C621 : L_BassUpKey                        <Absolute>
           CC2B : L_CoderVolume                      <Absolute>
           CB3D : L_RepeatIR_Exit                    <Absolute>
-          D0F6 : T_GetIRKeyValue                    <Absolute>
+          D116 : T_GetIRKeyValue                    <Absolute>
+          D0F4 : L_PowerOnMute                      <Absolute>
           C1C5 : F_PowerOnIO                        <Absolute>
           C5C0 : L_VolumeKey                        <Absolute>
           C33A : F_CheckBCDCode                     <Absolute>
@@ -341,7 +343,7 @@
           0044 : R_ERPIICount                       <Relocatable page0 RAM symbol>
           C695 : L_KeyBoardScan_Exit                <Absolute>
           CBB0 : L_ResetCoder_Over1                 <Absolute>
-          D1EB : T_IOKeyValueTable                  <Absolute>
+          D20B : T_IOKeyValueTable                  <Absolute>
           C1E9 : L_Delay7_8125ms_Exit               <Absolute>
           D053 : F_SendD2AudioByte                  <Absolute>
           001C : R_KeyminderBufferCol0              <Relocatable page0 RAM symbol>
@@ -364,7 +366,7 @@
           C4BA : L_PowerOnBTKey_Exit                <Absolute>
           CA9E : F_CheckIRSynBit                    <Absolute>
           CA30 : L_IRProcessMode0                   <Absolute>
-          D0F5 : L_PowerOffOptical_Exit             <Absolute>
+          D115 : L_PowerOffOptical_Exit             <Absolute>
           C816 : F_IOKeyBreack                      <Absolute>
           CBA0 : L_CoderProcess_Exit1               <Absolute>
           C657 : F_KeyBoardScan                     <Absolute>
@@ -382,7 +384,7 @@
           D032 : F_D2AudioACKBit                    <Absolute>
           D068 : L_SendD2AudioByte_Exit             <Absolute>
           CBCF : L_ResetCoder_Exit2                 <Absolute>
-          D1E7 : T_ADC2KeyValueTable                <Absolute>
+          D207 : T_ADC2KeyValueTable                <Absolute>
           C825 : L_IOKeyBreack_Loop                 <Absolute>
           0035 : R_IRFlag                           <Relocatable page0 RAM symbol>
           C389 : T_GetHEXTable                      <Absolute>
@@ -401,7 +403,7 @@
           C24E : L_BCD_Sub_One                      <Absolute>
           C896 : L_CheckTime_Exit                   <Absolute>
           CCEB : L_ChangeVolume_Exit                <Absolute>
-          D1F9 : T_VolumeTable                      <Absolute>
+          D219 : T_VolumeTable                      <Absolute>
           C41D : L_PowerAudioKey_Exit               <Absolute>
           C876 : F_StoreVolume                      <Absolute>
           C6F5 : F_MainKeyBoardScan                 <Absolute>
@@ -432,14 +434,14 @@
 
 
 
-	Local Absolute Label         : 343
+	Local Absolute Label         : 345
 	Local Relocatable Label      : 0
 	Local Relocatable RAM Label  : 79
 	PUBLIC Absolute Label        : 0
 	PUBLIC Relocatable Label     : 0
 	PUBLIC Relocatable RAM Label : 0
-	Total Label Number           : 343
+	Total Label Number           : 345
 	Total RAM Label Number       : 79
 	db & dw size                 : 9132 Bytes
-	Code length of MAIN.OB2  : 13468 Bytes
-      Total Code Length        : 13468 Bytes
+	Code length of MAIN.OB2  : 13500 Bytes
+      Total Code Length        : 13500 Bytes
