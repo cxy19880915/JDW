@@ -1,0 +1,8 @@
+;This file has the ABOV 800 MCU project information items !
+PROJECTNAME=mi4604
+CODEFILENAME=Main.asm
+EVACHIPNAME=
+DEVICENAME=MC81F-series
+ROMSIZE=16
+OPENFILENAME=Main.asm
+;The end of the HMS800 project information items !
