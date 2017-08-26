@@ -1,4 +1,4 @@
-800 series MICOM ASSEMBLER Sat Aug 26 15:25:44 2017
+800 series MICOM ASSEMBLER Sat Aug 26 15:47:19 2017
 (PAGE 1)
 
 1                ;;==================================================================================================
@@ -451,10 +451,10 @@
 448               BTSleep  EQU     0            
 449               
 450               ;;===========================================================================
-451               C_AuxSleepTime EQU     1            ;分钟
-452               C_OpticalSleepTime EQU     1            ;分钟
+451               C_AuxSleepTime EQU     2            ;分钟
+452               C_OpticalSleepTime EQU     2            ;分钟
 453               C_BTSleepTime EQU     60           ;分钟
-454               C_MuteTime EQU     10           ;sec
+454               C_MuteTime EQU     100          ;sec
 455               
 456               C_AuxSleepADC EQU     5            ;不大于4095
 457               C_OpticalSleepADC EQU     5            ;不大于4095
@@ -2578,7 +2578,7 @@
 2575 C8E0 7059              bne     L_CheckAuxSleep_Over   
 2576 C8E2 F30D56            bbc     R_Flag1.B_ERPFlag,L_CheckAuxSleep_Over   
 2577 C8E5 C525              lda     R_AuxSleepMinute   
-2578 C8E7 4401              cmp     #C_AuxSleepTime   
+2578 C8E7 4402              cmp     #C_AuxSleepTime   
 2579 C8E9 D01E              bcs     L_CheckAuxSleep   
 2580 C8EB 8923              inc     R_AuxSleepBaseTime   
 2581 C8ED C523              lda     R_AuxSleepBaseTime   
@@ -2592,7 +2592,7 @@
 2589 C8FE E40024            ldm     R_AuxSleepSecond,#0   
 2590 C901 8925              inc     R_AuxSleepMinute   
 2591 C903 C525              lda     R_AuxSleepMinute   
-2592 C905 4401              cmp     #C_AuxSleepTime   
+2592 C905 4402              cmp     #C_AuxSleepTime   
 2593 C907 5016              bcc     L_CheckAuxSignal   
 2594               L_CheckAuxSleep:              
 2595 C909 C51C              lda     R_KeyminderBufferCol0   
@@ -2645,7 +2645,7 @@
 2642 C94C 7059              bne     L_CheckOpticalSleep_Over   
 2643 C94E F30D56            bbc     R_Flag1.B_ERPFlag,L_CheckOpticalSleep_Over   
 2644 C951 C52A              lda     R_OpticalSleepMinute   
-2645 C953 4401              cmp     #C_OpticalSleepTime   
+2645 C953 4402              cmp     #C_OpticalSleepTime   
 2646 C955 D01E              bcs     L_CheckOpticalSleep   
 2647 C957 8928              inc     R_OpticalSleepBaseTime   
 2648 C959 C528              lda     R_OpticalSleepBaseTime   
@@ -2659,7 +2659,7 @@
 2656 C96A E40029            ldm     R_OpticalSleepSecond,#0   
 2657 C96D 892A              inc     R_OpticalSleepMinute   
 2658 C96F C52A              lda     R_OpticalSleepMinute   
-2659 C971 4401              cmp     #C_OpticalSleepTime   
+2659 C971 4402              cmp     #C_OpticalSleepTime   
 2660 C973 5016              bcc     L_CheckOpticalSignal   
 2661               L_CheckOpticalSleep:          
 2662 C975 C51C              lda     R_KeyminderBufferCol0   
@@ -4533,7 +4533,7 @@
 4530 D101 50F1              bcc     L_PowerOnMute   
 4531 D103 892B              inc     R_OpticalSleepCounter   
 4532 D105 C52B              lda     R_OpticalSleepCounter   
-4533 D107 440A              cmp     #C_MuteTime   
+4533 D107 4464              cmp     #C_MuteTime   
 4534 D109 50E9              bcc     L_PowerOnMute   
 4535 D10B E4002B            ldm     R_OpticalSleepCounter,#0   
 4536 D10E 3BF5CC            call    F_MuteOnCtrl   
