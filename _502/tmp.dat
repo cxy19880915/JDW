@@ -554,6 +554,7 @@
 
 
 
+
 ;;==================================================================================================
 ;;
 ;;Module Name:	F_Timer0_INT
@@ -4505,6 +4506,16 @@
 ;;Module Name:	F_PowerOnOptical
 ;;
 ;;=================================================================================
+
+;	set1 R_AuxLedCtrl.B_AuxLedCtrl
+
+;  set1 R_OpticalLedCtrl.B_OpticalLedCtrl
+;  set1 R_AuxLedCtrl.B_AuxLedCtrl
+;  set1 R_BTLedCtrl.B_BTLedCtrl
+
+;	set1 R_OpticalLedCtrl.B_OpticalLedCtrl
+
+
 
 
 
