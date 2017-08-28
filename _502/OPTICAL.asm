@@ -47,6 +47,9 @@ L_CheckMuteSignal:
 L_CheckMuteSignal_L:	
 	bbc	R_Flag1.B_AudioIn,L_PowerOnOptical_Exit
 	inc	R_OpticalMuteCounter
+	lda R_OpticalMuteCounter
+	cmp #3
+	bcs L_PowerOnMuteOff
 	jmp	L_PowerOnOptical_Exit
 	
 L_CheckMute_over:

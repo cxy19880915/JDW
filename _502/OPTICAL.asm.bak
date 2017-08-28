@@ -13,7 +13,7 @@ F_PowerOnOptical:
 	jmp	Main_Loop
 	
 L_PowerOnMuteCheck:
-	lda R_OpticalMuteMinute
+	lda R_OpticalMuteSecond
 	cmp #C_MuteTime
 	bcs L_PowerOnMuteOn
 	inc R_MuteBaseTime
