@@ -7,8 +7,8 @@
           0007 : R3                                 <Relocatable page0 RAM symbol>
           0008 : R4                                 <Relocatable page0 RAM symbol>
           0009 : R5                                 <Relocatable page0 RAM symbol>
-          004F : R_CoderTurnL2                      <Relocatable page0 RAM symbol>
-          0050 : R_CoderTurnR2                      <Relocatable page0 RAM symbol>
+          0050 : R_CoderTurnL2                      <Relocatable page0 RAM symbol>
+          0051 : R_CoderTurnR2                      <Relocatable page0 RAM symbol>
           C0B8 : L_Timer3_INT                       <Absolute>
           C0CC : L_Timer2_INT                       <Absolute>
           C281 : L_BCD_Sub                          <Absolute>
@@ -54,19 +54,19 @@
           D06E : F_PowerOffLed                      <Absolute>
           D075 : L_DisplayLed                       <Absolute>
           D0AA : L_DisplayBTLed                     <Absolute>
-          D101 : L_PowerOnSignal                    <Absolute>
-          D226 : T_ChannelTable                     <Absolute>
-          F4AB : T_InitialTAS5713EndTable           <Absolute>
+          D255 : T_ChannelTable                     <Absolute>
+          F4DA : T_InitialTAS5713EndTable           <Absolute>
           C947 : L_CheckAuxSleep_Exit               <Absolute>
           CBF4 : L_CoderAdjustVolume                <Absolute>
-          004C : R_CoderTurnL1                      <Relocatable page0 RAM symbol>
-          D125 : L_PowerOnOptical_Exit              <Absolute>
+          004D : R_CoderTurnL1                      <Relocatable page0 RAM symbol>
+          D154 : L_PowerOnOptical_Exit              <Absolute>
           CEF4 : L_SetBTChannel                     <Absolute>
           CBB5 : F_ClearCoder                       <Absolute>
           CBCE : L_CoderProcess_Exit2               <Absolute>
           CB71 : L_WaitCoderH_Exit1                 <Absolute>
           C771 : L_CaculateKeyLoop                  <Absolute>
           C039 : Main_Loop                          <Absolute>
+          0030 : R_MuteBaseTime                     <Relocatable page0 RAM symbol>
           C4C6 : F_AudioKey                         <Absolute>
           C1EA : F_Delay1ms                         <Absolute>
           D09E : L_DisplayLcd_Exit                  <Absolute>
@@ -76,11 +76,12 @@
           CB8C : L_CoderErrorRPin_Exit1             <Absolute>
           0012 : R_Volume                           <Relocatable page0 RAM symbol>
           C074 : main_iPod_loop                     <Absolute>
-          004D : R_CoderTurnR1                      <Relocatable page0 RAM symbol>
+          004E : R_CoderTurnR1                      <Relocatable page0 RAM symbol>
           C9A7 : F_InitialOpticalSleep              <Absolute>
           CA85 : F_RepeatMode0                      <Absolute>
           CF82 : L_TAS5713OSCOn_Exit                <Absolute>
           C5D6 : L_MuteOffKey                       <Absolute>
+          D147 : L_PowerOnMuteOff                   <Absolute>
           CB77 : L_CheckCoderTurnLeft1              <Absolute>
           0010 : R_SetTimeFlag                      <Relocatable page0 RAM symbol>
           C450 : L_PowerOffKey_Exit                 <Absolute>
@@ -88,7 +89,7 @@
           C948 : F_CheckOpticalSleep                <Absolute>
           CF13 : F_PowerOnAmplify                   <Absolute>
           C55A : L_TurnToBTMode_Exit                <Absolute>
-          003C : R_IRIIRTime                        <Relocatable page0 RAM symbol>
+          003D : R_IRIIRTime                        <Relocatable page0 RAM symbol>
           C751 : L_KeyDebounce_Loop                 <Absolute>
           CEFA : L_SetVolumeChannel_Exit            <Absolute>
           C622 : L_TrebleUpKey                      <Absolute>
@@ -101,7 +102,7 @@
           C933 : L_CheckAuxSignal_L                 <Absolute>
           C879 : F_Initial24C02                     <Absolute>
           C878 : F_StoreTreble                      <Absolute>
-          0049 : R_CoderTurnL                       <Relocatable page0 RAM symbol>
+          004A : R_CoderTurnL                       <Relocatable page0 RAM symbol>
           C4BB : L_TurnToRCAMode                    <Absolute>
           CFBE : L_InitialTAS5713_Skip              <Absolute>
           CEFB : L_SetAuxChannel                    <Absolute>
@@ -123,11 +124,11 @@
           C874 : F_StoreMode                        <Absolute>
           C889 : F_CheckTime                        <Absolute>
           CAB6 : L_IRBitProcessHigh                 <Absolute>
-          D214 : T_ADC2ValueTable                   <Absolute>
+          D243 : T_ADC2ValueTable                   <Absolute>
           C51B : L_TurnToBTMode                     <Absolute>
           001E : R_KeyminderBufferCol2              <Relocatable page0 RAM symbol>
           D06A : F_DisplayLed                       <Absolute>
-          004A : R_CoderTurnR                       <Relocatable page0 RAM symbol>
+          004B : R_CoderTurnR                       <Relocatable page0 RAM symbol>
           C656 : L_Delay15_625ms_Exit               <Absolute>
           C98B : L_CheckOpticalSignal               <Absolute>
           D097 : L_DisplayOpticalMode               <Absolute>
@@ -148,7 +149,7 @@
           C206 : WDTC_Exit                          <Absolute>
           CAD1 : L_StoreIRBit                       <Absolute>
           0017 : R_BassTime                         <Relocatable page0 RAM symbol>
-          0040 : R_IRBit0                           <Relocatable page0 RAM symbol>
+          0041 : R_IRBit0                           <Relocatable page0 RAM symbol>
           0016 : R_Bass                             <Relocatable page0 RAM symbol>
           CE0B : L_SetVolumeMute_Exit               <Absolute>
           CBF3 : L_CheckVolume_Exit                 <Absolute>
@@ -156,31 +157,32 @@
           C72C : L_ADCKeyBoardScan_Loop             <Absolute>
           C1DE : L_Delay7_8125ms_Loop               <Absolute>
           C621 : L_BassKey_Exit                     <Absolute>
-          D211 : T_ADCKeyValueTable                 <Absolute>
+          D240 : T_ADCKeyValueTable                 <Absolute>
           000F : R_ModeTemp                         <Relocatable page0 RAM symbol>
+          D13F : F_InitialMute                      <Absolute>
           000D : R_Flag1                            <Relocatable page0 RAM symbol>
-          0052 : R_CoderTurnL3                      <Relocatable page0 RAM symbol>
+          0053 : R_CoderTurnL3                      <Relocatable page0 RAM symbol>
           0002 : dpmain                             <Relocatable page0 RAM symbol>
           C451 : L_PowerOnKey                       <Absolute>
           CA77 : L_IRBitProcessLow_1                <Absolute>
           C9B5 : F_CheckAudioIn                     <Absolute>
-          002E : R_OpticalMuteMinute                <Relocatable page0 RAM symbol>
+          D137 : L_CheckMuteSignal_L                <Absolute>
           C857 : F_GetADC2Value                     <Absolute>
           D069 : F_DelayD2Audio                     <Absolute>
           000A : R6                                 <Relocatable page0 RAM symbol>
           CF05 : L_SetRCAChannel                    <Absolute>
-          0033 : R_BTSleepCounter                   <Relocatable page0 RAM symbol>
+          0034 : R_BTSleepCounter                   <Relocatable page0 RAM symbol>
           CC80 : L_TurnVolumeUp                     <Absolute>
           C00F : L_ClearRamPage0_Loop               <Absolute>
           000B : R7                                 <Relocatable page0 RAM symbol>
           CE0C : F_SetVolumeMute_1                  <Absolute>
           C9DA : L_CheckAudioIn_Over                <Absolute>
           C7CB : L_CheckMainKeyBoardBreack          <Absolute>
-          0041 : R_IRBit1                           <Relocatable page0 RAM symbol>
+          0042 : R_IRBit1                           <Relocatable page0 RAM symbol>
           C48E : L_PowerOnAuxKey                    <Absolute>
           0022 : R_KeyTime                          <Relocatable page0 RAM symbol>
           D058 : L_SendD2AudioByte_Loop             <Absolute>
-          0053 : R_CoderTurnR3                      <Relocatable page0 RAM symbol>
+          0054 : R_CoderTurnR3                      <Relocatable page0 RAM symbol>
           0028 : R_OpticalSleepBaseTime             <Relocatable page0 RAM symbol>
           C0BC : F_Timer2_INT                       <Absolute>
           D0DA : F_PowerOffBT                       <Absolute>
@@ -191,7 +193,7 @@
           C29C : L_BCD_Sub_Hi                       <Absolute>
           C696 : L_RightPressKey                    <Absolute>
           0025 : R_AuxSleepMinute                   <Relocatable page0 RAM symbol>
-          D189 : T_GetKeyColValue                   <Absolute>
+          D1B8 : T_GetKeyColValue                   <Absolute>
           D074 : L_DisplayLed_Exit                  <Absolute>
           C8DB : L_SetBackNormalTime_Exit           <Absolute>
           CCF8 : L_VolumeRamUp_Exit                 <Absolute>
@@ -203,17 +205,17 @@
           C9E0 : F_CheckERP                         <Absolute>
           0000 : dpint                              <Relocatable page0 RAM symbol>
           C2C7 : L_BCD_Addc_Exit                    <Absolute>
-          D249 : T_InitialTAS5713StartTable         <Absolute>
+          D278 : T_InitialTAS5713StartTable         <Absolute>
           CB65 : L_CoderRFlagHigh1                  <Absolute>
-          0034 : R_BTSleepCounterTime               <Relocatable page0 RAM symbol>
+          0035 : R_BTSleepCounterTime               <Relocatable page0 RAM symbol>
           C99F : L_CheckOpticalSignal_L             <Absolute>
           C41E : L_PowerKey                         <Absolute>
-          0042 : R_IRBit2                           <Relocatable page0 RAM symbol>
-          D20D : T_ADCValueTable                    <Absolute>
+          0043 : R_IRBit2                           <Relocatable page0 RAM symbol>
+          D23C : T_ADCValueTable                    <Absolute>
           CBA1 : F_ResetCoder1                      <Absolute>
           C09A : F_Timer3_INT                       <Absolute>
           C877 : L_StoreBass_Exit                   <Absolute>
-          003A : R_IRIntervalLo                     <Relocatable page0 RAM symbol>
+          003B : R_IRIntervalLo                     <Relocatable page0 RAM symbol>
           C839 : L_IOKeyBreack_Exit                 <Absolute>
           001F : R_KeyminderBufferCol3              <Relocatable page0 RAM symbol>
           C1C6 : F_PowerOffIO                       <Absolute>
@@ -222,30 +224,31 @@
           C218 : L_GetADCValue_Loop                 <Absolute>
           C0CE : F_InitialMC81F4416                 <Absolute>
           CCEC : F_CheckBass                        <Absolute>
+          D116 : L_PowerOnMuteOn                    <Absolute>
           CB35 : L_RepeatIR                         <Absolute>
           C51A : L_AudioKey_Exit                    <Absolute>
           C639 : L_BreackPowerAudioKey_Exit         <Absolute>
-          0039 : R_IRKeyStore                       <Relocatable page0 RAM symbol>
+          003A : R_IRKeyStore                       <Relocatable page0 RAM symbol>
           C4A2 : L_PowerOnKey_Exit                  <Absolute>
           C202 : L_Delay1ms_Exit                    <Absolute>
           002C : R_OpticalSleepCounterTime          <Relocatable page0 RAM symbol>
-          0030 : R_BTSleepBaseTime                  <Relocatable page0 RAM symbol>
+          0031 : R_BTSleepBaseTime                  <Relocatable page0 RAM symbol>
           C77D : L_MainKeyBoardScan_Exit            <Absolute>
           C01C : L_ClearRamPage1_Loop               <Absolute>
           000E : R_MainMode                         <Relocatable page0 RAM symbol>
-          0043 : R_IRBit3                           <Relocatable page0 RAM symbol>
+          0044 : R_IRBit3                           <Relocatable page0 RAM symbol>
           C59D : L_TurnToAuxMode_Exit               <Absolute>
           CA7A : L_IRBitProcessLow_2                <Absolute>
           C8D5 : F_SetBackNormalTime                <Absolute>
           D0E7 : L_PowerOffBT_Exit                  <Absolute>
           D0D9 : L_PowerOnBT_Exit                   <Absolute>
           C1DC : F_Delay7_8125ms                    <Absolute>
-          004B : R_CoderFlag1                       <Relocatable page0 RAM symbol>
+          004C : R_CoderFlag1                       <Relocatable page0 RAM symbol>
           C5FC : L_MuteKey_Exit                     <Absolute>
           CC1B : L_Coder1UpDn                       <Absolute>
           C876 : L_StoreVolume_Exit                 <Absolute>
           CCF5 : F_MuteOnCtrl                       <Absolute>
-          003B : R_IRIntervalHi                     <Relocatable page0 RAM symbol>
+          003C : R_IRIntervalHi                     <Relocatable page0 RAM symbol>
           C7CA : L_MainKeyBoardBreack_Exit          <Absolute>
           0020 : R_KeyBuffer                        <Relocatable page0 RAM symbol>
           CBCF : F_ResetCoder2                      <Absolute>
@@ -262,13 +265,14 @@
           CC63 : L_TurnVolumeDown1                  <Absolute>
           C0C7 : L_128HzTimer                       <Absolute>
           0026 : R_AuxSleepCounter                  <Relocatable page0 RAM symbol>
+          D123 : L_CheckMuteSignal                  <Absolute>
           CFD1 : F_ShutDownTAS5713                  <Absolute>
           C8A8 : L_PowerKey3s                       <Absolute>
           CA03 : F_ReceiveIR                        <Absolute>
           C24D : L_BCD_Subc_Exit                    <Absolute>
           C0CC : L_256HzTimer                       <Absolute>
           C422 : L_PowerOffKey                      <Absolute>
-          003F : R_IRBitCounter                     <Relocatable page0 RAM symbol>
+          0040 : R_IRBitCounter                     <Relocatable page0 RAM symbol>
           D0CF : L_DisplayBTLed_End                 <Absolute>
           CCC4 : L_AdjustVolume                     <Absolute>
           CB85 : L_CheckCoderTurnLeft_Exit1         <Absolute>
@@ -276,16 +280,16 @@
           C339 : L_ChangeBCDtoHEX_Exit              <Absolute>
           C02A : L_ClearRamPage2_Loop               <Absolute>
           C264 : L_BCD_Subc_One                     <Absolute>
-          004E : R_CoderFlag2                       <Relocatable page0 RAM symbol>
-          0037 : R_IRMode                           <Relocatable page0 RAM symbol>
+          004F : R_CoderFlag2                       <Relocatable page0 RAM symbol>
+          0038 : R_IRMode                           <Relocatable page0 RAM symbol>
           C3B7 : T_KeyDecoderTable                  <Absolute>
-          0046 : R_ERPIITime                        <Relocatable page0 RAM symbol>
-          F4AC : No_Interrupt                       <Absolute>
+          0047 : R_ERPIITime                        <Relocatable page0 RAM symbol>
+          F4DB : No_Interrupt                       <Absolute>
           C93B : F_InitialAuxSleep                  <Absolute>
           CA5B : L_IRBitProcessLow                  <Absolute>
           C59E : L_VolumeDnKey                      <Absolute>
           CA91 : L_RepeatMode0_Exit                 <Absolute>
-          0031 : R_BTSleepSecond                    <Relocatable page0 RAM symbol>
+          0032 : R_BTSleepSecond                    <Relocatable page0 RAM symbol>
           CF37 : F_PowerOffAmplify                  <Absolute>
           C306 : L_BCD_AddH                         <Absolute>
           C41A : F_PowerAudioKey                    <Absolute>
@@ -300,7 +304,7 @@
           D005 : L_ShutDownTAS5713_Exit             <Absolute>
           001A : R_BackNormalTimeLo                 <Relocatable page0 RAM symbol>
           C63D : L_Delay15_625ms_Loop               <Absolute>
-          0045 : R_BTLedTime                        <Relocatable page0 RAM symbol>
+          0046 : R_BTLedTime                        <Relocatable page0 RAM symbol>
           C5B0 : L_VolUpDnKey                       <Absolute>
           CF8A : L_InitialTAS5713_Exit              <Absolute>
           CCA9 : L_TurnVolumeUp1                    <Absolute>
@@ -309,27 +313,29 @@
           C878 : L_StoreTreble_Exit                 <Absolute>
           0014 : R_VolumeTime                       <Relocatable page0 RAM symbol>
           C8DC : F_CheckAuxSleep                    <Absolute>
-          0051 : R_CoderFlag3                       <Relocatable page0 RAM symbol>
+          0052 : R_CoderFlag3                       <Relocatable page0 RAM symbol>
           C721 : L_MainIOKeyInput_Exit              <Absolute>
           CC37 : L_TurnVolumeDown                   <Absolute>
-          003E : R_IRBitLowTime                     <Relocatable page0 RAM symbol>
+          003F : R_IRBitLowTime                     <Relocatable page0 RAM symbol>
           C85E : L_GetADC2Value_Loop                <Absolute>
           C348 : L_CheckBCDCode_Exit                <Absolute>
           CD08 : F_SetVolume_1                      <Absolute>
+          D13F : L_CheckMute_over                   <Absolute>
           CBD2 : F_CheckVolume                      <Absolute>
-          0032 : R_BTSleepMinute                    <Relocatable page0 RAM symbol>
+          0033 : R_BTSleepMinute                    <Relocatable page0 RAM symbol>
           D0D2 : F_PowerOnBT                        <Absolute>
           CA84 : L_IRBitProcessLow_Exit             <Absolute>
           CA02 : L_CheckERP_Exit                    <Absolute>
           CB57 : F_CoderProcess1                    <Absolute>
           CBB4 : L_ResetCoder_Exit1                 <Absolute>
-          D126 : F_PowerOffOptical                  <Absolute>
+          D155 : F_PowerOffOptical                  <Absolute>
           0023 : R_AuxSleepBaseTime                 <Relocatable page0 RAM symbol>
           C1CC : L_DelayXms_Loop                    <Absolute>
           CCED : L_ChangeTreble_Exit                <Absolute>
           C62F : L_BreackPowerAudioKey              <Absolute>
           C9B4 : L_CheckBTSleep_Exit                <Absolute>
           CCCE : L_ButtomVolume                     <Absolute>
+          D0FD : L_PowerOnMuteCheck                 <Absolute>
           C622 : L_TrebleDnKey                      <Absolute>
           C349 : F_ChangeHEXtoBCD                   <Absolute>
           C875 : L_StoreFlag_Exit                   <Absolute>
@@ -337,16 +343,15 @@
           C621 : L_BassUpKey                        <Absolute>
           CC2B : L_CoderVolume                      <Absolute>
           CB3D : L_RepeatIR_Exit                    <Absolute>
-          D127 : T_GetIRKeyValue                    <Absolute>
-          D0F1 : L_PowerOnMute                      <Absolute>
+          D156 : T_GetIRKeyValue                    <Absolute>
           C1C5 : F_PowerOnIO                        <Absolute>
           C5C0 : L_VolumeKey                        <Absolute>
           C33A : F_CheckBCDCode                     <Absolute>
           CB62 : L_CoderRFlagLow1                   <Absolute>
-          0047 : R_ERPIICount                       <Relocatable page0 RAM symbol>
+          0048 : R_ERPIICount                       <Relocatable page0 RAM symbol>
           C695 : L_KeyBoardScan_Exit                <Absolute>
           CBB0 : L_ResetCoder_Over1                 <Absolute>
-          D21C : T_IOKeyValueTable                  <Absolute>
+          D24B : T_IOKeyValueTable                  <Absolute>
           C1E9 : L_Delay7_8125ms_Exit               <Absolute>
           D053 : F_SendD2AudioByte                  <Absolute>
           001C : R_KeyminderBufferCol0              <Relocatable page0 RAM symbol>
@@ -355,29 +360,30 @@
           CCF8 : F_VolumeRamUp                      <Absolute>
           D090 : L_DisplayBTMode                    <Absolute>
           0011 : R_HalfSecond                       <Relocatable page0 RAM symbol>
-          0036 : R_IRKeyBuffer                      <Relocatable page0 RAM symbol>
+          0037 : R_IRKeyBuffer                      <Relocatable page0 RAM symbol>
           CF36 : L_PowerOnAmplify_Exit              <Absolute>
           C8D4 : L_CheckBackNormalTime_Exit         <Absolute>
           0019 : R_TrebleTime                       <Relocatable page0 RAM symbol>
-          0044 : R_IRCheckSum                       <Relocatable page0 RAM symbol>
+          0045 : R_IRCheckSum                       <Relocatable page0 RAM symbol>
           002B : R_OpticalSleepCounter              <Relocatable page0 RAM symbol>
           C9B4 : F_CheckBTSleep                     <Absolute>
           C722 : L_MainADCKeyInput                  <Absolute>
           000C : R_Flag                             <Relocatable page0 RAM symbol>
           C70C : L_MainKeyBoardScan_Loop            <Absolute>
-          0048 : R_CoderFlag                        <Relocatable page0 RAM symbol>
+          0049 : R_CoderFlag                        <Relocatable page0 RAM symbol>
           C4BA : L_PowerOnBTKey_Exit                <Absolute>
           CA9E : F_CheckIRSynBit                    <Absolute>
           CA30 : L_IRProcessMode0                   <Absolute>
-          D126 : L_PowerOffOptical_Exit             <Absolute>
+          D155 : L_PowerOffOptical_Exit             <Absolute>
           C816 : F_IOKeyBreack                      <Absolute>
           CBA0 : L_CoderProcess_Exit1               <Absolute>
           C657 : F_KeyBoardScan                     <Absolute>
-          0035 : R_IRKeyTemp                        <Relocatable page0 RAM symbol>
+          0036 : R_IRKeyTemp                        <Relocatable page0 RAM symbol>
           CBCE : F_CoderProcess2                    <Absolute>
           C326 : F_ChangeBCDtoHEX                   <Absolute>
           C2C8 : L_Enter_BCD_Add                    <Absolute>
           C63A : F_Delay15_625ms                    <Absolute>
+          002E : R_OpticalMuteSecond                <Relocatable page0 RAM symbol>
           C91F : L_CheckAuxSignal                   <Absolute>
           C23C : L_GetADCValue_Exit                 <Absolute>
           C1AD : F_InitialSystem                    <Absolute>
@@ -387,9 +393,9 @@
           D032 : F_D2AudioACKBit                    <Absolute>
           D068 : L_SendD2AudioByte_Exit             <Absolute>
           CBCF : L_ResetCoder_Exit2                 <Absolute>
-          D218 : T_ADC2KeyValueTable                <Absolute>
+          D247 : T_ADC2KeyValueTable                <Absolute>
           C825 : L_IOKeyBreack_Loop                 <Absolute>
-          0038 : R_IRFlag                           <Relocatable page0 RAM symbol>
+          0039 : R_IRFlag                           <Relocatable page0 RAM symbol>
           C389 : T_GetHEXTable                      <Absolute>
           D046 : L_GetD2AudioACKBit                 <Absolute>
           C8A7 : L_CheckKeyTime_Exit                <Absolute>
@@ -402,11 +408,11 @@
           CBED : L_ClearCoder1                      <Absolute>
           CE04 : F_SetVolumeMute                    <Absolute>
           C6C0 : L_IRBreackKey                      <Absolute>
-          003D : R_IRBitTime                        <Relocatable page0 RAM symbol>
+          003E : R_IRBitTime                        <Relocatable page0 RAM symbol>
           C24E : L_BCD_Sub_One                      <Absolute>
           C896 : L_CheckTime_Exit                   <Absolute>
           CCEB : L_ChangeVolume_Exit                <Absolute>
-          D22A : T_VolumeTable                      <Absolute>
+          D259 : T_VolumeTable                      <Absolute>
           C41D : L_PowerAudioKey_Exit               <Absolute>
           C876 : F_StoreVolume                      <Absolute>
           C6F5 : F_MainKeyBoardScan                 <Absolute>
@@ -437,14 +443,14 @@
 
 
 
-	Local Absolute Label         : 345
+	Local Absolute Label         : 350
 	Local Relocatable Label      : 0
-	Local Relocatable RAM Label  : 82
+	Local Relocatable RAM Label  : 83
 	PUBLIC Absolute Label        : 0
 	PUBLIC Relocatable Label     : 0
 	PUBLIC Relocatable RAM Label : 0
-	Total Label Number           : 345
-	Total RAM Label Number       : 82
+	Total Label Number           : 350
+	Total RAM Label Number       : 83
 	db & dw size                 : 9132 Bytes
-	Code length of MAIN.OB2  : 13517 Bytes
-      Total Code Length        : 13517 Bytes
+	Code length of MAIN.OB2  : 13564 Bytes
+      Total Code Length        : 13564 Bytes

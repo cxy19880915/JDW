@@ -6,7 +6,7 @@ BTSleep				EQU	0
 C_AuxSleepTime			EQU	60				;分钟
 C_OpticalSleepTime	EQU	60				;分钟
 C_BTSleepTime				EQU	60				;分钟
-C_MuteTime          EQU 250			;sec
+C_MuteTime          EQU 10			;sec
 
 C_AuxSleepADC				EQU	5					;不大于4095
 C_OpticalSleepADC		EQU	5					;不大于4095

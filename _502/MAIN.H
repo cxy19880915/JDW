@@ -79,8 +79,9 @@ R_OpticalSleepCounter			ds	1
 R_OpticalSleepCounterTime	ds	1
 
 R_OpticalMuteCounterTime ds  1
-R_OpticalMuteMinute      ds  1
+R_OpticalMuteSecond      ds  1
 R_OpticalMuteCounter     ds  1
+R_MuteBaseTime           ds  1
 
 R_BTSleepBaseTime			ds	1
 R_BTSleepSecond				ds	1
