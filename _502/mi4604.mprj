@@ -5,4 +5,5 @@ EVACHIPNAME=
 DEVICENAME=MC81F-series
 ROMSIZE=16
 OPENFILENAME=Main.asm
+OPENFILENAME=OPTICAL.ASM
 ;The end of the HMS800 project information items !

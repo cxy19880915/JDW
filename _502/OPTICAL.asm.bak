@@ -4,35 +4,39 @@
 ;;
 ;;=================================================================================
 F_PowerOnOptical:
-;	set1 R_AuxLedCtrl.B_AuxLedCtrl
 	bbs	R_StandbyCtrl.B_StandbyCtrl,L_PowerOnMute
-;  set1 R_OpticalLedCtrl.B_OpticalLedCtrl
-;  set1 R_AuxLedCtrl.B_AuxLedCtrl
-;  set1 R_BTLedCtrl.B_BTLedCtrl
 	bbc	R_Flag1.B_AudioIn,L_PowerOnOptical_Exit
-;	set1 R_OpticalLedCtrl.B_OpticalLedCtrl
 	call F_InitialSystem
 	jmp	Main_Loop
 	
 L_PowerOnMute:
-;	bcc	R_Flag1.B_AudioIn,L_PowerOnSignal
+	bbc	R_Flag1.B_AudioIn,L_PowerOnSignal
 	call F_MuteOffCtrl
+	ldm	R_OpticalMuteCounter,#0
+	ldm	R_OpticalMuteCounterTime,#0
+	ldm	R_OpticalMuteMinute,#0
 	ret
 	
 L_PowerOnSignal:
-	inc	R_OpticalSleepCounterTime
-	lda	R_OpticalSleepCounterTime
+	inc	R_OpticalMuteCounterTime
+	lda	R_OpticalMuteCounterTime
 	cmp	#250
 	bcc	L_PowerOnMute
-	inc R_OpticalSleepCounter
-	lda R_OpticalSleepCounter
+	ldm	R_OpticalMuteCounterTime,#0
+	inc R_OpticalMuteCounter
+	lda R_OpticalMuteCounter
+	cmp #250
+	bcc	L_PowerOnMute
+	ldm	R_OpticalMuteCounter,#0
+	inc R_OpticalMuteMinute
+	lda R_OpticalMuteMinute
 	cmp #C_MuteTime
 	bcc L_PowerOnMute
-	ldm	R_OpticalSleepCounter,#0
+	ldm	R_OpticalMuteMinute,#0
 	call F_MuteOnCtrl	
 	
 L_PowerOnOptical_Exit:
-	call F_MuteOnCtrl
+;	call F_MuteOnCtrl
 	ret
 	
 ;;=================================================================================

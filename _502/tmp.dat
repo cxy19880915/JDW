@@ -205,6 +205,10 @@
 
 
 
+
+
+
+
 ;;=================================================================
 ;;
 ;;for ir variable
@@ -4508,13 +4512,9 @@
 ;;
 ;;=================================================================================
 
-;	set1 R_AuxLedCtrl.B_AuxLedCtrl
 
-;  set1 R_OpticalLedCtrl.B_OpticalLedCtrl
-;  set1 R_AuxLedCtrl.B_AuxLedCtrl
-;  set1 R_BTLedCtrl.B_BTLedCtrl
 
-;	set1 R_OpticalLedCtrl.B_OpticalLedCtrl
+;	call F_InitialSystem
 
 
 
@@ -4537,6 +4537,14 @@
 
 
 
+
+
+
+
+
+
+
+;	call F_MuteOnCtrl
 
 
 ;;=================================================================================
