@@ -89,9 +89,9 @@ Main_Loop:
 	jmp	Main_Loop
 	
 main_iPod_loop:
-;	call	F_CheckERP
-;	call	F_CheckAuxSleep
-;	call	F_CheckOpticalSleep
+	call	F_CheckERP
+	call	F_CheckAuxSleep
+	call	F_CheckOpticalSleep
 	call	F_CheckBTSleep
 	jmp	Main_Loop	
 	

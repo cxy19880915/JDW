@@ -3,8 +3,8 @@ OpticalSleep	EQU	1
 BTSleep				EQU	0
 
 ;;===========================================================================
-C_AuxSleepTime			EQU	40				;分钟
-C_OpticalSleepTime	EQU	40				;分钟
+C_AuxSleepTime			EQU	50				;分钟
+C_OpticalSleepTime	EQU	50				;分钟
 C_BTSleepTime				EQU	60				;分钟
 C_MuteTime          EQU 10			;sec
 
