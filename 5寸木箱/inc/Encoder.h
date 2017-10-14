@@ -3,7 +3,7 @@
 
 #include "task.h"
 #include "i2c_gpio.h"
-#include "tas5754.h"
+#include "bd3490.h"
 
 #ifdef Encoder_GLOBALS
 	#define Encoder_EXT 

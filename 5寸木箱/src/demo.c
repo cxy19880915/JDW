@@ -81,6 +81,10 @@ int32_t main(void)
 	*/
 	I2C_SW_Open(500000);
 	ST_BY = 1;
+	while(1)
+	{
+		
+	}
 	
 	#if 1
 	while(1)
@@ -110,10 +114,10 @@ int32_t main(void)
 		}
 		Bluetooth_Test_Task();							//Bluetooth
 		// Trigger ADC conversion if it is idle
-        if(!ADC_IS_BUSY(ADC)) 							//Voltage
+    if(!ADC_IS_BUSY(ADC)) 							//Voltage
 		{
-            ADC_START_CONV(ADC);
-        }
+        ADC_START_CONV(ADC);
+    }
 		if(LED_Flag)
 		{
 			led_chang(0x2000);

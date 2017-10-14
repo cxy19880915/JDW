@@ -415,9 +415,9 @@
               <FilePath>.\src\Encoder.c</FilePath>
             </File>
             <File>
-              <FileName>Headset.c</FileName>
+              <FileName>bd3490.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\src\Headset.c</FilePath>
+              <FilePath>.\src\bd3490.c</FilePath>
             </File>
           </Files>
         </Group>

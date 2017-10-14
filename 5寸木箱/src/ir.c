@@ -44,28 +44,28 @@ void IR_test_task(void)
 						case 0x01:							//BASS+
 							if( SYS_power_flag )
 							{
-								Amplifier_BASS_A();							
+								BD_BASS_A();							
 							}
 						break;
 							
 						case 0x02:							//BASS-
 							if( SYS_power_flag )
 							{
-								Amplifier_BASS_B();	
+								BD_BASS_B();	
 							}
 						break;
 						
 						case 0x03:							//TREBLE+
 							if( SYS_power_flag )
 							{
-								Amplifier_TREBLE_A();						
+								BD_TREBLE_A();						
 							}	
 						break;
 						
 						case 0x04:							//TREBLE-
 							if( SYS_power_flag )
 							{
-								Amplifier_TREBLE_B();	
+								BD_TREBLE_B();	
 							}
 						break;
 						
@@ -124,7 +124,7 @@ void IR_test_task(void)
 							disp_flag=0;
 							if( SYS_power_flag )
 							{
-								Amplifier_VOL_A();			
+								BD_VOL_A();			
 							}
 						break;
 
@@ -132,7 +132,7 @@ void IR_test_task(void)
 							disp_flag=0;
 							if( SYS_power_flag )
 							{
-								Amplifier_VOL_B();
+								BD_VOL_B();
 							}
 						break;
 
@@ -155,14 +155,14 @@ void IR_test_task(void)
 										LED_B = 0;
 								}
 							}
-							if( SYS_power_flag && (disp>=0x15) )
-							{
-								treble_level = 0;
-								bass_level = 0;
-								LED_Flag = 0;
-								bass_adjust(bass_level);
-								treble_adjust(treble_level);
-							}
+//							if( SYS_power_flag && (disp>=0x15) )
+//							{
+//								treble_level = 0;
+//								bass_level = 0;
+//								LED_Flag = 0;
+//								bass_adjust(bass_level);
+//								treble_adjust(treble_level);
+//							}
 						break;
 
 						case 0x18:							//HDMI
