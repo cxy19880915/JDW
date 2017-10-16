@@ -80,9 +80,6 @@ int32_t main(void)
 	LED_Flag = 0;
 	*/
 	I2C_SW_Open(500000);
-	ST_BY = 0;
-	LED_R = 0;LED_B = 0;LED_G = 0;
-	LED_R = 1;LED_B = 1;LED_G = 1;
 	ST_BY = 1;
 	while(1)
 	{
