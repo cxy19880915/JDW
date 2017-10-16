@@ -147,7 +147,7 @@
           <Type>0</Type>
           <LineNumber>43</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>4050</Address>
+          <Address>4034</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -157,22 +157,6 @@
           <Filename>D:\work\5瀵告湪绠?src\ir.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\demo_mini\src/ir.c\43</Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>231</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>3144</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>D:\work\5瀵告湪绠?src\task.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\demo_mini\src/task.c\231</Expression>
         </Bp>
       </Breakpoint>
       <Tracepoint>

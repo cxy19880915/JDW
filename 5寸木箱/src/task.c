@@ -41,7 +41,7 @@ void GPIO_Init( void )
 	GPIO_SetMode(P3, BIT0, GPIO_PMD_OUTPUT);		//MODE_A/B
 	GPIO_SetMode(P3, BIT5, GPIO_PMD_OUTPUT);		//LED_B
 	GPIO_SetMode(P3, BIT4, GPIO_PMD_OUTPUT);		//LED_G
-	GPIO_SetMode(P5, BIT2, GPIO_PMD_OUTPUT);		//LED_R
+	GPIO_SetMode(P3, BIT2, GPIO_PMD_OUTPUT);		//LED_R
 	GPIO_SetMode(P5, BIT4, GPIO_PMD_OUTPUT);		//RST_DEV
 	
 	GPIO_SetMode(P2, BIT2, GPIO_PMD_OPEN_DRAIN);//_SCL
@@ -90,12 +90,12 @@ void GPIO_Init( void )
  *
  * @details     The Timer1 default IRQ, declared in startup_Mini51.s.
  */
-void TMR1_IRQHandler(void)
-{
-	irticks++;ledcount++;//audio_1++;Power_Meter++;
-	if(irticks>0xfffd)irticks = 0xfffd;
-    TIMER_ClearIntFlag(TIMER1);
-}
+//void TMR1_IRQHandler(void)
+//{
+//	irticks++;ledcount++;//audio_1++;Power_Meter++;
+//	if(irticks>0xfffd)irticks = 0xfffd;
+//    TIMER_ClearIntFlag(TIMER1);
+//}
 
 
 /**

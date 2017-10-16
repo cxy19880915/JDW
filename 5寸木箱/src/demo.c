@@ -33,11 +33,11 @@ static void SYS_Init(void)
     CLK->CLKSEL0 |= CLK_CLKSEL0_HCLK_S_XTAL;
 
     /* Enable IP clock */
-//    CLK->APBCLK |= CLK_APBCLK_UART_EN_Msk; // UART Clock Enable
+    CLK->APBCLK |= CLK_APBCLK_UART_EN_Msk; // UART Clock Enable
 
     /* Select IP clock source */
-//    CLK->CLKSEL1 &= ~CLK_CLKSEL1_UART_S_Msk;
-//    CLK->CLKSEL1 |= (0x0 << CLK_CLKSEL1_UART_S_Pos);// Clock source from external 12 MHz or 32 KHz crystal clock
+    CLK->CLKSEL1 &= ~CLK_CLKSEL1_UART_S_Msk;
+    CLK->CLKSEL1 |= (0x0 << CLK_CLKSEL1_UART_S_Pos);// Clock source from external 12 MHz or 32 KHz crystal clock
 
     /* Update System Core Clock */
     /* User can use SystemCoreClockUpdate() to calculate PllClock, SystemCoreClock and CycylesPerUs automatically. */
@@ -80,6 +80,9 @@ int32_t main(void)
 	LED_Flag = 0;
 	*/
 	I2C_SW_Open(500000);
+	ST_BY = 0;
+	LED_R = 0;LED_B = 0;LED_G = 0;
+	LED_R = 1;LED_B = 1;LED_G = 1;
 	ST_BY = 1;
 	while(1)
 	{

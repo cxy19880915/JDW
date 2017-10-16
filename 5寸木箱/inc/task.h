@@ -68,7 +68,7 @@ TASK_EXT	uint8_t	VOL_F,TREBLE_F,SUB_F;
 
 #define LED_B					P35
 #define LED_G					P34
-#define LED_R					P52
+#define LED_R					P32
 
 #define VOL_ROTOA_1			1
 #define VOL_ROTOB_2			2
