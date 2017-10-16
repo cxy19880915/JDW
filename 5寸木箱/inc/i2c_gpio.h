@@ -9,13 +9,14 @@
  * Copyright (C) 2013 Nuvoton Technology Corp. All rights reserved.
  *****************************************************************************/
 
-#ifndef __I2C_SOFTWARE_GPIO_H__
-#define __I2C_SOFTWARE_GPIO_H__
+#ifndef __I2C_GPIO_H__
+#define __I2C_GPIO_H__
 
 #include "Mini51Series.h"
 
-#define I2C_SW_SDA     P23
-#define I2C_SW_CLK     P22
+#define I2C_SW_SDA			P23
+#define	I2C_SW_CLK			P22
+#define	_24c02_addr			0xa0
 
 /*---------------------------------------------------------------------------------------------------------*/
 /* Define functions prototype                                                                           */

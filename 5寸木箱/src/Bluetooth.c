@@ -47,13 +47,13 @@ void BT_Play_Pause(void)
 		BT_REV = 0;	BT_FWD = 0;
 	}
 }
-//void BT_REV_TASK(void)
-//{
-//	;
-//}
-//void BT_FWD_TASK(void)
-//{
-//	;
-//}
+void BT_REV_TASK(void)
+{
+	;
+}
+void BT_FWD_TASK(void)
+{
+	;
+}
 
 

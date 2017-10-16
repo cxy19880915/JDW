@@ -5,7 +5,7 @@
 #include "task.h"
 #include "Encoder.h"
 #include "bd3490.h"
-#include "tas5754.h"
+//#include "tas5754.h"
 #include "task.h"
 #include "Bluetooth.h"
 
@@ -15,7 +15,7 @@
 	#define IR_EXT extern
 #endif
 	
-
+IR_EXT	unsigned char	IR_flag;
 IR_EXT	void IR_init(void);
 IR_EXT	void IR_test_task(void);
 

@@ -1,3 +1,4 @@
+#define IR_GLOBALS
 /******************************************************************************
 * @file     ir.c
 * @brief    The Driver code for VS1838A with MINI54FDE
@@ -38,7 +39,7 @@ void IR_test_task(void)
 	if(KEY_data!=0x15)
 		LED_Flag = 0;
 				if(disp_flag == 1)
-                {
+        {
 					switch(KEY_data)
 					{
 						case 0x01:							//BASS+

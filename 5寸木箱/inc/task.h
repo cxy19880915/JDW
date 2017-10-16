@@ -37,6 +37,8 @@ TASK_EXT	uint8_t	VOL_F,TREBLE_F,SUB_F;
 
 #define USB_PLAY			P13
 #define USB_SW				P14
+#define USB_REV				P12
+#define USB_FWD				P10
 	
 #define ICE_DAT				P47
 #define ICE_CLK				P46

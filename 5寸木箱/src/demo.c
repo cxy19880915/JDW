@@ -6,7 +6,7 @@
 #include "KEY_Scan.h"
 #include "Bluetooth.h"
 #include "ir.h"
-#include "tas5754.h"
+#include "usb.h"
 
 
 #define PLLCON_SETTING  CLK_PLLCON_50MHz_HXT
@@ -83,10 +83,43 @@ int32_t main(void)
 	ST_BY = 1;
 	while(1)
 	{
-		
+		if(POWER_FLAG && (SYS_power_flag == 0))
+		{
+			Sys_power_on();
+		}
+		else if((!POWER_FLAG) && (SYS_power_flag == 1))
+		{
+			Sys_power_off();
+		}
+		if(IR_flag == 1)
+		{
+			IR_test_task();
+			IR_flag = 0;
+		}
+		if(BT_connect == 1)
+		{
+			Bluetooth_Test_Task();			
+		}
+		if(VOL_F||TREBLE_F||SUB_F)
+		{
+			Encoder_Task();
+			VOL_F=0,TREBLE_F=0,SUB_F=0;
+		}
+		if(USB_SW == 1)
+		{
+			USB_Test_Task();
+		}
+		if(AUDIO_flag == 1)
+		{
+			AMP_MUTE = 1;
+		}
+		else
+		{
+			AMP_MUTE = 0;
+		}
 	}
 	
-	#if 1
+	#if 0
 	while(1)
 	{
 		if( POWER_FLAG && (SYS_power_flag == 0) )  		//power on 

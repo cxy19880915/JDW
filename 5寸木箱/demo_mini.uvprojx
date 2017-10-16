@@ -310,7 +310,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>1</Optim>
+            <Optim>0</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -369,7 +369,7 @@
             <ScatterFile></ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
-            <Misc></Misc>
+            <Misc>--entry Reset_Handler</Misc>
             <LinkerInputFile></LinkerInputFile>
             <DisabledWarnings></DisabledWarnings>
           </LDads>
@@ -418,6 +418,11 @@
               <FileName>bd3490.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\bd3490.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\usb.c</FilePath>
             </File>
           </Files>
         </Group>

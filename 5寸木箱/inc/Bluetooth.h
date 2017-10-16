@@ -14,11 +14,11 @@
 
 
 //#define EP_DET  			P52
-	
-
-void Bluetooth_Test_Task(void);
-void BT_patch(void);
-void BT_Play_Pause(void);	
+Bluetooth_EXT	unsigned char AUDIO_flag;	
+Bluetooth_EXT	unsigned char BT_connect;
+Bluetooth_EXT	void Bluetooth_Test_Task(void);
+Bluetooth_EXT	void BT_patch(void);
+Bluetooth_EXT	void BT_Play_Pause(void);	
 //void BT_REV_TASK(void);	
 //void BT_FWD_TASK(void);	
 	

@@ -92,56 +92,6 @@ void GPIO_Init( void )
  */
 void TMR1_IRQHandler(void)
 {
-	if(ADC_V>0x3f0)
-	{
-		if((key_count>0x100)&&(key_count<0x2000))
-		{
-			Channel[0]++;
-			if(Channel[0] >= 0x02 )Channel[0] = 0;//2 channel
-			Channel_flag = 1;
-		}
-		key_count = 0;
-		power_change = 0;
-	}
-	if((ADC_V>0xf0)&&(ADC_V<0x3f0))
-	{
-		if((key_count>0x100)&&(key_count<0x2000))
-		{
-			Channel[0]++;
-			if(Channel[0] >= 0x02 )Channel[0] = 0;//2 channel
-			Channel_flag = 1;
-		}
-		key_count = 0;
-		power_change = 0;
-		if(AUDIO_DET)
-		{
-			audio_adc++;
-			if((audio_adc >= 0x386d000)&&(AMP_MUTE == 1))	//2 hours  0x35a4e90
-//			if((audio_adc >= 0x1c36800)&&(_RST == 1))	//1 hours  0x1ad2748
-//			if((audio_adc >= 0xe1b400)&&(_RST == 1))	//°ë hours  0xd693a4	
-//			if((audio_2 >= 0x3c3000)&&(_RST == 1))	//10 minis	0x47868c  4b3c00
-//			if((audio_2 >= 0x78600)&&(_RST == 1))	//1 minis	0x7270e			
-			{
-				AMP_MUTE = 0;
-				power_change = 1;
-				POWER_FLAG = ~POWER_FLAG;
-			}
-		}
-		else
-		{
-			audio_adc = 0;
-		}
-	}
-	if(ADC_V<0x0f)
-	{
-		key_count++;
-		if(key_count > 0xfff0)key_count = 0xfff0;
-		if((key_count > 0x2000)&&(power_change ==0))
-		{
-			power_change = 1;
-			POWER_FLAG = ~POWER_FLAG;
-		}
-	}
 	irticks++;ledcount++;//audio_1++;Power_Meter++;
 	if(irticks>0xfffd)irticks = 0xfffd;
     TIMER_ClearIntFlag(TIMER1);
@@ -228,12 +178,12 @@ void GPIO234_IRQHandler(void)
 	{
 		if(irticks > 0xf0)irwork=IDLE;
 		switch(irwork)
-        {
+    {
 			case IDLE: 
 				irwork=HEAD;
-            break;
+        break;
 						
-            case HEAD: 
+      case HEAD: 
 				irwork=(irticks>((TIME_INFRARED_HEAD_US+TIME_INFRARED_REPEAT_US)/2)/TIME_INTERRUPT_PERIOD_US)?DATA:IDLE;
 				if( irwork == DATA)			//BOOT_code
 				{
@@ -246,10 +196,10 @@ void GPIO234_IRQHandler(void)
 					disp++;
 					disp_flag = 1;
 				}								
-             break;
+        break;
 						
 
-             case DATA: 
+      case DATA: 
 					irdata=(irticks>((TIME_INFRARED_ZERO_US+TIME_INFRARED_ONE_US )/2)/TIME_INTERRUPT_PERIOD_US)?1:0;
 					if( ircount < 8 )
 					{
@@ -281,10 +231,11 @@ void GPIO234_IRQHandler(void)
 						irwork = IDLE;
 						disp_flag=1;
 						disp = 0;
+						IR_flag = 1;
 						KEY_data = ir.data0;
 					}
 			break;
-        }  
+    }  
 		irticks=0; 
 		P3->ISRC = BIT0;
 	}
