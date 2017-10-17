@@ -7,6 +7,7 @@
 #include "Bluetooth.h"
 #include "ir.h"
 #include "usb.h"
+#include "pcm9211.h"
 
 
 #define PLLCON_SETTING  CLK_PLLCON_50MHz_HXT
@@ -81,6 +82,9 @@ int32_t main(void)
 	*/
 	I2C_SW_Open(500000);
 	ST_BY = 1;
+	pcm9211_RST();
+	pcm9211_init();
+	bd_init();
 	while(1)
 	{
 		if(POWER_FLAG && (SYS_power_flag == 0))
