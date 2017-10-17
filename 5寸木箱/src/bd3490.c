@@ -48,9 +48,9 @@ typedef struct BD3490_REG
 {
 	unsigned char	reg_addr;
 	unsigned char	reg_value;
-}BD3490_REG[];
+}BD3490_REG;
 
-BD3490_REG bd_REG =
+BD3490_REG bd_REG[] =
 {
 	IN_Selector,INPUT_MUTE,
 	IN_Gain,_0dB,
@@ -62,129 +62,91 @@ BD3490_REG bd_REG =
 	Test_Mode,0x00,
 	Sys_Reset,0x81
 };
-void Transmit(BD3490_REG reg,unsigned char n)
+void Transmit(BD3490_REG reg)
 {
 	static unsigned char *p8Data;
-		p8Data[0] = reg[n].reg_addr;
-		p8Data[1] = reg[n].reg_value;
+		p8Data[0] = reg.reg_addr;
+		p8Data[1] = reg.reg_value;
 		I2C_SW_Send(BD_Slave_addr,p8Data,2);
 }
 void bd_init( void )
 {
 	for(int i=0;i<9;i++)
-		Transmit(bd_REG,i);
+		Transmit(bd_REG[i]);
 }
 void BD_InputMode(unsigned char n)
 {
-	if(bd_REG->reg_addr == IN_Selector)
-	{
-		bd_REG->reg_value = bd_REG->reg_value + n;
-	}
-	Transmit(bd_REG,0);
+	bd_REG[0].reg_addr = IN_Selector;
+	bd_REG[0].reg_value = bd_REG[0].reg_value + n;
+	Transmit(bd_REG[0]);
 }
 void BD_InputGain(unsigned char n)
 {
-	if(bd_REG->reg_addr == IN_Gain)
-	{
-		bd_REG->reg_value = bd_REG->reg_value + n;
-	}
-	Transmit(bd_REG,1);
+	bd_REG[1].reg_value = bd_REG[1].reg_value + n;
+	Transmit(bd_REG[1]);
 }
 void BD_VOL_A(void)
 {
-	if(bd_REG->reg_addr == Vol_Gain_1ch)
-	{
-		bd_REG->reg_value = bd_REG->reg_value+4;
-		if(bd_REG->reg_value >= 0xd6)
-			bd_REG->reg_value = 0xd6;
-	}
-	if(bd_REG->reg_addr == Vol_Gain_2ch)
-	{
-		bd_REG->reg_value = bd_REG->reg_value+4;
-		if(bd_REG->reg_value >= 0xd6)
-			bd_REG->reg_value = 0xd6;
-	}
-	Transmit(bd_REG,2);
-	Transmit(bd_REG,3);
+	bd_REG[2].reg_value = bd_REG[2].reg_value+4;
+	if(bd_REG[2].reg_value >= 0xd6)
+			bd_REG[2].reg_value = 0xd6;
+	bd_REG[3].reg_value = bd_REG[3].reg_value+4;
+	if(bd_REG[3].reg_value >= 0xd6)
+			bd_REG[3].reg_value = 0xd6;
+	Transmit(bd_REG[2]);
+	Transmit(bd_REG[3]);
 }
 void BD_VOL_B(void)
 {
-	if(bd_REG->reg_addr == Vol_Gain_1ch)
-	{
-		bd_REG->reg_value = bd_REG->reg_value-4;
-		if(bd_REG->reg_value <= 0x00)
-			bd_REG->reg_value = 0x00;
-	}
-	if(bd_REG->reg_addr == Vol_Gain_2ch)
-	{
-		bd_REG->reg_value = bd_REG->reg_value-4;
-		if(bd_REG->reg_value <= 0x80)
-			bd_REG->reg_value = 0x80;
-	}
-	Transmit(bd_REG,2);
-	Transmit(bd_REG,3);
+	bd_REG[2].reg_value = bd_REG[2].reg_value+4;
+	if(bd_REG[2].reg_value <= 0x00)
+			bd_REG[2].reg_value = 0x00;
+	bd_REG[3].reg_value = bd_REG[3].reg_value+4;
+	if(bd_REG[3].reg_value <= 0x80)
+			bd_REG[3].reg_value = 0x80;
+	Transmit(bd_REG[2]);
+	Transmit(bd_REG[3]);
 }
 void BD_BASS_A(void)
 {
-	if(bd_REG->reg_addr == Bass_Gain)
-	{
-		bd_REG->reg_value = bd_REG->reg_value&0x0e + 2;
-		if(bd_REG->reg_value >= 0x0e)
-			bd_REG->reg_value = 0x0e;
-	}
-	Transmit(bd_REG,4);
+		bd_REG[4].reg_value = bd_REG[4].reg_value&0x0e + 2;
+		if(bd_REG[4].reg_value >= 0x0e)
+			bd_REG[4].reg_value = 0x0e;
+		Transmit(bd_REG[4]);
 }
 void BD_BASS_B(void)
 {
-	if(bd_REG->reg_addr == Bass_Gain)
-	{
-		bd_REG->reg_value = bd_REG->reg_value|0x80 + 2;
-		if(bd_REG->reg_value >= 0x8e)
-			bd_REG->reg_value = 0x8e;
-	}
-	Transmit(bd_REG,4);
+	bd_REG[4].reg_value = bd_REG[4].reg_value|0x80 + 2;
+		if(bd_REG[4].reg_value >= 0x8e)
+			bd_REG[4].reg_value = 0x8e;
+	Transmit(bd_REG[4]);
 }
 void BD_TREBLE_A(void)
 {
-	if(bd_REG->reg_addr == Treble_Gain)
-	{
-		bd_REG->reg_value = bd_REG->reg_value&0x0e + 2;
-		if(bd_REG->reg_value >= 0x0e)
-			bd_REG->reg_value = 0x0e;
-	}
-	Transmit(bd_REG,5);
+		bd_REG[5].reg_value = bd_REG[5].reg_value&0x0e + 2;
+		if(bd_REG[5].reg_value >= 0x0e)
+			bd_REG[5].reg_value = 0x0e;
+	Transmit(bd_REG[5]);
 }
 void BD_TREBLE_B(void)
 {
-	if(bd_REG->reg_addr == Treble_Gain)
-	{
-		bd_REG->reg_value = bd_REG->reg_value|0x80 + 2;
-		if(bd_REG->reg_value >= 0x8e)
-			bd_REG->reg_value = 0x8e;
-	}
-	Transmit(bd_REG,5);
+		bd_REG[5].reg_value = bd_REG[5].reg_value|0x80 + 2;
+		if(bd_REG[5].reg_value >= 0x8e)
+			bd_REG[5].reg_value = 0x8e;
+	Transmit(bd_REG[5]);
 }
 void BD_SURROUND(unsigned char n)
 {
-	if(bd_REG->reg_addr == Surround_Gain)
-	{
-		bd_REG->reg_value = bd_REG->reg_value + n;
-	}
-	Transmit(bd_REG,6);
+	bd_REG[6].reg_value = bd_REG[6].reg_value + n;
+	Transmit(bd_REG[6]);
 }
 void BD_TestMode(void)
 {
-	if(bd_REG->reg_addr == Test_Mode)
-	{
-		bd_REG->reg_value = 0x00;
-	}
-	Transmit(bd_REG,7);
+	bd_REG[7].reg_value = 0x00;
+	Transmit(bd_REG[7]);
 }
 void BD_SysReset(void)
 {
-	if(bd_REG->reg_addr == Sys_Reset)
-	{
-		bd_REG->reg_value = 0x81;
-	}
-	Transmit(bd_REG,8);
+	bd_REG[8].reg_value = 0x81;
+	Transmit(bd_REG[8]);
 }

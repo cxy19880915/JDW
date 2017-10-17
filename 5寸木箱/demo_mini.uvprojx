@@ -424,6 +424,11 @@
               <FileType>1</FileType>
               <FilePath>.\src\usb.c</FilePath>
             </File>
+            <File>
+              <FileName>pcm9211.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\pcm9211.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

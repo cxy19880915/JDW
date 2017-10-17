@@ -33,11 +33,11 @@ static void SYS_Init(void)
     CLK->CLKSEL0 |= CLK_CLKSEL0_HCLK_S_XTAL;
 
     /* Enable IP clock */
-    CLK->APBCLK |= CLK_APBCLK_UART_EN_Msk; // UART Clock Enable
+//    CLK->APBCLK |= CLK_APBCLK_UART_EN_Msk; // UART Clock Enable
 
-    /* Select IP clock source */
-    CLK->CLKSEL1 &= ~CLK_CLKSEL1_UART_S_Msk;
-    CLK->CLKSEL1 |= (0x0 << CLK_CLKSEL1_UART_S_Pos);// Clock source from external 12 MHz or 32 KHz crystal clock
+//    /* Select IP clock source */
+//    CLK->CLKSEL1 &= ~CLK_CLKSEL1_UART_S_Msk;
+//    CLK->CLKSEL1 |= (0x0 << CLK_CLKSEL1_UART_S_Pos);// Clock source from external 12 MHz or 32 KHz crystal clock
 
     /* Update System Core Clock */
     /* User can use SystemCoreClockUpdate() to calculate PllClock, SystemCoreClock and CycylesPerUs automatically. */
