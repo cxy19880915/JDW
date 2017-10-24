@@ -34,11 +34,11 @@ static void SYS_Init(void)
     CLK->CLKSEL0 |= CLK_CLKSEL0_HCLK_S_XTAL;
 
     /* Enable IP clock */
-//    CLK->APBCLK |= CLK_APBCLK_UART_EN_Msk; // UART Clock Enable
+    CLK->APBCLK |= CLK_APBCLK_UART_EN_Msk; // UART Clock Enable
 
 //    /* Select IP clock source */
-//    CLK->CLKSEL1 &= ~CLK_CLKSEL1_UART_S_Msk;
-//    CLK->CLKSEL1 |= (0x0 << CLK_CLKSEL1_UART_S_Pos);// Clock source from external 12 MHz or 32 KHz crystal clock
+    CLK->CLKSEL1 &= ~CLK_CLKSEL1_UART_S_Msk;
+    CLK->CLKSEL1 |= (0x0 << CLK_CLKSEL1_UART_S_Pos);// Clock source from external 12 MHz or 32 KHz crystal clock
 
     /* Update System Core Clock */
     /* User can use SystemCoreClockUpdate() to calculate PllClock, SystemCoreClock and CycylesPerUs automatically. */
@@ -82,19 +82,22 @@ int32_t main(void)
 	*/
 	I2C_SW_Open(500000);
 	ST_BY = 1;
+	AMP_MUTE = 0;
+//	while(1);
 	pcm9211_RST();
 	pcm9211_init();
 	bd_init();
 	while(1)
 	{
-		if(POWER_FLAG && (SYS_power_flag == 0))
-		{
-			Sys_power_on();
-		}
-		else if((!POWER_FLAG) && (SYS_power_flag == 1))
-		{
-			Sys_power_off();
-		}
+//		if(POWER_FLAG && (SYS_power_flag == 0))
+//		{
+//			Sys_power_on();
+//		}
+//		else if((!POWER_FLAG) && (SYS_power_flag == 1))
+//		{
+//			Sys_power_off();
+//		}
+		LED_Test();
 		if(IR_flag == 1)
 		{
 			IR_test_task();
@@ -104,23 +107,48 @@ int32_t main(void)
 		{
 			Bluetooth_Test_Task();			
 		}
-		if(VOL_F||TREBLE_F||SUB_F)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+if(VOL_F||TREBLE_F||SUB_F)
 		{
 			Encoder_Task();
 			VOL_F=0,TREBLE_F=0,SUB_F=0;
 		}
-		if(USB_SW == 1)
-		{
-			USB_Test_Task();
-		}
-		if(AUDIO_flag == 1)
-		{
-			AMP_MUTE = 1;
-		}
-		else
-		{
-			AMP_MUTE = 0;
-		}
+//		if(USB_SW == 1)
+//		{
+//			USB_Test_Task();
+//		}
+//		if(AUDIO_flag == 1)
+//		{
+//			AMP_MUTE = 1;
+//		}
+//		else
+//		{
+//			AMP_MUTE = 0;
+//		}
 	}
 	
 	#if 0

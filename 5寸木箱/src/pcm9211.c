@@ -11,7 +11,7 @@ PCM9211_REG	pcm_reg[500] = {0};
 
 static void Transmit(PCM9211_REG reg)
 {
-	static unsigned char *p8Data;
+	static unsigned char p8Data[2];
 		p8Data[0] = reg.reg_addr;
 		p8Data[1] = reg.reg_value;
 		I2C_SW_Send(PCM_Slave_Addr,p8Data,2);

@@ -30,6 +30,7 @@ TASK_EXT	uint8_t	VOL_F,TREBLE_F,SUB_F;
 /** Define GPIO Pin. 
  *
  */
+//#define POWER_KEY   P01
 #define BT_REV				P12
 #define BT_FWD				P10
 #define BT_DET				P53

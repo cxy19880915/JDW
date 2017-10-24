@@ -10,9 +10,9 @@
 #define TIME_INFRARED_STOP_US			40560		 //数据结束的时间：TH=40+0.56=40.56ms
 typedef union {uint32_t data;struct {uint8_t address0;uint8_t address1;uint8_t data0;uint8_t data1;};}irdata_t;
 irdata_t ir;
-uint16_t irticks=0;
+uint16_t irticks=0,Power_Count=0;
 uint32_t ledcount=0,audio_adc=0;
-uint8_t ircount=0;
+uint8_t ircount=0,Power_Flag=0;
 irstatus_t irwork=IDLE;
 uint8_t disp_flag=0,disp=0;
 uint8_t KEY_data = 0;
@@ -62,16 +62,20 @@ void GPIO_Init( void )
 //	GPIO_SetMode(P4, BIT7, GPIO_PMD_QUASI);		//ICE_DAT
 	
 
-
+//	GPIO_EnableInt(P0, 1, GPIO_INT_FALLING);
+	GPIO_EnableInt(P0, 1, GPIO_INT_BOTH_EDGE);	
 	GPIO_EnableInt(P0, 4, GPIO_INT_BOTH_EDGE);
 	GPIO_EnableInt(P0, 6, GPIO_INT_BOTH_EDGE);
-    NVIC_EnableIRQ(GPIO01_IRQn);
+  NVIC_EnableIRQ(GPIO01_IRQn);
 	GPIO_EnableInt(P2, 6, GPIO_INT_BOTH_EDGE);
-    NVIC_EnableIRQ(GPIO234_IRQn);
+	GPIO_EnableInt(P3, 1, GPIO_INT_FALLING);
+  NVIC_EnableIRQ(GPIO234_IRQn);
 	GPIO_SET_DEBOUNCE_TIME(GPIO_DBNCECON_DBCLKSRC_HCLK, GPIO_DBNCECON_DBCLKSEL_1024);
 	GPIO_ENABLE_DEBOUNCE(P0,BIT4);
 	GPIO_ENABLE_DEBOUNCE(P0,BIT6);
 	GPIO_ENABLE_DEBOUNCE(P2,BIT6);
+	GPIO_ENABLE_DEBOUNCE(P3,BIT1);
+	GPIO_ENABLE_DEBOUNCE(P0,BIT1);
 	
 	/*****init gpio output******/
 //	_RST = 0;
@@ -90,12 +94,29 @@ void GPIO_Init( void )
  *
  * @details     The Timer1 default IRQ, declared in startup_Mini51.s.
  */
-//void TMR1_IRQHandler(void)
-//{
-//	irticks++;ledcount++;//audio_1++;Power_Meter++;
-//	if(irticks>0xfffd)irticks = 0xfffd;
-//    TIMER_ClearIntFlag(TIMER1);
-//}
+void TMR1_IRQHandler(void)
+{
+		if(Power_Flag)
+		{
+			Power_Count++;
+			if(Power_Count>=0xfff1)
+			{
+				Power_Count = 0xfff1;
+			}
+			if(Power_Count>0x2000)
+			{
+				ST_BY = ~ST_BY;
+				Power_Flag = 0;
+			}
+		}	
+		else
+		{
+			Power_Count = 0;
+		}
+	irticks++;ledcount++;//audio_1++;Power_Meter++;
+	if(irticks>0xfffd)irticks = 0xfffd;
+    TIMER_ClearIntFlag(TIMER1);
+}
 
 
 /**
@@ -109,6 +130,23 @@ void GPIO_Init( void )
  */
 void GPIO01_IRQHandler(void)
 {
+	if(P0->ISRC & BIT1)
+	{
+		P0->ISRC = BIT1;
+//		if(Power_Count>0x2000)
+//		{
+//			ST_BY = ~ST_BY;
+//		}
+		if(POWER_KEY)
+		{
+			Power_Flag = 0;
+			Power_Count = 0;
+		}
+		else
+		{
+			Power_Flag = 1;
+		}
+	}
 	if(P0->ISRC & BIT4)
 	{
 		P0->ISRC = BIT4;
@@ -174,7 +212,7 @@ void GPIO234_IRQHandler(void)
 			SUB_F = 1;
 		}
 	}
-	else if(P3->ISRC & BIT0)
+	else if(P3->ISRC & BIT1)
 	{
 		if(irticks > 0xf0)irwork=IDLE;
 		switch(irwork)
@@ -237,7 +275,7 @@ void GPIO234_IRQHandler(void)
 			break;
     }  
 		irticks=0; 
-		P3->ISRC = BIT0;
+		P3->ISRC = BIT1;
 	}
 	else 
 	{

@@ -50,36 +50,36 @@ void Encoder_Task(void)
 	if( VOL_A & Encoder_vol_flag )
 	{
 		Encoder_vol_flag = 0;
-		BD_VOL_A();
+//		BD_VOL_A();
 
 	}
 	else if( VOL_B && Encoder_vol_flag == 0 )
 	{
 		Encoder_vol_flag = 1;
-		BD_VOL_B();
+//		BD_VOL_B();
 							
 	}
 	/*************	treble	*******************/
 	else if ( TREBLE_A && Encoder_treble_flag )
 	{
 		Encoder_treble_flag = 0;
-		BD_TREBLE_A();
+//		BD_TREBLE_A();
 	}
 	else if  ( TREBLE_B && Encoder_treble_flag == 0 )
 	{
 		Encoder_treble_flag = 1;
-		BD_TREBLE_B();
+//		BD_TREBLE_B();
 	}
 	/*************	sub	*******************/
 	else if  ( SUB_A && Encoder_sub_flag )
 	{
 		Encoder_sub_flag = 0;
-		BD_BASS_A();
+//		BD_BASS_A();
 	}
 	else if  ( SUB_B && Encoder_sub_flag == 0 )
 	{
 		Encoder_sub_flag = 1;
-		BD_BASS_B();
+//		BD_BASS_B();
 	}
 	
 	VOL_F=0,TREBLE_F=0,SUB_F=0;

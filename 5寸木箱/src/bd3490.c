@@ -11,6 +11,7 @@
 
 #include "bd3490.h"
 
+
 //typedef enum BD_InputMode_Value
 //{
 //	A=0x00,
@@ -43,6 +44,7 @@
 //	B_High=0x1f
 //};
 //BD_InpuGain_Value	bd_input_value = _0dB;
+
  
 typedef struct BD3490_REG
 {
@@ -52,26 +54,32 @@ typedef struct BD3490_REG
 
 BD3490_REG bd_REG[] =
 {
-	IN_Selector,INPUT_MUTE,
-	IN_Gain,_0dB,
-	Vol_Gain_1ch,0xff,
-	Vol_Gain_2ch,0xff,
+	IN_Selector,0x01,//INPUT_MUTE,
+	IN_Gain,0x00,//_0dB,
+	Vol_Gain_1ch,0x00,
+	Vol_Gain_2ch,0x00,
 	Bass_Gain,0x80,
 	Treble_Gain,0x80,
-	Surround_Gain,A_OFF,
+	Surround_Gain,0x00,//A_OFF,
 	Test_Mode,0x00,
 	Sys_Reset,0x81
 };
+
+void Transmit(BD3490_REG reg);
+
+
 void Transmit(BD3490_REG reg)
 {
-	static unsigned char *p8Data;
+	static unsigned char p8Data[2];
 		p8Data[0] = reg.reg_addr;
 		p8Data[1] = reg.reg_value;
 		I2C_SW_Send(BD_Slave_addr,p8Data,2);
 }
 void bd_init( void )
 {
-	for(int i=0;i<9;i++)
+	BD_SysReset();
+	CLK_SysTickDelay(10000);
+	for(int i=0;i<8;i++)
 		Transmit(bd_REG[i]);
 }
 void BD_InputMode(unsigned char n)

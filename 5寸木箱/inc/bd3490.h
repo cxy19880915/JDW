@@ -2,6 +2,7 @@
 #define __BD3490_H__
 
 #include "i2c_gpio.h"
+//#include "Mini51Series.h"
 
 #ifdef BD_GLOBALS
 	#define BD_EXT 
@@ -9,7 +10,7 @@
 	#define BD_EXT extern
 #endif
 	
-#define BD_Slave_addr 0x40
+#define BD_Slave_addr (0x40<<1)
 
 typedef enum BD_InputMode_Value
 {
@@ -42,6 +43,8 @@ typedef	enum BD_SurroundGain_Value
 	B_Middle=0x1a,
 	B_High=0x1f
 }BD_SurroundGain_Value;
+
+
 
 BD_EXT	void bd_init( void );
 BD_EXT	void BD_InputMode(unsigned char n);

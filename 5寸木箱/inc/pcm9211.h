@@ -9,7 +9,7 @@
 	
 #include "i2c_gpio.h"
 
-#define PCM_Slave_Addr	0x41
+#define PCM_Slave_Addr	(0x41<<1)
 	
 PCM9211_EXT	void pcm9211_RST(void);
 PCM9211_EXT	void pcm9211_init(void);

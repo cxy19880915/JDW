@@ -13,7 +13,7 @@
 	#define KEY_EXT extern
 #endif
 	
-#define POWER_KEY   		P14
+#define POWER_KEY   		P01
 
 //KEY_EXT uint8_t key_status;
 KEY_EXT uint16_t key_count;
@@ -24,6 +24,7 @@ KEY_EXT uint8_t Channel[];
 KEY_EXT uint8_t	SYS_power_flag;
 KEY_EXT	uint16_t ADC_V;
 
+void LED_Test(void);
 void led_chang(uint32_t num);	
 void ADC_init(void);
 void ADC_IRQHandler(void);		

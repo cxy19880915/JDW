@@ -27,7 +27,21 @@ void ADC_init(void)
     NVIC_EnableIRQ(ADC_IRQn);	
 }
 
-
+void LED_Test(void)
+{
+	if(ST_BY)
+	{
+		LED_B = 0;
+		LED_G = 0;
+		LED_R = 0;
+	}
+	else
+	{
+		LED_B = 1;
+		LED_G = 1;
+		LED_R = 1;
+	}
+}
 void led_chang(uint32_t num)
 {
 	if(ledcount>num)

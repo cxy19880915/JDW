@@ -139,8 +139,8 @@ void IR_test_task(void)
 
 						case 0x14:							//ON-OFF
 							if(disp==0)
-							POWER_FLAG = ~POWER_FLAG;
-							
+//							POWER_FLAG = ~POWER_FLAG;
+							ST_BY = ~ST_BY;
 						break;
 
 						case 0x15:							//MUTE
