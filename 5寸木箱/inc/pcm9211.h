@@ -13,6 +13,7 @@
 	
 PCM9211_EXT	void pcm9211_RST(void);
 PCM9211_EXT	void pcm9211_init(void);
+PCM9211_EXT	void pcm9211_InputMode(unsigned char n);
 	
 #endif
 

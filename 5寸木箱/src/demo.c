@@ -72,8 +72,8 @@ static void SetupHardware(void)
 /*---------------------------------------------------------------------------------------------------------*/
 int32_t main(void)
 {	
-	input_mode = 3;
-	Channel_flag = 0;
+	input_mode = 0;
+	Channel_flag = 1;
 	LED_Flag = 1;
 	SetupHardware();
 	/*
@@ -107,7 +107,18 @@ int32_t main(void)
 		}	
 		if(Channel_flag)
 		{
-			BD_InputMode(input_mode);
+			if(input_mode < 3)
+			{
+				BD_InputMode(0x00);
+				pcm9211_InputMode(input_mode);				
+			}
+			else if(input_mode < 6)
+			{
+				BD_InputMode(input_mode-0x02);
+			}
+//			input_mode++;
+			LED_Flag = 0x02;
+//			if(input_mode > 5)input_mode = 0;
 			Channel_flag = 0;
 		}
 		if(IR_flag == 1)
@@ -115,27 +126,27 @@ int32_t main(void)
 			IR_test_task();
 			IR_flag = 0;
 		}
-		if(BT_connect == 1)
-		{
-			Bluetooth_Test_Task();			
-		}
+//		if(BT_connect == 1)
+//		{
+//			Bluetooth_Test_Task();			
+//		}
 		if(VOL_F||TREBLE_F||SUB_F)
 		{
 			Encoder_Task();
 			VOL_F=0,TREBLE_F=0,SUB_F=0;
 		}
-//		if(USB_SW == 1)
-//		{
-//			USB_Test_Task();
-//		}
-//		if(AUDIO_flag == 1)
-//		{
-//			AMP_MUTE = 1;
-//		}
-//		else
-//		{
-//			AMP_MUTE = 0;
-//		}
+		if(USB_SW == 1)
+		{
+			USB_Test_Task();
+		}
+		if(AUDIO_flag == 1)
+		{
+			AMP_MUTE = 1;
+		}
+		else
+		{
+			AMP_MUTE = 0;
+		}
 	}
 	
 	#if 0

@@ -117,8 +117,8 @@ void TMR1_IRQHandler(void)
 			{
 				input_mode++;
 				Channel_flag = 1;
-				if(input_mode>3)input_mode = 0;
-				LED_Flag = 0x02;
+				if(input_mode>5)input_mode = 0;
+//				LED_Flag = 0x02;
 			}
 			Power_Count = 0;
 		}
@@ -248,6 +248,7 @@ void GPIO234_IRQHandler(void)
 				{
 					disp++;
 					disp_flag = 1;
+					IR_flag = 1;
 				}								
         break;
 						

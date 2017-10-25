@@ -49,17 +49,25 @@ void LED_Test(void)
 	{
 		if(input_mode==0x00)
 		{
-			LED_B = 0;LED_G = 0;LED_R = 1;
+			LED_B = 0;LED_G = 0;LED_R = 0;
 		}
 		if(input_mode==0x01)
 		{
-			LED_B = 0;LED_G = 1;LED_R = 1;
+			LED_B = 0;LED_G = 0;LED_R = 1;
 		}
 		if(input_mode==0x02)
 		{
-			LED_B = 1;LED_G = 1;LED_R = 0;
+			LED_B = 0;LED_G = 0;LED_R = 1;
 		}
 		if(input_mode==0x03)
+		{
+			LED_B = 0;LED_G = 1;LED_R = 1;
+		}
+		if(input_mode==0x04)
+		{
+			LED_B = 1;LED_G = 1;LED_R = 0;
+		}
+		if(input_mode==0x05)
 		{
 			BT_POWER = 1;
 			LED_B = 1;LED_G = 0;LED_R = 0;
@@ -67,6 +75,7 @@ void LED_Test(void)
 		else
 		{
 			BT_POWER = 0;
+			BT_connect = 0;
 		}
 	}
 }
