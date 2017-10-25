@@ -115,10 +115,10 @@ int32_t main(void)
 			IR_test_task();
 			IR_flag = 0;
 		}
-//		if(BT_connect == 1)
-//		{
-//			Bluetooth_Test_Task();			
-//		}
+		if(BT_connect == 1)
+		{
+			Bluetooth_Test_Task();			
+		}
 		if(VOL_F||TREBLE_F||SUB_F)
 		{
 			Encoder_Task();

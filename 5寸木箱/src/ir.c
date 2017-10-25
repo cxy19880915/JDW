@@ -43,28 +43,28 @@ void IR_test_task(void)
 					switch(KEY_data)
 					{
 						case 0x01:							//BASS+
-							if( SYS_power_flag )
+							if( ST_BY )
 							{
 								BD_BASS_A();							
 							}
 						break;
 							
 						case 0x02:							//BASS-
-							if( SYS_power_flag )
+							if( ST_BY )
 							{
 								BD_BASS_B();	
 							}
 						break;
 						
 						case 0x03:							//TREBLE+
-							if( SYS_power_flag )
+							if( ST_BY )
 							{
 								BD_TREBLE_A();						
 							}	
 						break;
 						
 						case 0x04:							//TREBLE-
-							if( SYS_power_flag )
+							if( ST_BY )
 							{
 								BD_TREBLE_B();	
 							}
@@ -123,24 +123,25 @@ void IR_test_task(void)
 
 						case 0x12:							//VOL+
 							disp_flag=0;
-							if( SYS_power_flag )
+							if( ST_BY )
 							{
-								BD_VOL_A();			
+								BD_VOL_B();			
 							}
 						break;
 
 						case 0x13:							//VOL-
 							disp_flag=0;
-							if( SYS_power_flag )
+							if( ST_BY )
 							{
-								BD_VOL_B();
+								BD_VOL_A();
 							}
 						break;
 
 						case 0x14:							//ON-OFF
 							if(disp==0)
 //							POWER_FLAG = ~POWER_FLAG;
-							ST_BY = ~ST_BY;
+								ST_BY = ~ST_BY;
+							LED_Flag = 0x01;
 						break;
 
 						case 0x15:							//MUTE

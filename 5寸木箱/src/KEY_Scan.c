@@ -33,12 +33,15 @@ void LED_Test(void)
 	{
 			if(ST_BY)
 			{
+//				BT_POWER = 1;
+				bd_init();
 				LED_B = 0;LED_G = 0;LED_R = 0;
 				LED_Flag = 0x02;
 				CLK_SysTickDelay(500000);
 			}
 			else
 			{
+				BT_POWER = 0;
 				LED_B = 1;LED_G = 1;LED_R = 1;
 			}
 	}
@@ -48,17 +51,22 @@ void LED_Test(void)
 		{
 			LED_B = 0;LED_G = 0;LED_R = 1;
 		}
-		else if(input_mode==0x01)
+		if(input_mode==0x01)
 		{
 			LED_B = 0;LED_G = 1;LED_R = 1;
 		}
-		else if(input_mode==0x02)
+		if(input_mode==0x02)
 		{
 			LED_B = 1;LED_G = 1;LED_R = 0;
 		}
-		else if(input_mode==0x03)
+		if(input_mode==0x03)
 		{
+			BT_POWER = 1;
 			LED_B = 1;LED_G = 0;LED_R = 0;
+		}
+		else
+		{
+			BT_POWER = 0;
 		}
 	}
 }
