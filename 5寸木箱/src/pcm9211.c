@@ -19,19 +19,26 @@ static void Transmit(PCM9211_REG reg)
 /*#System RST Control*/
 void pcm9211_RST(void)
 {
+//	RST_DEV = 1;
+//	CLK_SysTickDelay(500000);
+//	RST_DEV = 0;
+//	CLK_SysTickDelay(100000);
+//	RST_DEV = 1;
+	#if 1
 	pcm_reg[14].reg_addr = 0x40;
 	pcm_reg[14].reg_value = 0x33;
 	Transmit(pcm_reg[14]);
 //	pcm_reg[14].reg_addr = 0x40;
 	pcm_reg[14].reg_value = 0xc0;
 	Transmit(pcm_reg[14]);
+	#endif
 }
 
 void pcm9211_InputMode(unsigned char n)
 {
 	pcm_reg[12].reg_addr = 0x34;
 	pcm_reg[12].reg_value = n;
-	Transmit(pcm_reg[0]);
+	Transmit(pcm_reg[12]);
 }
 
 void pcm9211_init(void)
@@ -39,8 +46,8 @@ void pcm9211_init(void)
 
 /**#System RST Control
 	*/
-	pcm9211_RST();					//reset
-	CLK_SysTickDelay(10000);
+//	pcm9211_RST();					//reset
+//	CLK_SysTickDelay(10000);
 /**#XTI Source, Clock (SCK/BCK/LRCK) Frequency Setting
 	*# XTI CLK source 12.288 and BCK 3.072, LRCK 48k = XTI/512
 	*/
@@ -85,7 +92,7 @@ void pcm9211_init(void)
 	Transmit(pcm_reg[10]);
 	//#REG 34h DIR Input Biphase Signal Source Select and RXIN01 Coaxial Amplifier
 	//#--PWR up amplifier, select RXIN1
-	pcm_reg[12].reg_addr = 0x34;pcm_reg[12].reg_value = 0x01;
+	pcm_reg[12].reg_addr = 0x34;pcm_reg[12].reg_value = 0x00;
 	Transmit(pcm_reg[12]);
 	//#REG. 37h, Port Sampling Frequency Calculator Measurement Target Setting, Cal and DIR Fs
 	pcm_reg[13].reg_addr = 0x37;pcm_reg[13].reg_value = 0x00;
@@ -142,5 +149,6 @@ void pcm9211_init(void)
 //	Transmit(pcm_reg[16]);
 //	Transmit(pcm_reg[17]);
 //	Transmit(pcm_reg[18]);
+//	pcm9211_RST();
 }
 

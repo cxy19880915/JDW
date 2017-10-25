@@ -29,54 +29,70 @@ void ADC_init(void)
 
 void LED_Test(void)
 {
-	if(LED_Flag==0x01)
+	if(ST_BY)
 	{
-			if(ST_BY)
+		if(LED_Flag==0x01)
+		{
+//				if(ST_BY)
+//				{
+	//				BT_POWER = 1;
+//					RST_DEV = 0;
+					CLK_SysTickDelay(250000);
+					RST_DEV = 1;
+//					CLK_SysTickDelay(10000);
+					bd_init();
+//					pcm9211_init();
+//					pcm9211_RST();
+					LED_B = 0;LED_G = 0;LED_R = 0;
+					LED_Flag = 0x02;
+					CLK_SysTickDelay(500000);
+//				}
+		}
+		if(LED_Flag==0x02)
+		{
+			if(input_mode==0x00)
 			{
-//				BT_POWER = 1;
-				bd_init();
+				pcm9211_init();
+				pcm9211_RST();
 				LED_B = 0;LED_G = 0;LED_R = 0;
-				LED_Flag = 0x02;
-				CLK_SysTickDelay(500000);
+			}
+			if(input_mode==0x01)
+			{
+				pcm9211_init();
+				pcm9211_RST();
+				LED_B = 0;LED_G = 0;LED_R = 1;
+			}
+			if(input_mode==0x02)
+			{
+				pcm9211_init();
+				pcm9211_RST();
+				LED_B = 0;LED_G = 0;LED_R = 1;
+			}
+			if(input_mode==0x03)
+			{
+				LED_B = 0;LED_G = 1;LED_R = 1;
+			}
+			if(input_mode==0x04)
+			{
+				LED_B = 1;LED_G = 1;LED_R = 0;
+			}
+			if(input_mode==0x05)
+			{
+				BT_POWER = 1;
+				LED_B = 1;LED_G = 0;LED_R = 0;
 			}
 			else
 			{
 				BT_POWER = 0;
-				LED_B = 1;LED_G = 1;LED_R = 1;
+				BT_connect = 0;
 			}
+		}
 	}
-	if(LED_Flag==0x02)
+	else
 	{
-		if(input_mode==0x00)
-		{
-			LED_B = 0;LED_G = 0;LED_R = 0;
-		}
-		if(input_mode==0x01)
-		{
-			LED_B = 0;LED_G = 0;LED_R = 1;
-		}
-		if(input_mode==0x02)
-		{
-			LED_B = 0;LED_G = 0;LED_R = 1;
-		}
-		if(input_mode==0x03)
-		{
-			LED_B = 0;LED_G = 1;LED_R = 1;
-		}
-		if(input_mode==0x04)
-		{
-			LED_B = 1;LED_G = 1;LED_R = 0;
-		}
-		if(input_mode==0x05)
-		{
-			BT_POWER = 1;
-			LED_B = 1;LED_G = 0;LED_R = 0;
-		}
-		else
-		{
+			RST_DEV = 0;
 			BT_POWER = 0;
-			BT_connect = 0;
-		}
+			LED_B = 1;LED_G = 1;LED_R = 1;
 	}
 }
 //void led_chang(uint32_t num)

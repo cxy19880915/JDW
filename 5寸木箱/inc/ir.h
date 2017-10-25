@@ -5,6 +5,7 @@
 #include "task.h"
 #include "Encoder.h"
 #include "bd3490.h"
+#include "pcm9211.h"
 //#include "tas5754.h"
 #include "task.h"
 #include "Bluetooth.h"

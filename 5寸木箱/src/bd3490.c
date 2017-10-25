@@ -79,7 +79,7 @@ void bd_init( void )
 {
 	BD_SysReset();
 	CLK_SysTickDelay(10000);
-	for(int i=0;i<8;i++)
+	for(int i=0;i<5;i++)
 		Transmit(bd_REG[i]);
 }
 void BD_InputMode(unsigned char n)

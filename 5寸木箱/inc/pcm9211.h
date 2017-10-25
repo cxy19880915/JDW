@@ -8,6 +8,7 @@
 #endif
 	
 #include "i2c_gpio.h"
+#include "task.h"
 
 #define PCM_Slave_Addr	(0x41<<1)
 	
