@@ -86,24 +86,12 @@ int32_t main(void)
 	I2C_SW_Open(500000);
 	AMP_MUTE = 1;
 	ST_BY = 1;
-//	RST_DEV = 0;
-//	CLK_SysTickDelay(250000);
-//	RST_DEV = 1;
-//	while(1);
 	pcm9211_init();
 	pcm9211_RST();
 	bd_init();
 	AMP_MUTE = 0;
 	while(1)
 	{
-//		if(POWER_FLAG && (SYS_power_flag == 0))
-//		{
-//			Sys_power_on();
-//		}
-//		else if((!POWER_FLAG) && (SYS_power_flag == 1))
-//		{
-//			Sys_power_off();
-//		}
 		if(LED_Flag)
 		{
 			LED_Test();
@@ -111,7 +99,7 @@ int32_t main(void)
 		}	
 		if(Channel_flag)
 		{
-			AMP_MUTE = 1;
+//			AMP_MUTE = 1;
 			if(input_mode < 3)
 			{
 				BD_InputMode(0x00);
@@ -125,7 +113,7 @@ int32_t main(void)
 			LED_Flag = 0x02;
 //			if(input_mode > 5)input_mode = 0;
 			Channel_flag = 0;
-			AMP_MUTE = 0;
+//			AMP_MUTE = 0;
 		}
 		if(IR_flag == 1)
 		{
@@ -145,14 +133,14 @@ int32_t main(void)
 		{
 			USB_Test_Task();
 		}
-		if(AUDIO_flag == 1)
-		{
-			AMP_MUTE = 1;
-		}
-		else
-		{
-			AMP_MUTE = 0;
-		}
+//		if(AUDIO_flag == 1)
+//		{
+//			AMP_MUTE = 1;
+//		}
+//		else
+//		{
+//			AMP_MUTE = 0;
+//		}
 	}
 	
 	#if 0

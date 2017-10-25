@@ -33,20 +33,13 @@ void LED_Test(void)
 	{
 		if(LED_Flag==0x01)
 		{
-//				if(ST_BY)
-//				{
-	//				BT_POWER = 1;
-//					RST_DEV = 0;
-					CLK_SysTickDelay(250000);
-					RST_DEV = 1;
-//					CLK_SysTickDelay(10000);
-					bd_init();
-//					pcm9211_init();
-//					pcm9211_RST();
-					LED_B = 0;LED_G = 0;LED_R = 0;
-					LED_Flag = 0x02;
-					CLK_SysTickDelay(500000);
-//				}
+				CLK_SysTickDelay(250000);
+				AMP_MUTE = 1;
+				RST_DEV = 1;
+				bd_init();
+				LED_B = 0;LED_G = 0;LED_R = 0;
+				LED_Flag = 0x02;
+//				CLK_SysTickDelay(500000);
 		}
 		if(LED_Flag==0x02)
 		{
@@ -55,18 +48,21 @@ void LED_Test(void)
 				pcm9211_init();
 				pcm9211_RST();
 				LED_B = 0;LED_G = 0;LED_R = 0;
+				AMP_MUTE = 0;
 			}
 			if(input_mode==0x01)
 			{
 				pcm9211_init();
 				pcm9211_RST();
 				LED_B = 0;LED_G = 0;LED_R = 1;
+				AMP_MUTE = 0;
 			}
 			if(input_mode==0x02)
 			{
 				pcm9211_init();
 				pcm9211_RST();
 				LED_B = 0;LED_G = 0;LED_R = 1;
+				AMP_MUTE = 0;
 			}
 			if(input_mode==0x03)
 			{
@@ -80,6 +76,7 @@ void LED_Test(void)
 			{
 				BT_POWER = 1;
 				LED_B = 1;LED_G = 0;LED_R = 0;
+				CLK_SysTickDelay(500000);
 			}
 			else
 			{
@@ -92,6 +89,7 @@ void LED_Test(void)
 	{
 			RST_DEV = 0;
 			BT_POWER = 0;
+			AMP_MUTE = 1;
 			LED_B = 1;LED_G = 1;LED_R = 1;
 	}
 }
