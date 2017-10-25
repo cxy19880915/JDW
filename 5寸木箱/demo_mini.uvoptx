@@ -147,7 +147,7 @@
           <Type>0</Type>
           <LineNumber>48</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>4944</Address>
+          <Address>4948</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -163,7 +163,7 @@
           <Type>0</Type>
           <LineNumber>55</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>4958</Address>
+          <Address>4962</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -173,38 +173,6 @@
           <Filename>D:\work\5瀵告湪绠?src\ir.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\demo_mini\src/ir.c\55</Expression>
-        </Bp>
-        <Bp>
-          <Number>2</Number>
-          <Type>0</Type>
-          <LineNumber>81</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>3052</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>D:\work\5瀵告湪绠?src\Encoder.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\demo_mini\src/Encoder.c\81</Expression>
-        </Bp>
-        <Bp>
-          <Number>3</Number>
-          <Type>0</Type>
-          <LineNumber>76</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>3016</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>D:\work\5瀵告湪绠?src\Encoder.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\demo_mini\src/Encoder.c\76</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>

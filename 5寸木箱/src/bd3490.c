@@ -55,9 +55,9 @@ typedef struct BD3490_REG
 BD3490_REG bd_REG[] =
 {
 	IN_Selector,0x01,//INPUT_MUTE,
-	IN_Gain,0x00,//_0dB,
-	Vol_Gain_1ch,0x00,
-	Vol_Gain_2ch,0x00,
+	IN_Gain,0x14,//_0dB,
+	Vol_Gain_1ch,0x80,
+	Vol_Gain_2ch,0x80,
 	Bass_Gain,0x80,
 	Treble_Gain,0x80,
 	Surround_Gain,0x00,//A_OFF,
@@ -85,7 +85,7 @@ void bd_init( void )
 void BD_InputMode(unsigned char n)
 {
 	bd_REG[0].reg_addr = IN_Selector;
-	bd_REG[0].reg_value = bd_REG[0].reg_value + n;
+	bd_REG[0].reg_value = n;
 	Transmit(bd_REG[0]);
 }
 void BD_InputGain(unsigned char n)
@@ -106,10 +106,10 @@ void BD_VOL_A(void)
 }
 void BD_VOL_B(void)
 {
-	bd_REG[2].reg_value = bd_REG[2].reg_value+4;
-	if(bd_REG[2].reg_value <= 0x00)
-			bd_REG[2].reg_value = 0x00;
-	bd_REG[3].reg_value = bd_REG[3].reg_value+4;
+	bd_REG[2].reg_value = bd_REG[2].reg_value-4;
+	if(bd_REG[2].reg_value <= 0x80)
+			bd_REG[2].reg_value = 0x80;
+	bd_REG[3].reg_value = bd_REG[3].reg_value-4;
 	if(bd_REG[3].reg_value <= 0x80)
 			bd_REG[3].reg_value = 0x80;
 	Transmit(bd_REG[2]);

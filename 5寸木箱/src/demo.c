@@ -72,6 +72,9 @@ static void SetupHardware(void)
 /*---------------------------------------------------------------------------------------------------------*/
 int32_t main(void)
 {	
+	input_mode = 3;
+	Channel_flag = 0;
+	LED_Flag = 1;
 	SetupHardware();
 	/*
 	POWER_FLAG = 0;
@@ -97,42 +100,26 @@ int32_t main(void)
 //		{
 //			Sys_power_off();
 //		}
-		LED_Test();
+		if(LED_Flag)
+		{
+			LED_Test();
+			LED_Flag = 0;
+		}	
+		if(Channel_flag)
+		{
+			BD_InputMode(input_mode);
+			Channel_flag = 0;
+		}
 		if(IR_flag == 1)
 		{
 			IR_test_task();
 			IR_flag = 0;
 		}
-		if(BT_connect == 1)
-		{
-			Bluetooth_Test_Task();			
-		}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-if(VOL_F||TREBLE_F||SUB_F)
+//		if(BT_connect == 1)
+//		{
+//			Bluetooth_Test_Task();			
+//		}
+		if(VOL_F||TREBLE_F||SUB_F)
 		{
 			Encoder_Task();
 			VOL_F=0,TREBLE_F=0,SUB_F=0;

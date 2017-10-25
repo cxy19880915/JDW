@@ -19,6 +19,7 @@ uint8_t KEY_data = 0;
 uint8_t	power_change=0;
 uint8_t	VOL_F=0,TREBLE_F=0,SUB_F=0;
 
+
 /************************************************************
  *@init file
  ************************************************************/
@@ -103,14 +104,22 @@ void TMR1_IRQHandler(void)
 			{
 				Power_Count = 0xfff1;
 			}
-			if(Power_Count>0x2000)
+			if(Power_Count>0x2000)										//long press
 			{
 				ST_BY = ~ST_BY;
 				Power_Flag = 0;
+				LED_Flag = 0x01;
 			}
 		}	
 		else
 		{
+			if((Power_Count<0x2000)&&(Power_Count>0x05))//short press
+			{
+				input_mode++;
+				Channel_flag = 1;
+				if(input_mode>3)input_mode = 0;
+				LED_Flag = 0x02;
+			}
 			Power_Count = 0;
 		}
 	irticks++;ledcount++;//audio_1++;Power_Meter++;
@@ -140,7 +149,7 @@ void GPIO01_IRQHandler(void)
 		if(POWER_KEY)
 		{
 			Power_Flag = 0;
-			Power_Count = 0;
+//			Power_Count = 0;
 		}
 		else
 		{
@@ -153,11 +162,13 @@ void GPIO01_IRQHandler(void)
 		if( VOL_A )
 		{
 			Encoder_vol_flag = 1;
+			Encoder_Task();
 			VOL_F = 1;
 		}
 		else if(VOL_B)
 		{
 			Encoder_vol_flag = 0;
+			Encoder_Task();
 			VOL_F = 1;
 		}
 	}
@@ -167,11 +178,13 @@ void GPIO01_IRQHandler(void)
 		if( TREBLE_A )
 		{
 			Encoder_treble_flag = 1;
+			Encoder_Task();
 			TREBLE_F = 1;
 		}
 		else if( TREBLE_B )
 		{
 			Encoder_treble_flag = 0;
+			Encoder_Task();
 			TREBLE_F = 1;
 		}
 	}	
@@ -204,11 +217,13 @@ void GPIO234_IRQHandler(void)
 		if( SUB_A )
 		{
 			Encoder_sub_flag = 1;
+			Encoder_Task();
 			SUB_F = 1;
 		}
 		else if( SUB_B )
 		{
 			Encoder_sub_flag = 0;
+			Encoder_Task();
 			SUB_F = 1;
 		}
 	}

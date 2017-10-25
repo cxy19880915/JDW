@@ -19,7 +19,7 @@
 KEY_EXT uint16_t key_count;
 KEY_EXT uint8_t	POWER;
 //KEY_EXT uint8_t	POWER_OFF;	
-KEY_EXT uint8_t	POWER_FLAG;
+KEY_EXT uint8_t	POWER_FLAG,LED_Flag;
 KEY_EXT uint8_t Channel[];
 KEY_EXT uint8_t	SYS_power_flag;
 KEY_EXT	uint16_t ADC_V;

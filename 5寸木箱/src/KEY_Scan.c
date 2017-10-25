@@ -29,34 +29,54 @@ void ADC_init(void)
 
 void LED_Test(void)
 {
-	if(ST_BY)
+	if(LED_Flag==0x01)
 	{
-		LED_B = 0;
-		LED_G = 0;
-		LED_R = 0;
+			if(ST_BY)
+			{
+				LED_B = 0;LED_G = 0;LED_R = 0;
+				LED_Flag = 0x02;
+				CLK_SysTickDelay(500000);
+			}
+			else
+			{
+				LED_B = 1;LED_G = 1;LED_R = 1;
+			}
 	}
-	else
+	if(LED_Flag==0x02)
 	{
-		LED_B = 1;
-		LED_G = 1;
-		LED_R = 1;
+		if(input_mode==0x00)
+		{
+			LED_B = 0;LED_G = 0;LED_R = 1;
+		}
+		else if(input_mode==0x01)
+		{
+			LED_B = 0;LED_G = 1;LED_R = 1;
+		}
+		else if(input_mode==0x02)
+		{
+			LED_B = 1;LED_G = 1;LED_R = 0;
+		}
+		else if(input_mode==0x03)
+		{
+			LED_B = 1;LED_G = 0;LED_R = 0;
+		}
 	}
 }
-void led_chang(uint32_t num)
-{
-	if(ledcount>num)
-	{
-		if(Channel[0]==1)
-		{
-			LED_G = ~LED_G;
-		}
-		if((Channel[0]==0)&&(BT_DET&BT_POWER))
-		{
-			LED_B = ~LED_B;
-		}
-		ledcount = 0;
-	}
-}
+//void led_chang(uint32_t num)
+//{
+//	if(ledcount>num)
+//	{
+//		if(Channel[0]==1)
+//		{
+//			LED_G = ~LED_G;
+//		}
+//		if((Channel[0]==0)&&(BT_DET&BT_POWER))
+//		{
+//			LED_B = ~LED_B;
+//		}
+//		ledcount = 0;
+//	}
+//}
 
 
 void ADC_IRQHandler(void)
