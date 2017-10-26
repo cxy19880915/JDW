@@ -3,6 +3,8 @@
 
 void	USB_Test_Task(void)
 {
+	USB_PLAY = 1;
+	CLK_SysTickDelay(250000);
 	USB_PLAY = 0;
 }
 void USB_PLAY_TASK(void)

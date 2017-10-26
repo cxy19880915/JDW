@@ -79,17 +79,11 @@ int32_t main(void)
 	Channel_flag = 1;
 	LED_Flag = 1;
 	SetupHardware();
-	/*
-	POWER_FLAG = 0;
-	Channel_flag = 0;
-	POWER_FLAG = 0xff;
-	SYS_power_flag = 0;
-	LED_Flag = 0;
-	*/
 	I2C_SW_Open(500000);
 	ST_BY = 1;
-	pcm9211_init();
-	pcm9211_RST();
+	USB_PLAY = 0;	
+//	pcm9211_init();
+//	pcm9211_RST();
 	bd_init();
 	while(1)
 	{
@@ -120,13 +114,17 @@ int32_t main(void)
 					if(input_mode < 3)
 					{
 						BD_InputMode(0x00);
+						CLK_SysTickDelay(1000);
 						if(input_mode == 0x00)
 						{
 							pcm9211_InputMode(0x01);
+							CLK_SysTickDelay(1000);
 						}
 						else
 						{
-							pcm9211_InputMode(input_mode+0xc1);					
+							pcm9211_InputMode(input_mode+0xc1);	
+							CLK_SysTickDelay(1000);
+//							pcm9211_RST();
 						}				
 					}
 					else if(input_mode < 6)
