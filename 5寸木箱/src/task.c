@@ -10,15 +10,16 @@
 #define TIME_INFRARED_STOP_US			40560		 //数据结束的时间：TH=40+0.56=40.56ms
 typedef union {uint32_t data;struct {uint8_t address0;uint8_t address1;uint8_t data0;uint8_t data1;};}irdata_t;
 irdata_t ir;
-uint16_t irticks=0,Power_Count=0;
+uint16_t irticks=0;
 uint32_t ledcount=0,audio_adc=0;
-uint8_t ircount=0,Power_Flag=0;
+uint8_t ircount=0;
 irstatus_t irwork=IDLE;
 uint8_t disp_flag=0,disp=0;
 uint8_t KEY_data = 0;
 uint8_t	power_change=0;
 uint8_t	VOL_F=0,TREBLE_F=0,SUB_F=0;
-
+uint8_t	Power_Count_Flag=0;
+uint16_t	Power_Count=0;
 
 /************************************************************
  *@init file
@@ -97,7 +98,7 @@ void GPIO_Init( void )
  */
 void TMR1_IRQHandler(void)
 {
-		if(Power_Flag)
+		if(Power_Count_Flag)
 		{
 			Power_Count++;
 			if(Power_Count>=0xfff1)
@@ -106,8 +107,9 @@ void TMR1_IRQHandler(void)
 			}
 			if(Power_Count>0x2000)										//long press
 			{
-				ST_BY = ~ST_BY;
-				Power_Flag = 0;
+				Power_Flag = ~Power_Flag;
+//				ST_BY = ~ST_BY;
+				Power_Count_Flag = 0;
 				LED_Flag = 0x01;
 			}
 		}	
@@ -148,12 +150,11 @@ void GPIO01_IRQHandler(void)
 //		}
 		if(POWER_KEY)
 		{
-			Power_Flag = 0;
-//			Power_Count = 0;
+			Power_Count_Flag = 0;
 		}
 		else
 		{
-			Power_Flag = 1;
+			Power_Count_Flag = 1;
 		}
 	}
 	if(P0->ISRC & BIT4)

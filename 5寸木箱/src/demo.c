@@ -72,6 +72,9 @@ static void SetupHardware(void)
 /*---------------------------------------------------------------------------------------------------------*/
 int32_t main(void)
 {	
+	unsigned char step = 1;
+	Power_Flag = 0;
+	SYS_power_flag = 1;
 	input_mode = 0;
 	Channel_flag = 1;
 	LED_Flag = 1;
@@ -84,55 +87,93 @@ int32_t main(void)
 	LED_Flag = 0;
 	*/
 	I2C_SW_Open(500000);
-	AMP_MUTE = 1;
 	ST_BY = 1;
 	pcm9211_init();
 	pcm9211_RST();
 	bd_init();
-	AMP_MUTE = 0;
 	while(1)
 	{
-		if(LED_Flag)
+		switch(step)
 		{
-			LED_Test();
-			LED_Flag = 0;
-		}	
-		if(Channel_flag)
-		{
-//			AMP_MUTE = 1;
-			if(input_mode < 3)
-			{
-				BD_InputMode(0x00);
-				pcm9211_InputMode(0x01);				
-			}
-			else if(input_mode < 6)
-			{
-				BD_InputMode(input_mode-0x02);
-			}
-//			input_mode++;
-			LED_Flag = 0x02;
-//			if(input_mode > 5)input_mode = 0;
-			Channel_flag = 0;
-//			AMP_MUTE = 0;
+			case 1:
+				if((Power_Flag)&&(SYS_power_flag == 0))
+				{
+					Sys_power_on();
+				}
+				else if((!Power_Flag)&&(SYS_power_flag == 1))
+				{
+					Sys_power_off();
+				}
+				step = 2;
+				break;
+			case 2:
+				if(LED_Flag)
+				{
+					LED_Test();
+					LED_Flag = 0;
+				}	
+				step = 3;
+				break;
+			case 3:
+				if(Channel_flag)
+				{
+					if(input_mode < 3)
+					{
+						BD_InputMode(0x00);
+						if(input_mode == 0x00)
+						{
+							pcm9211_InputMode(0x01);
+						}
+						else
+						{
+							pcm9211_InputMode(input_mode+0xc1);					
+						}				
+					}
+					else if(input_mode < 6)
+					{
+						BD_InputMode(input_mode-0x02);
+					}
+					LED_Flag = 0x02;
+					Channel_flag = 0;
+				}
+				step = 4;
+				break;
+			case 4:
+				if(IR_flag == 1)
+				{
+					IR_test_task();
+					IR_flag = 0;
+				}
+				step = 5;
+				break;
+			case 5:
+				if(VOL_F||TREBLE_F||SUB_F)
+				{
+					Encoder_Task();
+					VOL_F=0,TREBLE_F=0,SUB_F=0;
+				}
+				step = 6;
+				break;
+			case 6:
+				if(USB_SW == 1)
+				{
+					USB_Test_Task();
+				}
+				step = 1;
+				break;
+			default:
+				step = 1;
+				break;
 		}
-		if(IR_flag == 1)
-		{
-			IR_test_task();
-			IR_flag = 0;
-		}
+		
+
+		
 //		if(BT_connect == 1)
 //		{
 //			Bluetooth_Test_Task();			
 //		}
-		if(VOL_F||TREBLE_F||SUB_F)
-		{
-			Encoder_Task();
-			VOL_F=0,TREBLE_F=0,SUB_F=0;
-		}
-		if(USB_SW == 1)
-		{
-			USB_Test_Task();
-		}
+		
+		
 //		if(AUDIO_flag == 1)
 //		{
 //			AMP_MUTE = 1;

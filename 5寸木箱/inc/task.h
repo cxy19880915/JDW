@@ -19,7 +19,7 @@ TASK_EXT	irstatus_t irwork;
 TASK_EXT	uint8_t disp_flag,disp;
 TASK_EXT	uint8_t Channel_flag,input_mode;
 TASK_EXT	uint8_t KEY_data;
-TASK_EXT	uint8_t	VOL_F,TREBLE_F,SUB_F;
+TASK_EXT	uint8_t	VOL_F,TREBLE_F,SUB_F,Power_Flag;
 /**
   * IR Define
   */

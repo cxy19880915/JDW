@@ -54,10 +54,10 @@ typedef struct BD3490_REG
 
 BD3490_REG bd_REG[] =
 {
-	IN_Selector,0x01,//INPUT_MUTE,
+	IN_Selector,0x07,//INPUT_MUTE,
 	IN_Gain,0x14,//_0dB,
-	Vol_Gain_1ch,0x80,
-	Vol_Gain_2ch,0x80,
+	Vol_Gain_1ch,0xff,
+	Vol_Gain_2ch,0xff,
 	Bass_Gain,0x80,
 	Treble_Gain,0x80,
 	Surround_Gain,0x00,//A_OFF,
@@ -79,7 +79,7 @@ void bd_init( void )
 {
 	BD_SysReset();
 	CLK_SysTickDelay(10000);
-	for(int i=0;i<5;i++)
+	for(int i=0;i<6;i++)
 		Transmit(bd_REG[i]);
 }
 void BD_InputMode(unsigned char n)
