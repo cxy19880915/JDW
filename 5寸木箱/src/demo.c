@@ -118,13 +118,10 @@ int32_t main(void)
 						if(input_mode == 0x00)
 						{
 							pcm9211_InputMode(0x01);
-							CLK_SysTickDelay(1000);
 						}
 						else
 						{
 							pcm9211_InputMode(input_mode+0xc1);	
-							CLK_SysTickDelay(1000);
-//							pcm9211_RST();
 						}				
 					}
 					else if(input_mode < 6)

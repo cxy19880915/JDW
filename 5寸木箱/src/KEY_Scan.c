@@ -44,22 +44,22 @@ void LED_Test(void)
 			AMP_MUTE = 1;
 			if(input_mode==0x00)
 			{
-				pcm9211_RST();
-				pcm9211_init();
+//				pcm9211_RST();
+//				pcm9211_init();
 				LED_B = 0;LED_G = 0;LED_R = 0;
 //				AMP_MUTE = 0;
 			}
 			if(input_mode==0x01)
 			{
-				pcm9211_RST();
-				pcm9211_init();
+//				pcm9211_RST();
+//				pcm9211_init();
 				LED_B = 0;LED_G = 0;LED_R = 1;
 //				AMP_MUTE = 0;
 			}
 			if(input_mode==0x02)
 			{
-				pcm9211_RST();
-				pcm9211_init();
+//				pcm9211_RST();
+//				pcm9211_init();
 				LED_B = 0;LED_G = 0;LED_R = 1;
 				USB_SW = 1;
 			}
