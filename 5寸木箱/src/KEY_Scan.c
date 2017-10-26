@@ -33,7 +33,7 @@ void LED_Test(void)
 	{
 		if(LED_Flag==0x01)
 		{
-				CLK_SysTickDelay(250000);
+				CLK_SysTickDelay(50000);
 				RST_DEV = 1;
 				bd_init();
 				LED_B = 0;LED_G = 0;LED_R = 0;
@@ -84,6 +84,12 @@ void LED_Test(void)
 			}
 			AMP_MUTE = 0;
 		}
+		if(LED_Flag==0x03)
+		{
+			LED_B = ~LED_B;LED_G = ~LED_G;LED_R = ~LED_R;
+			CLK_SysTickDelay(50000);
+			LED_B = ~LED_B;LED_G = ~LED_G;LED_R = ~LED_R;
+		}
 	}
 	else
 	{
@@ -122,11 +128,14 @@ void ADC_IRQHandler(void)
     ADC_CLR_INT_FLAG(ADC, u32Flag);
 }
 void Sys_power_on( void )
-{
-
+{			
 	ST_BY = 1;
 	CLK_SysTickDelay(200000);	
 	SYS_power_flag = 1;
+	RST_DEV = 1;
+	bd_init();
+	LED_B = 0;LED_G = 0;LED_R = 0;
+	LED_Flag = 0x02;
 }
 
 void Sys_power_off( void )
@@ -134,7 +143,7 @@ void Sys_power_off( void )
 	BT_POWER = 0;
 	ST_BY = 0;
 	SYS_power_flag = 0;
-//	LED_R = 1;LED_B = 1;LED_G = 1;
+	LED_R = 1;LED_B = 1;LED_G = 1;
 }
 
 void Channel_select( uint8_t* Channel )

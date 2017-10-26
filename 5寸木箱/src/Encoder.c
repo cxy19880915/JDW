@@ -44,14 +44,13 @@ void Encoder_Task(void)
 
 void Encoder_Task(void)
 {
-	LED_Flag = 0;
+	LED_Flag = 3;
 	tone_flag = 1;
 	/*************	vol	*******************/
 	if( VOL_A & Encoder_vol_flag )
 	{
 		Encoder_vol_flag = 0;
 		BD_VOL_A();
-
 	}
 	else if( VOL_B && Encoder_vol_flag == 0 )
 	{

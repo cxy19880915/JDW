@@ -108,14 +108,14 @@ void TMR1_IRQHandler(void)
 			if(Power_Count>0x2000)										//long press
 			{
 				Power_Flag = ~Power_Flag;
-//				ST_BY = ~ST_BY;
 				Power_Count_Flag = 0;
 				LED_Flag = 0x01;
+				Power_Count = 0;
 			}
 		}	
 		else
 		{
-			if((Power_Count<0x2000)&&(Power_Count>0x05))//short press
+			if((Power_Count<0x2000)&&(Power_Count>0x45))//short press
 			{
 				input_mode++;
 				Channel_flag = 1;
