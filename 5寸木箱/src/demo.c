@@ -104,7 +104,7 @@ int32_t main(void)
 					input_mode = Data[1];
 					Data[0] = at24c02_reg[2].reg;
 					Read_24c02(Data);
-					VOL_Level = (BD_VOL_Level)Data[1];
+					VOL_Level = Data[1];
 				}
 				else if((!Power_Flag)&&(SYS_power_flag == 1))
 				{

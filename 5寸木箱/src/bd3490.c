@@ -10,37 +10,37 @@
 #define Test_Mode			0xf0
 #define Sys_Reset			0xfe
 
-#define	Level_0	0
-#define	Level_1	0
-#define	Level_2	0
-#define	Level_3	0
-#define	Level_4	0
-#define	Level_5	0
-#define	Level_6	0
-#define	Level_7	0
-#define	Level_8	0
-#define	Level_9	0
-#define	Level_10	0
-#define	Level_11	0
-#define	Level_12	0
-#define	Level_13	0
-#define	Level_14	0
-#define	Level_15	0
-#define	Level_16	0
-#define	Level_17	0
-#define	Level_18	0
-#define	Level_19	0
-#define	Level_20	0
-#define	Level_21	0
-#define	Level_22	0
-#define	Level_23	0
-#define	Level_24	0
-#define	Level_25	0
-#define	Level_26	0
-#define	Level_27	0
-#define	Level_28	0
-#define	Level_29	0
-#define	Level_30	0
+#define	Level_0	0xfe
+#define	Level_1	0xf7
+#define	Level_2	0xee
+#define	Level_3	0xe7
+#define	Level_4	0xde
+#define	Level_5	0xd7
+#define	Level_6	0xce
+#define	Level_7	0xc7
+#define	Level_8	0xbe
+#define	Level_9	0xb7
+#define	Level_10	0xae
+#define	Level_11	0xa7
+#define	Level_12	0x9e
+#define	Level_13	0x97
+#define	Level_14	0x8e
+#define	Level_15	0x87
+#define	Level_16	0x7e
+#define	Level_17	0x77
+#define	Level_18	0x6e
+#define	Level_19	0x67
+#define	Level_20	0x5e
+#define	Level_21	0x57
+#define	Level_22	0x4e
+#define	Level_23	0x47
+#define	Level_24	0x3e
+#define	Level_25	0x37
+#define	Level_26	0x2e
+#define	Level_27	0x27
+#define	Level_28	0x1e
+#define	Level_29	0x17
+#define	Level_30	0x0e
 
 #include "bd3490.h"
 
@@ -161,39 +161,65 @@ void BD_InputGain(unsigned char n)
 void BD_VOL_A(void)
 {
 	VOL_Level++;
-	bd_REG[2].reg_value = bd_REG[2].reg_value+1;
-	if(bd_REG[2].reg_value >= 0xfe)
-	{		
-		bd_REG[2].reg_value = 0xfe;
+	if(VOL_Level >= 31)
+	{
+		VOL_Level = 31;
 		LED_ON_Flag = 1;
 	}
 	else
 	{
 		LED_ON_Flag = 0;
-	}
-	bd_REG[3].reg_value = bd_REG[3].reg_value+1;
-	if(bd_REG[3].reg_value >= 0xfe)
-			bd_REG[3].reg_value = 0xfe;
+	}	
+	bd_REG[2].reg_value = BD_VOL_Level[VOL_Level-1];
+	bd_REG[3].reg_value = BD_VOL_Level[VOL_Level-1];
 	Transmit(bd_REG[2]);
 	Transmit(bd_REG[3]);
+//	if(bd_REG[2].reg_value >= 0xfe)
+//	{		
+//		bd_REG[2].reg_value = 0xfe;
+//		LED_ON_Flag = 1;
+//	}
+//	else
+//	{
+//		LED_ON_Flag = 0;
+//	}
+//	bd_REG[3].reg_value = bd_REG[3].reg_value+1;
+//	if(bd_REG[3].reg_value >= 0xfe)
+//			bd_REG[3].reg_value = 0xfe;
+//	Transmit(bd_REG[2]);
+//	Transmit(bd_REG[3]);
 }
 void BD_VOL_B(void)
 {
-	bd_REG[2].reg_value = bd_REG[2].reg_value-1;
-	if(bd_REG[2].reg_value <= 0x01)
+	VOL_Level--;
+	if(VOL_Level <= 1)
 	{
-		bd_REG[2].reg_value = 0x01;
+		VOL_Level = 1;
 		LED_ON_Flag = 1;
 	}
 	else
 	{
 		LED_ON_Flag = 0;
 	}
-	bd_REG[3].reg_value = bd_REG[3].reg_value-1;
-	if(bd_REG[3].reg_value <= 0x01)
-			bd_REG[3].reg_value = 0x01;
+	bd_REG[2].reg_value = BD_VOL_Level[VOL_Level-1];
+	bd_REG[3].reg_value = BD_VOL_Level[VOL_Level-1];	
 	Transmit(bd_REG[2]);
 	Transmit(bd_REG[3]);
+//	bd_REG[2].reg_value = bd_REG[2].reg_value-1;
+//	if(bd_REG[2].reg_value <= 0x01)
+//	{
+//		bd_REG[2].reg_value = 0x01;
+//		LED_ON_Flag = 1;
+//	}
+//	else
+//	{
+//		LED_ON_Flag = 0;
+//	}
+//	bd_REG[3].reg_value = bd_REG[3].reg_value-1;
+//	if(bd_REG[3].reg_value <= 0x01)
+//			bd_REG[3].reg_value = 0x01;
+//	Transmit(bd_REG[2]);
+//	Transmit(bd_REG[3]);
 }
 void BD_BASS_A(void)
 {
