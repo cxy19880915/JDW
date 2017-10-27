@@ -6,6 +6,7 @@
 #include "Mini51Series.h"
 #include "task.h"
 #include "Encoder.h"
+#include "AT24C02.h"
 
 #ifdef KEY_GLOBALS
 	#define KEY_EXT 
@@ -14,6 +15,7 @@
 #endif
 	
 #define POWER_KEY   		P01
+
 
 //KEY_EXT uint8_t key_status;
 KEY_EXT uint16_t key_count;

@@ -96,37 +96,37 @@ void BD_InputGain(unsigned char n)
 }
 void BD_VOL_A(void)
 {
-	bd_REG[2].reg_value = bd_REG[2].reg_value+4;
-	if(bd_REG[2].reg_value >= 0xd6)
+	bd_REG[2].reg_value = bd_REG[2].reg_value+1;
+	if(bd_REG[2].reg_value >= 0xfe)
 	{		
-		bd_REG[2].reg_value = 0xd6;
+		bd_REG[2].reg_value = 0xfe;
 		LED_ON_Flag = 1;
 	}
 	else
 	{
 		LED_ON_Flag = 0;
 	}
-	bd_REG[3].reg_value = bd_REG[3].reg_value+4;
-	if(bd_REG[3].reg_value >= 0xd6)
-			bd_REG[3].reg_value = 0xd6;
+	bd_REG[3].reg_value = bd_REG[3].reg_value+1;
+	if(bd_REG[3].reg_value >= 0xfe)
+			bd_REG[3].reg_value = 0xfe;
 	Transmit(bd_REG[2]);
 	Transmit(bd_REG[3]);
 }
 void BD_VOL_B(void)
 {
-	bd_REG[2].reg_value = bd_REG[2].reg_value-4;
-	if(bd_REG[2].reg_value <= 0x80)
+	bd_REG[2].reg_value = bd_REG[2].reg_value-1;
+	if(bd_REG[2].reg_value <= 0x01)
 	{
-		bd_REG[2].reg_value = 0x80;
+		bd_REG[2].reg_value = 0x01;
 		LED_ON_Flag = 1;
 	}
 	else
 	{
 		LED_ON_Flag = 0;
 	}
-	bd_REG[3].reg_value = bd_REG[3].reg_value-4;
-	if(bd_REG[3].reg_value <= 0x80)
-			bd_REG[3].reg_value = 0x80;
+	bd_REG[3].reg_value = bd_REG[3].reg_value-1;
+	if(bd_REG[3].reg_value <= 0x01)
+			bd_REG[3].reg_value = 0x01;
 	Transmit(bd_REG[2]);
 	Transmit(bd_REG[3]);
 }

@@ -84,6 +84,13 @@ int32_t main(void)
 	ST_BY = 1;
 	USB_PLAY = 0;	
 	bd_init();
+	Data[0] = at24c02_reg[0].reg;
+	Data[1] = 0;
+	Read_24c02(Data);
+	if(Data[1]!=1)
+	{
+		init_24c02();	
+	}
 	while(1)
 	{
 		switch(step)
