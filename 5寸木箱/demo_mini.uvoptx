@@ -145,25 +145,9 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>8</LineNumber>
+          <LineNumber>102</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>7538</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>D:\work\5瀵告湪绠?src\AT24C02.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\demo_mini\src/AT24C02.c\8</Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>89</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>7692</Address>
+          <Address>7746</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -172,39 +156,7 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>D:\work\5瀵告湪绠?src\demo.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\demo_mini\src/demo.c\89</Expression>
-        </Bp>
-        <Bp>
-          <Number>2</Number>
-          <Type>0</Type>
-          <LineNumber>101</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>7744</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>D:\work\5瀵告湪绠?src\demo.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\demo_mini\src/demo.c\101</Expression>
-        </Bp>
-        <Bp>
-          <Number>3</Number>
-          <Type>0</Type>
-          <LineNumber>111</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>7810</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>D:\work\5瀵告湪绠?src\demo.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\demo_mini\src/demo.c\111</Expression>
+          <Expression>\\demo_mini\src/demo.c\102</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -227,6 +179,11 @@
           <count>3</count>
           <WinNumber>1</WinNumber>
           <ItemText>bd_REG</ItemText>
+        </Ww>
+        <Ww>
+          <count>4</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>VOL_Level</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>
