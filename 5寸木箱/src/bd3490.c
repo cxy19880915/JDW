@@ -10,8 +10,39 @@
 #define Test_Mode			0xf0
 #define Sys_Reset			0xfe
 
-#include "bd3490.h"
+#define	Level_0	0
+#define	Level_1	0
+#define	Level_2	0
+#define	Level_3	0
+#define	Level_4	0
+#define	Level_5	0
+#define	Level_6	0
+#define	Level_7	0
+#define	Level_8	0
+#define	Level_9	0
+#define	Level_10	0
+#define	Level_11	0
+#define	Level_12	0
+#define	Level_13	0
+#define	Level_14	0
+#define	Level_15	0
+#define	Level_16	0
+#define	Level_17	0
+#define	Level_18	0
+#define	Level_19	0
+#define	Level_20	0
+#define	Level_21	0
+#define	Level_22	0
+#define	Level_23	0
+#define	Level_24	0
+#define	Level_25	0
+#define	Level_26	0
+#define	Level_27	0
+#define	Level_28	0
+#define	Level_29	0
+#define	Level_30	0
 
+#include "bd3490.h"
 
 //typedef enum BD_InputMode_Value
 //{
@@ -46,7 +77,40 @@
 //};
 //BD_InpuGain_Value	bd_input_value = _0dB;
 
- 
+unsigned char	BD_VOL_Level[31] =
+{
+	Level_0	,
+	Level_1	,
+	Level_2	,
+	Level_3	,
+	Level_4	,
+	Level_5	,
+	Level_6	,
+	Level_7	,
+	Level_8	,
+	Level_9	,
+	Level_10	,
+	Level_11	,
+	Level_12	,
+	Level_13	,
+	Level_14	,
+	Level_15	,
+	Level_16	,
+	Level_17	,
+	Level_18	,
+	Level_19	,
+	Level_20	,
+	Level_21	,
+	Level_22	,
+	Level_23	,
+	Level_24	,
+	Level_25	,
+	Level_26	,
+	Level_27	,
+	Level_28	,
+	Level_29	,
+	Level_30	
+}; 
 typedef struct BD3490_REG
 {
 	unsigned char	reg_addr;
@@ -96,6 +160,7 @@ void BD_InputGain(unsigned char n)
 }
 void BD_VOL_A(void)
 {
+	VOL_Level++;
 	bd_REG[2].reg_value = bd_REG[2].reg_value+1;
 	if(bd_REG[2].reg_value >= 0xfe)
 	{		

@@ -118,24 +118,12 @@ void Sys_power_on( void )
 	CLK_SysTickDelay(200000);	
 	RST_DEV = 1;
 	bd_init();
-	Data[0] = 1;Data[1] = 0;
-	Read_24c02(Data);
-	input_mode = Data[1];
-	Data[0] = 2;Data[1] = 0;
-	Read_24c02(Data);
-	VOL_Level = (BD_VOL_Level)Data[1];
 	LED_B = 0;LED_G = 0;LED_R = 0;
 	LED_Flag = 0x02;
 }
 
 void Sys_power_off( void )
 {
-	Data[0] = 1;
-	Data[1] = input_mode;
-	Write_24c02(Data,2);
-	Data[0] = 2;
-	Data[1] = VOL_Level;
-	Write_24c02(Data,2);
 	BT_POWER = 0;
 	ST_BY = 0;
 	SYS_power_flag = 0;

@@ -4,12 +4,15 @@
 
 void init_24c02(void)
 {
-	at24c02_reg[0].reg	= 0;
-	at24c02_reg[0].data	= 1;
-	at24c02_reg[1].reg	= 1;
-	at24c02_reg[1].data	= 0;
-	at24c02_reg[2].reg	= 2;
-	at24c02_reg[0].data	= 0;
+	//Init flag
+	Data[0]	= at24c02_reg[0].reg	= 0;
+	Data[1]	= at24c02_reg[0].data	= 1;
+	//Channel
+	Data[2]	= at24c02_reg[1].reg	= 1;
+	Data[3]	= at24c02_reg[1].data	= 0;
+	//VAL_Level
+	Data[4]	= at24c02_reg[2].reg	= 2;
+	Data[5]	= at24c02_reg[0].data	= 0;
 	Write_24c02(Data,6);
 }
 

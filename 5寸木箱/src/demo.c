@@ -99,9 +99,20 @@ int32_t main(void)
 				if((Power_Flag)&&(SYS_power_flag == 0))
 				{
 					Sys_power_on();
+					Data[0] = at24c02_reg[1].reg;
+					Read_24c02(Data);
+					input_mode = Data[1];
+					Data[0] = at24c02_reg[2].reg;
+					Read_24c02(Data);
+					VOL_Level = (BD_VOL_Level)Data[1];
 				}
 				else if((!Power_Flag)&&(SYS_power_flag == 1))
 				{
+					Data[0] = at24c02_reg[1].reg;
+					Data[1] = input_mode;
+					Data[2] = at24c02_reg[2].reg;
+					Data[3] = VOL_Level;
+					Write_24c02(Data,4);
 					Sys_power_off();
 				}
 				step = 2;
