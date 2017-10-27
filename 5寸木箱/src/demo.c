@@ -143,7 +143,7 @@ int32_t main(void)
 			case 5:
 				if(VOL_F||TREBLE_F||SUB_F)
 				{
-					Encoder_Task();
+					if(ST_BY)Encoder_Task();
 					VOL_F=0,TREBLE_F=0,SUB_F=0;
 				}
 				step = 6;

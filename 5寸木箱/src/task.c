@@ -163,13 +163,13 @@ void GPIO01_IRQHandler(void)
 		if( VOL_A )
 		{
 			Encoder_vol_flag = 1;
-			Encoder_Task();
+//			Encoder_Task();
 			VOL_F = 1;
 		}
 		else if(VOL_B)
 		{
 			Encoder_vol_flag = 0;
-			Encoder_Task();
+//			Encoder_Task();
 			VOL_F = 1;
 		}
 	}
@@ -179,13 +179,13 @@ void GPIO01_IRQHandler(void)
 		if( TREBLE_A )
 		{
 			Encoder_treble_flag = 1;
-			Encoder_Task();
+//			Encoder_Task();
 			TREBLE_F = 1;
 		}
 		else if( TREBLE_B )
 		{
 			Encoder_treble_flag = 0;
-			Encoder_Task();
+//			Encoder_Task();
 			TREBLE_F = 1;
 		}
 	}	
@@ -218,13 +218,13 @@ void GPIO234_IRQHandler(void)
 		if( SUB_A )
 		{
 			Encoder_sub_flag = 1;
-			Encoder_Task();
+//			Encoder_Task();
 			SUB_F = 1;
 		}
 		else if( SUB_B )
 		{
 			Encoder_sub_flag = 0;
-			Encoder_Task();
+//			Encoder_Task();
 			SUB_F = 1;
 		}
 	}

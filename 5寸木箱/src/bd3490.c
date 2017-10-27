@@ -178,7 +178,15 @@ void BD_BASS_B(void)
 }
 void BD_TREBLE_A(void)
 {
-		bd_REG[5].reg_value = bd_REG[5].reg_value&0x0e + 2;
+	if(bd_REG[5].reg_value >> 7)
+	{
+		bd_REG[5].reg_value = bd_REG[5].reg_value - 2;
+		if(bd_REG[5].reg_value == 0x80)
+			bd_REG[5].reg_value = 0x00;
+	}
+	else
+	{
+		bd_REG[5].reg_value = bd_REG[5].reg_value + 2;
 		if(bd_REG[5].reg_value >= 0x0e)
 		{
 			bd_REG[5].reg_value = 0x0e;
@@ -186,13 +194,16 @@ void BD_TREBLE_A(void)
 		}
 		else
 		{
-			LED_ON_Flag = 0;
+		LED_ON_Flag = 0;
 		}	
-	Transmit(bd_REG[5]);
+	}
+		Transmit(bd_REG[5]);
 }
 void BD_TREBLE_B(void)
 {
-		bd_REG[5].reg_value = (bd_REG[5].reg_value&0x0e)|0x80 + 2;
+	if(bd_REG[5].reg_value >> 7)
+	{
+		bd_REG[5].reg_value = bd_REG[5].reg_value + 2;
 		if(bd_REG[5].reg_value >= 0x8e)
 		{
 			bd_REG[5].reg_value = 0x8e;
@@ -200,8 +211,15 @@ void BD_TREBLE_B(void)
 		}
 		else
 		{
-			LED_ON_Flag = 0;
-		}
+		LED_ON_Flag = 0;
+		}	
+	}
+	else
+	{
+		bd_REG[5].reg_value = bd_REG[5].reg_value - 2;
+		if(bd_REG[5].reg_value == 0x00)
+			bd_REG[5].reg_value = 0x80;
+	}
 	Transmit(bd_REG[5]);
 }
 void BD_SURROUND(unsigned char n)
