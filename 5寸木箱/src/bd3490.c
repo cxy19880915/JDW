@@ -132,6 +132,7 @@ void BD_VOL_B(void)
 }
 void BD_BASS_A(void)
 {
+	LED_ON_Flag = 0;
 	if(bd_REG[4].reg_value >> 7)
 	{
 		bd_REG[4].reg_value = bd_REG[4].reg_value - 2;
@@ -148,13 +149,14 @@ void BD_BASS_A(void)
 		}
 		else
 		{
-		LED_ON_Flag = 0;
+			LED_ON_Flag = 0;
 		}	
 	}
 		Transmit(bd_REG[4]);
 }
 void BD_BASS_B(void)
 {
+	LED_ON_Flag = 0;
 	if(bd_REG[4].reg_value >> 7)
 	{
 		bd_REG[4].reg_value = bd_REG[4].reg_value + 2;
@@ -165,7 +167,7 @@ void BD_BASS_B(void)
 		}
 		else
 		{
-		LED_ON_Flag = 0;
+			LED_ON_Flag = 0;
 		}	
 	}
 	else
@@ -178,6 +180,7 @@ void BD_BASS_B(void)
 }
 void BD_TREBLE_A(void)
 {
+	LED_ON_Flag = 0;
 	if(bd_REG[5].reg_value >> 7)
 	{
 		bd_REG[5].reg_value = bd_REG[5].reg_value - 2;
@@ -194,13 +197,14 @@ void BD_TREBLE_A(void)
 		}
 		else
 		{
-		LED_ON_Flag = 0;
+			LED_ON_Flag = 0;
 		}	
 	}
 		Transmit(bd_REG[5]);
 }
 void BD_TREBLE_B(void)
 {
+	LED_ON_Flag = 0;
 	if(bd_REG[5].reg_value >> 7)
 	{
 		bd_REG[5].reg_value = bd_REG[5].reg_value + 2;
@@ -211,7 +215,7 @@ void BD_TREBLE_B(void)
 		}
 		else
 		{
-		LED_ON_Flag = 0;
+			LED_ON_Flag = 0;
 		}	
 	}
 	else
