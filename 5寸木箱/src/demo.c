@@ -82,8 +82,6 @@ int32_t main(void)
 	I2C_SW_Open(500000);
 	ST_BY = 1;
 	USB_PLAY = 0;	
-//	pcm9211_init();
-//	pcm9211_RST();
 	bd_init();
 	while(1)
 	{
