@@ -78,6 +78,7 @@ int32_t main(void)
 	input_mode = 0;
 	Channel_flag = 1;
 	LED_Flag = 1;
+	LED_ON_Flag = 0;
 	SetupHardware();
 	I2C_SW_Open(500000);
 	ST_BY = 1;

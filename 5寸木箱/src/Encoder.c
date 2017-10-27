@@ -44,7 +44,6 @@ void Encoder_Task(void)
 
 void Encoder_Task(void)
 {
-	LED_Flag = 3;
 	tone_flag = 1;
 	/*************	vol	*******************/
 	if( VOL_A & Encoder_vol_flag )
@@ -55,8 +54,7 @@ void Encoder_Task(void)
 	else if( VOL_B && Encoder_vol_flag == 0 )
 	{
 		Encoder_vol_flag = 1;
-		BD_VOL_B();
-							
+		BD_VOL_B();				
 	}
 	/*************	treble	*******************/
 	else if ( TREBLE_A && Encoder_treble_flag )
@@ -79,8 +77,13 @@ void Encoder_Task(void)
 	{
 		Encoder_sub_flag = 1;
 		BD_BASS_B();
+
 	}
-	
+	LED_Flag = 3;
+		if(LED_ON_Flag)
+		{
+			LED_Flag = 0;
+		}	
 	VOL_F=0,TREBLE_F=0,SUB_F=0;
 }
 

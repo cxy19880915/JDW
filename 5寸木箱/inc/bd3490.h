@@ -44,7 +44,7 @@
 //	B_High=0x1f
 //}BD_SurroundGain_Value;
 
-
+BD_EXT	unsigned char LED_ON_Flag;
 
 BD_EXT	void bd_init( void );
 BD_EXT	void BD_InputMode(unsigned char n);
