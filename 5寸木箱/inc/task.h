@@ -71,12 +71,12 @@ TASK_EXT	uint8_t	VOL_F,TREBLE_F,SUB_F,Power_Flag;
 #define LED_G					P34
 #define LED_R					P32
 
-#define VOL_ROTOA_1			1
-#define VOL_ROTOB_2			2
-#define TREBLE_ROTOA_3	3
-#define	TREBLE_ROTOB_4	4
-#define	SUB_ROTOA_5			5
-#define SUB_ROTOB_6			6
+//#define VOL_ROTOA_1			1
+//#define VOL_ROTOB_2			2
+//#define TREBLE_ROTOA_3	3
+//#define	TREBLE_ROTOB_4	4
+//#define	SUB_ROTOA_5			5
+//#define SUB_ROTOB_6			6
 
 TASK_EXT	void GPIO_Init( void );
 TASK_EXT	void _RST_8230( void );

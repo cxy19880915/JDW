@@ -82,11 +82,12 @@ int32_t main(void)
 	SetupHardware();
 	I2C_SW_Open(500000);
 	ST_BY = 1;
+//	while(1)test();
 	USB_PLAY = 0;	
 	bd_init();
 	Data[0] = at24c02_reg[0].reg;
 	Data[1] = 0;
-	Read_24c02(Data);
+	Read_24c02(Data,1);
 	if(Data[1]!=1)
 	{
 		init_24c02();	
@@ -100,19 +101,16 @@ int32_t main(void)
 				{
 					Sys_power_on();
 					Data[0] = at24c02_reg[1].reg;
-					Read_24c02(Data);
+					Read_24c02(Data,2);
 					input_mode = Data[1];
-					Data[0] = at24c02_reg[2].reg;
-					Read_24c02(Data);
-					VOL_Level = Data[1];
+					VOL_Level = Data[2];
 				}
 				else if((!Power_Flag)&&(SYS_power_flag == 1))
 				{
 					Data[0] = at24c02_reg[1].reg;
 					Data[1] = input_mode;
-					Data[2] = at24c02_reg[2].reg;
-					Data[3] = VOL_Level;
-					Write_24c02(Data,4);
+					Data[2] = VOL_Level;
+					Write_24c02(Data,2);
 					Sys_power_off();
 				}
 				step = 2;

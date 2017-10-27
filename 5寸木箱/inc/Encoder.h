@@ -13,9 +13,9 @@
 
 
 //#define EP_DET  			P52
-#define	VOL_B		( ( VOL_ROTOA == 0 ) && ( VOL_ROTOB == 0 ) )
+#define	VOL_A		( ( VOL_ROTOA == 0 ) && ( VOL_ROTOB == 0 ) )
 //#define	VOL_B		( ( VOL_ROTOA == 0 ) && ( VOL_ROTOB == 1 ) )
-#define	VOL_A		( ( VOL_ROTOA == 1 ) && ( VOL_ROTOB == 0 ) )
+#define	VOL_B		( ( VOL_ROTOA == 1 ) && ( VOL_ROTOB == 0 ) )
 //#define	VOL_D		( ( VOL_ROTOA == 1 ) && ( VOL_ROTOB == 1 ) )	
 #define TREBLE_B	( ( TREBLE_ROTOA == 0 ) && ( TREBLE_ROTOB == 0 ) )
 //#define TREBLE_B	( ( TREBLE_ROTOA == 0 ) && ( TREBLE_ROTOB == 1 ) )
