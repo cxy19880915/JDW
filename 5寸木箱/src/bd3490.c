@@ -1,4 +1,5 @@
 #define BD_GLOBALS 
+#include "bd3490.h"
 
 #define IN_Selector		0x04
 #define IN_Gain				0x06
@@ -10,39 +11,37 @@
 #define Test_Mode			0xf0
 #define Sys_Reset			0xfe
 
-#define	Level_0	0xfe
-#define	Level_1	0xf7
-#define	Level_2	0xee
-#define	Level_3	0xe7
-#define	Level_4	0xde
-#define	Level_5	0xd7
-#define	Level_6	0xce
-#define	Level_7	0xc7
-#define	Level_8	0xbe
-#define	Level_9	0xb7
-#define	Level_10	0xae
-#define	Level_11	0xa7
-#define	Level_12	0x9e
-#define	Level_13	0x97
-#define	Level_14	0x8e
-#define	Level_15	0x87
-#define	Level_16	0x7e
-#define	Level_17	0x77
-#define	Level_18	0x6e
-#define	Level_19	0x67
-#define	Level_20	0x5e
-#define	Level_21	0x57
-#define	Level_22	0x4e
-#define	Level_23	0x47
-#define	Level_24	0x3e
-#define	Level_25	0x37
-#define	Level_26	0x2e
-#define	Level_27	0x27
-#define	Level_28	0x1e
-#define	Level_29	0x17
-#define	Level_30	0x0e
-
-#include "bd3490.h"
+#define	Level_0	0xd7
+#define	Level_1	0xb7
+#define	Level_2	0xad
+#define	Level_3	0xa7
+#define	Level_4	0xa3
+#define	Level_5	0xa1
+#define	Level_6	0x9f
+#define	Level_7	0x9d
+#define	Level_8	0x9b
+#define	Level_9	0x99
+#define	Level_10	0x97
+#define	Level_11	0x95
+#define	Level_12	0x93
+#define	Level_13	0x91
+#define	Level_14	0x90
+#define	Level_15	0x8f
+#define	Level_16	0x8e
+#define	Level_17	0x8d
+#define	Level_18	0x8c
+#define	Level_19	0x8b
+#define	Level_20	0x8a
+#define	Level_21	0x89
+#define	Level_22	0x88
+#define	Level_23	0x87
+#define	Level_24	0x86
+#define	Level_25	0x85
+#define	Level_26	0x84
+#define	Level_27	0x83
+#define	Level_28	0x82
+#define	Level_29	0x81
+#define	Level_30	0x80
 
 //typedef enum BD_InputMode_Value
 //{
@@ -120,7 +119,7 @@ typedef struct BD3490_REG
 BD3490_REG bd_REG[] =
 {
 	IN_Selector,0x07,//INPUT_MUTE,
-	IN_Gain,0x14,//_0dB,
+	IN_Gain,0x00,//_0dB,
 	Vol_Gain_1ch,0xff,
 	Vol_Gain_2ch,0xff,
 	Bass_Gain,0x80,
