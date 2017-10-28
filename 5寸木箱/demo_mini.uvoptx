@@ -145,9 +145,9 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>102</LineNumber>
+          <LineNumber>88</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>7746</Address>
+          <Address>7690</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -156,7 +156,7 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>D:\work\5瀵告湪绠?src\demo.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\demo_mini\src/demo.c\102</Expression>
+          <Expression>\\demo_mini\src/demo.c\88</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
