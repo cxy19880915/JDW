@@ -97,41 +97,27 @@ void IR_test_task(void)
 						case 0x0c:							//BLUETOOTH
 							if(ST_BY)
 							{
-								if(BT_connect == 0)
-								{
-									BT_connect = 1;
 									Channel_flag = 1;
 									input_mode = 0x05;
-									LED_Flag = 0x02;
-								}
-								if(disp==0)
+									LED_Flag = 0x02;								
+								if(BT_connect == 0)
 								{
-									BT_Play_Pause();
+									Bluetooth_Test_Task();
+
 								}
-								else if(disp>2)	
+								else
 								{
-									BT_patch();	
+									if(disp==0)
+									{
+										BT_Play_Pause();
+									}
+									else if(disp>2)	
+									{
+										BT_patch();	
+									}
 								}
 							}
 
-//							if(( SYS_power_flag )&&(Channel[0]==0))
-//							{
-////								if(disp>2)
-////								{
-////									BT_patch();
-////								}
-////								else 
-////								{
-////									BT_Play_Pause();
-////								}
-//								if(disp==0)
-//								{
-//									BT_Play_Pause();
-//								}
-////								LED_R = 1;LED_G = 1;
-//								CLK_SysTickDelay(40000);LED_B = 1;
-//								CLK_SysTickDelay(40000);LED_B = 0;
-//							}
 						break;
 
 						case 0x0d:							//OPTICAL

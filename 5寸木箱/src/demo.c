@@ -82,6 +82,7 @@ int32_t main(void)
 	SetupHardware();
 	I2C_SW_Open(500000);
 	ST_BY = 1;
+	BT_POWER = 0;
 	USB_PLAY = 0;	
 	bd_init();
 	Data[0]	= at24c02_reg[0].reg	= 0;
@@ -111,6 +112,8 @@ int32_t main(void)
 				}
 				else if((!Power_Flag)&&(SYS_power_flag == 1))
 				{
+					AMP_MUTE = 1;
+					BT_POWER = 0;
 					Data[5] = at24c02_reg[1].reg;
 					Data[6] = input_mode;
 					Data[7] = VOL_Level;
@@ -141,11 +144,13 @@ int32_t main(void)
 						else
 						{
 							pcm9211_InputMode(input_mode+0xc1);	
-						}				
+						}	
+						BT_POWER = 0;
 					}
 					else if(input_mode < 6)
 					{
 						BD_InputMode(input_mode-0x02);
+						if(input_mode==5)BT_POWER = 1;
 					}
 					LED_Flag = 0x02;
 					Channel_flag = 0;
@@ -182,8 +187,22 @@ int32_t main(void)
 				{
 					USB_Test_Task();
 				}
-				step = 1;
+				step = 7;
 				break;
+			case 7:
+				if(BT_POWER)
+				{
+					if(BT_DET)
+					{
+						Bluetooth_Test_Task();	
+						BT_connect = 0;
+					}
+					else
+					{
+						BT_connect = 1;
+					}
+				}
+				step = 1;
 			default:
 				step = 1;
 				break;
@@ -191,10 +210,7 @@ int32_t main(void)
 		
 
 		
-//		if(BT_connect == 1)
-//		{
-//			Bluetooth_Test_Task();			
-//		}
+
 		
 		
 //		if(AUDIO_flag == 1)
