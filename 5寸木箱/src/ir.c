@@ -144,7 +144,7 @@ void IR_test_task(void)
 							disp_flag=0;
 							if( ST_BY )
 							{
-								BD_VOL_B();			
+								BD_VOL_A();			
 							}
 						break;
 
@@ -152,14 +152,12 @@ void IR_test_task(void)
 							disp_flag=0;
 							if( ST_BY )
 							{
-								BD_VOL_A();
+								BD_VOL_B();
 							}
 						break;
 
 						case 0x14:							//ON-OFF
-							if(disp==0)
-//							POWER_FLAG = ~POWER_FLAG;
-								ST_BY = ~ST_BY;
+							if(disp==0)Power_Flag = ~Power_Flag;
 							LED_Flag = 0x01;
 						break;
 
@@ -167,23 +165,16 @@ void IR_test_task(void)
 							if( SYS_power_flag && (disp==0) )
 							{
 								AMP_MUTE = ~AMP_MUTE;
-								LED_Flag = ~LED_Flag;
-								if(LED_Flag==0)
-								{
-									if(Channel[0])
-										LED_G = 0;
-									else if((BT_DET)&&(Channel[0]==0))
-										LED_B = 0;
-								}
+//								LED_Flag = ~LED_Flag;
+//								if(LED_Flag==0)
+//								{
+//									if(Channel[0])
+//										LED_G = 0;
+//									else if((BT_DET)&&(Channel[0]==0))
+//										LED_B = 0;
+//								}
 							}
-//							if( SYS_power_flag && (disp>=0x15) )
-//							{
-//								treble_level = 0;
-//								bass_level = 0;
-//								LED_Flag = 0;
-//								bass_adjust(bass_level);
-//								treble_adjust(treble_level);
-//							}
+
 						break;
 
 						case 0x18:							//HDMI
@@ -193,5 +184,10 @@ void IR_test_task(void)
 							break;
 					}
 				}
+		LED_Flag = 3;
+		if(LED_ON_Flag)
+		{
+			LED_Flag = 0;
+		}	
 		disp_flag=0;
 }

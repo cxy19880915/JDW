@@ -155,7 +155,7 @@ int32_t main(void)
 			case 4:
 				if(power_vol)
 				{
-					for(int i=0;i<Data[2];i++)
+					for(int i=1;i<Data[2];i++)
 					{
 						BD_VOL_A();
 						CLK_SysTickDelay(400000);

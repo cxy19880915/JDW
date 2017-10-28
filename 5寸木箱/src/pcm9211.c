@@ -19,11 +19,6 @@ static void Transmit(PCM9211_REG reg)
 /*#System RST Control*/
 void pcm9211_RST(void)
 {
-//	RST_DEV = 1;
-//	CLK_SysTickDelay(500000);
-//	RST_DEV = 0;
-//	CLK_SysTickDelay(100000);
-//	RST_DEV = 1;
 	#if 1
 	pcm_reg[14].reg_addr = 0x40;
 	pcm_reg[14].reg_value = 0x33;
