@@ -72,7 +72,7 @@ static void SetupHardware(void)
 /*---------------------------------------------------------------------------------------------------------*/
 int32_t main(void)
 {	
-	unsigned char step = 1;
+	unsigned char step = 1,power_vol = 0;
 	Power_Flag = 0;
 	SYS_power_flag = 1;
 	input_mode = 0;
@@ -106,7 +106,8 @@ int32_t main(void)
 					Data[0] = at24c02_reg[1].reg;
 					Read_24c02(Data,2);
 					input_mode = Data[1];
-					VOL_Level = Data[2];
+					VOL_Level = 0;
+					power_vol = 1;
 				}
 				else if((!Power_Flag)&&(SYS_power_flag == 1))
 				{
@@ -114,7 +115,6 @@ int32_t main(void)
 					Data[6] = input_mode;
 					Data[7] = VOL_Level;
 					Write_24c02(Data+5,3);
-//					CLK_SysTickDelay(1000);
 					Sys_power_off();
 				}
 				step = 2;
@@ -153,18 +153,27 @@ int32_t main(void)
 				step = 4;
 				break;
 			case 4:
-				if(IR_flag == 1)
+				if(power_vol)
 				{
-					IR_test_task();
-					IR_flag = 0;
+					for(int i=0;i<Data[2];i++)
+					{
+						BD_VOL_A();
+						CLK_SysTickDelay(400000);
+					}
+					power_vol = 0;
 				}
-				step = 5;
-				break;
-			case 5:
 				if(VOL_F||TREBLE_F||SUB_F)
 				{
 					if(ST_BY)Encoder_Task();
 					VOL_F=0,TREBLE_F=0,SUB_F=0;
+				}
+				step = 5;
+				break;			
+			case 5:
+				if(IR_flag == 1)
+				{
+					IR_test_task();
+					IR_flag = 0;
 				}
 				step = 6;
 				break;
