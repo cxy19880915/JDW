@@ -107,8 +107,8 @@ int32_t main(void)
 					Data[0] = at24c02_reg[1].reg;
 					Read_24c02(Data,2);
 					input_mode = Data[1];
-					VOL_Level = 1;
-					power_vol = 1;
+					Channel_flag = 1;
+					LED_Flag = 1;
 				}
 				else if((!Power_Flag)&&(SYS_power_flag == 1))
 				{
@@ -153,6 +153,8 @@ int32_t main(void)
 						if(input_mode==5)BT_POWER = 1;
 					}
 					LED_Flag = 0x02;
+					VOL_Level = 1;
+					power_vol = 1;
 					Channel_flag = 0;
 				}
 				step = 4;
@@ -163,7 +165,7 @@ int32_t main(void)
 					for(int i=1;i<Data[2];i++)
 					{
 						BD_VOL_A();
-						CLK_SysTickDelay(400000);
+						CLK_SysTickDelay(300000);
 					}
 					power_vol = 0;
 				}
