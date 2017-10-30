@@ -204,25 +204,23 @@ int32_t main(void)
 						BT_connect = 1;
 					}
 				}
+				step = 8;
+			case 8:
+				if(AUDIO_flag == 1)
+				{
+					AMP_MUTE = 1;
+				}
+				else
+				{
+					AMP_MUTE = 0;
+				}
 				step = 1;
+				break;
 			default:
 				step = 1;
 				break;
 		}
-		
 
-		
-
-		
-		
-//		if(AUDIO_flag == 1)
-//		{
-//			AMP_MUTE = 1;
-//		}
-//		else
-//		{
-//			AMP_MUTE = 0;
-//		}
 	}
 	
 	#if 0
