@@ -16,7 +16,14 @@ void LED_Task(void)
 			LED_B = ~LED_B;LED_G = ~LED_G;LED_R = ~LED_R;
 			CLK_SysTickDelay(50000);
 			LED_B = ~LED_B;LED_G = ~LED_G;LED_R = ~LED_R;
+		case ONE://闪烁一次
+			LED_B = ~LED_B;LED_G = ~LED_G;LED_R = ~LED_R;
+			CLK_SysTickDelay(50000);
+			LED_B = ~LED_B;LED_G = ~LED_G;LED_R = ~LED_R;
 		default:
 			break;
 	}
 }
+
+
+
