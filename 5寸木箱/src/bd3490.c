@@ -331,3 +331,8 @@ void BD_SysReset(void)
 	bd_REG[8].reg_value = 0x81;
 	Transmit(bd_REG[8]);
 }
+void BASS_TREBLE_RST(void)
+{
+	bd_REG[4].reg_value = 0x80;
+	bd_REG[5].reg_value = 0x80;
+}

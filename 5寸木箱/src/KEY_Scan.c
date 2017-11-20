@@ -52,7 +52,7 @@ void LED_Test(void)
 			{
 //				pcm9211_RST();
 //				pcm9211_init();
-				LED_B = 0;LED_G = 0;LED_R = 1;
+				LED_B = 0;LED_G = 1;LED_R = 0;
 //				AMP_MUTE = 0;
 			}
 			if(input_mode==0x02)
@@ -62,18 +62,19 @@ void LED_Test(void)
 				LED_B = 0;LED_G = 0;LED_R = 1;
 				USB_SW = 1;
 			}
-			if(input_mode==0x03)
+			if(input_mode==0x03)//rca2
 			{
-				LED_B = 0;LED_G = 1;LED_R = 1;
+//				LED_B = 0;LED_G = 1;LED_R = 1;
+				LED_B = 1;LED_G = 0;LED_R = 0;//绿色				
 			}
-			if(input_mode==0x04)
+			if(input_mode==0x04)//rca1
 			{
-				LED_B = 1;LED_G = 1;LED_R = 0;
+				LED_B = 1;LED_G = 1;LED_R = 0;//红色
 			}
-			if(input_mode==0x05)
+			if(input_mode==0x05)//bt
 			{
 				BT_POWER = 1;
-				LED_B = 1;LED_G = 0;LED_R = 0;
+				LED_B = 0;LED_G = 1;LED_R = 1;//蓝色
 				CLK_SysTickDelay(50000);
 			}
 			else
@@ -85,9 +86,44 @@ void LED_Test(void)
 		}
 		if(LED_Flag==0x03)
 		{
-			LED_B = ~LED_B;LED_G = ~LED_G;LED_R = ~LED_R;
-			CLK_SysTickDelay(50000);
-			LED_B = ~LED_B;LED_G = ~LED_G;LED_R = ~LED_R;
+			switch(input_mode)
+			{
+				case 0x00:
+					LED_B = 1;LED_G = 1;LED_R = 1;
+					CLK_SysTickDelay(50000);
+					LED_B = 0;LED_G = 0;LED_R = 0;
+					break;
+				case 0x01:
+					LED_B = 1;LED_G = 1;LED_R = 1;
+					CLK_SysTickDelay(50000);
+					LED_B = 0;LED_G = 1;LED_R = 0;
+					break;
+				case 0x02:
+					LED_B = 1;LED_G = 1;LED_R = 1;
+					CLK_SysTickDelay(50000);
+					LED_B = 0;LED_G = 0;LED_R = 1;
+					break;
+				case 0x03:
+					LED_B = 1;LED_G = 1;LED_R = 1;
+					CLK_SysTickDelay(50000);
+					LED_B = 1;LED_G = 0;LED_R = 0;//绿色	
+					break;
+				case 0x04:
+					LED_B = 1;LED_G = 1;LED_R = 1;
+					CLK_SysTickDelay(50000);
+					LED_B = 1;LED_G = 1;LED_R = 0;//红色
+					break;
+				case 0x05:
+					LED_B = 1;LED_G = 1;LED_R = 1;
+					CLK_SysTickDelay(50000);
+					LED_B = 0;LED_G = 1;LED_R = 1;//蓝色
+					break;
+				default :
+					break;
+			}
+//			LED_B = ~LED_B;LED_G = ~LED_G;LED_R = ~LED_R;
+//			CLK_SysTickDelay(50000);
+//			LED_B = ~LED_B;LED_G = ~LED_G;LED_R = ~LED_R;
 		}
 	}
 	else

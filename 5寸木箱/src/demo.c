@@ -109,9 +109,11 @@ int32_t main(void)
 					input_mode = Data[1];
 					Channel_flag = 1;
 					LED_Flag = 1;
+					power_vol = 1;
 				}
 				else if((!Power_Flag)&&(SYS_power_flag == 1))
 				{
+					BASS_TREBLE_RST();
 					AMP_MUTE = 1;
 					BT_POWER = 0;
 					Data[5] = at24c02_reg[1].reg;
@@ -123,14 +125,6 @@ int32_t main(void)
 				step = 2;
 				break;
 			case 2:
-				if(LED_Flag)
-				{
-					LED_Test();
-					LED_Flag = 0;
-				}	
-				step = 3;
-				break;
-			case 3:
 				if(Channel_flag)
 				{
 					if(input_mode < 3)
@@ -154,18 +148,25 @@ int32_t main(void)
 					}
 					LED_Flag = 0x02;
 					VOL_Level = 1;
-					power_vol = 1;
 					Channel_flag = 0;
 				}
-				step = 4;
+				step = 3;
 				break;
+			case 3:
+				if(LED_Flag)
+				{
+					LED_Test();
+					LED_Flag = 0;
+				}	
+				step = 4;
+				break;				
 			case 4:
 				if(power_vol)
 				{
 					for(int i=1;i<Data[2];i++)
 					{
 						BD_VOL_A();
-						CLK_SysTickDelay(300000);
+						CLK_SysTickDelay(50000);
 					}
 					power_vol = 0;
 				}
@@ -206,14 +207,14 @@ int32_t main(void)
 				}
 				step = 8;
 			case 8:
-				if(AUDIO_flag == 1)
-				{
-					AMP_MUTE = 1;
-				}
-				else
-				{
-					AMP_MUTE = 0;
-				}
+//				if(AUDIO_flag == 1)
+//				{
+//					AMP_MUTE = 1;
+//				}
+//				else
+//				{
+//					AMP_MUTE = 0;
+//				}
 				step = 1;
 				break;
 			default:

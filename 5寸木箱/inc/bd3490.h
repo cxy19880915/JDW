@@ -60,5 +60,6 @@ BD_EXT	void BD_TREBLE_B(void);
 BD_EXT	void BD_SURROUND(unsigned char n);
 BD_EXT	void BD_TestMode(void);
 BD_EXT	void BD_SysReset(void);
+BD_EXT	void BASS_TREBLE_RST(void);
 	
 #endif

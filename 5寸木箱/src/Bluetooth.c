@@ -4,10 +4,10 @@
 
 void Bluetooth_Test_Task(void)
 {
-			LED_B = ~LED_B;LED_G = ~LED_G;LED_R = ~LED_R;
-			CLK_SysTickDelay(40000);
-			LED_B = ~LED_B;LED_G = ~LED_G;LED_R = ~LED_R;
-			CLK_SysTickDelay(40000);
+			LED_B = ~LED_B;//LED_G = ~LED_G;LED_R = ~LED_R;
+			CLK_SysTickDelay(250000);
+			LED_B = ~LED_B;//LED_G = ~LED_G;LED_R = ~LED_R;
+			CLK_SysTickDelay(250000);
 }
 
 void BT_patch(void)
