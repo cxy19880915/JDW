@@ -25,11 +25,15 @@ void BT_Play_Pause(void)
 }
 void BT_REV_TASK(void)
 {
-	;
+		BT_REV = 1;
+		CLK_SysTickDelay(300000);
+		BT_REV = 0;
 }
 void BT_FWD_TASK(void)
 {
-	;
+		BT_FWD = 1;
+		CLK_SysTickDelay(300000);
+		BT_FWD = 0;
 }
 
 

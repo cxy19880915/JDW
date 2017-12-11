@@ -9,6 +9,7 @@
 //#include "tas5754.h"
 #include "task.h"
 #include "Bluetooth.h"
+#include "usb.h"
 
 #ifdef IR_GLOBALS
 	#define IR_EXT 

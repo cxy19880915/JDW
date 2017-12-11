@@ -10,6 +10,8 @@
 #endif
 	
 USB_EXT	unsigned char USB_SW_flag;
-USB_EXT	void	USB_Test_Task(void);
+USB_EXT void USB_PLAY_TASK(void);
+USB_EXT	void USB_FWD_TASK(void);
+USB_EXT	void USB_REV_TASK(void);
 
 #endif

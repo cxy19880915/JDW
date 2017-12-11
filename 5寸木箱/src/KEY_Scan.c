@@ -82,6 +82,7 @@ void LED_Test(void)
 				BT_POWER = 0;
 				BT_connect = 0;
 			}
+			CLK_SysTickDelay(200000);
 			AMP_MUTE = 0;
 		}
 		if(LED_Flag==0x03)

@@ -121,9 +121,13 @@ void IR_test_task(void)
 						break;
 
 						case 0x0d:							//OPTICAL
+							if( ST_BY )
+							if(disp==0)USB_FWD_TASK();
 						break;
 						
 						case 0x0E:							//COAXIAL
+							if( ST_BY )
+							if(disp==0)USB_REV_TASK();
 						break;
 
 						case 0x12:							//VOL+
@@ -164,6 +168,8 @@ void IR_test_task(void)
 						break;
 
 						case 0x18:							//HDMI
+							if( ST_BY )
+							if(disp==0)	USB_PLAY_TASK();
 						break;
 						default:
 							irwork = IDLE;
