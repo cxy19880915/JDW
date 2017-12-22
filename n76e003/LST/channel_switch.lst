@@ -1,0 +1,78 @@
+C51 COMPILER V9.56.0.0   CHANNEL_SWITCH                                                    12/21/2017 12:00:32 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE CHANNEL_SWITCH
+OBJECT MODULE PLACED IN .\Output\channel_switch.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE N76E003\Code\channel_switch.c OPTIMIZE(8,SPEED) BROWSE INCDIR(..\Include
+                    -;.\Include) DEFINE(FOSC_160000) DEBUG OBJECTEXTEND PRINT(.\LST\channel_switch.lst) TABS(2) OBJECT(.\Output\channel_switc
+                    -h.obj)
+
+line level    source
+
+   1          #include "Common.h"
+   2          
+   3          extern const unsigned char code g_abMax1xDSPCommands[];
+   4          extern  void I2C_Write_Command(UINT8 u8Address, UINT8* p8Data, UINT32 u32ByteSize);
+   5          #define   NPCA110P_EEPROM_SLA     0xe6
+   6          
+   7          UINT8 source_in = 0,mode_in = 0;
+   8          
+   9          //模拟输入通道切换命令：
+  10          const unsigned char code channel_Commands[] = 
+  11          {
+  12          0xFF,0xAD,0x83,   0x00,0x00,0x88,      //通道1  
+  13          0xFF,0xAD,0x86,   0x00,0x00,0x00, 
+  14          0xFF,0xAD,0x86,   0x00,0x00,0x01, 
+  15          0xFF,0xAD,0x86,   0x00,0x00,0x00,
+  16                                          
+  17          0xFF,0xAD,0x83,   0x00,0x00,0x99,      //通道2  
+  18          0xFF,0xAD,0x86,   0x00,0x00,0x00, 
+  19          0xFF,0xAD,0x86,   0x00,0x00,0x01, 
+  20          0xFF,0xAD,0x86,   0x00,0x00,0x00,
+  21                                          
+  22          0xFF,0xAD,0x83,   0x00,0x00,0xAA,      //通道3  
+  23          0xFF,0xAD,0x86,   0x00,0x00,0x00, 
+  24          0xFF,0xAD,0x86,   0x00,0x00,0x01, 
+  25          0xFF,0xAD,0x86,   0x00,0x00,0x00
+  26          };                              
+  27             
+  28          void  NPCA110P_init(void)
+  29          {
+  30   1        I2C_Write_Command(NPCA110P_EEPROM_SLA,g_abMax1xDSPCommands,1000);
+  31   1      }
+  32          void  NPCA110P_VOL_A(void)
+  33          {
+  34   1        I2C_Write_Command(NPCA110P_EEPROM_SLA,g_abMax1xDSPCommands,1000);
+  35   1      }
+  36          void  NPCA110P_VOL_B(void)
+  37          {
+  38   1        I2C_Write_Command(NPCA110P_EEPROM_SLA,g_abMax1xDSPCommands,1000);
+  39   1      }
+  40          void  NPCA110P_MUTE(void)
+  41          {
+  42   1        I2C_Write_Command(NPCA110P_EEPROM_SLA,g_abMax1xDSPCommands,1000);
+  43   1      }
+  44          void  NPCA110P_MODE(void)
+  45          {
+  46   1        I2C_Write_Command(NPCA110P_EEPROM_SLA,g_abMax1xDSPCommands,1000);
+  47   1      }
+  48          void  NPCA110P_SOURCE(void)
+  49          {
+  50   1        I2C_Write_Command(NPCA110P_EEPROM_SLA,g_abMax1xDSPCommands,24);
+  51   1      }
+
+
+C51 COMPILER V9.56.0.0   CHANNEL_SWITCH                                                    12/21/2017 12:00:32 PAGE 2   
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    131    ----
+   CONSTANT SIZE    =     72    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

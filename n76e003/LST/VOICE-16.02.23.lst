@@ -1,0 +1,357 @@
+C51 COMPILER V9.56.0.0   VOICE_16_02_23                                                    12/21/2017 12:00:31 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE VOICE_16_02_23
+OBJECT MODULE PLACED IN .\Output\VOICE-16.02.23.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE N76E003\Code\VOICE-16.02.23.C OPTIMIZE(8,SPEED) BROWSE INCDIR(..\Include
+                    -;.\Include) DEFINE(FOSC_160000) DEBUG OBJECTEXTEND PRINT(.\LST\VOICE-16.02.23.lst) TABS(2) OBJECT(.\Output\VOICE-16.02.2
+                    -3.obj)
+
+line level    source
+
+   1          
+   2          const unsigned char code g_abMax1xDSPCommands[] =
+   3          {
+   4              0x00, 0xa5, 0x00, /* Command DETECT                             */
+   5              0x00, 0xa5, 0x00, /* Command DETECT                             */
+   6          
+   7              /* System Configuration Begin */
+   8              0x00, 0xc3, 0x00, /* Command SAMPLE, Value = 48 kHz             */
+   9              0x00, 0xa4, 0x11, /* Command ANALOG_SETTING                     */
+  10              0x00, 0x00, 0x00, /*                                            */
+  11              0x00, 0x00, 0x00, /*                                            */
+  12              0x00, 0x00, 0x00, /*                                            */
+  13              0x10, 0x1d, 0x3f, /*                                            */
+  14              0x00, 0x00, 0x00, /*                                            */
+  15              0x00, 0x00, 0x00, /*                                            */
+  16              0x00, 0x00, 0x00, /*                                            */
+  17              0x00, 0x00, 0x00, /*                                            */
+  18              0x00, 0x00, 0x00, /*                                            */
+  19              0x00, 0x00, 0x00, /*                                            */
+  20              0x7f, 0xff, 0xff, /*                                            */
+  21              0x00, 0x00, 0x00, /*                                            */
+  22              0x00, 0x00, 0x00, /*                                            */
+  23              0x00, 0x00, 0x00, /*                                            */
+  24              0x00, 0x00, 0x00, /*                                            */
+  25              0x00, 0x00, 0x00, /*                                            */
+  26              0x7f, 0xff, 0xff, /*                                            */
+  27              0x00, 0xc8, 0x00, /* Command UPD_ANALOG                         */
+  28              0x83, 0xc4, 0xd5, /* Command DIG_IO_CONFIG, Value = 0000d5      */
+  29              0xff, 0xab, 0xfb, 
+  30              0x24, 0x10, 0x09, /*                                            */
+  31              0xff, 0xab, 0xfa, 
+  32              0x08, 0x00, 0x09, /*                                            */
+  33              0xff, 0xab, 0xfa, 
+  34              0x00, 0x00, 0x09, /*                                            */
+  35              0xff, 0xab, 0xfb, 
+  36              0xa4, 0x18, 0x29, /*                                            */
+  37              0xff, 0xad, 0x84, 
+  38              0x00, 0x00, 0x18, /*                                            */
+  39              0xff, 0xad, 0x85, 
+  40              0x00, 0x1f, 0xff, /*                                            */
+  41              0xff, 0xad, 0x81, 
+  42              0x00, 0x12, 0x12, /*                                            */
+  43              0xff, 0xad, 0x82, 
+  44              0x00, 0x14, 0x14, /*                                            */
+  45              0xff, 0xad, 0x83, 
+  46              0x00, 0x00, 0x88, /*                                            */
+  47              0xff, 0xad, 0x80, 
+  48              0x00, 0x54, 0x54, /*                                            */
+  49              0xff, 0xad, 0x87, 
+  50              0x00, 0x54, 0x54, /*                                            */
+  51              0xff, 0xad, 0x86, 
+  52              0x00, 0x00, 0x00, /*                                            */
+  53              0xff, 0xad, 0x86, 
+C51 COMPILER V9.56.0.0   VOICE_16_02_23                                                    12/21/2017 12:00:31 PAGE 2   
+
+  54              0x00, 0x00, 0x01, /*                                            */
+  55              0xff, 0xad, 0x86, 
+  56              0x00, 0x00, 0x00, /*                                            */
+  57              0x00, 0xc2, 0x00, /* Command SPEAKER, Value = 2.0               */
+  58              /* System Configuration End */
+  59          
+  60              /* Algorithms Configuration Begin */
+  61              0x00, 0xc9, 0x7a, /* Command BALANCE, Value = 0                 */
+  62              0x00, 0xdf, 0x1e, /* Command LEVELER_TARGET, Value = -6.0       */
+  63              0x00, 0xdb, 0x78, /* Command LEVELER_RANGE, Value = -24.0       */
+  64              0x00, 0xdb, 0x78, /* Command LEVELER_RANGE, Value = -24.0       */
+  65              0x00, 0xc7, 0x00, /* Command MUTE, Value = Out                  */
+  66              0x00, 0xe0, 0x0a, /* Command MUTE, Value = 10                   */
+  67              0x00, 0xd5, 0x59, /* Command MAXX_BASS_FREQUENCY, Value = 65.0  */
+  68              0x00, 0xe3, 0x50, /* Command MAXX_BASS_HP_FREQUENCY, Value = 50 */
+  69              0x00, 0xcf, 0x00, /* Command Internal                           */
+  70              0x00, 0xe1, 0x70, /* Command MAXX_BASS_NG_THRESHOLD, Value = -100 */
+  71              0x00, 0xcb, 0x00, /* Command MAXX_BASS_ORIGINAL_BASS, Value = Off */
+  72              0x00, 0xe2, 0x2f, /* Command MAXX_BASS_NG_GAP, Value = -47      */
+  73              0x00, 0xd9, 0x6f, /* Command MAXX_TREBLE_FREQUENCY, Value = 12495.6 */
+  74              0x00, 0xe5, 0x2f, /* Command MAXX_TREBLE_NG_GAP, Value = -47    */
+  75              0x00, 0xe4, 0x70, /* Command MAXX_TREBLE_NG_THRESHOLD, Value = -100 */
+  76              0x00, 0xd7, 0x30, /* Command SUB_FREQ, Value = 20.0             */
+  77              0x01, 0xd0, 0x9a, /* Command MAXX_VOLUME_SLIDER                 */
+  78              0x00, 0xc6, 0x01, /* Command LEVELER_ON_OFF                     */
+  79              0x00, 0xdd, 0x01, /* Command HARD_KNEE                          */
+  80              0x00, 0xd4, 0x00, /* Command VOLUME_DYN_RANGE                   */
+  81              0x00, 0xda, 0x00, /* Command VOLUME_LOW_GAIN                    */
+  82              0x00, 0xdc, 0x00, /* Command VOLUME_GATE                        */
+  83              0x00, 0xa1, 0x05, /* Command SET_PEQ                            */
+  84              0x00, 0x00, 0x00, /*                                            */
+  85              0x00, 0x00, 0x04, /*                                            */
+  86              0x00, 0x00, 0x1e, /*                                            */
+  87              0x00, 0x00, 0x16, /*                                            */
+  88              0x00, 0x00, 0x6b, /*                                            */
+  89              0x00, 0xd8, 0x00, /* Command UPD_PEQ                            */
+  90              0x00, 0xa1, 0x05, /* Command SET_PEQ                            */
+  91              0x00, 0x00, 0x01, /*                                            */
+  92              0x00, 0x00, 0x00, /*                                            */
+  93              0x00, 0x00, 0x00, /*                                            */
+  94              0x00, 0x00, 0x3a, /*                                            */
+  95              0x00, 0x00, 0x3f, /*                                            */
+  96              0x00, 0xd8, 0x00, /* Command UPD_PEQ                            */
+  97              0x00, 0xa1, 0x05, /* Command SET_PEQ                            */
+  98              0x00, 0x00, 0x02, /*                                            */
+  99              0x00, 0x00, 0x00, /*                                            */
+ 100              0x00, 0x00, 0x2b, /*                                            */
+ 101              0x00, 0x00, 0x3a, /*                                            */
+ 102              0x00, 0x00, 0x2b, /*                                            */
+ 103              0x00, 0xd8, 0x00, /* Command UPD_PEQ                            */
+ 104              0x00, 0xa1, 0x05, /* Command SET_PEQ                            */
+ 105              0x00, 0x00, 0x03, /*                                            */
+ 106              0x00, 0x00, 0x00, /*                                            */
+ 107              0x00, 0x00, 0x24, /*                                            */
+ 108              0x00, 0x00, 0x3a, /*                                            */
+ 109              0x00, 0x00, 0x5e, /*                                            */
+ 110              0x00, 0xd8, 0x00, /* Command UPD_PEQ                            */
+ 111              0x00, 0xa1, 0x05, /* Command SET_PEQ                            */
+ 112              0x00, 0x00, 0x04, /*                                            */
+ 113              0x00, 0x00, 0x00, /*                                            */
+ 114              0x00, 0x00, 0x37, /*                                            */
+ 115              0x00, 0x00, 0x0d, /*                                            */
+C51 COMPILER V9.56.0.0   VOICE_16_02_23                                                    12/21/2017 12:00:31 PAGE 3   
+
+ 116              0x00, 0x00, 0x30, /*                                            */
+ 117              0x00, 0xd8, 0x00, /* Command UPD_PEQ                            */
+ 118              0x00, 0xa1, 0x05, /* Command SET_PEQ                            */
+ 119              0x00, 0x00, 0x05, /*                                            */
+ 120              0x00, 0x00, 0x00, /*                                            */
+ 121              0x00, 0x00, 0x6e, /*                                            */
+ 122              0x00, 0x00, 0x0d, /*                                            */
+ 123              0x00, 0x00, 0x2b, /*                                            */
+ 124              0x00, 0xd8, 0x00, /* Command UPD_PEQ                            */
+ 125              0x00, 0xa1, 0x05, /* Command SET_PEQ                            */
+ 126              0x00, 0x00, 0x06, /*                                            */
+ 127              0x00, 0x00, 0x00, /*                                            */
+ 128              0x00, 0x00, 0x43, /*                                            */
+ 129              0x00, 0x00, 0x3a, /*                                            */
+ 130              0x00, 0x00, 0x45, /*                                            */
+ 131              0x00, 0xd8, 0x00, /* Command UPD_PEQ                            */
+ 132              0x00, 0xa1, 0x05, /* Command SET_PEQ                            */
+ 133              0x00, 0x00, 0x07, /*                                            */
+ 134              0x00, 0x00, 0x00, /*                                            */
+ 135              0x00, 0x00, 0x65, /*                                            */
+ 136              0x00, 0x00, 0x0d, /*                                            */
+ 137              0x00, 0x00, 0x29, /*                                            */
+ 138              0x00, 0xd8, 0x00, /* Command UPD_PEQ                            */
+ 139              0x00, 0xa1, 0x05, /* Command SET_PEQ                            */
+ 140              0x00, 0x00, 0x08, /*                                            */
+ 141              0x00, 0x00, 0x00, /*                                            */
+ 142              0x00, 0x00, 0x12, /*                                            */
+ 143              0x00, 0x00, 0x0d, /*                                            */
+ 144              0x00, 0x00, 0x1b, /*                                            */
+ 145              0x00, 0xd8, 0x00, /* Command UPD_PEQ                            */
+ 146              0x00, 0xa1, 0x05, /* Command SET_PEQ                            */
+ 147              0x00, 0x00, 0x09, /*                                            */
+ 148              0x00, 0x00, 0x02, /*                                            */
+ 149              0x00, 0x00, 0x70, /*                                            */
+ 150              0x00, 0x00, 0x17, /*                                            */
+ 151              0x00, 0x00, 0x3d, /*                                            */
+ 152              0x00, 0xd8, 0x00, /* Command UPD_PEQ                            */
+ 153              0x00, 0xcf, 0x01, /*                                            */
+ 154              0x00, 0xd1, 0x00, /*                                            */
+ 155              0x00, 0xd1, 0x09, /*                                            */
+ 156              0x00, 0xd1, 0x12, /*                                            */
+ 157              0x00, 0xd1, 0x1b, /*                                            */
+ 158              0x00, 0xd1, 0x24, /*                                            */
+ 159              0x00, 0xd1, 0x2d, /*                                            */
+ 160              0x00, 0xd1, 0x36, /*                                            */
+ 161              0x00, 0xd1, 0x3f, /*                                            */
+ 162              0x00, 0xd1, 0x48, /*                                            */
+ 163              0x00, 0xd1, 0x4c, /*                                            */
+ 164              0x00, 0xd1, 0x07, /* Command MAXX_BASS_INTENSITY                */
+ 165              0x00, 0xcf, 0x00, /* Command Internal                           */
+ 166              0x00, 0xd2, 0x2e, /* Command MAXX_TREBLE_INTENSITY              */
+ 167              0x00, 0xcf, 0x00, /* Command Internal                           */
+ 168              0x00, 0xd3, 0x13, /* Command MAXX_STEREO_INTENSITY              */
+ 169              0x00, 0xd6, 0x0b, /* Command STEREO_SETTING                     */
+ 170              0x00, 0xcf, 0x00, /* Command Internal                           */
+ 171              0x00, 0xe8, 0x51, 
+ 172              0x00, 0xe9, 0x48, 
+ 173              0x00, 0xcf, 0x00, /* Command Internal                           */
+ 174          
+ 175              /* Patch Begin */
+ 176              0xff, 0xab, 0xf3, /*                                            */
+ 177              0x00, 0x00, 0xc1, /*                                            */
+C51 COMPILER V9.56.0.0   VOICE_16_02_23                                                    12/21/2017 12:00:31 PAGE 4   
+
+ 178              0xff, 0xab, 0xf4, /*                                            */
+ 179              0x00, 0x00, 0x01, /*                                            */
+ 180              0xff, 0xab, 0xf5, /*                                            */
+ 181              0x30, 0x1a, 0x48, /*                                            */
+ 182              0xff, 0xab, 0xf6, /*                                            */
+ 183              0x20, 0xee, 0x7d, /*                                            */
+ 184              0xff, 0xab, 0xf7, /*                                            */
+ 185              0x02, 0x90, 0x78, /*                                            */
+ 186              0xff, 0xab, 0xf4, /*                                            */
+ 187              0x00, 0x00, 0x02, /*                                            */
+ 188              0xff, 0xab, 0xf5, /*                                            */
+ 189              0x10, 0x1a, 0x4a, /*                                            */
+ 190              0xff, 0xab, 0xf6, /*                                            */
+ 191              0x21, 0xe6, 0x00, /*                                            */
+ 192              0x06, 0xaa, 0x06, /*                                            */
+ 193              0x00, 0xa2, 0x7b, /*                                            */
+ 194              0x61, 0xf4, 0x00, /*                                            */
+ 195              0x00, 0x00, 0x90, /*                                            */
+ 196              0x61, 0x70, 0x00, /*                                            */
+ 197              0x00, 0x02, 0x47, /*                                            */
+ 198              0x3c, 0x0a, 0x00, /*                                            */
+ 199              0x38, 0x0a, 0x00, /*                                            */
+ 200              0x64, 0xf4, 0x00, /*                                            */
+ 201              0x00, 0x01, 0x34, /*                                            */
+ 202              0x60, 0xf4, 0x00, /*                                            */
+ 203              0x00, 0x01, 0xda, /*                                            */
+ 204              0x05, 0xf4, 0x20, /*                                            */
+ 205              0xff, 0xff, 0xff, /*                                            */
+ 206              0x04, 0x64, 0xa0, /*                                            */
+ 207              0x20, 0x4c, 0x00, /*                                            */
+ 208              0x20, 0x48, 0x00, /*                                            */
+ 209              0x44, 0xb8, 0x00, /*                                            */
+ 210              0x0c, 0xc4, 0xa0, /*                                            */
+ 211              0x00, 0x00, 0x16, /*                                            */
+ 212              0x57, 0xf4, 0x00, /*                                            */
+ 213              0x7f, 0xf7, 0x05, /*                                            */
+ 214              0x5f, 0x5c, 0x00, /*                                            */
+ 215              0x5f, 0x58, 0x00, /*                                            */
+ 216              0x57, 0xf4, 0x00, /*                                            */
+ 217              0x7f, 0xff, 0x38, /*                                            */
+ 218              0x5f, 0x5c, 0x00, /*                                            */
+ 219              0x5f, 0x58, 0x00, /*                                            */
+ 220              0x20, 0x5c, 0x00, /*                                            */
+ 221              0x20, 0x58, 0x00, /*                                            */
+ 222              0x57, 0xf4, 0x00, /*                                            */
+ 223              0x7f, 0xff, 0xbc, /*                                            */
+ 224              0x5f, 0x5c, 0x00, /*                                            */
+ 225              0x5f, 0x58, 0x00, /*                                            */
+ 226              0x57, 0xf4, 0x00, /*                                            */
+ 227              0x7f, 0xc7, 0x29, /*                                            */
+ 228              0x5f, 0x5c, 0x00, /*                                            */
+ 229              0x5f, 0x58, 0x00, /*                                            */
+ 230              0x0a, 0xf0, 0x80, /*                                            */
+ 231              0x00, 0x00, 0x78, /*                                            */
+ 232              0x57, 0xf4, 0x00, /*                                            */
+ 233              0x7f, 0xf6, 0x3a, /*                                            */
+ 234              0x5f, 0x5c, 0x00, /*                                            */
+ 235              0x5f, 0x58, 0x00, /*                                            */
+ 236              0x57, 0xf4, 0x00, /*                                            */
+ 237              0x7f, 0xff, 0x27, /*                                            */
+ 238              0x5f, 0x5c, 0x00, /*                                            */
+ 239              0x5f, 0x58, 0x00, /*                                            */
+C51 COMPILER V9.56.0.0   VOICE_16_02_23                                                    12/21/2017 12:00:31 PAGE 5   
+
+ 240              0x20, 0x5c, 0x00, /*                                            */
+ 241              0x20, 0x58, 0x00, /*                                            */
+ 242              0x57, 0xf4, 0x00, /*                                            */
+ 243              0x7f, 0xff, 0xb6, /*                                            */
+ 244              0x5f, 0x5c, 0x00, /*                                            */
+ 245              0x5f, 0x58, 0x00, /*                                            */
+ 246              0x57, 0xf4, 0x00, /*                                            */
+ 247              0x7f, 0xc2, 0x23, /*                                            */
+ 248              0x5f, 0x5c, 0x00, /*                                            */
+ 249              0x5f, 0x58, 0x00, /*                                            */
+ 250              0x54, 0xf0, 0x00, /*                                            */
+ 251              0xff, 0xff, 0xf1, /*                                            */
+ 252              0x0c, 0x1e, 0xe2, /*                                            */
+ 253              0x01, 0x40, 0xc6, /*                                            */
+ 254              0x00, 0x00, 0x07, /*                                            */
+ 255              0x01, 0x40, 0xc5, /*                                            */
+ 256              0x00, 0x00, 0x01, /*                                            */
+ 257              0x0a, 0xf0, 0xa2, /*                                            */
+ 258              0x00, 0x00, 0x89, /*                                            */
+ 259              0x61, 0xf4, 0x00, /*                                            */
+ 260              0x00, 0xcd, 0xac, /*                                            */
+ 261              0x61, 0x70, 0x00, /*                                            */
+ 262              0x00, 0x02, 0x14, /*                                            */
+ 263              0x61, 0xf4, 0x00, /*                                            */
+ 264              0x00, 0xc8, 0x32, /*                                            */
+ 265              0x61, 0x70, 0x00, /*                                            */
+ 266              0x00, 0x01, 0xff, /*                                            */
+ 267              0x60, 0xf4, 0x00, /*                                            */
+ 268              0x00, 0x00, 0x98, /*                                            */
+ 269              0x60, 0x70, 0x00, /*                                            */
+ 270              0x00, 0x01, 0xf8, /*                                            */
+ 271              0x0b, 0xf0, 0x80, /*                                            */
+ 272              0x00, 0x00, 0x98, /*                                            */
+ 273              0x00, 0x00, 0x0c, /*                                            */
+ 274              0x0b, 0xf0, 0x80, /*                                            */
+ 275              0x00, 0xd3, 0x68, /*                                            */
+ 276              0x46, 0xf4, 0x00, /*                                            */
+ 277              0x4d, 0xf8, 0xf0, /*                                            */
+ 278              0x74, 0xf4, 0x00, /*                                            */
+ 279              0x00, 0x00, 0x1e, /*                                            */
+ 280              0x4e, 0x6c, 0x00, /*                                            */
+ 281              0x00, 0x00, 0x0c, /*                                            */
+ 282              0x55, 0xbe, 0x00, /*                                            */
+ 283              0x01, 0x40, 0xce, /*                                            */
+ 284              0xff, 0xff, 0x3f, /*                                            */
+ 285              0x30, 0xff, 0x00, /*                                            */
+ 286              0x04, 0xcd, 0xcd, /*                                            */
+ 287              0x20, 0x00, 0x1b, /*                                            */
+ 288              0x22, 0x09, 0x00, /*                                            */
+ 289              0x00, 0x00, 0x0b, /*                                            */
+ 290              0x0d, 0x10, 0x4a, /*                                            */
+ 291              0x00, 0x00, 0x0a, /*                                            */
+ 292              0x0a, 0x9d, 0xa1, /*                                            */
+ 293              0x00, 0x00, 0x9f, /*                                            */
+ 294              0x22, 0x09, 0x00, /*                                            */
+ 295              0x00, 0x00, 0x0b, /*                                            */
+ 296              0x0d, 0x10, 0x4a, /*                                            */
+ 297              0x00, 0x00, 0x04, /*                                            */
+ 298              0x0a, 0x9d, 0x81, /*                                            */
+ 299              0x00, 0x00, 0xa5, /*                                            */
+ 300              0x08, 0x45, 0x1a, /*                                            */
+ 301              0x56, 0xf4, 0x00, /*                                            */
+C51 COMPILER V9.56.0.0   VOICE_16_02_23                                                    12/21/2017 12:00:31 PAGE 6   
+
+ 302              0x00, 0x03, 0xff, /*                                            */
+ 303              0x20, 0x00, 0x62, /*                                            */
+ 304              0x08, 0xcc, 0x1a, /*                                            */
+ 305              0x07, 0xf0, 0x2d, /*                                            */
+ 306              0x00, 0x00, 0x3e, /*                                            */
+ 307              0x57, 0xf0, 0x00, /*                                            */
+ 308              0x00, 0x02, 0xac, /*                                            */
+ 309              0x45, 0xf4, 0x00, /*                                            */
+ 310              0x00, 0x00, 0x02, /*                                            */
+ 311              0x45, 0xf4, 0x6a, /*                                            */
+ 312              0xff, 0x0f, 0xff, /*                                            */
+ 313              0x20, 0x00, 0x6e, /*                                            */
+ 314              0x55, 0x70, 0x00, /*                                            */
+ 315              0x00, 0x02, 0xac, /*                                            */
+ 316              0x00, 0x00, 0x0c, /*                                            */
+ 317              /* Patch End */
+ 318          
+ 319              0x00, 0xac, 0x00, /* Command COMLET_SETTING                     */
+ 320              0x00, 0x85, 0x00, /* Command Internal                           */
+ 321          };
+ 322          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   ----    ----
+   CONSTANT SIZE    =    924    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

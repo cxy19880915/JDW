@@ -1,0 +1,112 @@
+C51 COMPILER V9.56.0.0   SYSINIT                                                           12/21/2017 12:00:30 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE SYSINIT
+OBJECT MODULE PLACED IN .\Output\sysinit.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE N76E003\Code\sysinit.c OPTIMIZE(8,SPEED) BROWSE INCDIR(..\Include;.\Incl
+                    -ude) DEFINE(FOSC_160000) DEBUG OBJECTEXTEND PRINT(.\LST\sysinit.lst) TABS(2) OBJECT(.\Output\sysinit.obj)
+
+line level    source
+
+   1          #include "sysInit.h"
+   2          
+   3          extern  void  NPCA110P_init(void);
+   4          
+   5          void  SetSysClock(void)
+   6          {
+   7   1        CKSWT = 0x30;
+   8   1        CKEN  = 0x30;
+   9   1      //  CKDIV = 0x02;
+  10   1        __delay_10ms(2);
+  11   1      }
+  12          
+  13          void gpio_init(void)
+  14          {
+  15   1        Set_All_GPIO_Quasi_Mode;
+  16   1        #if 0
+                P00_PushPull_Mode;
+                P01_PushPull_Mode;
+                P02_PushPull_Mode;
+                P03_PushPull_Mode;
+                P04_PushPull_Mode;
+              //  P04_Input_Mode;
+                P05_Input_Mode;
+                P06_Input_Mode;
+                P07_PushPull_Mode;
+                P10_PushPull_Mode;
+                P11_PushPull_Mode;
+                P12_PushPull_Mode;
+                P13_PushPull_Mode;
+                P14_PushPull_Mode;
+                P15_PushPull_Mode;
+                P17_Input_Mode;
+                P30_PushPull_Mode;
+                #endif
+  35   1      //  BAT_DET   
+  36   1      
+  37   1      //  LOW_BAT_NOTIFY  = 0;
+  38   1        ST_BY = 0;
+  39   1        power_change = 0;
+  40   1        power_flag = 0; 
+  41   1      //  BT_POWER = 0;   
+  42   1      ////  BT_DET      
+  43   1      
+  44   1      ////  GPIO1   
+  45   1      ////  GPIO2   
+  46   1      ////  GPIO3   
+  47   1      
+  48   1      //  PLAY = 0; 
+  49   1      //  REV = 0;      
+  50   1      //  FWD = 0;      
+  51   1      //  VOL_UP = 0;   
+  52   1      //  VOL_DOWN = 0; 
+  53   1      //  PAIR = 0;   
+  54   1      }
+C51 COMPILER V9.56.0.0   SYSINIT                                                           12/21/2017 12:00:30 PAGE 2   
+
+  55          
+  56          void  sys_init(void)
+  57          {
+  58   1      //  unsigned char *p8Data = g_abMax1xDSPCommands;
+  59   1        SetSysClock();
+  60   1        gpio_init();
+  61   1      //  timer0_init();
+  62   1      //  timer1_init();
+  63   1        adc_init();
+  64   1        IR_init();
+  65   1        Init_I2C();
+  66   1        NPCA110P_init();
+  67   1        set_EA;                                     //enable interrupts
+  68   1        set_TR0;                                    //Timer0 run
+  69   1        set_TR2;                                    // Timer2 run 
+  70   1      }
+  71          
+  72          //void  time0_init(void)
+  73          //{
+  74          //  TIMER0_MODE1_ENABLE;
+  75          //  u8TH0_Tmp = (65536-TH0_INIT)/256;
+  76          //    u8TL0_Tmp = (65536-TL0_INIT)%256;
+  77          //  TH0 = u8TH0_Tmp;
+  78          //    TL0 = u8TL0_Tmp;
+  79          //  set_ET0;
+  80          //}
+  81          
+  82          //void  adc_init(void)
+  83          //{
+  84          //  Enable_ADC_AIN0;
+  85          //}
+  86          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     58    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

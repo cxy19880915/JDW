@@ -1,0 +1,51 @@
+#include "Common.h"
+
+extern const unsigned char code g_abMax1xDSPCommands[];
+extern	void I2C_Write_Command(UINT8 u8Address, UINT8* p8Data, UINT32 u32ByteSize);
+#define		NPCA110P_EEPROM_SLA			0xe6
+
+UINT8	source_in = 0,mode_in = 0;
+
+//模拟输入通道切换命令：
+const unsigned char code channel_Commands[] = 
+{
+0xFF,0xAD,0x83, 	0x00,0x00,0x88,      //通道1 	
+0xFF,0xAD,0x86, 	0x00,0x00,0x00,	
+0xFF,0xAD,0x86, 	0x00,0x00,0x01,	
+0xFF,0xAD,0x86, 	0x00,0x00,0x00,
+                                
+0xFF,0xAD,0x83, 	0x00,0x00,0x99,      //通道2 	
+0xFF,0xAD,0x86, 	0x00,0x00,0x00,	
+0xFF,0xAD,0x86, 	0x00,0x00,0x01,	
+0xFF,0xAD,0x86, 	0x00,0x00,0x00,
+                                
+0xFF,0xAD,0x83, 	0x00,0x00,0xAA,      //通道3 	
+0xFF,0xAD,0x86, 	0x00,0x00,0x00,	
+0xFF,0xAD,0x86, 	0x00,0x00,0x01,	
+0xFF,0xAD,0x86, 	0x00,0x00,0x00
+};                              
+   
+void	NPCA110P_init(void)
+{
+	I2C_Write_Command(NPCA110P_EEPROM_SLA,g_abMax1xDSPCommands,1000);
+}
+void	NPCA110P_VOL_A(void)
+{
+	I2C_Write_Command(NPCA110P_EEPROM_SLA,g_abMax1xDSPCommands,1000);
+}
+void	NPCA110P_VOL_B(void)
+{
+	I2C_Write_Command(NPCA110P_EEPROM_SLA,g_abMax1xDSPCommands,1000);
+}
+void	NPCA110P_MUTE(void)
+{
+	I2C_Write_Command(NPCA110P_EEPROM_SLA,g_abMax1xDSPCommands,1000);
+}
+void	NPCA110P_MODE(void)
+{
+	I2C_Write_Command(NPCA110P_EEPROM_SLA,g_abMax1xDSPCommands,1000);
+}
+void	NPCA110P_SOURCE(void)
+{
+	I2C_Write_Command(NPCA110P_EEPROM_SLA,g_abMax1xDSPCommands,24);
+}
