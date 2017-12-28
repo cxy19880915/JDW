@@ -1,4 +1,4 @@
-C51 COMPILER V9.56.0.0   IR_RECIVE                                                         12/28/2017 12:05:27 PAGE 1   
+C51 COMPILER V9.56.0.0   IR_RECIVE                                                         12/28/2017 15:37:10 PAGE 1   
 
 
 C51 COMPILER V9.56.0.0, COMPILATION OF MODULE IR_RECIVE
@@ -39,234 +39,248 @@ line level    source
   29          extern  void  GPIO_MUTE(void);
   30          extern  bit power_flag,led_flag;
   31          
-  32          void IR_init(void)
-  33          {
-  34   1          P03_Input_Mode;
-  35   1          P03 = 1;
-  36   1          Enable_BIT3_LowLevel_Trig;
-  37   1          set_EPI;              // Enable pin interrupt
-  38   1      }
-  39          
-  40          
+  32          void dat_clr(void);
+  33          
+  34          void IR_init(void)
+  35          {
+  36   1          P03_Input_Mode;
+  37   1          P03 = 1;
+  38   1          Enable_BIT3_LowLevel_Trig;
+  39   1          set_EPI;              // Enable pin interrupt
+  40   1      }
   41          
-  42          void PinInterrupt_ISR (void) interrupt 7
-  43          {
-  44   1        UINT8 i=0,j=0;
-  45   1        if(PIF & 0x08)
-  46   1        {
-  47   2          PIF =PIF & 0xf7;                             //clear interrupt flag
-  48   2        #if 1
-  49   2          clr_EPI;
-  50   2      //    clr_GPIO1;                                //亮指示灯
-  51   2          for(i=0;i<First_Boot_code;i++)            //8ms low
-  52   2          {
-  53   3              Timer1_Delay1ms(1);
-  54   3              if(ir_pin)
-C51 COMPILER V9.56.0.0   IR_RECIVE                                                         12/28/2017 12:05:27 PAGE 2   
+  42          
+  43          
+  44          void PinInterrupt_ISR (void) interrupt 7
+  45          {
+  46   1        UINT8 i=0,j=0,n=0;
+  47   1        if(PIF & 0x08)
+  48   1        {
+  49   2          PIF =PIF & 0xf7;                             //clear interrupt flag
+  50   2          clr_EPI;
+  51   2          i++;
+  52   2          do//9ms low
+  53   2          {
+  54   3            n++;
+C51 COMPILER V9.56.0.0   IR_RECIVE                                                         12/28/2017 15:37:10 PAGE 2   
 
-  55   3              {
-  56   4                  dat_clr();
-  57   4                  set_EPI;
-  58   4                  return;
-  59   4              }
-  60   3          }
-  61   2          while(!ir_pin);
-  62   2      
-  63   2          for(i=0;i<Second_Boot_code;i++)           //4ms high
-  64   2          {
-  65   3              Timer1_Delay1ms(1);
-  66   3              if(!ir_pin)
-  67   3              {
-  68   4                  dat_clr();
-  69   4                  set_EPI;
-  70   4                  return;
-  71   4              }
-  72   3          }
-  73   2          while(ir_pin);
-  74   2        
-  75   2          for(i=0;i<Data_count;i++)             //32bit数据码
-  76   2          {
-  77   3              for(j=0;j<8;j++)
-  78   3              {
-  79   4                  while(!ir_pin);                 //0.56ms  low
-  80   4                
-  81   4                  Timer1_Delay1ms(Data_0_1_code);
-  82   4                  if(ir_pin)                        //数据 1  high
-  83   4                  {
-  84   5                      dat[i] >>= 1;
-  85   5                      dat[i] |= 0x80;
-  86   5                      while(ir_pin);
-  87   5                  }
-  88   4                  else                          //数据 0  high
-  89   4                  {
-  90   5                      dat[i] >>= 1;
-  91   5                  }
-  92   4              }
-  93   3              
-  94   3          }
-  95   2            
-  96   2          while(!ir_pin);                         //0.56ms  low
-  97   2          
-  98   2          for(i=0;i<Stop_code;i++)          //40ms    high
-  99   2          {
- 100   3              Timer1_Delay1ms(1);
- 101   3              if(!ir_pin)
- 102   3              {
- 103   4                dat_clr();
- 104   4                set_EPI;
- 105   4                return;
- 106   4              }
- 107   3          }
- 108   2      //    while(ir_pin);  
- 109   2          set_GPIO1;
- 110   2          Data_Check();
- 111   2          Timer1_Delay1ms(2);                 //delay2ms
- 112   2          
- 113   2          for(i=0;i<First_Boot_code-2;i++)        
- 114   2          {
- 115   3              Timer1_Delay1ms(1);
- 116   3              if(ir_pin)
-C51 COMPILER V9.56.0.0   IR_RECIVE                                                         12/28/2017 12:05:27 PAGE 3   
+  55   3            Timer1_Delay1ms(1);
+  56   3          }while(!ir_pin);
+  57   2          if(n<First_Boot_code)//没有达到8ms low
+  58   2          {
+  59   3      //      dat_clr();
+  60   3            set_EPI;
+  61   3            return;
+  62   3          }
+  63   2          n=0;
+  64   2          
+  65   2          do//4ms high or 2ms high
+  66   2          {
+  67   3            n++;
+  68   3            Timer1_Delay1ms(1);
+  69   3            if((!ir_pin)&&(n<Second_Boot_code))//2ms  high
+  70   3              {
+  71   4                  dat_clr();
+  72   4                  set_EPI;
+  73   4                  return;
+  74   4              }
+  75   3          }while(ir_pin);
+  76   2          n=0;
+  77   2          
+  78   2          for(i=0;i<Data_count;i++)             //32bit数据码
+  79   2          {
+  80   3              for(j=0;j<8;j++)
+  81   3              {
+  82   4                  while(!ir_pin);                 //0.56ms  low
+  83   4                
+  84   4                  Timer1_Delay1ms(Data_0_1_code);
+  85   4                  if(ir_pin)                        //数据 1  high
+  86   4                  {
+  87   5                      dat[i] >>= 1;
+  88   5                      dat[i] |= 0x80;
+  89   5                      while(ir_pin);
+  90   5                  }
+  91   4                  else                          //数据 0  high
+  92   4                  {
+  93   5                      dat[i] >>= 1;
+  94   5                  }
+  95   4              }
+  96   3              
+  97   3          }
+  98   2            
+  99   2          while(!ir_pin);                         //0.56ms  low
+ 100   2          
+ 101   2          do//40ms  high
+ 102   2          {
+ 103   3            n++;
+ 104   3            Timer1_Delay1ms(1);
+ 105   3              if(n>30)//20ms  high
+ 106   3              {
+ 107   4                n=0;
+ 108   4                Data_Check();
+ 109   4                dat_clr();
+ 110   4                Timer1_Delay1ms(40);
+ 111   4                set_EPI;
+ 112   4                return;
+ 113   4              }
+ 114   3          }while(ir_pin);
+ 115   2      //    Data_Check();
+ 116   2          dat_clr();
+C51 COMPILER V9.56.0.0   IR_RECIVE                                                         12/28/2017 15:37:10 PAGE 3   
 
- 117   3              {
- 118   4                  dat_clr();
- 119   4                  set_EPI;
- 120   4                  return;
- 121   4              }
- 122   3          }
- 123   2          while(!ir_pin);                         //8ms   low
- 124   2      
- 125   2      //    for(i=0;i<Second_Boot_code;i++)       
- 126   2      //    {
- 127   2      //        Timer1_Delay1ms(1);
- 128   2      //        if(!ir_pin)
- 129   2      //        {
- 130   2      //            dat_clr();
- 131   2      //            set_EX1;
- 132   2      //            return;
- 133   2      //        }
- 134   2      //    }
- 135   2          while(ir_pin);                            //2ms   high
- 136   2          
- 137   2          while(!ir_pin);                         //0.56ms  low
- 138   2      //    Timer1_Delay1ms(2000);                  //delay2ms
- 139   2      //    while(ir_pin);
- 140   2          
- 141   2          dat_clr();
- 142   2          set_EPI;
- 143   2          return;
- 144   2          #endif    
- 145   2        }
- 146   1        else
- 147   1        {
- 148   2          PIF = 0x00;                             //clear interrupt flag
- 149   2        }
- 150   1      }
- 151          
- 152          
- 153          
- 154          void Data_Check(void)
- 155          {
- 156   1          if(dat[2] == ~dat[3])
- 157   1          {
- 158   2              key_press = dat[2];
- 159   2              dat_clr();
- 160   2              Recive_flag = 1;
- 161   2          }
- 162   1          else
- 163   1          {
- 164   2              key_press = 0;
- 165   2              Recive_flag = 0;
- 166   2          }
- 167   1      }
- 168          
- 169          void dat_clr(void)
- 170          {
- 171   1          UINT8 i;    
- 172   1          for(i=0;i<Data_count;i++)
- 173   1          {
- 174   2              dat[i] = 0;
- 175   2          }   
- 176   1      }
- 177          
- 178          void IR_Deal(void)
-C51 COMPILER V9.56.0.0   IR_RECIVE                                                         12/28/2017 12:05:27 PAGE 4   
+ 117   2          set_EPI;
+ 118   2          return;
+ 119   2          #if 0
+              //    while(ir_pin);  
+                  set_GPIO1;
+                  Data_Check();
+                  Timer1_Delay1ms(2);                 //delay2ms
+                  
+                  for(i=0;i<First_Boot_code-2;i++)        
+                  {
+                      Timer1_Delay1ms(1);
+                      if(ir_pin)
+                      {
+                          dat_clr();
+                          set_EPI;
+                          return;
+                      }
+                  }
+                  while(!ir_pin);                         //8ms   low
+              
+              //    for(i=0;i<Second_Boot_code;i++)       
+              //    {
+              //        Timer1_Delay1ms(1);
+              //        if(!ir_pin)
+              //        {
+              //            dat_clr();
+              //            set_EX1;
+              //            return;
+              //        }
+              //    }
+                  while(ir_pin);                            //2ms   high
+                  
+                  while(!ir_pin);                         //0.56ms  low
+              //    Timer1_Delay1ms(2000);                  //delay2ms
+              //    while(ir_pin);
+                  
+                  dat_clr();
+                  set_EPI;
+                  return;
+                  #endif    
+ 157   2        }
+ 158   1        else
+ 159   1        {
+ 160   2          PIF = 0x00;                             //clear interrupt flag
+ 161   2        }
+ 162   1      }
+ 163          
+ 164          
+ 165          
+ 166          void Data_Check(void)
+ 167          {
+ 168   1          if(dat[2] == ~dat[3])
+ 169   1          {
+ 170   2              key_press = dat[2];
+ 171   2              dat_clr();
+ 172   2              Recive_flag = 1;
+ 173   2          }
+ 174   1          else
+ 175   1          {
+ 176   2              key_press = 0;
+ 177   2              Recive_flag = 0;
+ 178   2          }
+C51 COMPILER V9.56.0.0   IR_RECIVE                                                         12/28/2017 15:37:10 PAGE 4   
 
- 179          {
- 180   1        if(Recive_flag)
- 181   1        {
- 182   2          switch(key_press)//switch(ir.dat.data0)
- 183   2          {
- 184   3            case  0x01:       //BASS+
- 185   3              break;
- 186   3            case  0x02:       //BASS-
- 187   3              break;
- 188   3            case  0x03:       //TREBLE+
- 189   3              break;
- 190   3            case  0x04:       //TREBLE-
- 191   3              break;
- 192   3            case  0x0a:       //LINE IN
- 193   3              break;
- 194   3            case  0x0b:       //AUX IN
- 195   3              break;
- 196   3            case  0x0c:       //BLUETOOTH
+ 179   1      }
+ 180          
+ 181          void dat_clr(void)
+ 182          {
+ 183   1          UINT8 i;    
+ 184   1          for(i=0;i<Data_count;i++)
+ 185   1          {
+ 186   2              dat[i] = 0;
+ 187   2          }   
+ 188   1      }
+ 189          
+ 190          void IR_Deal(void)
+ 191          {
+ 192   1        if(Recive_flag)
+ 193   1        {
+ 194   2          switch(key_press)//switch(ir.dat.data0)
+ 195   2          {
+ 196   3            case  0x01:       //BASS+
  197   3              break;
- 198   3            case  0x0d:       //OPTICAL
- 199   3            if(ST_BY)
- 200   3            {
- 201   4              NPCA110P_SOURCE();
- 202   4              led_flag = 1;
- 203   4            }
- 204   3              break;
- 205   3            case  0x0e:       //COAXIAL
- 206   3            if(ST_BY) 
- 207   3            {
- 208   4              NPCA110P_MODE();
- 209   4              led_flag = 1;
- 210   4            }
- 211   3              break;
- 212   3            case  0x12:       //VOL+
- 213   3            if(ST_BY)
- 214   3            {
- 215   4              NPCA110P_VOL_A();
- 216   4            }
- 217   3              break;
- 218   3            case  0x13:       //VOL-
- 219   3            if(ST_BY)
- 220   3            {
- 221   4              NPCA110P_VOL_B();
+ 198   3            case  0x02:       //BASS-
+ 199   3              break;
+ 200   3            case  0x03:       //TREBLE+
+ 201   3              break;
+ 202   3            case  0x04:       //TREBLE-
+ 203   3              break;
+ 204   3            case  0x0a:       //LINE IN
+ 205   3              break;
+ 206   3            case  0x0b:       //AUX IN
+ 207   3              break;
+ 208   3            case  0x0c:       //BLUETOOTH
+ 209   3              break;
+ 210   3            case  0x0d:       //OPTICAL
+ 211   3            if(ST_BY)
+ 212   3            {
+ 213   4              NPCA110P_SOURCE();
+ 214   4              led_flag = 1;
+ 215   4            }
+ 216   3              break;
+ 217   3            case  0x0e:       //COAXIAL
+ 218   3            if(ST_BY) 
+ 219   3            {
+ 220   4              NPCA110P_MODE();
+ 221   4              led_flag = 1;
  222   4            }
  223   3              break;
- 224   3            case  0x14:       //ON-OFF
- 225   3            {
- 226   4              power_flag = ~power_flag;
- 227   4              break;
- 228   4            }
- 229   3            case  0x15:       //MUTE
- 230   3            if(ST_BY)
- 231   3            {
- 232   4      //        NPCA110P_MUTE();
- 233   4              GPIO_MUTE();
- 234   4            }
- 235   3              break;
- 236   3            case  0x18:       //HDMI
+ 224   3            case  0x12:       //VOL+
+ 225   3            if(ST_BY)
+ 226   3            {
+ 227   4              NPCA110P_VOL_A();
+ 228   4      //        led_flag = 1;
+ 229   4            }
+ 230   3              break;
+ 231   3            case  0x13:       //VOL-
+ 232   3            if(ST_BY)
+ 233   3            {
+ 234   4              NPCA110P_VOL_B();
+ 235   4      //        led_flag = 1;
+ 236   4            }
  237   3              break;
- 238   3            default:
- 239   3              break;
- 240   3          }
-C51 COMPILER V9.56.0.0   IR_RECIVE                                                         12/28/2017 12:05:27 PAGE 5   
+ 238   3            case  0x14:       //ON-OFF
+ 239   3            {
+ 240   4              power_flag = ~power_flag;
+C51 COMPILER V9.56.0.0   IR_RECIVE                                                         12/28/2017 15:37:10 PAGE 5   
 
- 241   2          Recive_flag = 0;
- 242   2        }
- 243   1      }
+ 241   4              break;
+ 242   4            }
+ 243   3            case  0x15:       //MUTE
+ 244   3            if(ST_BY)
+ 245   3            {
+ 246   4      //        NPCA110P_MUTE();
+ 247   4              GPIO_MUTE();
+ 248   4            }
+ 249   3              break;
+ 250   3            case  0x18:       //HDMI
+ 251   3              break;
+ 252   3            default:
+ 253   3              break;
+ 254   3          }
+ 255   2          Recive_flag = 0;
+ 256   2        }
+ 257   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    444    ----
+   CODE SIZE        =    413    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =      5       2
+   DATA SIZE        =      5       3
    IDATA SIZE       =   ----    ----
    BIT SIZE         =      1    ----
 END OF MODULE INFORMATION.

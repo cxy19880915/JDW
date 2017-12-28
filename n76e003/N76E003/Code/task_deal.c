@@ -14,8 +14,8 @@ void	POWER_ON_OFF(void)
 		MUTE = 1;
 		ST_BY = 1;
 		power_change = 0;
-		AUX1_LED = 0;
-		MUSIC_LED = 0;
+		AUX1_LED = 0;AUX2_LED = 0;BT_LED = 0;
+		MUSIC_LED = 0;MOVIE_LED = 0;VOICE_LED = 0;
 		__delay_10ms(2);
 			NPCA110P_init();
 		MUTE = 0;
@@ -24,8 +24,8 @@ void	POWER_ON_OFF(void)
 	{
 		ST_BY = 0;
 		power_change = 1;
-		AUX1_LED = 1;
-		MUSIC_LED = 1;
+		AUX1_LED = 1;AUX2_LED = 1;BT_LED = 1;
+		MUSIC_LED = 1;MOVIE_LED = 1;VOICE_LED = 1;
 	}
 }
 
@@ -41,27 +41,27 @@ void	LED_DISPLAY(void)
 {
 	if(led_flag)
 	{
-		if(source_in == 0)
+		if(source_in == 1)
 		{
 			AUX1_LED = 0;AUX2_LED = 1;BT_LED = 1;
 		}
-		if(source_in == 1)
+		if(source_in == 2)
 		{
 			AUX1_LED = 1;AUX2_LED = 0;BT_LED = 1;
 		}
-		if(source_in == 2)
+		if(source_in == 3)
 		{
 			AUX1_LED = 1;AUX2_LED = 1;BT_LED = 0;
 		}
-		if(mode_in == 0)
+		if(mode_in == 1)
 		{
 			MUSIC_LED = 0;MOVIE_LED = 1;VOICE_LED = 1;
 		}
-		if(mode_in == 1)
+		if(mode_in == 2)
 		{
 			MUSIC_LED = 1;MOVIE_LED = 0;VOICE_LED = 1;
 		}
-		if(mode_in == 2)
+		if(mode_in == 3)
 		{
 			MUSIC_LED = 1;MOVIE_LED = 1;VOICE_LED = 0;
 		}

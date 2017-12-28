@@ -29,6 +29,8 @@ extern	void	NPCA110P_MUTE(void);
 extern	void  GPIO_MUTE(void);
 extern	bit	power_flag,led_flag;
 
+void dat_clr(void);
+
 void IR_init(void)
 {
     P03_Input_Mode;
@@ -41,37 +43,38 @@ void IR_init(void)
 
 void PinInterrupt_ISR (void) interrupt 7
 {
-	UINT8 i=0,j=0;
+	UINT8 i=0,j=0,n=0;
 	if(PIF & 0x08)
 	{
     PIF =PIF & 0xf7;                             //clear interrupt flag
-	#if 1
 		clr_EPI;
-//		clr_GPIO1;																//亮指示灯
-		for(i=0;i<First_Boot_code;i++)						//8ms low
+		i++;
+		do//9ms low
 		{
-				Timer1_Delay1ms(1);
-				if(ir_pin)
+			n++;
+			Timer1_Delay1ms(1);
+		}while(!ir_pin);
+		if(n<First_Boot_code)//没有达到8ms low
+		{
+//			dat_clr();
+			set_EPI;
+			return;
+		}
+		n=0;
+		
+		do//4ms	high or 2ms	high
+		{
+			n++;
+			Timer1_Delay1ms(1);
+			if((!ir_pin)&&(n<Second_Boot_code))//2ms	high
 				{
 						dat_clr();
 						set_EPI;
 						return;
 				}
-		}
-		while(!ir_pin);
-
-		for(i=0;i<Second_Boot_code;i++)						//4ms	high
-		{
-				Timer1_Delay1ms(1);
-				if(!ir_pin)
-				{
-						dat_clr();
-						set_EPI;
-						return;
-				}
-		}
-		while(ir_pin);
-	
+		}while(ir_pin);
+		n=0;
+		
 		for(i=0;i<Data_count;i++)							//32bit数据码
 		{
 				for(j=0;j<8;j++)
@@ -95,16 +98,25 @@ void PinInterrupt_ISR (void) interrupt 7
 			
 		while(!ir_pin);													//0.56ms	low
 		
-		for(i=0;i<Stop_code;i++)					//40ms		high
+		do//40ms	high
 		{
-				Timer1_Delay1ms(1);
-				if(!ir_pin)
+			n++;
+			Timer1_Delay1ms(1);
+				if(n>30)//20ms	high
 				{
+					n=0;
+					Data_Check();
 					dat_clr();
+					Timer1_Delay1ms(40);
 					set_EPI;
 					return;
 				}
-		}
+		}while(ir_pin);
+//		Data_Check();
+		dat_clr();
+		set_EPI;
+		return;
+		#if 0
 //		while(ir_pin);	
 		set_GPIO1;
 		Data_Check();
@@ -213,12 +225,14 @@ void IR_Deal(void)
 			if(ST_BY)
 			{
 				NPCA110P_VOL_A();
+//				led_flag = 1;
 			}
 				break;
 			case	0x13:				//VOL-
 			if(ST_BY)
 			{
 				NPCA110P_VOL_B();
+//				led_flag = 1;
 			}
 				break;
 			case	0x14:				//ON-OFF

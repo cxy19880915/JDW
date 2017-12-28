@@ -71,13 +71,15 @@ void	NPCA110P_init(void)
 }
 void	NPCA110P_VOL_A(void)
 {
+	if(volume_Control[2]>=0xf3)volume_Control[2]=0xed;
 	volume_Control[2]=volume_Control[2]+6;
 //	volume_Control[5]++;
 	I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
 }
 void	NPCA110P_VOL_B(void)
 {
-	volume_Control[2]=0;
+	if(volume_Control[2]<6)volume_Control[2]=6;
+	volume_Control[2]=volume_Control[2]-6;
 //	volume_Control[5]--;
 	I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
 }

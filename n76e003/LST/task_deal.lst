@@ -1,4 +1,4 @@
-C51 COMPILER V9.56.0.0   TASK_DEAL                                                         12/28/2017 12:05:25 PAGE 1   
+C51 COMPILER V9.56.0.0   TASK_DEAL                                                         12/28/2017 15:37:08 PAGE 1   
 
 
 C51 COMPILER V9.56.0.0, COMPILATION OF MODULE TASK_DEAL
@@ -24,8 +24,8 @@ line level    source
   14   2          MUTE = 1;
   15   2          ST_BY = 1;
   16   2          power_change = 0;
-  17   2          AUX1_LED = 0;
-  18   2          MUSIC_LED = 0;
+  17   2          AUX1_LED = 0;AUX2_LED = 0;BT_LED = 0;
+  18   2          MUSIC_LED = 0;MOVIE_LED = 0;VOICE_LED = 0;
   19   2          __delay_10ms(2);
   20   2            NPCA110P_init();
   21   2          MUTE = 0;
@@ -34,8 +34,8 @@ line level    source
   24   1        {
   25   2          ST_BY = 0;
   26   2          power_change = 1;
-  27   2          AUX1_LED = 1;
-  28   2          MUSIC_LED = 1;
+  27   2          AUX1_LED = 1;AUX2_LED = 1;BT_LED = 1;
+  28   2          MUSIC_LED = 1;MOVIE_LED = 1;VOICE_LED = 1;
   29   2        }
   30   1      }
   31          
@@ -51,29 +51,29 @@ line level    source
   41          {
   42   1        if(led_flag)
   43   1        {
-  44   2          if(source_in == 0)
+  44   2          if(source_in == 1)
   45   2          {
   46   3            AUX1_LED = 0;AUX2_LED = 1;BT_LED = 1;
   47   3          }
-  48   2          if(source_in == 1)
+  48   2          if(source_in == 2)
   49   2          {
   50   3            AUX1_LED = 1;AUX2_LED = 0;BT_LED = 1;
   51   3          }
-  52   2          if(source_in == 2)
+  52   2          if(source_in == 3)
   53   2          {
   54   3            AUX1_LED = 1;AUX2_LED = 1;BT_LED = 0;
-C51 COMPILER V9.56.0.0   TASK_DEAL                                                         12/28/2017 12:05:25 PAGE 2   
+C51 COMPILER V9.56.0.0   TASK_DEAL                                                         12/28/2017 15:37:08 PAGE 2   
 
   55   3          }
-  56   2          if(mode_in == 0)
+  56   2          if(mode_in == 1)
   57   2          {
   58   3            MUSIC_LED = 0;MOVIE_LED = 1;VOICE_LED = 1;
   59   3          }
-  60   2          if(mode_in == 1)
+  60   2          if(mode_in == 2)
   61   2          {
   62   3            MUSIC_LED = 1;MOVIE_LED = 0;VOICE_LED = 1;
   63   3          }
-  64   2          if(mode_in == 2)
+  64   2          if(mode_in == 3)
   65   2          {
   66   3            MUSIC_LED = 1;MOVIE_LED = 1;VOICE_LED = 0;
   67   3          }
@@ -126,7 +126,7 @@ line level    source
  114   2          break;
  115   2      
  116   2          case 0x15:              //MUTE
-C51 COMPILER V9.56.0.0   TASK_DEAL                                                         12/28/2017 12:05:25 PAGE 3   
+C51 COMPILER V9.56.0.0   TASK_DEAL                                                         12/28/2017 15:37:08 PAGE 3   
 
  117   2          break;
  118   2      
@@ -140,7 +140,7 @@ line level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    121    ----
+   CODE SIZE        =    139    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
