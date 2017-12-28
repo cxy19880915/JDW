@@ -1,6 +1,6 @@
 #include "sysInit.h"
 
-extern	void	NPCA110P_init(void);
+
 
 void	SetSysClock(void)
 {
@@ -35,6 +35,8 @@ void gpio_init(void)
 //	BAT_DET		
 
 //	LOW_BAT_NOTIFY	= 0;
+	P10_PushPull_Mode;
+//	P11_PushPull_Mode;
 	ST_BY = 0;
 	power_change = 0;
 	power_flag = 0;	
@@ -58,12 +60,11 @@ void	sys_init(void)
 //	unsigned char	*p8Data = g_abMax1xDSPCommands;
 	SetSysClock();
 	gpio_init();
-//	timer0_init();
+	timer0_init();
 //	timer1_init();
 	adc_init();
 	IR_init();
 	Init_I2C();
-	NPCA110P_init();
 	set_EA;                                     //enable interrupts
 	set_TR0;                                    //Timer0 run
   set_TR2;                                    // Timer2 run	

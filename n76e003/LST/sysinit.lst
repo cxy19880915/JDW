@@ -1,4 +1,4 @@
-C51 COMPILER V9.56.0.0   SYSINIT                                                           12/21/2017 12:00:30 PAGE 1   
+C51 COMPILER V9.56.0.0   SYSINIT                                                           12/28/2017 10:24:02 PAGE 1   
 
 
 C51 COMPILER V9.56.0.0, COMPILATION OF MODULE SYSINIT
@@ -10,7 +10,7 @@ line level    source
 
    1          #include "sysInit.h"
    2          
-   3          extern  void  NPCA110P_init(void);
+   3          
    4          
    5          void  SetSysClock(void)
    6          {
@@ -45,61 +45,62 @@ line level    source
   35   1      //  BAT_DET   
   36   1      
   37   1      //  LOW_BAT_NOTIFY  = 0;
-  38   1        ST_BY = 0;
-  39   1        power_change = 0;
-  40   1        power_flag = 0; 
-  41   1      //  BT_POWER = 0;   
-  42   1      ////  BT_DET      
-  43   1      
-  44   1      ////  GPIO1   
-  45   1      ////  GPIO2   
-  46   1      ////  GPIO3   
-  47   1      
-  48   1      //  PLAY = 0; 
-  49   1      //  REV = 0;      
-  50   1      //  FWD = 0;      
-  51   1      //  VOL_UP = 0;   
-  52   1      //  VOL_DOWN = 0; 
-  53   1      //  PAIR = 0;   
-  54   1      }
-C51 COMPILER V9.56.0.0   SYSINIT                                                           12/21/2017 12:00:30 PAGE 2   
+  38   1        P10_PushPull_Mode;
+  39   1      //  P11_PushPull_Mode;
+  40   1        ST_BY = 0;
+  41   1        power_change = 0;
+  42   1        power_flag = 0; 
+  43   1      //  BT_POWER = 0;   
+  44   1      ////  BT_DET      
+  45   1      
+  46   1      ////  GPIO1   
+  47   1      ////  GPIO2   
+  48   1      ////  GPIO3   
+  49   1      
+  50   1      //  PLAY = 0; 
+  51   1      //  REV = 0;      
+  52   1      //  FWD = 0;      
+  53   1      //  VOL_UP = 0;   
+  54   1      //  VOL_DOWN = 0; 
+C51 COMPILER V9.56.0.0   SYSINIT                                                           12/28/2017 10:24:02 PAGE 2   
 
-  55          
-  56          void  sys_init(void)
-  57          {
-  58   1      //  unsigned char *p8Data = g_abMax1xDSPCommands;
-  59   1        SetSysClock();
-  60   1        gpio_init();
-  61   1      //  timer0_init();
-  62   1      //  timer1_init();
-  63   1        adc_init();
-  64   1        IR_init();
-  65   1        Init_I2C();
-  66   1        NPCA110P_init();
-  67   1        set_EA;                                     //enable interrupts
-  68   1        set_TR0;                                    //Timer0 run
-  69   1        set_TR2;                                    // Timer2 run 
-  70   1      }
-  71          
-  72          //void  time0_init(void)
-  73          //{
-  74          //  TIMER0_MODE1_ENABLE;
-  75          //  u8TH0_Tmp = (65536-TH0_INIT)/256;
-  76          //    u8TL0_Tmp = (65536-TL0_INIT)%256;
-  77          //  TH0 = u8TH0_Tmp;
-  78          //    TL0 = u8TL0_Tmp;
-  79          //  set_ET0;
-  80          //}
-  81          
-  82          //void  adc_init(void)
-  83          //{
-  84          //  Enable_ADC_AIN0;
-  85          //}
-  86          
+  55   1      //  PAIR = 0;   
+  56   1      }
+  57          
+  58          void  sys_init(void)
+  59          {
+  60   1      //  unsigned char *p8Data = g_abMax1xDSPCommands;
+  61   1        SetSysClock();
+  62   1        gpio_init();
+  63   1        timer0_init();
+  64   1      //  timer1_init();
+  65   1        adc_init();
+  66   1        IR_init();
+  67   1        Init_I2C();
+  68   1        set_EA;                                     //enable interrupts
+  69   1        set_TR0;                                    //Timer0 run
+  70   1        set_TR2;                                    // Timer2 run 
+  71   1      }
+  72          
+  73          //void  time0_init(void)
+  74          //{
+  75          //  TIMER0_MODE1_ENABLE;
+  76          //  u8TH0_Tmp = (65536-TH0_INIT)/256;
+  77          //    u8TL0_Tmp = (65536-TL0_INIT)%256;
+  78          //  TH0 = u8TH0_Tmp;
+  79          //    TL0 = u8TL0_Tmp;
+  80          //  set_ET0;
+  81          //}
+  82          
+  83          //void  adc_init(void)
+  84          //{
+  85          //  Enable_ADC_AIN0;
+  86          //}
+  87          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     58    ----
+   CODE SIZE        =     64    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

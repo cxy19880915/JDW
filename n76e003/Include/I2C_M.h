@@ -6,6 +6,7 @@
 #include "Delay.h"
 #include "SFR_Macro.h"
 #include "Function_define.h"
+#include "config.h"
 
 	void Init_I2C(void);
 	UINT8 I2C_Receive(UINT8 u8Address, UINT8* p8Data, UINT32 u32ByteSize);

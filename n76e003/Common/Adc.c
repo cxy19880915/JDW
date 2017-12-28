@@ -65,8 +65,8 @@ void	adc_init(void)
 //	InitialUART0_Timer1(115200);
 	P04_Quasi_Mode;
 	Enable_ADC_AIN5;
-	P04_FALLINGEDGE_TRIG_ADC;											// P0.4 falling edge as adc start trig signal
-	set_EADC;																			// Enable ADC interrupt (if use interrupt)
+//	P04_FALLINGEDGE_TRIG_ADC;											// P0.4 falling edge as adc start trig signal
+//	set_EADC;																			// Enable ADC interrupt (if use interrupt)
 }
 
 /******************************************************************************

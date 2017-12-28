@@ -4,18 +4,28 @@
 bit	led_flag;
 extern	UINT8	source_in,mode_in;
 extern	bit Recive_flag;
+extern	void	NPCA110P_init(void);
+extern	void __delay_10ms( UINT16 u16CNT );
 
 void	POWER_ON_OFF(void)
 {
 	if((power_change == 1)&&(power_flag == 1))
 	{
+		MUTE = 1;
 		ST_BY = 1;
 		power_change = 0;
+		AUX1_LED = 0;
+		MUSIC_LED = 0;
+		__delay_10ms(2);
+			NPCA110P_init();
+		MUTE = 0;
 	}
 	else if((power_change == 0)&&(power_flag == 0))
 	{
 		ST_BY = 0;
 		power_change = 1;
+		AUX1_LED = 1;
+		MUSIC_LED = 1;
 	}
 }
 

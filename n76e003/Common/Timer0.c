@@ -2,6 +2,8 @@
 
 extern	UINT8	adc_count;
 extern	bit		ms_800_flag,ms_200_flag;
+extern	bit	led_flag;
+extern	UINT8	source_in,mode_in;
 
 UINT16	adc_data = 0;
 UINT8	adc_V = 0;
@@ -37,22 +39,34 @@ void Timer0_ISR (void) interrupt 1
 	if(adc_flag>5)//50ms
 	{
 		adc_data = adc_start();
-			adc_V =	adc_data;
+		adc_V =	adc_data;
+		if(adc_V < 0xfd)
+		{
 //			adc_data = ADCRL;
 //			adc_data = 0;
-			if(adc_V < V_3_3)
+			if(adc_V > V_2_4)
 			{
-				power_flag = 0;
-//				__delay_10ms(50);
-//					while(1)
-//					{
-//						set_PD;						
-//					}
+				power_flag = ~power_flag;
 			}
-			else
+			else if(adc_V > V_2_0)
 			{
-				power_flag = 1;
+				MUSIC_LED = ~MUSIC_LED;
 			}
+			else if(adc_V > V_1_5)
+			{
+				MOVIE_LED = ~MOVIE_LED;
+			}
+			else if(adc_V > V_1_2)
+			{
+				source_in++;
+				led_flag = 1;
+			}
+			else if(adc_V > V_0_7)
+			{
+				mode_in++;
+				led_flag = 1;
+			}
+		}
 		adc_flag = 0;
 	}
 	set_TR0;

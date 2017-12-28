@@ -31,18 +31,145 @@
 
 
 #define I2C_CLOCK               13
-#define EEPROM_SLA              0xA4
+//#define EEPROM_SLA              0xA4
 #define EEPROM_WR               0
 #define EEPROM_RD               1
 #define ERROR_CODE              0x78
 #define PAGE_SIZE               32
+#define	SDA_I2C									SDA
+#define	SCL_I2C									SCL
+#if 1
 
+//========================================================================================================
+void	delay(void)
+{
+		UINT16 i = 0;
+		for(i=0;i<50;i++);
+//		Timer1_Delay10us(1);
+}
+//========================================================================================================
+void I2C_Error(void)
+{
+//    P3 = I2STAT;
+//    P3 = ERROR_CODE;
+    while (1)P12 = 0;    
+}
+
+void Init_I2C(void)
+{
+		SCL_I2C = 1;                                //set SDA and SCL pins high
+		delay();
+    SDA_I2C = 1;
+		delay();
+}
+//========================================================================================================
+void start_I2C(void)
+{
+		SDA_I2C = 1;
+		delay();
+		SCL_I2C = 1; 
+		delay();
+		SDA_I2C = 0;
+		delay();
+}
+
+//========================================================================================================
+void respons_I2C(void)
+{
+		UINT16 i = 0;
+		SCL_I2C = 1;
+		delay();
+		while((SDA_I2C == 1)&&(i<50000))
+		{
+				i++;
+				if(i==5000)
+				{
+						I2C_Error();
+				}
+		}
+		SCL_I2C = 0;
+		delay();
+}
+
+//========================================================================================================
+void stop_I2C(void)
+{
+		SDA_I2C = 0;
+		delay();
+		SCL_I2C = 1;
+		delay();
+		SDA_I2C = 1;
+		delay();
+}
+
+void writebyte_I2C(UINT8 data_I2C)
+{
+		UINT8 i,temp;
+		temp = data_I2C;
+		for(i = 0;i < 8;i++)
+		{
+				SCL_I2C = 0;
+				delay();
+				if(temp&0x80)
+				{
+						SDA_I2C = 1;
+				}
+				else
+				{
+						SDA_I2C = 0;
+				}
+				temp = temp << 1;
+				delay();
+				SCL_I2C = 1;
+				delay();
+		}
+		SCL_I2C = 0;
+		delay();
+		SDA_I2C = 1;
+		delay();
+}
+
+UINT8 readbyte_I2C(bit SDA_I2C,bit SCL_I2C)
+{
+		UINT8 i,k;
+		SCL_I2C = 0;
+		delay();
+		SDA_I2C = 1;
+		delay();
+		for(i = 0;i < 8;i++)
+		{
+				SCL_I2C = 1;
+				delay();
+				k = (k << 1)| SDA_I2C;
+				SCL_I2C = 0;
+				delay();
+		}
+		delay();
+		return k;
+}
+
+void I2C_Write_Command(UINT8 u8Address, UINT8* p8Data, UINT32 u32ByteSize)
+{
+		UINT8 i=0;
+		start_I2C();
+		writebyte_I2C(u8Address|EEPROM_WR);
+		respons_I2C();
+		for(i=0;i<u32ByteSize;i++)
+		{
+				writebyte_I2C(*p8Data++);
+				respons_I2C();
+		}
+		stop_I2C();	
+}
+#endif
+#if 0
 //========================================================================================================
 void Init_I2C(void)
 {
 		P13_OpenDrain_Mode;					// Modify SCL pin to Open drain mode. don't forget the pull high resister in circuit
 		P14_OpenDrain_Mode;					// Modify SDA pin to Open drain mode. don't forget the pull high resister in circuit
-	
+//		SDA = 1;
+//		SCL = 1;
     /* Set I2C clock rate */
     I2CLK = I2C_CLOCK; 
 
@@ -77,8 +204,8 @@ void I2C_Write_Command(UINT8 u8Address, UINT8* p8Data, UINT32 u32ByteSize)
         I2C_Error();
 		
 		/* Step2 */
-    clr_STA;                                    //STA=0
-    I2DAT = (u8Address | EEPROM_WR);
+		clr_STA;                                    //STA=0
+		I2DAT = (u8Address | EEPROM_WR);
     clr_SI;
     while (!SI);                                //Check SI set or not
     if (I2STAT != 0x18)              
@@ -168,6 +295,8 @@ UINT8 I2C_Receive_Command(UINT8 u8Address, UINT8* p8Data, UINT32 u32ByteSize)
     while (STO);                                /* Check STOP signal */ 
 		return	u8DAT;
 }
+#endif
+#if 0
 //========================================================================================================
 void I2C_Process(UINT8 u8DAT)
 {
@@ -333,4 +462,5 @@ void I2C_Process(UINT8 u8DAT)
 //    while (1);
 ///* =================== */
 //}
+#endif
 

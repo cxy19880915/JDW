@@ -1,4 +1,4 @@
-C51 COMPILER V9.56.0.0   DEMO                                                              12/21/2017 12:00:30 PAGE 1   
+C51 COMPILER V9.56.0.0   DEMO                                                              12/28/2017 10:24:02 PAGE 1   
 
 
 C51 COMPILER V9.56.0.0, COMPILATION OF MODULE DEMO
@@ -62,7 +62,7 @@ line level    source
               //#define P07_Quasi_Mode        P0M1&=~SET_BIT7;P0M2&=~SET_BIT7
               //#define P10_Quasi_Mode        P1M1&=~SET_BIT0;P1M2&=~SET_BIT0
               //#define P11_Quasi_Mode        P1M1&=~SET_BIT1;P1M2&=~SET_BIT1
-C51 COMPILER V9.56.0.0   DEMO                                                              12/21/2017 12:00:30 PAGE 2   
+C51 COMPILER V9.56.0.0   DEMO                                                              12/28/2017 10:24:02 PAGE 2   
 
               //#define P12_Quasi_Mode        P1M1&=~SET_BIT2;P1M2&=~SET_BIT2
               //#define P13_Quasi_Mode        P1M1&=~SET_BIT3;P1M2&=~SET_BIT3
@@ -126,7 +126,7 @@ line level    source
               //#define P14_OpenDrain_Mode    P1M1|=SET_BIT4;P1M2|=SET_BIT4
               //#define P15_OpenDrain_Mode    P1M1|=SET_BIT5;P1M2|=SET_BIT5
               //#define P16_OpenDrain_Mode    P1M1|=SET_BIT6;P1M2|=SET_BIT6
-C51 COMPILER V9.56.0.0   DEMO                                                              12/21/2017 12:00:30 PAGE 3   
+C51 COMPILER V9.56.0.0   DEMO                                                              12/28/2017 10:24:02 PAGE 3   
 
               //#define P17_OpenDrain_Mode    P1M1|=SET_BIT7;P1M2|=SET_BIT7
               //#define P20_OpenDrain_Mode    P2M1|=SET_BIT0;P2M2|=SET_BIT0
@@ -190,7 +190,7 @@ line level    source
                 
                 while(1)
                 {
-C51 COMPILER V9.56.0.0   DEMO                                                              12/21/2017 12:00:30 PAGE 4   
+C51 COMPILER V9.56.0.0   DEMO                                                              12/28/2017 10:24:02 PAGE 4   
 
                   clr_GPIO1;                      // Tiny board GPIO1 LED define
                   P0 = 0x00;

@@ -195,34 +195,38 @@ void IR_Deal(void)
 			case	0x0c:				//BLUETOOTH
 				break;
 			case	0x0d:				//OPTICAL
+			if(ST_BY)
 			{
 				NPCA110P_SOURCE();
 				led_flag = 1;
-				break;
 			}
+				break;
 			case	0x0e:				//COAXIAL
 				break;
 			case	0x12:				//VOL+
+			if(ST_BY)
 			{
 				NPCA110P_VOL_A();
-				break;
 			}
+				break;
 			case	0x13:				//VOL-
+			if(ST_BY)
 			{
 				NPCA110P_VOL_B();
-				break;
 			}
+				break;
 			case	0x14:				//ON-OFF
 			{
 				power_flag = ~power_flag;
 				break;
 			}
 			case	0x15:				//MUTE
+			if(ST_BY)
 			{
 //				NPCA110P_MUTE();
 				GPIO_MUTE();
-				break;
 			}
+				break;
 			case	0x18:				//HDMI
 				break;
 			default:
