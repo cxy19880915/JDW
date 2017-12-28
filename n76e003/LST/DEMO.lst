@@ -1,4 +1,4 @@
-C51 COMPILER V9.56.0.0   DEMO                                                              12/28/2017 15:37:08 PAGE 1   
+C51 COMPILER V9.56.0.0   DEMO                                                              12/28/2017 16:46:09 PAGE 1   
 
 
 C51 COMPILER V9.56.0.0, COMPILATION OF MODULE DEMO
@@ -43,14 +43,15 @@ line level    source
   24          extern const unsigned char code g_abMax1xDSPCommands[];
   25          extern const unsigned char code g_abMax2xDSPCommands[];
   26          extern const unsigned char code g_abMax3xDSPCommands[];
-  27          
+  27          extern  void Bluetooth_Test_Task(void);
   28          extern  void  KEY_EVENT(void);
   29          
-  30          extern UINT8 Dat_count;
-  31          //*****************  The Following is in define in Fucntion_define.h  ***************************
-  32          //****** Always include Function_define.h call the define you want, detail see main(void) *******
-  33          //***********************************************************************************************
-  34          #if 0
+  30          extern unsigned char BT_connect;
+  31          extern UINT8 Dat_count;
+  32          //*****************  The Following is in define in Fucntion_define.h  ***************************
+  33          //****** Always include Function_define.h call the define you want, detail see main(void) *******
+  34          //***********************************************************************************************
+  35          #if 0
               ////------------------- Define Port as Quasi mode  -------------------
               //#define P00_Quasi_Mode        P0M1&=~SET_BIT0;P0M2&=~SET_BIT0
               //#define P01_Quasi_Mode        P0M1&=~SET_BIT1;P0M2&=~SET_BIT1
@@ -61,9 +62,9 @@ line level    source
               //#define P06_Quasi_Mode        P0M1&=~SET_BIT6;P0M2&=~SET_BIT6
               //#define P07_Quasi_Mode        P0M1&=~SET_BIT7;P0M2&=~SET_BIT7
               //#define P10_Quasi_Mode        P1M1&=~SET_BIT0;P1M2&=~SET_BIT0
-              //#define P11_Quasi_Mode        P1M1&=~SET_BIT1;P1M2&=~SET_BIT1
-C51 COMPILER V9.56.0.0   DEMO                                                              12/28/2017 15:37:08 PAGE 2   
+C51 COMPILER V9.56.0.0   DEMO                                                              12/28/2017 16:46:09 PAGE 2   
 
+              //#define P11_Quasi_Mode        P1M1&=~SET_BIT1;P1M2&=~SET_BIT1
               //#define P12_Quasi_Mode        P1M1&=~SET_BIT2;P1M2&=~SET_BIT2
               //#define P13_Quasi_Mode        P1M1&=~SET_BIT3;P1M2&=~SET_BIT3
               //#define P14_Quasi_Mode        P1M1&=~SET_BIT4;P1M2&=~SET_BIT4
@@ -125,61 +126,78 @@ line level    source
               //#define P13_OpenDrain_Mode    P1M1|=SET_BIT3;P1M2|=SET_BIT3
               //#define P14_OpenDrain_Mode    P1M1|=SET_BIT4;P1M2|=SET_BIT4
               //#define P15_OpenDrain_Mode    P1M1|=SET_BIT5;P1M2|=SET_BIT5
-              //#define P16_OpenDrain_Mode    P1M1|=SET_BIT6;P1M2|=SET_BIT6
-C51 COMPILER V9.56.0.0   DEMO                                                              12/28/2017 15:37:08 PAGE 3   
+C51 COMPILER V9.56.0.0   DEMO                                                              12/28/2017 16:46:09 PAGE 3   
 
+              //#define P16_OpenDrain_Mode    P1M1|=SET_BIT6;P1M2|=SET_BIT6
               //#define P17_OpenDrain_Mode    P1M1|=SET_BIT7;P1M2|=SET_BIT7
               //#define P20_OpenDrain_Mode    P2M1|=SET_BIT0;P2M2|=SET_BIT0
               //#define P30_OpenDrain_Mode    P3M1|=SET_BIT0;P3M2|=SET_BIT0
               ////--------- Define all port as quasi mode ---------
               //#define Set_All_GPIO_Quasi_Mode     P0M1=0;P0M1=0;P1M1=0;P1M2=0;P2M1=0;P2M2=0;P3M1=0;P3M2=0
               #endif
- 114          
- 115          /*------------------------------------------------
- 116          The main C function.  Program execution starts
- 117          here after stack initialization.
- 118          ------------------------------------------------*/
- 119          
- 120          void main (void) 
- 121          #if 1
- 122          {
- 123   1        UINT8 step = 0,n=0;
- 124   1        sys_init();
- 125   1        while(1)
- 126   1        {
- 127   2          switch(step)
- 128   2          {
- 129   3            case 0:
- 130   3            {
- 131   4              POWER_ON_OFF();
- 132   4              step = 1;
- 133   4              break;
- 134   4            }
- 135   3            case 1:
- 136   3            {
- 137   4              LED_DISPLAY();
- 138   4      //        n = Dat_count;
- 139   4              step = 2;
- 140   4              break;
- 141   4            }
- 142   3            case 2:
- 143   3            {
- 144   4      //        IR_EVENT();
- 145   4              IR_Deal();
- 146   4              step = 3;
- 147   4              break;
- 148   4            }
- 149   3            case 3:
- 150   3            {
- 151   4              KEY_EVENT();
- 152   4              step = 0;
- 153   4              break;
- 154   4            }
- 155   3          }
- 156   2        }
- 157   1      }
- 158          #endif
- 159          #if 0
+ 115          
+ 116          /*------------------------------------------------
+ 117          The main C function.  Program execution starts
+ 118          here after stack initialization.
+ 119          ------------------------------------------------*/
+ 120          
+ 121          void main (void) 
+ 122          #if 1
+ 123          {
+ 124   1        UINT8 step = 0,n=0;
+ 125   1        sys_init();
+ 126   1        while(1)
+ 127   1        {
+ 128   2          switch(step)
+ 129   2          {
+ 130   3            case 0:
+ 131   3            {
+ 132   4              POWER_ON_OFF();
+ 133   4              step = 1;
+ 134   4              break;
+ 135   4            }
+ 136   3            case 1:
+ 137   3            {
+ 138   4              LED_DISPLAY();
+ 139   4      //        n = Dat_count;
+ 140   4              step = 2;
+ 141   4              break;
+ 142   4            }
+ 143   3            case 2:
+ 144   3            {
+ 145   4      //        IR_EVENT();
+ 146   4              IR_Deal();
+ 147   4              step = 3;
+ 148   4              break;
+ 149   4            }
+ 150   3            case 3:
+ 151   3            {
+ 152   4              KEY_EVENT();
+ 153   4              step = 4;
+ 154   4              break;
+ 155   4            }
+ 156   3            case 4:
+ 157   3              if(BT_POWER)
+ 158   3              {
+ 159   4                if(BT_DET)
+ 160   4                {
+ 161   5                  Bluetooth_Test_Task();  
+ 162   5                  BT_connect = 0;
+ 163   5                }
+ 164   4                else
+ 165   4                {
+ 166   5                  BT_connect = 1;
+ 167   5                }
+ 168   4              }
+ 169   3              step = 0;     
+C51 COMPILER V9.56.0.0   DEMO                                                              12/28/2017 16:46:09 PAGE 4   
+
+ 170   3          }
+ 171   2          
+ 172   2        }
+ 173   1      }
+ 174          #endif
+ 175          #if 0
               {
               //  unsigned char temp;
                 Set_All_GPIO_Quasi_Mode;          // Define in Function_define.h
@@ -190,8 +208,6 @@ line level    source
                 
                 while(1)
                 {
-C51 COMPILER V9.56.0.0   DEMO                                                              12/28/2017 15:37:08 PAGE 4   
-
                   clr_GPIO1;                      // Tiny board GPIO1 LED define
                   P0 = 0x00;
                   P2 = 0x00;
@@ -232,13 +248,15 @@ line level    source
               
               }
               #endif
- 210          
- 211          
- 212          
+ 226          
+ 227          
+ 228          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     55    ----
+C51 COMPILER V9.56.0.0   DEMO                                                              12/28/2017 16:46:09 PAGE 5   
+
+   CODE SIZE        =     80    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

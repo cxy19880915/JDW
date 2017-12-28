@@ -1,4 +1,4 @@
-C51 COMPILER V9.56.0.0   IR_RECIVE                                                         12/28/2017 15:37:10 PAGE 1   
+C51 COMPILER V9.56.0.0   IR_RECIVE                                                         12/28/2017 16:46:12 PAGE 1   
 
 
 C51 COMPILER V9.56.0.0, COMPILATION OF MODULE IR_RECIVE
@@ -62,7 +62,7 @@ line level    source
   52   2          do//9ms low
   53   2          {
   54   3            n++;
-C51 COMPILER V9.56.0.0   IR_RECIVE                                                         12/28/2017 15:37:10 PAGE 2   
+C51 COMPILER V9.56.0.0   IR_RECIVE                                                         12/28/2017 16:46:12 PAGE 2   
 
   55   3            Timer1_Delay1ms(1);
   56   3          }while(!ir_pin);
@@ -126,7 +126,7 @@ line level    source
  114   3          }while(ir_pin);
  115   2      //    Data_Check();
  116   2          dat_clr();
-C51 COMPILER V9.56.0.0   IR_RECIVE                                                         12/28/2017 15:37:10 PAGE 3   
+C51 COMPILER V9.56.0.0   IR_RECIVE                                                         12/28/2017 16:46:12 PAGE 3   
 
  117   2          set_EPI;
  118   2          return;
@@ -190,7 +190,7 @@ line level    source
  176   2              key_press = 0;
  177   2              Recive_flag = 0;
  178   2          }
-C51 COMPILER V9.56.0.0   IR_RECIVE                                                         12/28/2017 15:37:10 PAGE 4   
+C51 COMPILER V9.56.0.0   IR_RECIVE                                                         12/28/2017 16:46:12 PAGE 4   
 
  179   1      }
  180          
@@ -222,61 +222,62 @@ line level    source
  206   3            case  0x0b:       //AUX IN
  207   3              break;
  208   3            case  0x0c:       //BLUETOOTH
- 209   3              break;
- 210   3            case  0x0d:       //OPTICAL
- 211   3            if(ST_BY)
- 212   3            {
- 213   4              NPCA110P_SOURCE();
- 214   4              led_flag = 1;
- 215   4            }
- 216   3              break;
- 217   3            case  0x0e:       //COAXIAL
- 218   3            if(ST_BY) 
- 219   3            {
- 220   4              NPCA110P_MODE();
- 221   4              led_flag = 1;
- 222   4            }
- 223   3              break;
- 224   3            case  0x12:       //VOL+
- 225   3            if(ST_BY)
- 226   3            {
- 227   4              NPCA110P_VOL_A();
- 228   4      //        led_flag = 1;
- 229   4            }
- 230   3              break;
- 231   3            case  0x13:       //VOL-
- 232   3            if(ST_BY)
- 233   3            {
- 234   4              NPCA110P_VOL_B();
- 235   4      //        led_flag = 1;
- 236   4            }
- 237   3              break;
- 238   3            case  0x14:       //ON-OFF
- 239   3            {
- 240   4              power_flag = ~power_flag;
-C51 COMPILER V9.56.0.0   IR_RECIVE                                                         12/28/2017 15:37:10 PAGE 5   
+ 209   3      //      if()
+ 210   3              break;
+ 211   3            case  0x0d:       //OPTICAL
+ 212   3            if(ST_BY)
+ 213   3            {
+ 214   4              NPCA110P_SOURCE();
+ 215   4              led_flag = 1;
+ 216   4            }
+ 217   3              break;
+ 218   3            case  0x0e:       //COAXIAL
+ 219   3            if(ST_BY) 
+ 220   3            {
+ 221   4              NPCA110P_MODE();
+ 222   4              led_flag = 1;
+ 223   4            }
+ 224   3              break;
+ 225   3            case  0x12:       //VOL+
+ 226   3            if(ST_BY)
+ 227   3            {
+ 228   4              NPCA110P_VOL_A();
+ 229   4              led_flag = 1;
+ 230   4            }
+ 231   3              break;
+ 232   3            case  0x13:       //VOL-
+ 233   3            if(ST_BY)
+ 234   3            {
+ 235   4              NPCA110P_VOL_B();
+ 236   4              led_flag = 1;
+ 237   4            }
+ 238   3              break;
+ 239   3            case  0x14:       //ON-OFF
+ 240   3            {
+C51 COMPILER V9.56.0.0   IR_RECIVE                                                         12/28/2017 16:46:12 PAGE 5   
 
- 241   4              break;
- 242   4            }
- 243   3            case  0x15:       //MUTE
- 244   3            if(ST_BY)
- 245   3            {
- 246   4      //        NPCA110P_MUTE();
- 247   4              GPIO_MUTE();
- 248   4            }
- 249   3              break;
- 250   3            case  0x18:       //HDMI
- 251   3              break;
- 252   3            default:
- 253   3              break;
- 254   3          }
- 255   2          Recive_flag = 0;
- 256   2        }
- 257   1      }
+ 241   4              power_flag = ~power_flag;
+ 242   4              break;
+ 243   4            }
+ 244   3            case  0x15:       //MUTE
+ 245   3            if(ST_BY)
+ 246   3            {
+ 247   4      //        NPCA110P_MUTE();
+ 248   4              GPIO_MUTE();
+ 249   4            }
+ 250   3              break;
+ 251   3            case  0x18:       //HDMI
+ 252   3              break;
+ 253   3            default:
+ 254   3              break;
+ 255   3          }
+ 256   2          Recive_flag = 0;
+ 257   2        }
+ 258   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    413    ----
+   CODE SIZE        =    417    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

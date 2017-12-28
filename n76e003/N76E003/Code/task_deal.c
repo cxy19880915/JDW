@@ -2,6 +2,7 @@
 #include "task_deal.h"
 
 bit	led_flag;
+UINT8 VOL_LED=0;
 extern	UINT8	source_in,mode_in;
 extern	bit Recive_flag;
 extern	void	NPCA110P_init(void);
@@ -41,6 +42,11 @@ void	LED_DISPLAY(void)
 {
 	if(led_flag)
 	{
+		if(VOL_LED)
+		{
+			AUX1_LED = 1;AUX2_LED = 1;BT_LED = 1;
+			__delay_10ms(20);
+		}
 		if(source_in == 1)
 		{
 			AUX1_LED = 0;AUX2_LED = 1;BT_LED = 1;

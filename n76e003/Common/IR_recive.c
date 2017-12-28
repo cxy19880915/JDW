@@ -206,6 +206,7 @@ void IR_Deal(void)
 			case	0x0b:				//AUX IN
 				break;
 			case	0x0c:				//BLUETOOTH
+//			if()
 				break;
 			case	0x0d:				//OPTICAL
 			if(ST_BY)
@@ -225,14 +226,14 @@ void IR_Deal(void)
 			if(ST_BY)
 			{
 				NPCA110P_VOL_A();
-//				led_flag = 1;
+				led_flag = 1;
 			}
 				break;
 			case	0x13:				//VOL-
 			if(ST_BY)
 			{
 				NPCA110P_VOL_B();
-//				led_flag = 1;
+				led_flag = 1;
 			}
 				break;
 			case	0x14:				//ON-OFF

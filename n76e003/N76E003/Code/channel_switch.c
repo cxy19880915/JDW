@@ -1,5 +1,7 @@
 #include "Common.h"
+#include "config.h"
 
+extern	UINT8 VOL_LED;
 extern	void Timer0_Delay1ms(UINT32 u32CNT);
 extern	void	GPIO_MUTE(void);
 extern const unsigned char code g_abMax1xDSPCommands[];
@@ -71,13 +73,24 @@ void	NPCA110P_init(void)
 }
 void	NPCA110P_VOL_A(void)
 {
-	if(volume_Control[2]>=0xf3)volume_Control[2]=0xed;
+	VOL_LED = 1;
+	if(volume_Control[2]>=0xf3)
+	{
+		VOL_LED = 0;
+		return;
+	}
 	volume_Control[2]=volume_Control[2]+6;
 //	volume_Control[5]++;
 	I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
 }
 void	NPCA110P_VOL_B(void)
 {
+	VOL_LED = 1;
+	if(volume_Control[2]<=0x00)
+	{
+		VOL_LED = 0;
+		return;
+	}
 	if(volume_Control[2]<6)volume_Control[2]=6;
 	volume_Control[2]=volume_Control[2]-6;
 //	volume_Control[5]--;
@@ -96,6 +109,7 @@ void	NPCA110P_MODE(void)
 void	NPCA110P_SOURCE(void)
 {
 	UINT8 i;
+	BT_POWER = 0;
 	source_in++;
 	if(source_in>3)source_in = 1;
 	if(source_in==1)	
@@ -111,9 +125,13 @@ void	NPCA110P_SOURCE(void)
 			Timer0_Delay1ms(1);
 		}
 	else	if(source_in==3)	
+	{
+		BT_POWER = 1;
 		for(i=0;i<8;i++)
 		{
 			I2C_Write_Command(NPCA110P_EEPROM_SLA,channel_Commands+48+i*3,3);
 			Timer0_Delay1ms(1);
-		}
+		}		
+	}
+
 }

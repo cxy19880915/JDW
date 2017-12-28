@@ -24,9 +24,10 @@
 extern const unsigned char code g_abMax1xDSPCommands[];
 extern const unsigned char code g_abMax2xDSPCommands[];
 extern const unsigned char code g_abMax3xDSPCommands[];
-
+extern	void Bluetooth_Test_Task(void);
 extern	void	KEY_EVENT(void);
 
+extern unsigned char BT_connect;
 extern UINT8 Dat_count;
 //*****************  The Following is in define in Fucntion_define.h  ***************************
 //****** Always include Function_define.h call the define you want, detail see main(void) *******
@@ -149,10 +150,25 @@ void main (void)
 			case 3:
 			{
 				KEY_EVENT();
-				step = 0;
+				step = 4;
 				break;
 			}
+			case 4:
+				if(BT_POWER)
+				{
+					if(BT_DET)
+					{
+						Bluetooth_Test_Task();	
+						BT_connect = 0;
+					}
+					else
+					{
+						BT_connect = 1;
+					}
+				}
+				step = 0;			
 		}
+		
 	}
 }
 #endif

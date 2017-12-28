@@ -433,6 +433,11 @@
               <FileType>1</FileType>
               <FilePath>.\N76E003\Code\channel_switch.c</FilePath>
             </File>
+            <File>
+              <FileName>Bluetooth.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Common\Bluetooth.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
