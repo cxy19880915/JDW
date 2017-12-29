@@ -1,4 +1,4 @@
-C51 COMPILER V9.56.0.0   SYSINIT                                                           12/29/2017 10:43:47 PAGE 1   
+C51 COMPILER V9.56.0.0   SYSINIT                                                           12/29/2017 17:20:13 PAGE 1   
 
 
 C51 COMPILER V9.56.0.0, COMPILATION OF MODULE SYSINIT
@@ -10,7 +10,7 @@ line level    source
 
    1          #include "sysInit.h"
    2          
-   3          
+   3          extern  UINT16  sys_flag;
    4          
    5          void  SetSysClock(void)
    6          {
@@ -49,7 +49,7 @@ line level    source
   39   1      //  P11_PushPull_Mode;
   40   1        ST_BY = 0;
   41   1        BT_POWER = 0;
-  42   1        power_change = 0;
+  42   1        sys_flag = sys_power_off;
   43   1        power_flag = 0; 
   44   1      //  BT_POWER = 0;   
   45   1      ////  BT_DET      
@@ -62,7 +62,7 @@ line level    source
   52   1      //  REV = 0;      
   53   1      //  FWD = 0;      
   54   1      //  VOL_UP = 0;   
-C51 COMPILER V9.56.0.0   SYSINIT                                                           12/29/2017 10:43:47 PAGE 2   
+C51 COMPILER V9.56.0.0   SYSINIT                                                           12/29/2017 17:20:13 PAGE 2   
 
   55   1      //  VOL_DOWN = 0; 
   56   1      //  PAIR = 0;   
@@ -70,38 +70,39 @@ line level    source
   58          
   59          void  sys_init(void)
   60          {
-  61   1      //  unsigned char *p8Data = g_abMax1xDSPCommands;
-  62   1        SetSysClock();
-  63   1        gpio_init();
-  64   1        timer0_init();
-  65   1      //  timer1_init();
-  66   1        adc_init();
-  67   1        IR_init();
-  68   1        Init_I2C();
-  69   1        set_EA;                                     //enable interrupts
-  70   1        set_TR0;                                    //Timer0 run
-  71   1        set_TR2;                                    // Timer2 run 
-  72   1      }
-  73          
-  74          //void  time0_init(void)
-  75          //{
-  76          //  TIMER0_MODE1_ENABLE;
-  77          //  u8TH0_Tmp = (65536-TH0_INIT)/256;
-  78          //    u8TL0_Tmp = (65536-TL0_INIT)%256;
-  79          //  TH0 = u8TH0_Tmp;
-  80          //    TL0 = u8TL0_Tmp;
-  81          //  set_ET0;
-  82          //}
-  83          
-  84          //void  adc_init(void)
-  85          //{
-  86          //  Enable_ADC_AIN0;
-  87          //}
-  88          
+  61   1      //  sys_flag = 0x00;
+  62   1      //  unsigned char *p8Data = g_abMax1xDSPCommands;
+  63   1        SetSysClock();
+  64   1        gpio_init();
+  65   1        timer0_init();
+  66   1      //  timer1_init();
+  67   1        adc_init();
+  68   1        IR_init();
+  69   1        Init_I2C();
+  70   1        set_EA;                                     //enable interrupts
+  71   1        set_TR0;                                    //Timer0 run
+  72   1      //  set_TR2;                                    // Timer2 run 
+  73   1      }
+  74          
+  75          //void  time0_init(void)
+  76          //{
+  77          //  TIMER0_MODE1_ENABLE;
+  78          //  u8TH0_Tmp = (65536-TH0_INIT)/256;
+  79          //    u8TL0_Tmp = (65536-TL0_INIT)%256;
+  80          //  TH0 = u8TH0_Tmp;
+  81          //    TL0 = u8TL0_Tmp;
+  82          //  set_ET0;
+  83          //}
+  84          
+  85          //void  adc_init(void)
+  86          //{
+  87          //  Enable_ADC_AIN0;
+  88          //}
+  89          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     66    ----
+   CODE SIZE        =     67    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

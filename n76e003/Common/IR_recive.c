@@ -1,9 +1,9 @@
 #include "IR_recive.h"
-
+#include "config.h"
 
 #include "N76E003.h"
 #include "Common.h"
-#include "Delay.h"
+//#include "Delay.h"
 #include "SFR_Macro.h"
 #include "Function_define.h"
 
@@ -18,9 +18,23 @@
 #define ir_pin								P03
 #define Key_count							14
 
+//#define		ir_play						0x01
+//#define		ir_fwd						0x02
+//#define		ir_rev						0x03
+//#define		ir_hall						0x04
+//#define		ir_music					0x05
+//#define		ir_speech					0x06
+//#define		ir_mute						0x07
+//#define		ir_volA						0x20
+//#define		ir_volB						0x30
+//#define		ir_source					0x40
+//#define		ir_power					0xf0
+//#define		ir_play						0x10
+
 UINT8 dat[Data_count]={0},key_press=0;
 bit Recive_flag=0;
 
+extern	void Timer1_Delay1ms(UINT32 u32CNT);
 extern	void	NPCA110P_SOURCE(void);
 extern	void	NPCA110P_MODE(void);
 extern	void	NPCA110P_VOL_A(void);
@@ -33,8 +47,9 @@ extern	void BT_Play_Pause(void);
 extern	void BT_REV_TASK(void);	
 extern	void BT_FWD_TASK(void);	
 
-extern	UINT8 VOL_LED;
+extern	UINT8 KEY_VALUE;
 extern	UINT8 mode_in;
+extern	UINT8		key_flag;
 
 void dat_clr(void);
 
@@ -202,28 +217,16 @@ void IR_Deal(void)
 		switch(key_press)//switch(ir.dat.data0)
 		{
 			case	0x10:				//PLAY
-			if(ST_BY)
-			{
-				BT_Play_Pause();
-				led_flag = 1;
-				VOL_LED = 1;
-			}
-				break;
+				KEY_VALUE = ir_play;
+				key_flag = 0x80;
+			break;
 			case	0x11:				//FWD
-			if(ST_BY)
-			{
-				BT_FWD_TASK();
-				led_flag = 1;
-				VOL_LED = 1;
-			}	
+				KEY_VALUE = ir_fwd;
+				key_flag = 0x80;
 				break;
 			case	0x16:				//REV
-			if(ST_BY)
-			{
-				BT_REV_TASK();
-				led_flag = 1;
-				VOL_LED = 1;
-			}
+				key_flag = 0x80;
+				KEY_VALUE = ir_rev;
 				break;
 			case	0x04:				//TREBLE-
 				break;
@@ -232,76 +235,38 @@ void IR_Deal(void)
 			case	0x0b:				//AUX IN
 				break;
 			case	0x0c:				//BLUETOOTH
-//			if()
 				break;
 			case	0x41:				//SOURCE
-			if(ST_BY)
-			{
-				NPCA110P_SOURCE();
-				led_flag = 1;
-			}
+				key_flag = 0x80;
+				KEY_VALUE = ir_source;
 				break;
 			case	0x4a:				//HALL
-			if(ST_BY)	
-			{
-				mod = 1;
-				if(mode_in!=mod)
-				{
-					mode_in = 1;
-					NPCA110P_MODE();
-					led_flag = 1;
-				}
-			}
+				key_flag = 0x80;
+				KEY_VALUE = ir_hall;
 				break;
-			case	0x4b:				//HALL
-			if(ST_BY)	
-			{
-				mod = 2;
-				if(mode_in!=mod)
-				{
-					mode_in = 2;
-					NPCA110P_MODE();
-					led_flag = 1;
-				}
-			}
+			case	0x4b:				//MUSIC
+				key_flag = 0x80;
+				KEY_VALUE = ir_music;
 				break;
-			case	0x4c:				//HALL
-			if(ST_BY)	
-			{
-				mod = 3;
-				if(mode_in!=mod)
-				{
-					mode_in = 3;
-					NPCA110P_MODE();
-					led_flag = 1;
-				}
-			}
+			case	0x4c:				//SPEECH
+				key_flag = 0x80;
+				KEY_VALUE = ir_speech;
 				break;
 			case	0x12:				//VOL+
-			if(ST_BY)
-			{
-				NPCA110P_VOL_A();
-				led_flag = 1;
-			}
+				key_flag = 0x80;
+				KEY_VALUE = ir_volA;
 				break;
 			case	0x13:				//VOL-
-			if(ST_BY)
-			{
-				NPCA110P_VOL_B();
-				led_flag = 1;
-			}
+				key_flag = 0x80;
+				KEY_VALUE = ir_volB;
 				break;
 			case	0x14:				//ON-OFF
-			{
-				power_flag = ~power_flag;
+				key_flag = 0x80;
+				KEY_VALUE = ir_power;
 				break;
-			}
 			case	0x15:				//MUTE
-			if(ST_BY)
-			{
-//				NPCA110P_MUTE();
-				GPIO_MUTE();
-			}
+				key_flag = 0x80;
+				KEY_VALUE = ir_mute;
 				break;
 			case	0x18:				//HDMI
 				break;

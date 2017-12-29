@@ -139,13 +139,13 @@ void main (void)
 			}
 			case 1:
 			{
-				SYS_SOURCE();
+				SYS_MODE();
 				step = 2;
 				break;
 			}
 			case 2:
 			{
-				SYS_MODE();
+				SYS_SOURCE();
 				step = 3;
 				break;
 			}

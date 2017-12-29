@@ -1,4 +1,4 @@
-C51 COMPILER V9.56.0.0   DEMO                                                              12/29/2017 10:43:47 PAGE 1   
+C51 COMPILER V9.56.0.0   DEMO                                                              12/29/2017 17:20:13 PAGE 1   
 
 
 C51 COMPILER V9.56.0.0, COMPILATION OF MODULE DEMO
@@ -62,7 +62,7 @@ line level    source
               //#define P02_Quasi_Mode        P0M1&=~SET_BIT2;P0M2&=~SET_BIT2
               //#define P03_Quasi_Mode        P0M1&=~SET_BIT3;P0M2&=~SET_BIT3
               //#define P04_Quasi_Mode        P0M1&=~SET_BIT4;P0M2&=~SET_BIT4
-C51 COMPILER V9.56.0.0   DEMO                                                              12/29/2017 10:43:47 PAGE 2   
+C51 COMPILER V9.56.0.0   DEMO                                                              12/29/2017 17:20:13 PAGE 2   
 
               //#define P05_Quasi_Mode        P0M1&=~SET_BIT5;P0M2&=~SET_BIT5
               //#define P06_Quasi_Mode        P0M1&=~SET_BIT6;P0M2&=~SET_BIT6
@@ -126,7 +126,7 @@ line level    source
               //#define P07_OpenDrain_Mode    P0M1|=SET_BIT7;P0M2|=SET_BIT7
               //#define P10_OpenDrain_Mode    P1M1|=SET_BIT0;P1M2|=SET_BIT0
               //#define P11_OpenDrain_Mode    P1M1|=SET_BIT1;P1M2|=SET_BIT1
-C51 COMPILER V9.56.0.0   DEMO                                                              12/29/2017 10:43:47 PAGE 3   
+C51 COMPILER V9.56.0.0   DEMO                                                              12/29/2017 17:20:13 PAGE 3   
 
               //#define P12_OpenDrain_Mode    P1M1|=SET_BIT2;P1M2|=SET_BIT2
               //#define P13_OpenDrain_Mode    P1M1|=SET_BIT3;P1M2|=SET_BIT3
@@ -162,13 +162,13 @@ line level    source
  139   4            }
  140   3            case 1:
  141   3            {
- 142   4              SYS_SOURCE();
+ 142   4              SYS_MODE();
  143   4              step = 2;
  144   4              break;
  145   4            }
  146   3            case 2:
  147   3            {
- 148   4              SYS_MODE();
+ 148   4              SYS_SOURCE();
  149   4              step = 3;
  150   4              break;
  151   4            }
@@ -190,7 +190,7 @@ line level    source
  167   4              step = 6;
  168   4              break;
  169   4            }
-C51 COMPILER V9.56.0.0   DEMO                                                              12/29/2017 10:43:47 PAGE 4   
+C51 COMPILER V9.56.0.0   DEMO                                                              12/29/2017 17:20:13 PAGE 4   
 
  170   3            case 6:
  171   3            {
@@ -254,7 +254,7 @@ line level    source
                 }
               #endif
               
-C51 COMPILER V9.56.0.0   DEMO                                                              12/29/2017 10:43:47 PAGE 5   
+C51 COMPILER V9.56.0.0   DEMO                                                              12/29/2017 17:20:13 PAGE 5   
 
               #if 1
                 

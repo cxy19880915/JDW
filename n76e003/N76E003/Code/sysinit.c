@@ -1,6 +1,6 @@
 #include "sysInit.h"
 
-
+extern	UINT16	sys_flag;
 
 void	SetSysClock(void)
 {
@@ -39,7 +39,7 @@ void gpio_init(void)
 //	P11_PushPull_Mode;
 	ST_BY = 0;
 	BT_POWER = 0;
-	power_change = 0;
+	sys_flag = sys_power_off;
 	power_flag = 0;	
 //	BT_POWER = 0;		
 ////	BT_DET			
@@ -58,6 +58,7 @@ void gpio_init(void)
 
 void	sys_init(void)
 {
+//	sys_flag = 0x00;
 //	unsigned char	*p8Data = g_abMax1xDSPCommands;
 	SetSysClock();
 	gpio_init();
@@ -68,7 +69,7 @@ void	sys_init(void)
 	Init_I2C();
 	set_EA;                                     //enable interrupts
 	set_TR0;                                    //Timer0 run
-  set_TR2;                                    // Timer2 run	
+//  set_TR2;                                    // Timer2 run	
 }
 
 //void	time0_init(void)

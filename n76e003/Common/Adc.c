@@ -2,17 +2,18 @@
 
 /*************	本地变量声明	**************/
 UINT8	adc_count = 0,KEY_VALUE = 0;
-bit		key_flag = 0;
+UINT8		key_flag = 0;
 UINT8	adc_RH = 0;
 //UINT8	adc_V = 0;
 //bit		adc_V_flag = 0;
 
-#define		POWER		0x00
-#define		MODE		0x10
-#define		VOL_A		0x20
-#define		VOL_B		0x30
-#define		SOURCE	0x40
+//#define		POWER		0xf0
+//#define		MODE		0x10
+//#define		VOL_A		0x20
+//#define		VOL_B		0x30
+//#define		SOURCE	0x40
 
+extern	UINT16	sys_flag;
 extern	bit power_flag,led_flag;
 extern	UINT8	source_in,mode_in,VOL_level;
 extern	void	NPCA110P_MODE(void);
@@ -42,20 +43,60 @@ void	KEY_EVENT(void)
 			break;
 			
 			case	MODE:
-				mode_in++;
+				sys_flag = sys_flag | sys_mode;
+//				mode_in++;
 			break;
 			
 			case	SOURCE:
-				source_in++;
+				sys_flag = sys_flag | sys_source;
+//				source_in++;
 			break;
 			
 			case	VOL_A:
-				VOL_level++;
+				sys_flag = sys_flag | sys_volA;
+//				VOL_level++;
 			break;
 			
 			case	VOL_B:
-				VOL_level--;
+				sys_flag = sys_flag | sys_volB;
+//				VOL_level--;
 			break;
+			
+			case	ir_play:
+				sys_flag = sys_flag | sys_play;
+//				VOL_level--;
+			break;
+			
+			case	ir_fwd:
+				sys_flag = sys_flag | sys_fwd;
+//				VOL_level--;
+			break;
+			
+			case	ir_rev:
+				sys_flag = sys_flag | sys_rev;
+//				VOL_level--;
+			break;
+			
+			case	ir_hall:
+				sys_flag = sys_flag | sys_hall;
+//				VOL_level--;
+			break;
+			
+			case	ir_music:
+				sys_flag = sys_flag | sys_music;
+//				VOL_level--;
+			break;
+			
+			case	ir_speech:
+				sys_flag = sys_flag | sys_speech;
+//				VOL_level--;
+			break;
+			
+			case	ir_mute:
+				sys_flag = sys_flag | sys_mute;
+//				VOL_level--;
+			break;
+			
 			default:
 				break;
 		}
