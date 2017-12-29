@@ -26,6 +26,10 @@ extern const unsigned char code g_abMax2xDSPCommands[];
 extern const unsigned char code g_abMax3xDSPCommands[];
 extern	void Bluetooth_Test_Task(void);
 extern	void	KEY_EVENT(void);
+extern	void	SYS_SOURCE(void);
+extern	void	SYS_VOL_A(void);
+extern	void	SYS_VOL_B(void);
+extern	void	SYS_MODE(void);
 
 extern unsigned char BT_connect;
 extern UINT8 Dat_count;
@@ -135,25 +139,47 @@ void main (void)
 			}
 			case 1:
 			{
-				LED_DISPLAY();
-//				n = Dat_count;
+				SYS_SOURCE();
 				step = 2;
 				break;
 			}
 			case 2:
 			{
-//				IR_EVENT();
-				IR_Deal();
+				SYS_MODE();
 				step = 3;
 				break;
 			}
 			case 3:
 			{
-				KEY_EVENT();
+				SYS_VOL_A();
 				step = 4;
 				break;
 			}
 			case 4:
+			{
+				SYS_VOL_B();
+				step = 5;
+				break;
+			}
+			case 5:
+			{
+				IR_Deal();
+				step = 6;
+				break;
+			}
+			case 6:
+			{
+				KEY_EVENT();
+				step = 7;
+				break;
+			}
+			case 7:
+			{
+				LED_DISPLAY();
+				step = 8;
+				break;
+			}
+			case 8:
 				if(BT_POWER)
 				{
 					if(BT_DET)

@@ -29,6 +29,20 @@
 #define	SCL					P13
 #define	NPCA_RST		P12
 
+
+#define		POWER		0x00
+#define		MODE		0x10
+#define		VOL_A		0x20
+#define		VOL_B		0x30
+#define		SOURCE	0x40
+
+#define		sys_source		0x01
+#define		sys_mode			0x02
+#define		sys_volA			0x04
+#define		sys_volB			0x08
+#define		sys_power_on	0x10
+#define		sys_power_off	0x20
+
 //#define	VOL_UP		P00
 //#define	VOL_DOWN	P01
 //#define	PAIR		P10

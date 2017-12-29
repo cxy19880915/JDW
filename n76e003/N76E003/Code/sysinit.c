@@ -38,6 +38,7 @@ void gpio_init(void)
 	P10_PushPull_Mode;
 //	P11_PushPull_Mode;
 	ST_BY = 0;
+	BT_POWER = 0;
 	power_change = 0;
 	power_flag = 0;	
 //	BT_POWER = 0;		

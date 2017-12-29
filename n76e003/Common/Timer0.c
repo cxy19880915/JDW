@@ -1,9 +1,9 @@
 #include	"timer0.h"
 
-extern	UINT8	adc_count;
+extern	UINT8	adc_count,KEY_VALUE;
 extern	bit		ms_800_flag,ms_200_flag;
-extern	bit	led_flag;
-extern	UINT8	source_in,mode_in;
+extern	bit	led_flag,key_flag;
+
 
 UINT16	adc_data = 0;
 UINT8	adc_V = 0;
@@ -46,25 +46,33 @@ void Timer0_ISR (void) interrupt 1
 //			adc_data = 0;
 			if(adc_V > V_2_4)
 			{
-				power_flag = ~power_flag;
+				KEY_VALUE = POWER;
+				key_flag = 1;
+//				power_flag = ~power_flag;
 			}
 			else if(adc_V > V_2_0)
 			{
-				MUSIC_LED = ~MUSIC_LED;
+				KEY_VALUE = VOL_A;
+				key_flag = 1;
+//				VOL_level ++;
 			}
 			else if(adc_V > V_1_5)
 			{
-				MOVIE_LED = ~MOVIE_LED;
+				KEY_VALUE = VOL_B;
+				key_flag = 1;
+//				VOL_level ++;
 			}
 			else if(adc_V > V_1_2)
 			{
-				source_in++;
-				led_flag = 1;
+				KEY_VALUE = SOURCE;
+				key_flag = 1;
+//				source_in++;
 			}
 			else if(adc_V > V_0_7)
 			{
-				mode_in++;
-				led_flag = 1;
+				KEY_VALUE = MODE;
+				key_flag = 1;
+//				mode_in++;
 			}
 		}
 		adc_flag = 0;

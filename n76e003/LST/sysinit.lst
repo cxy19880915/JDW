@@ -1,4 +1,4 @@
-C51 COMPILER V9.56.0.0   SYSINIT                                                           12/28/2017 16:46:10 PAGE 1   
+C51 COMPILER V9.56.0.0   SYSINIT                                                           12/29/2017 10:43:47 PAGE 1   
 
 
 C51 COMPILER V9.56.0.0, COMPILATION OF MODULE SYSINIT
@@ -48,59 +48,60 @@ line level    source
   38   1        P10_PushPull_Mode;
   39   1      //  P11_PushPull_Mode;
   40   1        ST_BY = 0;
-  41   1        power_change = 0;
-  42   1        power_flag = 0; 
-  43   1      //  BT_POWER = 0;   
-  44   1      ////  BT_DET      
-  45   1      
-  46   1      ////  GPIO1   
-  47   1      ////  GPIO2   
-  48   1      ////  GPIO3   
-  49   1      
-  50   1      //  PLAY = 0; 
-  51   1      //  REV = 0;      
-  52   1      //  FWD = 0;      
-  53   1      //  VOL_UP = 0;   
-  54   1      //  VOL_DOWN = 0; 
-C51 COMPILER V9.56.0.0   SYSINIT                                                           12/28/2017 16:46:10 PAGE 2   
+  41   1        BT_POWER = 0;
+  42   1        power_change = 0;
+  43   1        power_flag = 0; 
+  44   1      //  BT_POWER = 0;   
+  45   1      ////  BT_DET      
+  46   1      
+  47   1      ////  GPIO1   
+  48   1      ////  GPIO2   
+  49   1      ////  GPIO3   
+  50   1      
+  51   1      //  PLAY = 0; 
+  52   1      //  REV = 0;      
+  53   1      //  FWD = 0;      
+  54   1      //  VOL_UP = 0;   
+C51 COMPILER V9.56.0.0   SYSINIT                                                           12/29/2017 10:43:47 PAGE 2   
 
-  55   1      //  PAIR = 0;   
-  56   1      }
-  57          
-  58          void  sys_init(void)
-  59          {
-  60   1      //  unsigned char *p8Data = g_abMax1xDSPCommands;
-  61   1        SetSysClock();
-  62   1        gpio_init();
-  63   1        timer0_init();
-  64   1      //  timer1_init();
-  65   1        adc_init();
-  66   1        IR_init();
-  67   1        Init_I2C();
-  68   1        set_EA;                                     //enable interrupts
-  69   1        set_TR0;                                    //Timer0 run
-  70   1        set_TR2;                                    // Timer2 run 
-  71   1      }
-  72          
-  73          //void  time0_init(void)
-  74          //{
-  75          //  TIMER0_MODE1_ENABLE;
-  76          //  u8TH0_Tmp = (65536-TH0_INIT)/256;
-  77          //    u8TL0_Tmp = (65536-TL0_INIT)%256;
-  78          //  TH0 = u8TH0_Tmp;
-  79          //    TL0 = u8TL0_Tmp;
-  80          //  set_ET0;
-  81          //}
-  82          
-  83          //void  adc_init(void)
-  84          //{
-  85          //  Enable_ADC_AIN0;
-  86          //}
-  87          
+  55   1      //  VOL_DOWN = 0; 
+  56   1      //  PAIR = 0;   
+  57   1      }
+  58          
+  59          void  sys_init(void)
+  60          {
+  61   1      //  unsigned char *p8Data = g_abMax1xDSPCommands;
+  62   1        SetSysClock();
+  63   1        gpio_init();
+  64   1        timer0_init();
+  65   1      //  timer1_init();
+  66   1        adc_init();
+  67   1        IR_init();
+  68   1        Init_I2C();
+  69   1        set_EA;                                     //enable interrupts
+  70   1        set_TR0;                                    //Timer0 run
+  71   1        set_TR2;                                    // Timer2 run 
+  72   1      }
+  73          
+  74          //void  time0_init(void)
+  75          //{
+  76          //  TIMER0_MODE1_ENABLE;
+  77          //  u8TH0_Tmp = (65536-TH0_INIT)/256;
+  78          //    u8TL0_Tmp = (65536-TL0_INIT)%256;
+  79          //  TH0 = u8TH0_Tmp;
+  80          //    TL0 = u8TL0_Tmp;
+  81          //  set_ET0;
+  82          //}
+  83          
+  84          //void  adc_init(void)
+  85          //{
+  86          //  Enable_ADC_AIN0;
+  87          //}
+  88          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     64    ----
+   CODE SIZE        =     66    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

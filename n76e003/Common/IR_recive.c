@@ -29,6 +29,13 @@ extern	void	NPCA110P_MUTE(void);
 extern	void  GPIO_MUTE(void);
 extern	bit	power_flag,led_flag;
 
+extern	void BT_Play_Pause(void);	
+extern	void BT_REV_TASK(void);	
+extern	void BT_FWD_TASK(void);	
+
+extern	UINT8 VOL_LED;
+extern	UINT8 mode_in;
+
 void dat_clr(void);
 
 void IR_init(void)
@@ -43,7 +50,7 @@ void IR_init(void)
 
 void PinInterrupt_ISR (void) interrupt 7
 {
-	UINT8 i=0,j=0,n=0;
+	UINT8 i=0,j=0,n11=0;
 	if(PIF & 0x08)
 	{
     PIF =PIF & 0xf7;                             //clear interrupt flag
@@ -51,29 +58,29 @@ void PinInterrupt_ISR (void) interrupt 7
 		i++;
 		do//9ms low
 		{
-			n++;
+			n11++;
 			Timer1_Delay1ms(1);
 		}while(!ir_pin);
-		if(n<First_Boot_code)//没有达到8ms low
-		{
-//			dat_clr();
-			set_EPI;
-			return;
-		}
-		n=0;
+//		if(n<First_Boot_code)//没有达到8ms low
+//		{
+////			dat_clr();
+//			set_EPI;
+//			return;
+//		}
+		n11=0;
 		
 		do//4ms	high or 2ms	high
 		{
-			n++;
+			n11++;
 			Timer1_Delay1ms(1);
-			if((!ir_pin)&&(n<Second_Boot_code))//2ms	high
-				{
-						dat_clr();
-						set_EPI;
-						return;
-				}
+//			if((!ir_pin)&&(n<Second_Boot_code))//2ms	high
+//				{
+//						dat_clr();
+//						set_EPI;
+//						return;
+//				}
 		}while(ir_pin);
-		n=0;
+		n11=0;
 		
 		for(i=0;i<Data_count;i++)							//32bit数据码
 		{
@@ -97,22 +104,22 @@ void PinInterrupt_ISR (void) interrupt 7
 		}
 			
 		while(!ir_pin);													//0.56ms	low
-		
-		do//40ms	high
-		{
-			n++;
-			Timer1_Delay1ms(1);
-				if(n>30)//20ms	high
-				{
-					n=0;
-					Data_Check();
-					dat_clr();
-					Timer1_Delay1ms(40);
-					set_EPI;
-					return;
-				}
-		}while(ir_pin);
-//		Data_Check();
+//		do//40ms	high
+//		{
+//			n11++;
+//			Timer1_Delay1ms(1);
+////				if(n>30)//20ms	high
+////				{
+////					n=0;
+////					Data_Check();
+////					dat_clr();
+//////					Timer1_Delay1ms(100);
+////					set_EPI;
+////					return;
+////				}
+//		}while(ir_pin);
+		Data_Check();
+		Timer1_Delay1ms(30);		
 		dat_clr();
 		set_EPI;
 		return;
@@ -189,15 +196,34 @@ void dat_clr(void)
 
 void IR_Deal(void)
 {
+	UINT8 mod=0;
 	if(Recive_flag)
 	{
 		switch(key_press)//switch(ir.dat.data0)
 		{
-			case	0x01:				//BASS+
+			case	0x10:				//PLAY
+			if(ST_BY)
+			{
+				BT_Play_Pause();
+				led_flag = 1;
+				VOL_LED = 1;
+			}
 				break;
-			case	0x02:				//BASS-
+			case	0x11:				//FWD
+			if(ST_BY)
+			{
+				BT_FWD_TASK();
+				led_flag = 1;
+				VOL_LED = 1;
+			}	
 				break;
-			case	0x03:				//TREBLE+
+			case	0x16:				//REV
+			if(ST_BY)
+			{
+				BT_REV_TASK();
+				led_flag = 1;
+				VOL_LED = 1;
+			}
 				break;
 			case	0x04:				//TREBLE-
 				break;
@@ -208,18 +234,47 @@ void IR_Deal(void)
 			case	0x0c:				//BLUETOOTH
 //			if()
 				break;
-			case	0x0d:				//OPTICAL
+			case	0x41:				//SOURCE
 			if(ST_BY)
 			{
 				NPCA110P_SOURCE();
 				led_flag = 1;
 			}
 				break;
-			case	0x0e:				//COAXIAL
+			case	0x4a:				//HALL
 			if(ST_BY)	
 			{
-				NPCA110P_MODE();
-				led_flag = 1;
+				mod = 1;
+				if(mode_in!=mod)
+				{
+					mode_in = 1;
+					NPCA110P_MODE();
+					led_flag = 1;
+				}
+			}
+				break;
+			case	0x4b:				//HALL
+			if(ST_BY)	
+			{
+				mod = 2;
+				if(mode_in!=mod)
+				{
+					mode_in = 2;
+					NPCA110P_MODE();
+					led_flag = 1;
+				}
+			}
+				break;
+			case	0x4c:				//HALL
+			if(ST_BY)	
+			{
+				mod = 3;
+				if(mode_in!=mod)
+				{
+					mode_in = 3;
+					NPCA110P_MODE();
+					led_flag = 1;
+				}
 			}
 				break;
 			case	0x12:				//VOL+

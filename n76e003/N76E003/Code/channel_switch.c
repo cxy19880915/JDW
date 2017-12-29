@@ -2,6 +2,7 @@
 #include "config.h"
 
 extern	UINT8 VOL_LED;
+extern	bit	led_flag;
 extern	void Timer0_Delay1ms(UINT32 u32CNT);
 extern	void	GPIO_MUTE(void);
 extern const unsigned char code g_abMax1xDSPCommands[];
@@ -11,7 +12,7 @@ extern	void I2C_Write_Command(UINT8 u8Address, UINT8* p8Data, UINT32 u32ByteSize
 void	NPCA110P_SOURCE(void);
 #define		NPCA110P_EEPROM_SLA			0xe6
 
-UINT8	source_in = 1,mode_in = 1;
+UINT8	source_in = 1,mode_in = 1,VOL_level = 15;
 
 //模拟输入通道切换命令：
 const unsigned char code channel_Commands[] = 
@@ -77,6 +78,7 @@ void	NPCA110P_VOL_A(void)
 	if(volume_Control[2]>=0xf3)
 	{
 		VOL_LED = 0;
+		led_flag = 0;
 		return;
 	}
 	volume_Control[2]=volume_Control[2]+6;
@@ -89,6 +91,7 @@ void	NPCA110P_VOL_B(void)
 	if(volume_Control[2]<=0x00)
 	{
 		VOL_LED = 0;
+		led_flag = 0;
 		return;
 	}
 	if(volume_Control[2]<6)volume_Control[2]=6;
@@ -102,16 +105,13 @@ void	NPCA110P_MUTE(void)
 }
 void	NPCA110P_MODE(void)
 {
-	mode_in++;
-	if(mode_in>3)mode_in = 1;
+//	mode_in++;
+//	if(mode_in>3)mode_in = 1;
 	NPCA110P_init();
 }
 void	NPCA110P_SOURCE(void)
 {
 	UINT8 i;
-	BT_POWER = 0;
-	source_in++;
-	if(source_in>3)source_in = 1;
 	if(source_in==1)	
 		for(i=0;i<8;i++)
 		{
@@ -126,7 +126,6 @@ void	NPCA110P_SOURCE(void)
 		}
 	else	if(source_in==3)	
 	{
-		BT_POWER = 1;
 		for(i=0;i<8;i++)
 		{
 			I2C_Write_Command(NPCA110P_EEPROM_SLA,channel_Commands+48+i*3,3);

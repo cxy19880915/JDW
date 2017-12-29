@@ -1,32 +1,100 @@
 #define	task_GLOBALS
 #include "task_deal.h"
+#include "sysinit.h"
 
 bit	led_flag;
-UINT8 VOL_LED=0;
-extern	UINT8	source_in,mode_in;
+UINT8 VOL_LED=0,sys_flag=0;
+extern	UINT8	source_in,mode_in,VOL_level;
 extern	bit Recive_flag;
 extern	void	NPCA110P_init(void);
 extern	void __delay_10ms( UINT16 u16CNT );
 
+extern	void	NPCA110P_SOURCE(void);
+extern	void	NPCA110P_VOL_A(void);
+extern	void	NPCA110P_VOL_B(void);
+extern	void	NPCA110P_MODE(void);
+
+void	POWER_ON_OFF(void);
+void	SYS_SOURCE(void);
+void	SYS_VOL_A(void);
+void	SYS_VOL_B(void);
+void	SYS_MODE(void);
+
 void	POWER_ON_OFF(void)
 {
-	if((power_change == 1)&&(power_flag == 1))
+	if((sys_flag & sys_power_on)&&(power_flag == 1))
 	{
+		clr_EA;
 		MUTE = 1;
 		ST_BY = 1;
-		power_change = 0;
-		AUX1_LED = 0;AUX2_LED = 0;BT_LED = 0;
-		MUSIC_LED = 0;MOVIE_LED = 0;VOICE_LED = 0;
-		__delay_10ms(2);
+		sys_flag = sys_flag & (~sys_power_on);
+		sys_flag = sys_flag | sys_power_off;
+		AUX1_LED = 0;
+		MUSIC_LED = 0;
+		__delay_10ms(20);
+		set_EA;
 			NPCA110P_init();
 		MUTE = 0;
 	}
-	else if((power_change == 0)&&(power_flag == 0))
+	else if((sys_flag & sys_power_off)&&(power_flag == 0))
 	{
+		clr_EA;
 		ST_BY = 0;
-		power_change = 1;
+		sys_flag = sys_flag & (~sys_power_off);
+		sys_flag = sys_flag | sys_power_on;
 		AUX1_LED = 1;AUX2_LED = 1;BT_LED = 1;
 		MUSIC_LED = 1;MOVIE_LED = 1;VOICE_LED = 1;
+		__delay_10ms(30);
+		set_EA;
+	}
+}
+
+void	SYS_SOURCE(void)
+{
+	if(sys_flag == sys_source)
+	{
+		sys_flag = sys_flag & (~sys_source); 
+		BT_POWER = 0;
+		source_in++;
+		if(source_in>3)
+		{
+			source_in = 1;			
+		}
+		else if(source_in==3)		
+		{
+			BT_POWER = 1;
+		}
+		NPCA110P_SOURCE();
+	}
+}
+
+void	SYS_MODE(void)
+{
+	if(sys_flag == sys_mode)
+	{
+		sys_flag = sys_flag & (~sys_mode);
+		mode_in++;
+		NPCA110P_init();
+	}
+}
+
+void	SYS_VOL_A(void)
+{
+	if(sys_flag == sys_volA)
+	{
+		sys_flag = sys_flag & (~sys_volA);
+		VOL_level++;
+		NPCA110P_VOL_A();
+	}
+}
+
+void	SYS_VOL_B(void)
+{
+	if(sys_flag == sys_volB)
+	{
+		sys_flag = sys_flag & (~sys_volB);
+		VOL_level++;
+		NPCA110P_VOL_B();
 	}
 }
 

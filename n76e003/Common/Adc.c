@@ -1,7 +1,7 @@
 #include "adc.h"
 
 /*************	本地变量声明	**************/
-UINT8	adc_count = 0;
+UINT8	adc_count = 0,KEY_VALUE = 0;
 bit		key_flag = 0;
 UINT8	adc_RH = 0;
 //UINT8	adc_V = 0;
@@ -14,6 +14,7 @@ UINT8	adc_RH = 0;
 #define		SOURCE	0x40
 
 extern	bit power_flag,led_flag;
+extern	UINT8	source_in,mode_in,VOL_level;
 extern	void	NPCA110P_MODE(void);
 extern	void	NPCA110P_SOURCE(void);
 extern	void	NPCA110P_VOL_A(void);
@@ -34,28 +35,52 @@ void	KEY_EVENT(void)
 {
 	if(key_flag)
 	{
-		if(adc_RH == POWER)
+		switch(KEY_VALUE)
 		{
-			power_flag = ~power_flag;
+			case	POWER:
+				power_flag = ~power_flag;
+			break;
+			
+			case	MODE:
+				mode_in++;
+			break;
+			
+			case	SOURCE:
+				source_in++;
+			break;
+			
+			case	VOL_A:
+				VOL_level++;
+			break;
+			
+			case	VOL_B:
+				VOL_level--;
+			break;
+			default:
+				break;
 		}
-		if(adc_RH == MODE)
-		{
-			NPCA110P_MODE();
-			led_flag = 1;
-		}
-		if(adc_RH == VOL_A)
-		{
-			NPCA110P_VOL_A();
-		}
-		if(adc_RH == VOL_B)
-		{
-			NPCA110P_VOL_B();
-		}
-		if(adc_RH == SOURCE)
-		{
-			NPCA110P_SOURCE();
-			led_flag = 1;
-		}
+//		if(KEY_VALUE == POWER)
+//		{
+//			power_flag = ~power_flag;
+//		}
+//		if(KEY_VALUE == MODE)
+//		{
+//			NPCA110P_MODE();
+//			led_flag = 1;
+//		}
+//		if(adc_RH == VOL_A)
+//		{
+//			NPCA110P_VOL_A();
+//		}
+//		if(adc_RH == VOL_B)
+//		{
+//			NPCA110P_VOL_B();
+//		}
+//		if(adc_RH == SOURCE)
+//		{
+//			NPCA110P_SOURCE();
+//			led_flag = 1;
+//		}
 		key_flag = 0;
 	}
 }

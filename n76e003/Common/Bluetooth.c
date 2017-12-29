@@ -7,7 +7,7 @@ extern	bit led_flag;
 
 void Bluetooth_Test_Task(void)
 {
-	VOL_LED = 1;
+//	VOL_LED = 1;
 //	led_flag = 1;
 //	__delay_10ms(20);
 //			LED_B = ~LED_B;//LED_G = ~LED_G;LED_R = ~LED_R;
