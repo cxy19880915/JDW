@@ -1,4 +1,4 @@
-C51 COMPILER V9.56.0.0   IR_RECIVE                                                         12/29/2017 20:51:27 PAGE 1   
+C51 COMPILER V9.56.0.0   IR_RECIVE                                                         12/29/2017 21:28:02 PAGE 1   
 
 
 C51 COMPILER V9.56.0.0, COMPILATION OF MODULE IR_RECIVE
@@ -62,7 +62,7 @@ line level    source
   52          extern  UINT8   key_flag;
   53          
   54          UINT8 ir_long=0;
-C51 COMPILER V9.56.0.0   IR_RECIVE                                                         12/29/2017 20:51:27 PAGE 2   
+C51 COMPILER V9.56.0.0   IR_RECIVE                                                         12/29/2017 21:28:02 PAGE 2   
 
   55          
   56          void dat_clr(void);
@@ -126,7 +126,7 @@ line level    source
  114   5                  }
  115   4                  else                          //Êý¾Ý 0  high
  116   4                  {
-C51 COMPILER V9.56.0.0   IR_RECIVE                                                         12/29/2017 20:51:27 PAGE 3   
+C51 COMPILER V9.56.0.0   IR_RECIVE                                                         12/29/2017 21:28:02 PAGE 3   
 
  117   5                      dat[i] >>= 1;
  118   5                  }
@@ -190,7 +190,7 @@ line level    source
                   
                   dat_clr();
                   set_EPI;
-C51 COMPILER V9.56.0.0   IR_RECIVE                                                         12/29/2017 20:51:27 PAGE 4   
+C51 COMPILER V9.56.0.0   IR_RECIVE                                                         12/29/2017 21:28:02 PAGE 4   
 
                   return;
                   #endif    
@@ -254,7 +254,7 @@ line level    source
  238   3              break;
  239   3            case  0x16:       //REV
  240   3      //        ir_long++;
-C51 COMPILER V9.56.0.0   IR_RECIVE                                                         12/29/2017 20:51:27 PAGE 5   
+C51 COMPILER V9.56.0.0   IR_RECIVE                                                         12/29/2017 21:28:02 PAGE 5   
 
  241   3      //        if(ir_long>=2)
  242   3      //        {
@@ -318,7 +318,7 @@ line level    source
  300   3              break;
  301   3            case  0x13:       //VOL-
  302   3      //        ir_long++;
-C51 COMPILER V9.56.0.0   IR_RECIVE                                                         12/29/2017 20:51:27 PAGE 6   
+C51 COMPILER V9.56.0.0   IR_RECIVE                                                         12/29/2017 21:28:02 PAGE 6   
 
  303   3      //        if(ir_long>=2)
  304   3      //        {

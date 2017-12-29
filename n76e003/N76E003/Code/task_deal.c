@@ -163,32 +163,32 @@ void	LED_DISPLAY(void)
 		if(source_in == 1)
 		{
 			AUX1_LED = 0;AUX2_LED = 1;BT_LED = 1;
-			__delay_10ms(3);
+			__delay_10ms(2);
 		}
 		if(source_in == 2)
 		{
 			AUX1_LED = 1;AUX2_LED = 0;BT_LED = 1;
-			__delay_10ms(3);
+			__delay_10ms(2);
 		}
 		if(source_in == 3)
 		{
 			AUX1_LED = 1;AUX2_LED = 1;BT_LED = 0;
-			__delay_10ms(3);
+			__delay_10ms(2);
 		}
 		if(mode_in == 1)
 		{
 			MUSIC_LED = 0;MOVIE_LED = 1;VOICE_LED = 1;
-			__delay_10ms(3);
+			__delay_10ms(2);
 		}
 		if(mode_in == 2)
 		{
 			MUSIC_LED = 1;MOVIE_LED = 0;VOICE_LED = 1;
-			__delay_10ms(3);
+			__delay_10ms(2);
 		}
 		if(mode_in == 3)
 		{
 			MUSIC_LED = 1;MOVIE_LED = 1;VOICE_LED = 0;
-			__delay_10ms(3);
+			__delay_10ms(2);
 		}
 		led_flag = 0;
 	}

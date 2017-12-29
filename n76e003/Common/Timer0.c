@@ -7,7 +7,7 @@ extern	void __delay_10ms( UINT16 u16CNT );
 
 UINT16	adc_data = 0;
 UINT8	adc_V = 0;
-bit		adc_V_flag = 0;
+bit		adc_V_flag = 0,VA=0,VB=0;
 bit		adc_PWM_flag = 0;
 //UINT8	u8TH0_Tmp_1ms,u8TL0_Tmp_1ms;
 UINT8	adc_flag=0,nm=0,mn=0;
@@ -36,11 +36,11 @@ void Timer0_ISR (void) interrupt 1
 	TH0 = TIMER_DIV12_VALUE_10ms;
     TL0 = TIMER_DIV12_VALUE_10ms;
 	adc_flag++;mn++;
-	if(mn>2)
+	if(mn>20)
 	{
 		nm = 1;
 	}
-	if(adc_flag>10)//100ms
+	if(adc_flag>5)//50ms
 	{
 		adc_data = adc_start();
 		adc_V =	adc_data;
@@ -50,30 +50,35 @@ void Timer0_ISR (void) interrupt 1
 			{
 				key_flag = 1;
 				KEY_VALUE =  POWER;
+				VA = 0;VB = 0;
 //				__delay_10ms(1);
 			}
 			else if(adc_V > V_2_0)
 			{
 				key_flag = 1;
 				KEY_VALUE =  VOL_A;
-				__delay_10ms(3);
+				if(VA==0)	__delay_10ms(30);
+				VA = 1;VB = 0;
 			}
 			else if(adc_V > V_1_5)
 			{
 				key_flag = 1;
 				KEY_VALUE =  VOL_B;
-				__delay_10ms(3);
+				if(VB==0)	__delay_10ms(30);
+				VB = 1;VA = 0;
 			}
 			else if(adc_V > V_1_2)
 			{
 				key_flag = 1;
 				KEY_VALUE = SOURCE;
+				VA = 0;VB = 0;
 				__delay_10ms(30);
 			}
 			else if(adc_V > V_0_7)
 			{
 				key_flag = 1;
 				KEY_VALUE = MODE;
+				VA = 0;VB = 0;
 				__delay_10ms(15);
 			}
 		}
