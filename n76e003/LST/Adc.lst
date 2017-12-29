@@ -1,4 +1,4 @@
-C51 COMPILER V9.56.0.0   ADC                                                               12/29/2017 19:35:16 PAGE 1   
+C51 COMPILER V9.56.0.0   ADC                                                               12/29/2017 20:51:26 PAGE 1   
 
 
 C51 COMPILER V9.56.0.0, COMPILATION OF MODULE ADC
@@ -23,156 +23,161 @@ line level    source
   13          //#define   VOL_B   0x30
   14          //#define   SOURCE  0x40
   15          
-  16          extern  UINT16  sys_flag;
-  17          extern  bit power_flag,led_flag;
-  18          extern  UINT8 source_in,mode_in,VOL_level;
-  19          extern  void  NPCA110P_MODE(void);
-  20          extern  void  NPCA110P_SOURCE(void);
-  21          extern  void  NPCA110P_VOL_A(void);
-  22          extern  void  NPCA110P_VOL_B(void);
-  23          extern  void  NPCA110P_init(void);
-  24          extern  void Bluetooth_Test_Task(void);
-  25          
-  26          UINT8 adc_start(void)
-  27          {
-  28   1        UINT8 adc_dat = 0;
-  29   1        clr_ADCF;
-  30   1        set_ADCS;
-  31   1        while(ADCF == 0);
-  32   1        adc_dat = ADCRH;
-  33   1        adc_count++;
-  34   1        return  adc_dat;
-  35   1      }
-  36          
-  37          void  KEY_EVENT(void)
-  38          {
-  39   1        if(key_flag)
-  40   1        {
-  41   2          switch(KEY_VALUE)
-  42   2          {
-  43   3            case  POWER:
-  44   3              power_flag = ~power_flag;
-  45   3            break;
-  46   3            
-  47   3            case  MODE:
-  48   3              sys_flag = sys_flag | sys_mode;
-  49   3      //        mode_in++;
-  50   3            break;
-  51   3            
-  52   3            case  SOURCE:
-  53   3              sys_flag = sys_flag | sys_source;
-  54   3      //        source_in++;
-C51 COMPILER V9.56.0.0   ADC                                                               12/29/2017 19:35:16 PAGE 2   
+  16          extern  void  GPIO_MUTE(void);
+  17          extern  UINT8 VOL_LED;
+  18          extern  UINT16  sys_flag;
+  19          extern  bit power_flag,led_flag;
+  20          extern  UINT8 source_in,mode_in,VOL_level;
+  21          extern  void  NPCA110P_MODE(void);
+  22          extern  void  NPCA110P_SOURCE(void);
+  23          extern  void  NPCA110P_VOL_A(void);
+  24          extern  void  NPCA110P_VOL_B(void);
+  25          extern  void  NPCA110P_init(void);
+  26          extern  void Bluetooth_Test_Task(void);
+  27          
+  28          UINT8 adc_start(void)
+  29          {
+  30   1        UINT8 adc_dat = 0;
+  31   1        clr_ADCF;
+  32   1        set_ADCS;
+  33   1        while(ADCF == 0);
+  34   1        adc_dat = ADCRH;
+  35   1        adc_count++;
+  36   1        return  adc_dat;
+  37   1      }
+  38          
+  39          void  KEY_EVENT(void)
+  40          {
+  41   1        if(key_flag)
+  42   1        {
+  43   2          switch(KEY_VALUE)
+  44   2          {
+  45   3            case  POWER:
+  46   3              power_flag = ~power_flag;
+  47   3            break;
+  48   3            
+  49   3            case  MODE:
+  50   3              sys_flag = sys_flag | sys_mode;
+  51   3      //        mode_in++;
+  52   3            break;
+  53   3            
+  54   3            case  SOURCE:
+C51 COMPILER V9.56.0.0   ADC                                                               12/29/2017 20:51:26 PAGE 2   
 
-  55   3            break;
-  56   3            
-  57   3            case  VOL_A:
-  58   3              sys_flag = sys_flag | sys_volA;
-  59   3      //        VOL_level++;
-  60   3            break;
-  61   3            
-  62   3            case  VOL_B:
-  63   3              sys_flag = sys_flag | sys_volB;
-  64   3      //        VOL_level--;
-  65   3            break;
-  66   3            
-  67   3            case  ir_play:
-  68   3      //        sys_flag = sys_flag | sys_play;
-  69   3      //      break;
-  70   3            
-  71   3            case  ir_fwd:
-  72   3      //        sys_flag = sys_flag | sys_fwd;
-  73   3      //        VOL_level--;
-  74   3      //      break;
-  75   3            
-  76   3            case  ir_rev:
-  77   3                Bluetooth_Test_Task();
-  78   3      //        sys_flag = sys_flag | sys_rev;
-  79   3      //        VOL_level--;
-  80   3            break;
-  81   3            
-  82   3            case  ir_hall:
-  83   3      //        sys_flag = sys_flag | sys_hall;
-  84   3              mode_in = 1;
-  85   3              NPCA110P_init();
-  86   3              led_flag = 1;
-  87   3      //        VOL_level--;
-  88   3            break;
-  89   3            
-  90   3            case  ir_music:
-  91   3      //        sys_flag = sys_flag | sys_music;
-  92   3              mode_in = 2;
-  93   3              NPCA110P_init();
-  94   3              led_flag = 1;
-  95   3      //        VOL_level--;
-  96   3            break;
-  97   3            
-  98   3            case  ir_speech:
-  99   3      //        sys_flag = sys_flag | sys_speech;
- 100   3              mode_in = 3;
- 101   3              NPCA110P_init();
- 102   3              led_flag = 1;
- 103   3      //        VOL_level--;
- 104   3            break;
- 105   3            
- 106   3            case  ir_mute:
- 107   3              sys_flag = sys_flag | sys_mute;
- 108   3      //        VOL_level--;
- 109   3            break;
- 110   3            
- 111   3            default:
- 112   3              break;
- 113   3          }
- 114   2      //    if(KEY_VALUE == POWER)
- 115   2      //    {
- 116   2      //      power_flag = ~power_flag;
-C51 COMPILER V9.56.0.0   ADC                                                               12/29/2017 19:35:16 PAGE 3   
+  55   3              sys_flag = sys_flag | sys_source;
+  56   3      //        source_in++;
+  57   3            break;
+  58   3            
+  59   3            case  VOL_A:
+  60   3              sys_flag = sys_flag | sys_volA;
+  61   3      //        VOL_level++;
+  62   3            break;
+  63   3            
+  64   3            case  VOL_B:
+  65   3              sys_flag = sys_flag | sys_volB;
+  66   3      //        VOL_level--;
+  67   3            break;
+  68   3            
+  69   3            case  ir_play:
+  70   3      //        sys_flag = sys_flag | sys_play;
+  71   3      //      break;
+  72   3            
+  73   3            case  ir_fwd:
+  74   3      //        sys_flag = sys_flag | sys_fwd;
+  75   3      //        VOL_level--;
+  76   3      //      break;
+  77   3            
+  78   3            case  ir_rev:
+  79   3                Bluetooth_Test_Task();
+  80   3      //        sys_flag = sys_flag | sys_rev;
+  81   3      //        VOL_level--;
+  82   3            break;
+  83   3            
+  84   3            case  ir_hall:
+  85   3      //        sys_flag = sys_flag | sys_hall;
+  86   3              mode_in = 1;
+  87   3              NPCA110P_init();
+  88   3              led_flag = 1;
+  89   3      //        VOL_level--;
+  90   3            break;
+  91   3            
+  92   3            case  ir_music:
+  93   3      //        sys_flag = sys_flag | sys_music;
+  94   3              mode_in = 2;
+  95   3              NPCA110P_init();
+  96   3              led_flag = 1;
+  97   3      //        VOL_level--;
+  98   3            break;
+  99   3            
+ 100   3            case  ir_speech:
+ 101   3      //        sys_flag = sys_flag | sys_speech;
+ 102   3              mode_in = 3;
+ 103   3              NPCA110P_init();
+ 104   3              led_flag = 1;
+ 105   3      //        VOL_level--;
+ 106   3            break;
+ 107   3            
+ 108   3            case  ir_mute:
+ 109   3              GPIO_MUTE();
+ 110   3              led_flag = 1;
+ 111   3      //        VOL_LED = 1;
+ 112   3      //        sys_flag = sys_flag | sys_mute;
+ 113   3      //        VOL_level--;
+ 114   3            break;
+ 115   3            
+ 116   3            default:
+C51 COMPILER V9.56.0.0   ADC                                                               12/29/2017 20:51:26 PAGE 3   
 
- 117   2      //    }
- 118   2      //    if(KEY_VALUE == MODE)
- 119   2      //    {
- 120   2      //      NPCA110P_MODE();
- 121   2      //      led_flag = 1;
+ 117   3              break;
+ 118   3          }
+ 119   2      //    if(KEY_VALUE == POWER)
+ 120   2      //    {
+ 121   2      //      power_flag = ~power_flag;
  122   2      //    }
- 123   2      //    if(adc_RH == VOL_A)
+ 123   2      //    if(KEY_VALUE == MODE)
  124   2      //    {
- 125   2      //      NPCA110P_VOL_A();
- 126   2      //    }
- 127   2      //    if(adc_RH == VOL_B)
- 128   2      //    {
- 129   2      //      NPCA110P_VOL_B();
- 130   2      //    }
- 131   2      //    if(adc_RH == SOURCE)
- 132   2      //    {
- 133   2      //      NPCA110P_SOURCE();
- 134   2      //      led_flag = 1;
+ 125   2      //      NPCA110P_MODE();
+ 126   2      //      led_flag = 1;
+ 127   2      //    }
+ 128   2      //    if(adc_RH == VOL_A)
+ 129   2      //    {
+ 130   2      //      NPCA110P_VOL_A();
+ 131   2      //    }
+ 132   2      //    if(adc_RH == VOL_B)
+ 133   2      //    {
+ 134   2      //      NPCA110P_VOL_B();
  135   2      //    }
- 136   2          key_flag = 0;
- 137   2        }
- 138   1      }
- 139          
- 140          void  adc_init(void)
- 141          {
- 142   1      //  InitialUART0_Timer1(115200);
- 143   1        P04_Quasi_Mode;
- 144   1        Enable_ADC_AIN5;
- 145   1      //  P04_FALLINGEDGE_TRIG_ADC;                     // P0.4 falling edge as adc start trig signal
- 146   1      //  set_EADC;                                     // Enable ADC interrupt (if use interrupt)
- 147   1      }
- 148          
- 149          /******************************************************************************
- 150           * FUNCTION_PURPOSE: ADC interrupt Service Routine
- 151           ******************************************************************************/
- 152          void ADC_ISR (void) interrupt 11
- 153          {
- 154   1          clr_ADCF;                               //clear ADC interrupt flag
- 155   1          adc_RH = ADCRH;
- 156   1          key_flag = 1;
- 157   1      //    if(ADCRH)
- 158   1      //    printf ("\n Value = 0x%bx",ADCRH);
- 159   1      }
- 160          
- 161          #if 0
+ 136   2      //    if(adc_RH == SOURCE)
+ 137   2      //    {
+ 138   2      //      NPCA110P_SOURCE();
+ 139   2      //      led_flag = 1;
+ 140   2      //    }
+ 141   2          key_flag = 0;
+ 142   2        }
+ 143   1      }
+ 144          
+ 145          void  adc_init(void)
+ 146          {
+ 147   1      //  InitialUART0_Timer1(115200);
+ 148   1        P04_Quasi_Mode;
+ 149   1        Enable_ADC_AIN5;
+ 150   1      //  P04_FALLINGEDGE_TRIG_ADC;                     // P0.4 falling edge as adc start trig signal
+ 151   1      //  set_EADC;                                     // Enable ADC interrupt (if use interrupt)
+ 152   1      }
+ 153          
+ 154          /******************************************************************************
+ 155           * FUNCTION_PURPOSE: ADC interrupt Service Routine
+ 156           ******************************************************************************/
+ 157          void ADC_ISR (void) interrupt 11
+ 158          {
+ 159   1          clr_ADCF;                               //clear ADC interrupt flag
+ 160   1          adc_RH = ADCRH;
+ 161   1          key_flag = 1;
+ 162   1      //    if(ADCRH)
+ 163   1      //    printf ("\n Value = 0x%bx",ADCRH);
+ 164   1      }
+ 165          
+ 166          #if 0
               void  adc_init(void)
               {
                 ADCCON0&=0xc0;    //AD转换启动AD标志完成
@@ -185,13 +190,13 @@ line level    source
               {
                 switch(adc_AINx)
                 {
+C51 COMPILER V9.56.0.0   ADC                                                               12/29/2017 20:51:26 PAGE 4   
+
                   case  AIN0:
                     ADCCON0 |= 0x00;
                     P17_Input_Mode;
                     AINDIDS|=SET_BIT0;
                     break;
-C51 COMPILER V9.56.0.0   ADC                                                               12/29/2017 19:35:16 PAGE 4   
-
                   
                   case  AIN1:
                     ADCCON0 |= 0x01;
@@ -243,12 +248,14 @@ line level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    156    ----
+   CODE SIZE        =    158    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
    DATA SIZE        =      4    ----
    IDATA SIZE       =   ----    ----
+C51 COMPILER V9.56.0.0   ADC                                                               12/29/2017 20:51:26 PAGE 5   
+
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
 

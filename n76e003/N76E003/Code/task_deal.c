@@ -143,20 +143,22 @@ void	SYS_VOL_B(void)
 
 void  GPIO_MUTE(void)
 {
-	if(Recive_flag)
-	{
-		MUTE = ~MUTE;
-	}
+	MUTE = ~MUTE;
 }
 
 void	LED_DISPLAY(void)
 {
+		if((MUTE)&&(ST_BY))
+		{
+			VOL_LED = 1;
+			led_flag = 1;
+		}
 	if(led_flag)
 	{
 		if(VOL_LED)
 		{
 			AUX1_LED = 1;AUX2_LED = 1;BT_LED = 1;
-			__delay_10ms(20);
+			__delay_10ms(4);
 		}
 		if(source_in == 1)
 		{

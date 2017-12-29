@@ -13,6 +13,8 @@ UINT8	adc_RH = 0;
 //#define		VOL_B		0x30
 //#define		SOURCE	0x40
 
+extern	void	GPIO_MUTE(void);
+extern	UINT8 VOL_LED;
 extern	UINT16	sys_flag;
 extern	bit power_flag,led_flag;
 extern	UINT8	source_in,mode_in,VOL_level;
@@ -104,7 +106,10 @@ void	KEY_EVENT(void)
 			break;
 			
 			case	ir_mute:
-				sys_flag = sys_flag | sys_mute;
+				GPIO_MUTE();
+				led_flag = 1;
+//				VOL_LED = 1;
+//				sys_flag = sys_flag | sys_mute;
 //				VOL_level--;
 			break;
 			

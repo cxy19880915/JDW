@@ -32,7 +32,8 @@ extern	void	SYS_VOL_B(void);
 extern	void	SYS_MODE(void);
 
 extern unsigned char BT_connect;
-extern UINT8 Dat_count;
+extern UINT8 Dat_count,nm;
+
 //*****************  The Following is in define in Fucntion_define.h  ***************************
 //****** Always include Function_define.h call the define you want, detail see main(void) *******
 //***********************************************************************************************
@@ -163,7 +164,11 @@ void main (void)
 			}
 			case 5:
 			{
-				IR_Deal();
+				if(nm)
+				{
+					IR_Deal();
+					nm = 0;
+				}
 				step = 6;
 				break;
 			}

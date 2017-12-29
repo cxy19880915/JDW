@@ -10,7 +10,7 @@ UINT8	adc_V = 0;
 bit		adc_V_flag = 0;
 bit		adc_PWM_flag = 0;
 //UINT8	u8TH0_Tmp_1ms,u8TL0_Tmp_1ms;
-UINT8	adc_flag=0,nm=0;
+UINT8	adc_flag=0,nm=0,mn=0;
 
 //#define	TH0_INIT_1ms	16000//13290
 //#define	TL0_INIT_1ms	16000//13290
@@ -35,8 +35,12 @@ void Timer0_ISR (void) interrupt 1
 	clr_TR0;
 	TH0 = TIMER_DIV12_VALUE_10ms;
     TL0 = TIMER_DIV12_VALUE_10ms;
-	adc_flag++;
-	if(adc_flag>20)//100ms
+	adc_flag++;mn++;
+	if(mn>2)
+	{
+		nm = 1;
+	}
+	if(adc_flag>10)//100ms
 	{
 		adc_data = adc_start();
 		adc_V =	adc_data;
@@ -50,28 +54,24 @@ void Timer0_ISR (void) interrupt 1
 			}
 			else if(adc_V > V_2_0)
 			{
-				nm++;
 				key_flag = 1;
 				KEY_VALUE =  VOL_A;
-				__delay_10ms(30);
+				__delay_10ms(3);
 			}
 			else if(adc_V > V_1_5)
 			{
-				nm++;
 				key_flag = 1;
 				KEY_VALUE =  VOL_B;
-				__delay_10ms(30);
+				__delay_10ms(3);
 			}
 			else if(adc_V > V_1_2)
 			{
-				nm++;
 				key_flag = 1;
 				KEY_VALUE = SOURCE;
 				__delay_10ms(30);
 			}
 			else if(adc_V > V_0_7)
 			{
-				nm++;
 				key_flag = 1;
 				KEY_VALUE = MODE;
 				__delay_10ms(15);

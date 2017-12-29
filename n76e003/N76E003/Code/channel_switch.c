@@ -6,7 +6,7 @@ void	NPCA110P_SOURCE(void);
 extern	UINT8 VOL_LED;
 extern	bit	led_flag;
 extern	void	delay(void);
-extern	void	GPIO_MUTE(void);
+//extern	void	GPIO_MUTE(void);
 extern const unsigned char code g_abMax1xDSPCommands[];
 extern const unsigned char code g_abMax2xDSPCommands[];
 extern const unsigned char code g_abMax3xDSPCommands[];

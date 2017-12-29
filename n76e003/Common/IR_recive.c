@@ -219,31 +219,31 @@ void IR_Deal(void)
 		switch(key_press)//switch(ir.dat.data0)
 		{
 			case	0x10:				//PLAY
-				ir_long++;
-				if(ir_long>=2)
-				{
+//				ir_long++;
+//				if(ir_long>=2)
+//				{
 					key_flag = 0x80;
 					KEY_VALUE = ir_play;
-					ir_long = 0;
-				}				
+//					ir_long = 0;
+//				}				
 			break;
 			case	0x11:				//FWD
-				ir_long++;
-				if(ir_long>=2)
-				{
+//				ir_long++;
+//				if(ir_long>=2)
+//				{
 					key_flag = 0x80;
 					KEY_VALUE = ir_fwd;
-					ir_long = 0;
-				}	
+//					ir_long = 0;
+//				}	
 				break;
 			case	0x16:				//REV
-				ir_long++;
-				if(ir_long>=2)
-				{
+//				ir_long++;
+//				if(ir_long>=2)
+//				{
 					key_flag = 0x80;
 					KEY_VALUE = ir_rev;
-					ir_long = 0;
-				}
+//					ir_long = 0;
+//				}
 				break;
 			case	0x04:				//TREBLE-
 				break;
@@ -254,61 +254,76 @@ void IR_Deal(void)
 			case	0x0c:				//BLUETOOTH
 				break;
 			case	0x41:				//SOURCE
-				ir_long++;
-				if(ir_long>=2)
-				{
+//				ir_long++;
+//				if(ir_long>=2)
+//				{
 					key_flag = 0x80;
 					KEY_VALUE = ir_source;
-					ir_long = 0;
-				}
+//					ir_long = 0;
+//				}
 				break;
 			case	0x4a:				//HALL
-				key_flag = 0x80;
-				KEY_VALUE = ir_hall;
+//				ir_long++;
+//				if(ir_long>=2)
+//				{
+					key_flag = 0x80;
+					KEY_VALUE = ir_hall;
+//					ir_long = 0;
+//				}
 				break;
 			case	0x4b:				//MUSIC
-				key_flag = 0x80;
-				KEY_VALUE = ir_music;
+//				ir_long++;
+//				if(ir_long>=2)
+//				{
+					key_flag = 0x80;
+					KEY_VALUE = ir_music;
+//					ir_long = 0;
+//				}
 				break;
 			case	0x4c:				//SPEECH
-				key_flag = 0x80;
-				KEY_VALUE = ir_speech;
+//				ir_long++;
+//				if(ir_long>=2)
+//				{
+					key_flag = 0x80;
+					KEY_VALUE = ir_speech;
+//					ir_long = 0;
+//				}				
 				break;
 			case	0x12:				//VOL+
-				ir_long++;
-				if(ir_long>=2)
-				{
+//				ir_long++;
+//				if(ir_long>=2)
+//				{
 					key_flag = 0x80;
 					KEY_VALUE = ir_volA;
-					ir_long = 0;
-				}
+//					ir_long = 0;
+//				}
 				break;
 			case	0x13:				//VOL-
-				ir_long++;
-				if(ir_long>=2)
-				{
+//				ir_long++;
+//				if(ir_long>=2)
+//				{
 					key_flag = 0x80;
 					KEY_VALUE = ir_volB;
-					ir_long = 0;
-				}
+//					ir_long = 0;
+//				}
 				break;
 			case	0x14:				//ON-OFF
-				ir_long++;
-				if(ir_long>=2)
-				{
+//				ir_long++;
+//				if(ir_long>=2)
+//				{
 					key_flag = 0x80;
 					KEY_VALUE = ir_power;
-					ir_long = 0;
-				}
+//					ir_long = 0;
+//				}
 				break;
 			case	0x15:				//MUTE
-				ir_long++;
-				if(ir_long>=2)
-				{
+//				ir_long++;
+//				if(ir_long>=2)
+//				{
 					key_flag = 0x80;
 					KEY_VALUE = ir_mute;
-					ir_long = 0;
-				}
+//					ir_long = 0;
+//				}
 				break;
 			case	0x18:				//HDMI
 				break;

@@ -1,4 +1,4 @@
-C51 COMPILER V9.56.0.0   DEMO                                                              12/29/2017 19:35:15 PAGE 1   
+C51 COMPILER V9.56.0.0   DEMO                                                              12/29/2017 20:51:25 PAGE 1   
 
 
 C51 COMPILER V9.56.0.0, COMPILATION OF MODULE DEMO
@@ -51,19 +51,20 @@ line level    source
   32          extern  void  SYS_MODE(void);
   33          
   34          extern unsigned char BT_connect;
-  35          extern UINT8 Dat_count;
-  36          //*****************  The Following is in define in Fucntion_define.h  ***************************
-  37          //****** Always include Function_define.h call the define you want, detail see main(void) *******
-  38          //***********************************************************************************************
-  39          #if 0
+  35          extern UINT8 Dat_count,nm;
+  36          
+  37          //*****************  The Following is in define in Fucntion_define.h  ***************************
+  38          //****** Always include Function_define.h call the define you want, detail see main(void) *******
+  39          //***********************************************************************************************
+  40          #if 0
               ////------------------- Define Port as Quasi mode  -------------------
               //#define P00_Quasi_Mode        P0M1&=~SET_BIT0;P0M2&=~SET_BIT0
               //#define P01_Quasi_Mode        P0M1&=~SET_BIT1;P0M2&=~SET_BIT1
               //#define P02_Quasi_Mode        P0M1&=~SET_BIT2;P0M2&=~SET_BIT2
               //#define P03_Quasi_Mode        P0M1&=~SET_BIT3;P0M2&=~SET_BIT3
-              //#define P04_Quasi_Mode        P0M1&=~SET_BIT4;P0M2&=~SET_BIT4
-C51 COMPILER V9.56.0.0   DEMO                                                              12/29/2017 19:35:15 PAGE 2   
+C51 COMPILER V9.56.0.0   DEMO                                                              12/29/2017 20:51:25 PAGE 2   
 
+              //#define P04_Quasi_Mode        P0M1&=~SET_BIT4;P0M2&=~SET_BIT4
               //#define P05_Quasi_Mode        P0M1&=~SET_BIT5;P0M2&=~SET_BIT5
               //#define P06_Quasi_Mode        P0M1&=~SET_BIT6;P0M2&=~SET_BIT6
               //#define P07_Quasi_Mode        P0M1&=~SET_BIT7;P0M2&=~SET_BIT7
@@ -125,9 +126,9 @@ line level    source
               //#define P06_OpenDrain_Mode    P0M1|=SET_BIT6;P0M2|=SET_BIT6
               //#define P07_OpenDrain_Mode    P0M1|=SET_BIT7;P0M2|=SET_BIT7
               //#define P10_OpenDrain_Mode    P1M1|=SET_BIT0;P1M2|=SET_BIT0
-              //#define P11_OpenDrain_Mode    P1M1|=SET_BIT1;P1M2|=SET_BIT1
-C51 COMPILER V9.56.0.0   DEMO                                                              12/29/2017 19:35:15 PAGE 3   
+C51 COMPILER V9.56.0.0   DEMO                                                              12/29/2017 20:51:25 PAGE 3   
 
+              //#define P11_OpenDrain_Mode    P1M1|=SET_BIT1;P1M2|=SET_BIT1
               //#define P12_OpenDrain_Mode    P1M1|=SET_BIT2;P1M2|=SET_BIT2
               //#define P13_OpenDrain_Mode    P1M1|=SET_BIT3;P1M2|=SET_BIT3
               //#define P14_OpenDrain_Mode    P1M1|=SET_BIT4;P1M2|=SET_BIT4
@@ -139,85 +140,89 @@ line level    source
               ////--------- Define all port as quasi mode ---------
               //#define Set_All_GPIO_Quasi_Mode     P0M1=0;P0M1=0;P1M1=0;P1M2=0;P2M1=0;P2M2=0;P3M1=0;P3M2=0
               #endif
- 119          
- 120          /*------------------------------------------------
- 121          The main C function.  Program execution starts
- 122          here after stack initialization.
- 123          ------------------------------------------------*/
- 124          
- 125          void main (void) 
- 126          #if 1
- 127          {
- 128   1        UINT8 step = 0,n=0;
- 129   1        sys_init();
- 130   1        while(1)
- 131   1        {
- 132   2          switch(step)
- 133   2          {
- 134   3            case 0:
- 135   3            {
- 136   4              POWER_ON_OFF();
- 137   4              step = 1;
- 138   4              break;
- 139   4            }
- 140   3            case 1:
- 141   3            {
- 142   4              SYS_MODE();
- 143   4              step = 2;
- 144   4              break;
- 145   4            }
- 146   3            case 2:
- 147   3            {
- 148   4              SYS_SOURCE();
- 149   4              step = 3;
- 150   4              break;
- 151   4            }
- 152   3            case 3:
- 153   3            {
- 154   4              SYS_VOL_A();
- 155   4              step = 4;
- 156   4              break;
- 157   4            }
- 158   3            case 4:
- 159   3            {
- 160   4              SYS_VOL_B();
- 161   4              step = 5;
- 162   4              break;
- 163   4            }
- 164   3            case 5:
- 165   3            {
- 166   4              IR_Deal();
- 167   4              step = 6;
- 168   4              break;
- 169   4            }
-C51 COMPILER V9.56.0.0   DEMO                                                              12/29/2017 19:35:15 PAGE 4   
+ 120          
+ 121          /*------------------------------------------------
+ 122          The main C function.  Program execution starts
+ 123          here after stack initialization.
+ 124          ------------------------------------------------*/
+ 125          
+ 126          void main (void) 
+ 127          #if 1
+ 128          {
+ 129   1        UINT8 step = 0,n=0;
+ 130   1        sys_init();
+ 131   1        while(1)
+ 132   1        {
+ 133   2          switch(step)
+ 134   2          {
+ 135   3            case 0:
+ 136   3            {
+ 137   4              POWER_ON_OFF();
+ 138   4              step = 1;
+ 139   4              break;
+ 140   4            }
+ 141   3            case 1:
+ 142   3            {
+ 143   4              SYS_MODE();
+ 144   4              step = 2;
+ 145   4              break;
+ 146   4            }
+ 147   3            case 2:
+ 148   3            {
+ 149   4              SYS_SOURCE();
+ 150   4              step = 3;
+ 151   4              break;
+ 152   4            }
+ 153   3            case 3:
+ 154   3            {
+ 155   4              SYS_VOL_A();
+ 156   4              step = 4;
+ 157   4              break;
+ 158   4            }
+ 159   3            case 4:
+ 160   3            {
+ 161   4              SYS_VOL_B();
+ 162   4              step = 5;
+ 163   4              break;
+ 164   4            }
+ 165   3            case 5:
+ 166   3            {
+ 167   4              if(nm)
+ 168   4              {
+ 169   5                IR_Deal();
+C51 COMPILER V9.56.0.0   DEMO                                                              12/29/2017 20:51:25 PAGE 4   
 
- 170   3            case 6:
- 171   3            {
- 172   4              KEY_EVENT();
- 173   4              step = 7;
- 174   4              break;
- 175   4            }
- 176   3            case 7:
- 177   3            {
- 178   4              LED_DISPLAY();
- 179   4              step = 0;
- 180   4              break;
- 181   4            }
- 182   3      //      case 8:
- 183   3      //      {
- 184   3      //        Bluetooth_Test_Task();  
- 185   3      //        step = 0;     
- 186   3      //        break;
- 187   3      //      }
- 188   3            default:
- 189   3              step = 0;
- 190   3          }
- 191   2          
- 192   2        }
- 193   1      }
- 194          #endif
- 195          #if 0
+ 170   5                nm = 0;
+ 171   5              }
+ 172   4              step = 6;
+ 173   4              break;
+ 174   4            }
+ 175   3            case 6:
+ 176   3            {
+ 177   4              KEY_EVENT();
+ 178   4              step = 7;
+ 179   4              break;
+ 180   4            }
+ 181   3            case 7:
+ 182   3            {
+ 183   4              LED_DISPLAY();
+ 184   4              step = 0;
+ 185   4              break;
+ 186   4            }
+ 187   3      //      case 8:
+ 188   3      //      {
+ 189   3      //        Bluetooth_Test_Task();  
+ 190   3      //        step = 0;     
+ 191   3      //        break;
+ 192   3      //      }
+ 193   3            default:
+ 194   3              step = 0;
+ 195   3          }
+ 196   2          
+ 197   2        }
+ 198   1      }
+ 199          #endif
+ 200          #if 0
               {
               //  unsigned char temp;
                 Set_All_GPIO_Quasi_Mode;          // Define in Function_define.h
@@ -249,13 +254,13 @@ line level    source
               #endif
               
               #if 1
+C51 COMPILER V9.56.0.0   DEMO                                                              12/29/2017 20:51:25 PAGE 5   
+
                 
                 while(1)
                 {
                   clr_GPIO1;                      // Tiny board GPIO1 LED define
                   P0 = 0x00;
-C51 COMPILER V9.56.0.0   DEMO                                                              12/29/2017 19:35:15 PAGE 5   
-
                   P2 = 0x00;
                   P1 = 0x00;
                   Timer0_Delay1ms(30);
@@ -270,13 +275,13 @@ line level    source
               
               }
               #endif
- 246          
- 247          
- 248          
+ 251          
+ 252          
+ 253          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    115    ----
+   CODE SIZE        =    122    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
