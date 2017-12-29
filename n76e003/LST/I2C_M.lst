@@ -1,4 +1,4 @@
-C51 COMPILER V9.56.0.0   I2C_M                                                             12/29/2017 17:20:15 PAGE 1   
+C51 COMPILER V9.56.0.0   I2C_M                                                             12/29/2017 19:35:17 PAGE 1   
 
 
 C51 COMPILER V9.56.0.0, COMPILATION OF MODULE I2C_M
@@ -62,7 +62,7 @@ line level    source
   43          //========================================================================================================
   44          void  delay(void)
   45          {
-C51 COMPILER V9.56.0.0   I2C_M                                                             12/29/2017 17:20:15 PAGE 2   
+C51 COMPILER V9.56.0.0   I2C_M                                                             12/29/2017 19:35:17 PAGE 2   
 
   46   1          UINT16 i = 0;
   47   1          for(i=0;i<50;i++);
@@ -126,7 +126,7 @@ line level    source
  105          void writebyte_I2C(UINT8 data_I2C)
  106          {
  107   1          UINT8 i,temp;
-C51 COMPILER V9.56.0.0   I2C_M                                                             12/29/2017 17:20:15 PAGE 3   
+C51 COMPILER V9.56.0.0   I2C_M                                                             12/29/2017 19:35:17 PAGE 3   
 
  108   1          temp = data_I2C;
  109   1          for(i = 0;i < 8;i++)
@@ -190,7 +190,7 @@ line level    source
               void Init_I2C(void)
               {
                   P13_OpenDrain_Mode;         // Modify SCL pin to Open drain mode. don't forget the pull high resister in cir
-C51 COMPILER V9.56.0.0   I2C_M                                                             12/29/2017 17:20:15 PAGE 4   
+C51 COMPILER V9.56.0.0   I2C_M                                                             12/29/2017 19:35:17 PAGE 4   
 
              -cuit
                   P14_OpenDrain_Mode;         // Modify SDA pin to Open drain mode. don't forget the pull high resister in cir
@@ -254,7 +254,7 @@ line level    source
                   while (STO);
               }
               //========================================================================================================
-C51 COMPILER V9.56.0.0   I2C_M                                                             12/29/2017 17:20:15 PAGE 5   
+C51 COMPILER V9.56.0.0   I2C_M                                                             12/29/2017 19:35:17 PAGE 5   
 
               UINT8 I2C_Receive_Command(UINT8 u8Address, UINT8* p8Data, UINT32 u32ByteSize)
               {
@@ -318,7 +318,7 @@ line level    source
                   if (I2STAT != 0x58)              
                       I2C_Error();
               
-C51 COMPILER V9.56.0.0   I2C_M                                                             12/29/2017 17:20:15 PAGE 6   
+C51 COMPILER V9.56.0.0   I2C_M                                                             12/29/2017 19:35:17 PAGE 6   
 
                   /* Step7 */
                   set_STO;
@@ -382,7 +382,7 @@ line level    source
               //--------------------------------------------------------------------------------------------
                   /* Step6 */
                   do{
-C51 COMPILER V9.56.0.0   I2C_M                                                             12/29/2017 17:20:15 PAGE 7   
+C51 COMPILER V9.56.0.0   I2C_M                                                             12/29/2017 19:35:17 PAGE 7   
 
                       set_STO;
                       clr_SI;
@@ -446,7 +446,7 @@ line level    source
                   
                   /* Step13 */
                   clr_STA;                                    //STA needs to be cleared after START codition is generate
-C51 COMPILER V9.56.0.0   I2C_M                                                             12/29/2017 17:20:15 PAGE 8   
+C51 COMPILER V9.56.0.0   I2C_M                                                             12/29/2017 19:35:17 PAGE 8   
 
              -d
                   I2DAT = (EEPROM_SLA | EEPROM_RD);
@@ -510,7 +510,7 @@ MODULE INFORMATION:   STATIC OVERLAYABLE
    PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----       9
    IDATA SIZE       =   ----    ----
-C51 COMPILER V9.56.0.0   I2C_M                                                             12/29/2017 17:20:15 PAGE 9   
+C51 COMPILER V9.56.0.0   I2C_M                                                             12/29/2017 19:35:17 PAGE 9   
 
    BIT SIZE         =   ----       2
 END OF MODULE INFORMATION.

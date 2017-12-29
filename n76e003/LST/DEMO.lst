@@ -1,4 +1,4 @@
-C51 COMPILER V9.56.0.0   DEMO                                                              12/29/2017 17:20:13 PAGE 1   
+C51 COMPILER V9.56.0.0   DEMO                                                              12/29/2017 19:35:15 PAGE 1   
 
 
 C51 COMPILER V9.56.0.0, COMPILATION OF MODULE DEMO
@@ -62,7 +62,7 @@ line level    source
               //#define P02_Quasi_Mode        P0M1&=~SET_BIT2;P0M2&=~SET_BIT2
               //#define P03_Quasi_Mode        P0M1&=~SET_BIT3;P0M2&=~SET_BIT3
               //#define P04_Quasi_Mode        P0M1&=~SET_BIT4;P0M2&=~SET_BIT4
-C51 COMPILER V9.56.0.0   DEMO                                                              12/29/2017 17:20:13 PAGE 2   
+C51 COMPILER V9.56.0.0   DEMO                                                              12/29/2017 19:35:15 PAGE 2   
 
               //#define P05_Quasi_Mode        P0M1&=~SET_BIT5;P0M2&=~SET_BIT5
               //#define P06_Quasi_Mode        P0M1&=~SET_BIT6;P0M2&=~SET_BIT6
@@ -126,7 +126,7 @@ line level    source
               //#define P07_OpenDrain_Mode    P0M1|=SET_BIT7;P0M2|=SET_BIT7
               //#define P10_OpenDrain_Mode    P1M1|=SET_BIT0;P1M2|=SET_BIT0
               //#define P11_OpenDrain_Mode    P1M1|=SET_BIT1;P1M2|=SET_BIT1
-C51 COMPILER V9.56.0.0   DEMO                                                              12/29/2017 17:20:13 PAGE 3   
+C51 COMPILER V9.56.0.0   DEMO                                                              12/29/2017 19:35:15 PAGE 3   
 
               //#define P12_OpenDrain_Mode    P1M1|=SET_BIT2;P1M2|=SET_BIT2
               //#define P13_OpenDrain_Mode    P1M1|=SET_BIT3;P1M2|=SET_BIT3
@@ -190,7 +190,7 @@ line level    source
  167   4              step = 6;
  168   4              break;
  169   4            }
-C51 COMPILER V9.56.0.0   DEMO                                                              12/29/2017 17:20:13 PAGE 4   
+C51 COMPILER V9.56.0.0   DEMO                                                              12/29/2017 19:35:15 PAGE 4   
 
  170   3            case 6:
  171   3            {
@@ -201,29 +201,23 @@ line level    source
  176   3            case 7:
  177   3            {
  178   4              LED_DISPLAY();
- 179   4              step = 8;
+ 179   4              step = 0;
  180   4              break;
  181   4            }
- 182   3            case 8:
- 183   3              if(BT_POWER)
- 184   3              {
- 185   4                if(BT_DET)
- 186   4                {
- 187   5                  Bluetooth_Test_Task();  
- 188   5                  BT_connect = 0;
- 189   5                }
- 190   4                else
- 191   4                {
- 192   5                  BT_connect = 1;
- 193   5                }
- 194   4              }
- 195   3              step = 0;     
- 196   3          }
- 197   2          
- 198   2        }
- 199   1      }
- 200          #endif
- 201          #if 0
+ 182   3      //      case 8:
+ 183   3      //      {
+ 184   3      //        Bluetooth_Test_Task();  
+ 185   3      //        step = 0;     
+ 186   3      //        break;
+ 187   3      //      }
+ 188   3            default:
+ 189   3              step = 0;
+ 190   3          }
+ 191   2          
+ 192   2        }
+ 193   1      }
+ 194          #endif
+ 195          #if 0
               {
               //  unsigned char temp;
                 Set_All_GPIO_Quasi_Mode;          // Define in Function_define.h
@@ -254,14 +248,14 @@ line level    source
                 }
               #endif
               
-C51 COMPILER V9.56.0.0   DEMO                                                              12/29/2017 17:20:13 PAGE 5   
-
               #if 1
                 
                 while(1)
                 {
                   clr_GPIO1;                      // Tiny board GPIO1 LED define
                   P0 = 0x00;
+C51 COMPILER V9.56.0.0   DEMO                                                              12/29/2017 19:35:15 PAGE 5   
+
                   P2 = 0x00;
                   P1 = 0x00;
                   Timer0_Delay1ms(30);
@@ -276,13 +270,13 @@ line level    source
               
               }
               #endif
- 252          
- 253          
- 254          
+ 246          
+ 247          
+ 248          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    135    ----
+   CODE SIZE        =    115    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

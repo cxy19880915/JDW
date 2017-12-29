@@ -36,12 +36,12 @@ void	POWER_ON_OFF(void)
 		sys_flag = sys_flag | sys_mode;
 		mode_in--;
 		SYS_MODE();
-		sys_flag = sys_flag | sys_source;
-		source_in--;
-		SYS_SOURCE();
-		sys_flag = sys_flag | sys_volA;
-		VOL_level--;
-		SYS_VOL_A();
+//		sys_flag = sys_flag | sys_source;
+//		source_in--;
+//		SYS_SOURCE();
+//		sys_flag = sys_flag | sys_volA;
+//		VOL_level--;
+//		SYS_VOL_A();
 		MUTE = 0;
 		
 		

@@ -176,23 +176,17 @@ void main (void)
 			case 7:
 			{
 				LED_DISPLAY();
-				step = 8;
+				step = 0;
 				break;
 			}
-			case 8:
-				if(BT_POWER)
-				{
-					if(BT_DET)
-					{
-						Bluetooth_Test_Task();	
-						BT_connect = 0;
-					}
-					else
-					{
-						BT_connect = 1;
-					}
-				}
-				step = 0;			
+//			case 8:
+//			{
+//				Bluetooth_Test_Task();	
+//				step = 0;			
+//				break;
+//			}
+			default:
+				step = 0;
 		}
 		
 	}

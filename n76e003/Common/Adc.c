@@ -20,6 +20,8 @@ extern	void	NPCA110P_MODE(void);
 extern	void	NPCA110P_SOURCE(void);
 extern	void	NPCA110P_VOL_A(void);
 extern	void	NPCA110P_VOL_B(void);
+extern	void	NPCA110P_init(void);
+extern	void Bluetooth_Test_Task(void);
 
 UINT8	adc_start(void)
 {
@@ -63,32 +65,41 @@ void	KEY_EVENT(void)
 			break;
 			
 			case	ir_play:
-				sys_flag = sys_flag | sys_play;
-//				VOL_level--;
-			break;
+//				sys_flag = sys_flag | sys_play;
+//			break;
 			
 			case	ir_fwd:
-				sys_flag = sys_flag | sys_fwd;
+//				sys_flag = sys_flag | sys_fwd;
 //				VOL_level--;
-			break;
+//			break;
 			
 			case	ir_rev:
-				sys_flag = sys_flag | sys_rev;
+					Bluetooth_Test_Task();
+//				sys_flag = sys_flag | sys_rev;
 //				VOL_level--;
 			break;
 			
 			case	ir_hall:
-				sys_flag = sys_flag | sys_hall;
+//				sys_flag = sys_flag | sys_hall;
+				mode_in = 1;
+				NPCA110P_init();
+				led_flag = 1;
 //				VOL_level--;
 			break;
 			
 			case	ir_music:
-				sys_flag = sys_flag | sys_music;
+//				sys_flag = sys_flag | sys_music;
+				mode_in = 2;
+				NPCA110P_init();
+				led_flag = 1;
 //				VOL_level--;
 			break;
 			
 			case	ir_speech:
-				sys_flag = sys_flag | sys_speech;
+//				sys_flag = sys_flag | sys_speech;
+				mode_in = 3;
+				NPCA110P_init();
+				led_flag = 1;
 //				VOL_level--;
 			break;
 			

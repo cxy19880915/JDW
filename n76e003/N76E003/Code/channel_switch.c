@@ -1,6 +1,8 @@
 #include "Common.h"
 #include "config.h"
 
+void	NPCA110P_VOL(void);
+void	NPCA110P_SOURCE(void);
 extern	UINT8 VOL_LED;
 extern	bit	led_flag;
 extern	void	delay(void);
@@ -42,13 +44,14 @@ void	NPCA110P_init(void)
 	int i;
 //	source_in = 1,mode_in = 1;
 //	GPIO_MUTE();
+	MUTE = 1;
 	switch(mode_in)
 	{
 		case	1:
 				for(i=0;i<308;i++)
 				{
 					I2C_Write_Command(NPCA110P_EEPROM_SLA,(g_abMax1xDSPCommands+i*3),3);//924);
-					delay();
+					delay();delay();
 				}
 				break;
 		case	2:
@@ -68,6 +71,10 @@ void	NPCA110P_init(void)
 		default:
 			break;
 	}
+	NPCA110P_SOURCE();
+	VOL_level = 22;
+	NPCA110P_VOL();
+	MUTE = 0;
 //	source_in--;
 //	NPCA110P_SOURCE();
 //	GPIO_MUTE();
@@ -77,156 +84,189 @@ void	NPCA110P_VOL(void)
 	switch(VOL_level)
 	{
 		case	0:
-			volume_Control[2]=0x9a;
+//			GPIO_MUTE();
+			volume_Control[0]=0x00;
+			volume_Control[2]=0x00;
 			I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
 			break;
 		
 		case	1:
-			volume_Control[2]=0x9a;
+//			GPIO_MUTE();
+			volume_Control[0]=0x00;
+			volume_Control[2]=0x50;
 			I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
 			break;
 		
 		case	2:
-			volume_Control[2]=0x9a;
+			volume_Control[0]=0x00;
+			volume_Control[2]=0x64;
 			I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
 			break;
 		
 		case	3:
-			volume_Control[2]=0x9a;
+			volume_Control[0]=0x00;
+			volume_Control[2]=0x96;
 			I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
 			break;
 		
 		case	4:
-			volume_Control[2]=0x9a;
+			volume_Control[0]=0x00;
+			volume_Control[2]=0xc8;
 			I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
 			break;
 		
 		case	5:
-			volume_Control[2]=0x9a;
+			volume_Control[0]=0x00;
+			volume_Control[2]=0xfa;
 			I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
 			break;
 		
 		case	6:
-			volume_Control[2]=0x9a;
+			volume_Control[0]=0x01;
+			volume_Control[2]=0x13;
 			I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
 			break;
 		
 		case	7:
-			volume_Control[2]=0x9a;
+			volume_Control[0]=0x01;
+			volume_Control[2]=0x2c;
 			I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
 			break;
 		
 		case	8:
-			volume_Control[2]=0x9a;
+			volume_Control[0]=0x01;
+			volume_Control[2]=0x31;
 			I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
 			break;
 		
 		case	9:
-			volume_Control[2]=0x9a;
+			volume_Control[0]=0x01;
+			volume_Control[2]=0x36;
 			I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
 			break;
 		
 		case	10:
-			volume_Control[2]=0x9a;
+			volume_Control[0]=0x01;
+			volume_Control[2]=0x3b;
 			I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
 			break;
 		
 		case	11:
-			volume_Control[2]=0x9a;
+			volume_Control[0]=0x01;
+			volume_Control[2]=0x40;
 			I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
 			break;
 		
 		case	12:
-			volume_Control[2]=0x9a;
+			volume_Control[0]=0x01;
+			volume_Control[2]=0x45;
 			I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
 			break;
 		
 		case	13:
-			volume_Control[2]=0x9a;
+			volume_Control[0]=0x01;
+			volume_Control[2]=0x4a;
 			I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
 			break;
 		
 		case	14:
-			volume_Control[2]=0x9a;
+			volume_Control[0]=0x01;
+			volume_Control[2]=0x4f;
 			I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
 			break;
 		
 		case	15:
-			volume_Control[2]=0x9a;
+			volume_Control[0]=0x01;
+			volume_Control[2]=0x54;
 			I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
 			break;
 		
 		case	16:
-			volume_Control[2]=0x9a;
+			volume_Control[0]=0x01;
+			volume_Control[2]=0x59;
 			I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
 			break;
 		
 		case	17:
-			volume_Control[2]=0x9a;
+			volume_Control[0]=0x01;
+			volume_Control[2]=0x5e;
 			I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
 			break;
 		
 		case	18:
-			volume_Control[2]=0x9a;
+			volume_Control[0]=0x01;
+			volume_Control[2]=0x63;
 			I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
 			break;
 		
 		case	19:
-			volume_Control[2]=0x9a;
+			volume_Control[0]=0x01;
+			volume_Control[2]=0x68;
 			I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
 			break;
 		
 		case	20:
-			volume_Control[2]=0x9a;
+			volume_Control[0]=0x01;
+			volume_Control[2]=0x6d;
 			I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
 			break;
 		
 		case	21:
-			volume_Control[2]=0x9a;
+			volume_Control[0]=0x01;
+			volume_Control[2]=0x72;
 			I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
 			break;
 		
 		case	22:
-			volume_Control[2]=0x9a;
+			volume_Control[0]=0x01;
+			volume_Control[2]=0x77;
 			I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
 			break;
 		
 		case	23:
-			volume_Control[2]=0x9a;
+			volume_Control[0]=0x01;
+			volume_Control[2]=0x7c;
 			I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
 			break;
 		
 		case	24:
-			volume_Control[2]=0x9a;
+			volume_Control[0]=0x01;
+			volume_Control[2]=0x81;
 			I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
 			break;
 		
 		case	25:
-			volume_Control[2]=0x9a;
+			volume_Control[0]=0x01;
+			volume_Control[2]=0x86;
 			I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
 			break;
 		
 		case	26:
-			volume_Control[2]=0x9a;
+			volume_Control[0]=0x01;
+			volume_Control[2]=0x8b;
 			I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
 			break;
 		
 		case	27:
-			volume_Control[2]=0x9a;
+			volume_Control[0]=0x01;
+			volume_Control[2]=0x90;
 			I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
 			break;
 		
 		case	28:
-			volume_Control[2]=0x9a;
+			volume_Control[0]=0x01;
+			volume_Control[2]=0x95;
 			I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
 			break;
 		
 		case	29:
-			volume_Control[2]=0x9a;
+			volume_Control[0]=0x01;
+			volume_Control[2]=0x98;
 			I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
 			break;
 		
 		case	30:
+			volume_Control[0]=0x01;
 			volume_Control[2]=0x9a;
 			I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
 			break;

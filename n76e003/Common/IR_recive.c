@@ -51,6 +51,8 @@ extern	UINT8 KEY_VALUE;
 extern	UINT8 mode_in;
 extern	UINT8		key_flag;
 
+UINT8	ir_long=0;
+
 void dat_clr(void);
 
 void IR_init(void)
@@ -217,16 +219,31 @@ void IR_Deal(void)
 		switch(key_press)//switch(ir.dat.data0)
 		{
 			case	0x10:				//PLAY
-				KEY_VALUE = ir_play;
-				key_flag = 0x80;
+				ir_long++;
+				if(ir_long>=2)
+				{
+					key_flag = 0x80;
+					KEY_VALUE = ir_play;
+					ir_long = 0;
+				}				
 			break;
 			case	0x11:				//FWD
-				KEY_VALUE = ir_fwd;
-				key_flag = 0x80;
+				ir_long++;
+				if(ir_long>=2)
+				{
+					key_flag = 0x80;
+					KEY_VALUE = ir_fwd;
+					ir_long = 0;
+				}	
 				break;
 			case	0x16:				//REV
-				key_flag = 0x80;
-				KEY_VALUE = ir_rev;
+				ir_long++;
+				if(ir_long>=2)
+				{
+					key_flag = 0x80;
+					KEY_VALUE = ir_rev;
+					ir_long = 0;
+				}
 				break;
 			case	0x04:				//TREBLE-
 				break;
@@ -237,8 +254,13 @@ void IR_Deal(void)
 			case	0x0c:				//BLUETOOTH
 				break;
 			case	0x41:				//SOURCE
-				key_flag = 0x80;
-				KEY_VALUE = ir_source;
+				ir_long++;
+				if(ir_long>=2)
+				{
+					key_flag = 0x80;
+					KEY_VALUE = ir_source;
+					ir_long = 0;
+				}
 				break;
 			case	0x4a:				//HALL
 				key_flag = 0x80;
@@ -253,20 +275,40 @@ void IR_Deal(void)
 				KEY_VALUE = ir_speech;
 				break;
 			case	0x12:				//VOL+
-				key_flag = 0x80;
-				KEY_VALUE = ir_volA;
+				ir_long++;
+				if(ir_long>=2)
+				{
+					key_flag = 0x80;
+					KEY_VALUE = ir_volA;
+					ir_long = 0;
+				}
 				break;
 			case	0x13:				//VOL-
-				key_flag = 0x80;
-				KEY_VALUE = ir_volB;
+				ir_long++;
+				if(ir_long>=2)
+				{
+					key_flag = 0x80;
+					KEY_VALUE = ir_volB;
+					ir_long = 0;
+				}
 				break;
 			case	0x14:				//ON-OFF
-				key_flag = 0x80;
-				KEY_VALUE = ir_power;
+				ir_long++;
+				if(ir_long>=2)
+				{
+					key_flag = 0x80;
+					KEY_VALUE = ir_power;
+					ir_long = 0;
+				}
 				break;
 			case	0x15:				//MUTE
-				key_flag = 0x80;
-				KEY_VALUE = ir_mute;
+				ir_long++;
+				if(ir_long>=2)
+				{
+					key_flag = 0x80;
+					KEY_VALUE = ir_mute;
+					ir_long = 0;
+				}
 				break;
 			case	0x18:				//HDMI
 				break;
