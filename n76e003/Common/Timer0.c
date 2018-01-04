@@ -41,21 +41,25 @@ void Timer0_ISR (void) interrupt 1
 	{
 		adc_data = adc_start();
 		adc_V =	adc_data;
-		if((key_status & 0x80)||(key_flag & 0x80))mn++;
-		if(mn>15)
+		if((key_status & 0x80)||(ir_status & 0x80))
+		{mn++;nm++;}
+		if(nm>15)
 		{
 			if(ir_count>2)
 			{
-				ir_status = 0x01;
+				ir_status = ir_status | 0x02;
+				key_flag = 0x80;
 			}
 			if(ir_count==1)
 			{
-				ir_status = 0x02;
+				ir_status = ir_status | 0x01;
 			}
-			if(ir_count==0)
-			{
-				ir_status = 0x04;
-			}
+//			if(ir_count==0)
+//			{
+//				ir_status = ir_status | 0x04;
+//			}
+			nm = 0;
+			ir_count = 0;
 		}
 		if(adc_V < 0xfd)				//key down
 		{

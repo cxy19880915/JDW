@@ -122,7 +122,7 @@ extern UINT8 Dat_count,nm;
 The main C function.  Program execution starts
 here after stack initialization.
 ------------------------------------------------*/
-
+extern	UINT8 ir_status;
 void main (void) 
 #if 1
 {
@@ -164,7 +164,7 @@ void main (void)
 			}
 			case 5:
 			{
-//				if(nm)
+//				if(ir_status)
 //				{
 					IR_Deal();
 //					nm = 0;

@@ -12,7 +12,7 @@ UINT8	adc_RH = 0;
 //#define		VOL_A		0x20
 //#define		VOL_B		0x30
 //#define		SOURCE	0x40
-
+extern	UINT8 ir_status;
 extern	void	GPIO_MUTE(void);
 extern	UINT8 VOL_LED;
 extern	UINT16	sys_flag;
@@ -139,6 +139,14 @@ void	KEY_EVENT(void)
 //			led_flag = 1;
 //		}
 		key_flag = 0;
+//		if(ir_status&0x02)
+//		{
+//			ir_status = ir_status | 0x01;
+//		}
+//		if(ir_status&0x01)
+//		{
+//			ir_status = 0x00;
+//		}
 	}
 }
 
