@@ -7,7 +7,8 @@ extern	void __delay_10ms( UINT16 u16CNT );
 
 UINT16	adc_data = 0;
 UINT8	adc_V = 0;
-bit		adc_V_flag = 0,VA=0,VB=0;
+UINT8 key_status = 0;
+bit		adc_V_flag = 0;//,VA=0,VB=0,V_M = 0,V_S = 0,V_power = 0;
 bit		adc_PWM_flag = 0;
 //UINT8	u8TH0_Tmp_1ms,u8TL0_Tmp_1ms;
 UINT8	adc_flag=0,nm=0,mn=0;
@@ -35,52 +36,96 @@ void Timer0_ISR (void) interrupt 1
 	clr_TR0;
 	TH0 = TIMER_DIV12_VALUE_10ms;
     TL0 = TIMER_DIV12_VALUE_10ms;
-	adc_flag++;mn++;
-	if(mn>20)
-	{
-		nm = 1;
-	}
+	adc_flag++;
+//	if(mn>20)
+//	{
+//		nm = 1;
+//	}
 	if(adc_flag>5)//50ms
 	{
 		adc_data = adc_start();
 		adc_V =	adc_data;
-		if(adc_V < 0xfd)
+		if(key_status & 0x80)mn++;
+		if(adc_V < 0xfd)				//key down
 		{
 			if(adc_V > V_2_4)
 			{
-				key_flag = 1;
-				KEY_VALUE =  POWER;
-				VA = 0;VB = 0;
-//				__delay_10ms(1);
+//				if(key_status&0x01)
+//				{
+//					key_flag = 1;
+//					KEY_VALUE =  POWER;
+//				}				
+				key_status = key_status | 0x81;
 			}
 			else if(adc_V > V_2_0)
 			{
-				key_flag = 1;
-				KEY_VALUE =  VOL_A;
-				if(VA==0)	__delay_10ms(30);
-				VA = 1;VB = 0;
+				if((key_status&0x02)&&(mn>15))
+				{
+					key_flag = 1;
+					KEY_VALUE =  VOL_A;
+				}
+				key_status = key_status | 0x82;
 			}
 			else if(adc_V > V_1_5)
 			{
-				key_flag = 1;
-				KEY_VALUE =  VOL_B;
-				if(VB==0)	__delay_10ms(30);
-				VB = 1;VA = 0;
+				if((key_status&0x04)&&(mn>15))
+				{
+					key_flag = 1;
+					KEY_VALUE =  VOL_B;
+				}
+				key_status = key_status | 0x84;
 			}
 			else if(adc_V > V_1_2)
 			{
-				key_flag = 1;
-				KEY_VALUE = SOURCE;
-				VA = 0;VB = 0;
-				__delay_10ms(30);
+//				if(key_status&0x08)
+//				{
+//					key_flag = 1;
+//					KEY_VALUE = SOURCE;
+//				}
+				key_status = key_status | 0x88;
 			}
 			else if(adc_V > V_0_7)
 			{
-				key_flag = 1;
-				KEY_VALUE = MODE;
-				VA = 0;VB = 0;
-				__delay_10ms(15);
+//				if(key_status&0x10)
+//				{
+//					key_flag = 1;
+//					KEY_VALUE = MODE;					
+//				}
+				key_status = key_status | 0x90;
 			}
+		}
+		else
+		{
+			if(key_status&0x80)
+			{
+				if(key_status&0x01)
+				{
+					key_flag = 1;
+					KEY_VALUE =  POWER;
+				}	
+				if(key_status&0x02)
+				{
+					key_flag = 1;
+					KEY_VALUE =  VOL_A;
+				}
+				if(key_status&0x04)
+				{
+					key_flag = 1;
+					KEY_VALUE =  VOL_B;
+				}
+				if(key_status&0x08)
+				{
+					key_flag = 1;
+					KEY_VALUE = SOURCE;
+				}
+				if(key_status&0x10)
+				{
+					key_flag = 1;
+					KEY_VALUE = MODE;					
+				}
+			}
+			key_status = key_status & 0x00;//key up
+			mn = 0;
 		}
 		adc_flag = 0;
 	}
