@@ -4,7 +4,7 @@ extern	UINT8	adc_count,KEY_VALUE;
 extern	bit		ms_800_flag,ms_200_flag;
 extern	UINT8	key_flag;
 extern	void __delay_10ms( UINT16 u16CNT );
-
+extern	UINT8 ir_status,ir_count;
 UINT16	adc_data = 0;
 UINT8	adc_V = 0;
 UINT8 key_status = 0;
@@ -37,24 +37,30 @@ void Timer0_ISR (void) interrupt 1
 	TH0 = TIMER_DIV12_VALUE_10ms;
     TL0 = TIMER_DIV12_VALUE_10ms;
 	adc_flag++;
-//	if(mn>20)
-//	{
-//		nm = 1;
-//	}
 	if(adc_flag>5)//50ms
 	{
 		adc_data = adc_start();
 		adc_V =	adc_data;
-		if(key_status & 0x80)mn++;
+		if((key_status & 0x80)||(key_flag & 0x80))mn++;
+		if(mn>15)
+		{
+			if(ir_count>2)
+			{
+				ir_status = 0x01;
+			}
+			if(ir_count==1)
+			{
+				ir_status = 0x02;
+			}
+			if(ir_count==0)
+			{
+				ir_status = 0x04;
+			}
+		}
 		if(adc_V < 0xfd)				//key down
 		{
 			if(adc_V > V_2_4)
-			{
-//				if(key_status&0x01)
-//				{
-//					key_flag = 1;
-//					KEY_VALUE =  POWER;
-//				}				
+			{			
 				key_status = key_status | 0x81;
 			}
 			else if(adc_V > V_2_0)

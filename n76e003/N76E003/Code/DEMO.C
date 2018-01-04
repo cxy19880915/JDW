@@ -164,11 +164,11 @@ void main (void)
 			}
 			case 5:
 			{
-				if(nm)
-				{
+//				if(nm)
+//				{
 					IR_Deal();
-					nm = 0;
-				}
+//					nm = 0;
+//				}
 				step = 6;
 				break;
 			}
