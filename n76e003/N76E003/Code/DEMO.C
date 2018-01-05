@@ -30,6 +30,7 @@ extern	void	SYS_SOURCE(void);
 extern	void	SYS_VOL_A(void);
 extern	void	SYS_VOL_B(void);
 extern	void	SYS_MODE(void);
+extern	void	KEY_SCAN(void);
 
 extern unsigned char BT_connect;
 extern UINT8 Dat_count,nm;
@@ -164,21 +165,23 @@ void main (void)
 			}
 			case 5:
 			{
-//				if(ir_status)
-//				{
-					IR_Deal();
-//					nm = 0;
-//				}
+				IR_Deal();
 				step = 6;
 				break;
 			}
-			case 6:
+			case	6:
 			{
-				KEY_EVENT();
+				KEY_SCAN();
 				step = 7;
 				break;
 			}
 			case 7:
+			{
+				KEY_EVENT();
+				step = 8;
+				break;
+			}
+			case 8:
 			{
 				LED_DISPLAY();
 				step = 0;

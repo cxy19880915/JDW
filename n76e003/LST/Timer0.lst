@@ -1,4 +1,4 @@
-C51 COMPILER V9.56.0.0   TIMER0                                                            01/04/2018 23:03:19 PAGE 1   
+C51 COMPILER V9.56.0.0   TIMER0                                                            01/05/2018 15:31:58 PAGE 1   
 
 
 C51 COMPILER V9.56.0.0, COMPILATION OF MODULE TIMER0
@@ -11,17 +11,17 @@ line level    source
    1          #include  "timer0.h"
    2          
    3          extern  UINT8 adc_count,KEY_VALUE;
-   4          extern  bit   ms_800_flag,ms_200_flag;
+   4          extern  bit   Recive_flag;
    5          extern  UINT8 key_flag;
    6          extern  void __delay_10ms( UINT16 u16CNT );
    7          extern  UINT8 ir_status,ir_count;
    8          UINT16  adc_data = 0;
    9          UINT8 adc_V = 0;
   10          UINT8 key_status = 0;
-  11          bit   adc_V_flag = 0;//,VA=0,VB=0,V_M = 0,V_S = 0,V_power = 0;
+  11          bit   _50ms_flag = 0,_50ms_ir=0;//,VA=0,VB=0,V_M = 0,V_S = 0,V_power = 0;
   12          bit   adc_PWM_flag = 0;
   13          //UINT8 u8TH0_Tmp_1ms,u8TL0_Tmp_1ms;
-  14          UINT8 adc_flag=0,nm=0,mn=0;
+  14          UINT8 adc_flag=0,nm=0,mn=0,ir_n=0;
   15          
   16          //#define TH0_INIT_1ms  16000//13290
   17          //#define TL0_INIT_1ms  16000//13290
@@ -39,134 +39,227 @@ line level    source
   29   1        TL0 = LOBYTE(TIMER_DIV12_VALUE_10ms);
   30   1        set_ET0;
   31   1      }
-  32          
-  33          #if 1
-  34          void Timer0_ISR (void) interrupt 1 
-  35          {
-  36   1        clr_TR0;
-  37   1        TH0 = TIMER_DIV12_VALUE_10ms;
-  38   1          TL0 = TIMER_DIV12_VALUE_10ms;
-  39   1        adc_flag++;
-  40   1        if(adc_flag>5)//50ms
-  41   1        {
-  42   2          adc_data = adc_start();
-  43   2          adc_V = adc_data;
-  44   2          if((key_status & 0x80)||(ir_status & 0x80))
-  45   2          {mn++;nm++;}
-  46   2          if(nm>15)
-  47   2          {
-  48   3            if(ir_count>2)
-  49   3            {
-  50   4              ir_status = ir_status | 0x02;
-  51   4              key_flag = 0x80;
-  52   4            }
-  53   3            if(ir_count==1)
-  54   3            {
-C51 COMPILER V9.56.0.0   TIMER0                                                            01/04/2018 23:03:19 PAGE 2   
+  32          void  KEY_SCAN(void)
+  33          {
+  34   1        if(_50ms_flag)
+  35   1        {
+  36   2          adc_data = adc_start();
+  37   2          adc_V = adc_data;
+  38   2          if(key_status & 0x80)
+  39   2              mn++;
+  40   2          if(adc_V < 0xfd)        //key down
+  41   2          {
+  42   3            if(adc_V > V_2_4)
+  43   3            {     
+  44   4              key_status = key_status | 0x81;
+  45   4            }
+  46   3            else if(adc_V > V_2_0)
+  47   3            {
+  48   4              if((key_status&0x02)&&(mn>8))
+  49   4              {
+  50   5                key_flag = 1;
+  51   5                KEY_VALUE =  VOL_A;
+  52   5              }
+  53   4              key_status = key_status | 0x82;
+  54   4            }
+C51 COMPILER V9.56.0.0   TIMER0                                                            01/05/2018 15:31:58 PAGE 2   
 
-  55   4              ir_status = ir_status | 0x01;
-  56   4            }
-  57   3      //      if(ir_count==0)
-  58   3      //      {
-  59   3      //        ir_status = ir_status | 0x04;
-  60   3      //      }
-  61   3            nm = 0;
-  62   3            ir_count = 0;
-  63   3          }
-  64   2          if(adc_V < 0xfd)        //key down
-  65   2          {
-  66   3            if(adc_V > V_2_4)
-  67   3            {     
-  68   4              key_status = key_status | 0x81;
-  69   4            }
-  70   3            else if(adc_V > V_2_0)
-  71   3            {
-  72   4              if((key_status&0x02)&&(mn>15))
-  73   4              {
-  74   5                key_flag = 1;
-  75   5                KEY_VALUE =  VOL_A;
-  76   5              }
-  77   4              key_status = key_status | 0x82;
-  78   4            }
-  79   3            else if(adc_V > V_1_5)
-  80   3            {
-  81   4              if((key_status&0x04)&&(mn>15))
-  82   4              {
-  83   5                key_flag = 1;
-  84   5                KEY_VALUE =  VOL_B;
-  85   5              }
-  86   4              key_status = key_status | 0x84;
-  87   4            }
-  88   3            else if(adc_V > V_1_2)
-  89   3            {
-  90   4      //        if(key_status&0x08)
-  91   4      //        {
-  92   4      //          key_flag = 1;
-  93   4      //          KEY_VALUE = SOURCE;
-  94   4      //        }
-  95   4              key_status = key_status | 0x88;
-  96   4            }
-  97   3            else if(adc_V > V_0_7)
-  98   3            {
-  99   4      //        if(key_status&0x10)
- 100   4      //        {
- 101   4      //          key_flag = 1;
- 102   4      //          KEY_VALUE = MODE;         
- 103   4      //        }
- 104   4              key_status = key_status | 0x90;
- 105   4            }
- 106   3          }
- 107   2          else
- 108   2          {
- 109   3            if(key_status&0x80)
- 110   3            {
- 111   4              if(key_status&0x01)
- 112   4              {
- 113   5                key_flag = 1;
- 114   5                KEY_VALUE =  POWER;
- 115   5              } 
- 116   4              if(key_status&0x02)
-C51 COMPILER V9.56.0.0   TIMER0                                                            01/04/2018 23:03:19 PAGE 3   
+  55   3            else if(adc_V > V_1_5)
+  56   3            {
+  57   4              if((key_status&0x04)&&(mn>8))
+  58   4              {
+  59   5                key_flag = 1;
+  60   5                KEY_VALUE =  VOL_B;
+  61   5              }
+  62   4              key_status = key_status | 0x84;
+  63   4            }
+  64   3            else if(adc_V > V_1_2)
+  65   3            {
+  66   4              key_status = key_status | 0x88;
+  67   4            }
+  68   3            else if(adc_V > V_0_7)
+  69   3            {
+  70   4              key_status = key_status | 0x90;
+  71   4            }
+  72   3          }
+  73   2          else
+  74   2          {
+  75   3            if(key_status&0x80)
+  76   3            {
+  77   4              if(key_status&0x01)
+  78   4              {
+  79   5                key_flag = 1;
+  80   5                KEY_VALUE =  POWER;
+  81   5              } 
+  82   4              if(key_status&0x02)
+  83   4              {
+  84   5                key_flag = 1;
+  85   5                KEY_VALUE =  VOL_A;
+  86   5              }
+  87   4              if(key_status&0x04)
+  88   4              {
+  89   5                key_flag = 1;
+  90   5                KEY_VALUE =  VOL_B;
+  91   5              }
+  92   4              if(key_status&0x08)
+  93   4              {
+  94   5                key_flag = 1;
+  95   5                KEY_VALUE = SOURCE;
+  96   5              }
+  97   4              if(key_status&0x10)
+  98   4              {
+  99   5                key_flag = 1;
+ 100   5                KEY_VALUE = MODE;         
+ 101   5              }
+ 102   4            }
+ 103   3            key_status = key_status & 0x00;//key up
+ 104   3            mn = 0;
+ 105   3          }
+ 106   2          _50ms_flag = 0;
+ 107   2        }
+ 108   1      }
+ 109          #if 1
+ 110          void Timer0_ISR (void) interrupt 1 
+ 111          {
+ 112   1        clr_TR0;
+ 113   1        TH0 = TIMER_DIV12_VALUE_10ms;
+ 114   1         TL0 = TIMER_DIV12_VALUE_10ms;
+ 115   1        adc_flag++;ir_n++;
+ 116   1        if(adc_flag>9)
+C51 COMPILER V9.56.0.0   TIMER0                                                            01/05/2018 15:31:58 PAGE 3   
 
- 117   4              {
- 118   5                key_flag = 1;
- 119   5                KEY_VALUE =  VOL_A;
- 120   5              }
- 121   4              if(key_status&0x04)
- 122   4              {
- 123   5                key_flag = 1;
- 124   5                KEY_VALUE =  VOL_B;
- 125   5              }
- 126   4              if(key_status&0x08)
- 127   4              {
- 128   5                key_flag = 1;
- 129   5                KEY_VALUE = SOURCE;
- 130   5              }
- 131   4              if(key_status&0x10)
- 132   4              {
- 133   5                key_flag = 1;
- 134   5                KEY_VALUE = MODE;         
- 135   5              }
- 136   4            }
- 137   3            key_status = key_status & 0x00;//key up
- 138   3            mn = 0;
- 139   3          }
- 140   2          adc_flag = 0;
- 141   2        }
- 142   1        set_TR0;
- 143   1      }
- 144          
- 145          #endif
+ 117   1        {
+ 118   2          _50ms_flag = 1;
+ 119   2          adc_flag = 0;
+ 120   2        }
+ 121   1        if(ir_n>25)
+ 122   1        {
+ 123   2          _50ms_ir = 1;
+ 124   2          ir_n = 0;
+ 125   2        }
+ 126   1        #if 0
+                if(adc_flag>5)//50ms
+                {
+                  adc_data = adc_start();
+                  adc_V = adc_data;
+                  if((key_status & 0x80)||(ir_status & 0x80))
+                  {mn++;nm++;}
+                  if(nm>15)
+                  {
+                    if(ir_count>2)
+                    {
+                      ir_status = ir_status | 0x02;
+                      key_flag = 0x80;
+                    }
+              //      if(ir_count==1)
+              //      {
+              //        ir_status = ir_status | 0x01;
+              //        Recive_flag = 1;
+              //      }
+              //      if(ir_count==0)
+              //      {
+              //        ir_status = ir_status | 0x04;
+              //      }
+                    nm = 0;
+                    ir_count = 0;
+                  }
+                  if(adc_V < 0xfd)        //key down
+                  {
+                    if(adc_V > V_2_4)
+                    {     
+                      key_status = key_status | 0x81;
+                    }
+                    else if(adc_V > V_2_0)
+                    {
+                      if((key_status&0x02)&&(mn>15))
+                      {
+                        key_flag = 1;
+                        KEY_VALUE =  VOL_A;
+                      }
+                      key_status = key_status | 0x82;
+                    }
+                    else if(adc_V > V_1_5)
+                    {
+                      if((key_status&0x04)&&(mn>15))
+                      {
+                        key_flag = 1;
+                        KEY_VALUE =  VOL_B;
+                      }
+                      key_status = key_status | 0x84;
+                    }
+                    else if(adc_V > V_1_2)
+                    {
+              //        if(key_status&0x08)
+C51 COMPILER V9.56.0.0   TIMER0                                                            01/05/2018 15:31:58 PAGE 4   
+
+              //        {
+              //          key_flag = 1;
+              //          KEY_VALUE = SOURCE;
+              //        }
+                      key_status = key_status | 0x88;
+                    }
+                    else if(adc_V > V_0_7)
+                    {
+              //        if(key_status&0x10)
+              //        {
+              //          key_flag = 1;
+              //          KEY_VALUE = MODE;         
+              //        }
+                      key_status = key_status | 0x90;
+                    }
+                  }
+                  else
+                  {
+                    if(key_status&0x80)
+                    {
+                      if(key_status&0x01)
+                      {
+                        key_flag = 1;
+                        KEY_VALUE =  POWER;
+                      } 
+                      if(key_status&0x02)
+                      {
+                        key_flag = 1;
+                        KEY_VALUE =  VOL_A;
+                      }
+                      if(key_status&0x04)
+                      {
+                        key_flag = 1;
+                        KEY_VALUE =  VOL_B;
+                      }
+                      if(key_status&0x08)
+                      {
+                        key_flag = 1;
+                        KEY_VALUE = SOURCE;
+                      }
+                      if(key_status&0x10)
+                      {
+                        key_flag = 1;
+                        KEY_VALUE = MODE;         
+                      }
+                    }
+                    key_status = key_status & 0x00;//key up
+                    mn = 0;
+                  }
+                  adc_flag = 0;
+                }
+                #endif
+ 231   1        set_TR0;
+ 232   1      }
+ 233          
+ 234          #endif
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    325    ----
+   CODE SIZE        =    258    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
+C51 COMPILER V9.56.0.0   TIMER0                                                            01/05/2018 15:31:58 PAGE 5   
+
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =      7    ----
+   DATA SIZE        =      8    ----
    IDATA SIZE       =   ----    ----
-   BIT SIZE         =      2    ----
+   BIT SIZE         =      3    ----
 END OF MODULE INFORMATION.
 
 
