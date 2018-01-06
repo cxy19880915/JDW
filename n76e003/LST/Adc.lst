@@ -1,4 +1,4 @@
-C51 COMPILER V9.56.0.0   ADC                                                               01/05/2018 15:31:58 PAGE 1   
+C51 COMPILER V9.56.0.0   ADC                                                               01/06/2018 10:40:33 PAGE 1   
 
 
 C51 COMPILER V9.56.0.0, COMPILATION OF MODULE ADC
@@ -62,7 +62,7 @@ line level    source
   52   3            break;
   53   3            
   54   3            case  SOURCE:
-C51 COMPILER V9.56.0.0   ADC                                                               01/05/2018 15:31:58 PAGE 2   
+C51 COMPILER V9.56.0.0   ADC                                                               01/06/2018 10:40:33 PAGE 2   
 
   55   3              sys_flag = sys_flag | sys_source;
   56   3      //        source_in++;
@@ -126,7 +126,7 @@ line level    source
  114   3            break;
  115   3            
  116   3            default:
-C51 COMPILER V9.56.0.0   ADC                                                               01/05/2018 15:31:58 PAGE 3   
+C51 COMPILER V9.56.0.0   ADC                                                               01/06/2018 10:40:33 PAGE 3   
 
  117   3              break;
  118   3          }
@@ -190,7 +190,7 @@ line level    source
               {
                 ADCCON0&=0xc0;    //AD转换启动AD标志完成
                 AINDIDS=0x00;   
-C51 COMPILER V9.56.0.0   ADC                                                               01/05/2018 15:31:58 PAGE 4   
+C51 COMPILER V9.56.0.0   ADC                                                               01/06/2018 10:40:33 PAGE 4   
 
                 AIN(AINx);      //通道选择并配置
                 ADCCON1|=SET_BIT0;  //ADC使能
@@ -254,7 +254,7 @@ line level    source
               }
               #endif
 
-C51 COMPILER V9.56.0.0   ADC                                                               01/05/2018 15:31:58 PAGE 5   
+C51 COMPILER V9.56.0.0   ADC                                                               01/06/2018 10:40:33 PAGE 5   
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
