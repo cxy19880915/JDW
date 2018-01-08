@@ -74,7 +74,8 @@ void	KEY_EVENT(void)
 //				sys_flag = sys_flag | sys_fwd;
 //				VOL_level--;
 //			break;
-			
+			case	ir_patch:
+				
 			case	ir_rev:
 					Bluetooth_Test_Task();
 //				sys_flag = sys_flag | sys_rev;

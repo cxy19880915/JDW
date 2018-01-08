@@ -1,4 +1,4 @@
-C51 COMPILER V9.56.0.0   DELAY                                                             01/08/2018 14:36:30 PAGE 1   
+C51 COMPILER V9.56.0.0   DELAY                                                             01/08/2018 16:11:08 PAGE 1   
 
 
 C51 COMPILER V9.56.0.0, COMPILATION OF MODULE DELAY
@@ -62,7 +62,7 @@ line level    source
   45          //    TMOD |= 0x01;                               //Timer0 is 16-bit mode
   46          //    set_TR0;                                    //Start Timer0
   47          //    while (u32CNT != 0)
-C51 COMPILER V9.56.0.0   DELAY                                                             01/08/2018 14:36:30 PAGE 2   
+C51 COMPILER V9.56.0.0   DELAY                                                             01/08/2018 16:11:08 PAGE 2   
 
   48          //    {
   49          //        TL0 = LOBYTE(TIMER_DIV12_VALUE_100us);  //Find  define in "Function_define.h" "TIMER VALUE"
@@ -126,7 +126,7 @@ line level    source
  107          {
  108   1          clr_T2DIV2;                                 //Timer2 Clock = Fsys/4 
  109   1          clr_T2DIV1;
-C51 COMPILER V9.56.0.0   DELAY                                                             01/08/2018 14:36:30 PAGE 3   
+C51 COMPILER V9.56.0.0   DELAY                                                             01/08/2018 16:11:08 PAGE 3   
 
  110   1          set_T2DIV0;
  111   1          set_TR2;                                    //Start Timer2

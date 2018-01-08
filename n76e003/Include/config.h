@@ -36,6 +36,7 @@
 #define		VOL_B		0x30
 #define		SOURCE	0x40
 
+#define		ir_patch					0x08
 #define		ir_play						0x01
 #define		ir_fwd						0x02
 #define		ir_rev						0x03

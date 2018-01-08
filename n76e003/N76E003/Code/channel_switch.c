@@ -14,7 +14,7 @@ extern	void I2C_Write_Command(UINT8 u8Address, UINT8* p8Data, UINT32 u32ByteSize
 void	NPCA110P_SOURCE(void);
 #define		NPCA110P_EEPROM_SLA			0xe6
 
-UINT8	source_in = 1,mode_in = 1,VOL_level = 15;
+UINT8	source_in = 1,mode_in = 2,VOL_level = 15;
 
 //模拟输入通道切换命令：
 const unsigned char code channel_Commands[] = 

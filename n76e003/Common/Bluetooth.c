@@ -6,6 +6,7 @@ extern	UINT8 VOL_LED;
 extern	bit led_flag;
 extern	UINT16	sys_flag;
 extern	UINT8		KEY_VALUE;
+extern	UINT8		ir_bluetooth;
 
 void Bluetooth_Test_Task(void)
 {
@@ -27,7 +28,14 @@ void Bluetooth_Test_Task(void)
 //				VOL_level--;
 			break;
 			
+			case	ir_patch:
+				BT_patch();
+			break;
+			
+			default:
+				break;
 		}
+
 	}
 //	VOL_LED = 1;
 //	led_flag = 1;
@@ -41,15 +49,17 @@ void Bluetooth_Test_Task(void)
 void BT_patch(void)
 {
 		BT_REV = 1;	BT_FWD = 1;
-		__delay_10ms(60);
+		__delay_10ms(300);
 		BT_REV = 0;	BT_FWD = 0;
 		BT_connect = 0;
+		ir_bluetooth = 0;
 }
 void BT_Play_Pause(void)
 {
 		BT_REV = 1;	BT_FWD = 1;
 		__delay_10ms(25);
 		BT_REV = 0;	BT_FWD = 0;
+		ir_bluetooth = 0;
 }
 void BT_REV_TASK(void)
 {

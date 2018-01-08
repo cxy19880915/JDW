@@ -53,7 +53,7 @@ extern	UINT8 mode_in;
 extern	UINT8		key_flag;
 
 bit	ir_long=0,ir_short=0;
-UINT8	ir_play_lg=0,ir_fwd_lg=0,ir_rev_lg=0,ir_source_lg=0,ir_hall_lg=0;
+UINT8	ir_play_lg=0,ir_fwd_lg=0,ir_rev_lg=0,ir_source_lg=0,ir_hall_lg=0,ir_bluetooth=0;
 UINT8	ir_music_lg=0,ir_speech_lg=0,ir_volA_lg=0,ir_volB_lg=0,ir_power_lg=0,ir_mute_lg=0;
 
 void dat_clr(void);
@@ -209,6 +209,7 @@ void Data_Check(void)
 		}
 }
 
+
 void dat_clr(void)
 {
 		UINT8	i;    
@@ -239,8 +240,11 @@ void IR_Deal(void)
 				switch(key_PRE)//switch(ir.dat.data0)
 				{
 					case	0x10:				//PLAY
+						if(ir_bluetooth<4)
+						{
 							key_flag = 0x80;
-							KEY_VALUE = ir_play;			
+							KEY_VALUE = ir_play;
+						}										
 					break;
 					case	0x11:				//FWD
 							key_flag = 0x80;
@@ -315,10 +319,14 @@ void IR_Deal(void)
 			if(ir_count>2)
 			switch(key_press)//switch(ir.dat.data0)
 			{
-//				case	0x10:				//PLAY
-//						key_flag = 0x80;
-//						KEY_VALUE = ir_play;			
-//				break;
+				case	0x10:				//PLAY
+					ir_bluetooth++;
+					if(ir_bluetooth>4)
+					{
+						key_flag = 0x80;
+						KEY_VALUE = ir_patch;	
+					}
+				break;
 //				case	0x11:				//FWD
 //						key_flag = 0x80;
 //						KEY_VALUE = ir_fwd;

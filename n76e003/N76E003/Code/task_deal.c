@@ -150,17 +150,24 @@ void  GPIO_MUTE(void)
 
 void	LED_DISPLAY(void)
 {
+		if(!BT_DET)
+		{
+			VOL_LED = 1;
+			led_flag = 1;
+			__delay_10ms(20);
+		}
 		if((MUTE)&&(ST_BY))
 		{
 			VOL_LED = 1;
 			led_flag = 1;
+			__delay_10ms(70);
 		}
 	if(led_flag)
 	{
 		if(VOL_LED)
 		{
 			AUX1_LED = 1;AUX2_LED = 1;BT_LED = 1;
-			__delay_10ms(15);
+			__delay_10ms(70);
 		}
 		if(source_in == 1)
 		{

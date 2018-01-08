@@ -84,7 +84,7 @@ void TMR1_IRQHandler(void)
 		if((key_count>0x100)&&(key_count<0x2000))
 		{
 			Channel1++;
-			if(Channel1 >= 0x02 )Channel1 = 0;//2 channel
+			if(Channel1 >= 0x03 )Channel1 = 0;//2 channel
 			Channel_flag = 1;
 		}
 		key_count = 0;
@@ -95,7 +95,7 @@ void TMR1_IRQHandler(void)
 		if((key_count>0x100)&&(key_count<0x2000))
 		{
 			Channel1++;
-			if(Channel1 >= 0x02 )Channel1 = 0;//2 channel
+			if(Channel1 >= 0x03 )Channel1 = 0;//2 channel
 			Channel_flag = 1;
 		}
 		key_count = 0;
@@ -140,12 +140,12 @@ void TMR1_IRQHandler(void)
 		{
 			SUB_F = 1;
 		}
-		if((VOL_A)&&(VOL_F))
+		if((VOL_B)&&(VOL_F))
 		{
 			vol_n++;
 			VOL_F = 0;
 		}		
-		if((VOL_B)&&(VOL_F))
+		if((VOL_A)&&(VOL_F))
 		{
 			vol_n--;
 			VOL_F = 0;
