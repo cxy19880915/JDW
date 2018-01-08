@@ -2,7 +2,7 @@
 #include "task_deal.h"
 #include "sysinit.h"
 
-bit	led_flag;
+bit	led_flag,flag_m = 0,flag_s = 0;
 UINT16 sys_flag=0x00;
 UINT8	VOL_LED=0;
 extern	UINT8	source_in,mode_in,VOL_level;
@@ -37,9 +37,9 @@ void	POWER_ON_OFF(void)
 		mode_in--;
 		VOL_level = 22;
 		SYS_MODE();
-//		sys_flag = sys_flag | sys_source;
-//		source_in--;
-//		SYS_SOURCE();
+		sys_flag = sys_flag | sys_source;
+		source_in--;
+		SYS_SOURCE();
 //		sys_flag = sys_flag | sys_volA;
 //		VOL_level--;
 //		SYS_VOL_A();
@@ -69,6 +69,7 @@ void	SYS_SOURCE(void)
 {
 	if(sys_flag & sys_source)
 	{
+		if(!MUTE){MUTE = 1;flag_s = 1;}
 		sys_flag = sys_flag & (~sys_source); 
 		BT_POWER = 0;
 		source_in++;
@@ -81,9 +82,10 @@ void	SYS_SOURCE(void)
 			BT_POWER = 1;
 		}
 		NPCA110P_SOURCE();
-		
+		MUTE = 0;
 //		set_TR0;
 		led_flag = 1;
+		if(flag_s){MUTE = 0;flag_s = 0;}
 	}
 }
 
@@ -91,6 +93,7 @@ void	SYS_MODE(void)
 {
 	if(sys_flag & sys_mode)
 	{
+//		if(!MUTE){MUTE = 1;flag_m = 1;}
 		sys_flag = sys_flag & (~sys_mode);
 		mode_in++;
 		if(mode_in>3)
@@ -101,6 +104,7 @@ void	SYS_MODE(void)
 		
 //		set_TR0;
 		led_flag = 1;
+//		if(flag_m){MUTE = 0;flag_m = 0;}
 	}
 }
 
@@ -151,24 +155,25 @@ void  GPIO_MUTE(void)
 
 void	LED_DISPLAY(void)
 {
+		if(BT_POWER)
 		if(!BT_DET)
 		{
 			VOL_LED = 1;
 			led_flag = 1;
-			__delay_10ms(20);
+			__delay_10ms(50);
 		}
 		if((MUTE)&&(ST_BY))
 		{
 			VOL_LED = 1;
 			led_flag = 1;
-			__delay_10ms(70);
+			__delay_10ms(100);
 		}
 	if(led_flag)
 	{
 		if(VOL_LED)
 		{
 			AUX1_LED = 1;AUX2_LED = 1;BT_LED = 1;
-			__delay_10ms(70);
+			__delay_10ms(10);
 		}
 		if(source_in == 1)
 		{

@@ -118,7 +118,7 @@ void Timer0_ISR (void) interrupt 1
 		_50ms_flag = 1;
 		adc_flag = 0;
 	}
-	if(ir_n>25)
+	if(ir_n>15)//25
 	{
 		_50ms_ir = 1;
 		ir_n = 0;

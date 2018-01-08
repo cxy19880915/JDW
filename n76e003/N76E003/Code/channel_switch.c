@@ -5,6 +5,7 @@ void	NPCA110P_VOL(void);
 void	NPCA110P_SOURCE(void);
 extern	UINT8 VOL_LED;
 extern	bit	led_flag;
+extern	bit	led_flag,flag_m,flag_s;
 extern	void	delay(void);
 //extern	void	GPIO_MUTE(void);
 extern const unsigned char code g_abMax1xDSPCommands[];
@@ -15,6 +16,7 @@ void	NPCA110P_SOURCE(void);
 #define		NPCA110P_EEPROM_SLA			0xe6
 
 UINT8	source_in = 1,mode_in = 2,VOL_level = 15;
+extern	UINT16 sys_flag;
 
 //模拟输入通道切换命令：
 const unsigned char code channel_Commands[] = 
@@ -44,7 +46,8 @@ void	NPCA110P_init(void)
 	int i;
 //	source_in = 1,mode_in = 1;
 //	GPIO_MUTE();
-	MUTE = 1;
+//	MUTE = 1;
+	if(!MUTE){MUTE = 1;flag_s = 1;flag_m = 1;}
 	switch(mode_in)
 	{
 		case	1:
@@ -71,10 +74,14 @@ void	NPCA110P_init(void)
 		default:
 			break;
 	}
-	NPCA110P_SOURCE();
+	
+//	sys_flag = sys_flag | sys_source;
+//	source_in--;
+//	NPCA110P_SOURCE();
 	
 	NPCA110P_VOL();
-	MUTE = 0;
+	if((flag_s)||(flag_m)){MUTE = 0;flag_s = 0;flag_m = 0;}
+//	MUTE = 0;
 //	source_in--;
 //	NPCA110P_SOURCE();
 //	GPIO_MUTE();
@@ -295,11 +302,14 @@ void	NPCA110P_MODE(void)
 {
 //	mode_in++;
 //	if(mode_in>3)mode_in = 1;
+//	if(!MUTE){MUTE = 1;flag_m = 1;}
 	NPCA110P_init();
+//	if(flag_m){MUTE = 0;flag_s = 0;flag_m = 0;}
 }
 void	NPCA110P_SOURCE(void)
 {
 	UINT8 i;
+//	if(!MUTE){MUTE = 1;flag_s = 1;flag_m = 1;}
 	if(source_in==1)	
 		for(i=0;i<8;i++)
 		{
@@ -320,5 +330,5 @@ void	NPCA110P_SOURCE(void)
 			delay();delay();
 		}		
 	}
-
+//	if(flag_s){MUTE = 0;flag_s = 0;flag_m = 0;}
 }

@@ -30,7 +30,8 @@ void gpio_init(void)
 	P14_PushPull_Mode;
 	P15_PushPull_Mode;
 	P17_Input_Mode;
-	P30_PushPull_Mode;
+	P30_Input_Mode
+//	P30_PushPull_Mode;
 	#endif
 //	BAT_DET		
 

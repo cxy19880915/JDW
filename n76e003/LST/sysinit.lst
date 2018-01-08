@@ -1,4 +1,4 @@
-C51 COMPILER V9.56.0.0   SYSINIT                                                           01/08/2018 16:51:50 PAGE 1   
+C51 COMPILER V9.56.0.0   SYSINIT                                                           01/08/2018 19:06:45 PAGE 1   
 
 
 C51 COMPILER V9.56.0.0, COMPILATION OF MODULE SYSINIT
@@ -40,65 +40,66 @@ line level    source
                 P14_PushPull_Mode;
                 P15_PushPull_Mode;
                 P17_Input_Mode;
-                P30_PushPull_Mode;
+                P30_Input_Mode
+              //  P30_PushPull_Mode;
                 #endif
-  35   1      //  BAT_DET   
-  36   1      
-  37   1      //  LOW_BAT_NOTIFY  = 0;
-  38   1        P10_PushPull_Mode;
-  39   1      //  P11_PushPull_Mode;
-  40   1        ST_BY = 0;
-  41   1        BT_POWER = 0;
-  42   1        sys_flag = sys_power_off;
-  43   1        power_flag = 0; 
-  44   1      //  BT_POWER = 0;   
-  45   1      ////  BT_DET      
-  46   1      
-  47   1      ////  GPIO1   
-  48   1      ////  GPIO2   
-  49   1      ////  GPIO3   
-  50   1      
-  51   1      //  PLAY = 0; 
-  52   1      //  REV = 0;      
-  53   1      //  FWD = 0;      
-  54   1      //  VOL_UP = 0;   
-C51 COMPILER V9.56.0.0   SYSINIT                                                           01/08/2018 16:51:50 PAGE 2   
+  36   1      //  BAT_DET   
+  37   1      
+  38   1      //  LOW_BAT_NOTIFY  = 0;
+  39   1        P10_PushPull_Mode;
+  40   1      //  P11_PushPull_Mode;
+  41   1        ST_BY = 0;
+  42   1        BT_POWER = 0;
+  43   1        sys_flag = sys_power_off;
+  44   1        power_flag = 0; 
+  45   1      //  BT_POWER = 0;   
+  46   1      ////  BT_DET      
+  47   1      
+  48   1      ////  GPIO1   
+  49   1      ////  GPIO2   
+  50   1      ////  GPIO3   
+  51   1      
+  52   1      //  PLAY = 0; 
+  53   1      //  REV = 0;      
+  54   1      //  FWD = 0;      
+C51 COMPILER V9.56.0.0   SYSINIT                                                           01/08/2018 19:06:45 PAGE 2   
 
-  55   1      //  VOL_DOWN = 0; 
-  56   1      //  PAIR = 0;   
-  57   1      }
-  58          
-  59          void  sys_init(void)
-  60          {
-  61   1      //  sys_flag = 0x00;
-  62   1      //  unsigned char *p8Data = g_abMax1xDSPCommands;
-  63   1        SetSysClock();
-  64   1        gpio_init();
-  65   1        timer0_init();
-  66   1      //  timer1_init();
-  67   1        adc_init();
-  68   1        IR_init();
-  69   1        Init_I2C();
-  70   1        set_EA;                                     //enable interrupts
-  71   1        set_TR0;                                    //Timer0 run
-  72   1      //  set_TR2;                                    // Timer2 run 
-  73   1      }
-  74          
-  75          //void  time0_init(void)
-  76          //{
-  77          //  TIMER0_MODE1_ENABLE;
-  78          //  u8TH0_Tmp = (65536-TH0_INIT)/256;
-  79          //    u8TL0_Tmp = (65536-TL0_INIT)%256;
-  80          //  TH0 = u8TH0_Tmp;
-  81          //    TL0 = u8TL0_Tmp;
-  82          //  set_ET0;
-  83          //}
-  84          
-  85          //void  adc_init(void)
-  86          //{
-  87          //  Enable_ADC_AIN0;
-  88          //}
-  89          
+  55   1      //  VOL_UP = 0;   
+  56   1      //  VOL_DOWN = 0; 
+  57   1      //  PAIR = 0;   
+  58   1      }
+  59          
+  60          void  sys_init(void)
+  61          {
+  62   1      //  sys_flag = 0x00;
+  63   1      //  unsigned char *p8Data = g_abMax1xDSPCommands;
+  64   1        SetSysClock();
+  65   1        gpio_init();
+  66   1        timer0_init();
+  67   1      //  timer1_init();
+  68   1        adc_init();
+  69   1        IR_init();
+  70   1        Init_I2C();
+  71   1        set_EA;                                     //enable interrupts
+  72   1        set_TR0;                                    //Timer0 run
+  73   1      //  set_TR2;                                    // Timer2 run 
+  74   1      }
+  75          
+  76          //void  time0_init(void)
+  77          //{
+  78          //  TIMER0_MODE1_ENABLE;
+  79          //  u8TH0_Tmp = (65536-TH0_INIT)/256;
+  80          //    u8TL0_Tmp = (65536-TL0_INIT)%256;
+  81          //  TH0 = u8TH0_Tmp;
+  82          //    TL0 = u8TL0_Tmp;
+  83          //  set_ET0;
+  84          //}
+  85          
+  86          //void  adc_init(void)
+  87          //{
+  88          //  Enable_ADC_AIN0;
+  89          //}
+  90          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE

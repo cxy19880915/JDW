@@ -1,4 +1,4 @@
-C51 COMPILER V9.56.0.0   TIMER0                                                            01/08/2018 16:51:51 PAGE 1   
+C51 COMPILER V9.56.0.0   TIMER0                                                            01/08/2018 19:06:46 PAGE 1   
 
 
 C51 COMPILER V9.56.0.0, COMPILATION OF MODULE TIMER0
@@ -62,7 +62,7 @@ line level    source
   52   5              }
   53   4              key_status = key_status | 0x82;
   54   4            }
-C51 COMPILER V9.56.0.0   TIMER0                                                            01/08/2018 16:51:51 PAGE 2   
+C51 COMPILER V9.56.0.0   TIMER0                                                            01/08/2018 19:06:46 PAGE 2   
 
   55   3            else if(adc_V > V_1_5)
   56   3            {
@@ -126,13 +126,13 @@ line level    source
  114   1         TL0 = TIMER_DIV12_VALUE_10ms;
  115   1        adc_flag++;ir_n++;
  116   1        if(adc_flag>9)
-C51 COMPILER V9.56.0.0   TIMER0                                                            01/08/2018 16:51:51 PAGE 3   
+C51 COMPILER V9.56.0.0   TIMER0                                                            01/08/2018 19:06:46 PAGE 3   
 
  117   1        {
  118   2          _50ms_flag = 1;
  119   2          adc_flag = 0;
  120   2        }
- 121   1        if(ir_n>25)
+ 121   1        if(ir_n>15)//25
  122   1        {
  123   2          _50ms_ir = 1;
  124   2          ir_n = 0;
@@ -190,7 +190,7 @@ line level    source
                     else if(adc_V > V_1_2)
                     {
               //        if(key_status&0x08)
-C51 COMPILER V9.56.0.0   TIMER0                                                            01/08/2018 16:51:51 PAGE 4   
+C51 COMPILER V9.56.0.0   TIMER0                                                            01/08/2018 19:06:46 PAGE 4   
 
               //        {
               //          key_flag = 1;
@@ -254,7 +254,7 @@ MODULE INFORMATION:   STATIC OVERLAYABLE
    CODE SIZE        =    258    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
-C51 COMPILER V9.56.0.0   TIMER0                                                            01/08/2018 16:51:51 PAGE 5   
+C51 COMPILER V9.56.0.0   TIMER0                                                            01/08/2018 19:06:46 PAGE 5   
 
    PDATA SIZE       =   ----    ----
    DATA SIZE        =      8    ----
