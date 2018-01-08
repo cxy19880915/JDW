@@ -144,7 +144,7 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>N76E003\Code\CHANNEL_SWITCH.C</Filename>
+          <Filename>D:\work\n76e003\N76E003\Code\CHANNEL_SWITCH.C</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\GPIO\CHANNEL_SWITCH\66</Expression>
         </Bp>
@@ -160,7 +160,7 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>N76E003\Code\CHANNEL_SWITCH.C</Filename>
+          <Filename>D:\work\n76e003\N76E003\Code\CHANNEL_SWITCH.C</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\GPIO\CHANNEL_SWITCH\59</Expression>
         </Bp>
@@ -176,7 +176,7 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>N76E003\Code\CHANNEL_SWITCH.C</Filename>
+          <Filename>D:\work\n76e003\N76E003\Code\CHANNEL_SWITCH.C</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\GPIO\CHANNEL_SWITCH\52</Expression>
         </Bp>
@@ -192,7 +192,7 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>N76E003\Code\TASK_DEAL.C</Filename>
+          <Filename>D:\work\n76e003\N76E003\Code\TASK_DEAL.C</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\GPIO\TASK_DEAL\31</Expression>
         </Bp>
