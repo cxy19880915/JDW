@@ -135,50 +135,50 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>17</LineNumber>
+          <LineNumber>26</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>-16770507</Address>
+          <Address>-16770483</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>D:\work\n76e003\Common\BLUETOOTH.C</Filename>
+          <Filename>Common\BLUETOOTH.C</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\GPIO\BLUETOOTH\17</Expression>
+          <Expression></Expression>
         </Bp>
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
           <LineNumber>21</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>-16770504</Address>
+          <Address>-16770486</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>D:\work\n76e003\Common\BLUETOOTH.C</Filename>
+          <Filename>Common\BLUETOOTH.C</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\GPIO\BLUETOOTH\21</Expression>
+          <Expression></Expression>
         </Bp>
         <Bp>
           <Number>2</Number>
           <Type>0</Type>
-          <LineNumber>26</LineNumber>
+          <LineNumber>17</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>-16770501</Address>
+          <Address>-16770489</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>D:\work\n76e003\Common\BLUETOOTH.C</Filename>
+          <Filename>Common\BLUETOOTH.C</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\GPIO\BLUETOOTH\26</Expression>
+          <Expression></Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>

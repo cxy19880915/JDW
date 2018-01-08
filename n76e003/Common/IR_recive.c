@@ -230,6 +230,12 @@ void IR_Deal(void)
 			if(key_press == 0x00)//key up
 			{
 				ir_count = 0;
+				if(MUTE)
+				{
+					MUTE = 0;
+					if((key_PRE==0x14)||(key_PRE==0x15))
+						MUTE = 1;
+				}
 				switch(key_PRE)//switch(ir.dat.data0)
 				{
 					case	0x10:				//PLAY
@@ -296,8 +302,16 @@ void IR_Deal(void)
 		if(Recive_flag)//key down
 		{
 			Recive_flag = 0;	
-			ir_status =ir_status | 0x80;
 			key_PRE = key_press;
+			if((key_PRE!=0x14)&&ST_BY)
+			{			
+				ir_status =ir_status | 0x80;
+			}
+			else if(key_PRE==0x14)
+			{
+				ir_status =ir_status | 0x80;
+			}
+//			ir_status =ir_status | 0x80;
 			if(ir_count>2)
 			switch(key_press)//switch(ir.dat.data0)
 			{

@@ -83,7 +83,7 @@ void	KEY_EVENT(void)
 			
 			case	ir_hall:
 //				sys_flag = sys_flag | sys_hall;
-				mode_in = 1;
+				mode_in = 3;
 				NPCA110P_init();
 				led_flag = 1;
 //				VOL_level--;
@@ -99,7 +99,7 @@ void	KEY_EVENT(void)
 			
 			case	ir_speech:
 //				sys_flag = sys_flag | sys_speech;
-				mode_in = 3;
+				mode_in = 1;
 				NPCA110P_init();
 				led_flag = 1;
 //				VOL_level--;
