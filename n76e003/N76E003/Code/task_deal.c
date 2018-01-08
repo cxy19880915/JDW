@@ -35,6 +35,7 @@ void	POWER_ON_OFF(void)
 		set_TR0;                             //Timer0 run
 		sys_flag = sys_flag | sys_mode;
 		mode_in--;
+		VOL_level = 22;
 		SYS_MODE();
 //		sys_flag = sys_flag | sys_source;
 //		source_in--;

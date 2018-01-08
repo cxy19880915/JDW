@@ -1,4 +1,4 @@
-C51 COMPILER V9.56.0.0   TASK_DEAL                                                         01/08/2018 16:11:08 PAGE 1   
+C51 COMPILER V9.56.0.0   TASK_DEAL                                                         01/08/2018 16:51:51 PAGE 1   
 
 
 C51 COMPILER V9.56.0.0, COMPILATION OF MODULE TASK_DEAL
@@ -45,241 +45,242 @@ line level    source
   35   2          set_TR0;                             //Timer0 run
   36   2          sys_flag = sys_flag | sys_mode;
   37   2          mode_in--;
-  38   2          SYS_MODE();
-  39   2      //    sys_flag = sys_flag | sys_source;
-  40   2      //    source_in--;
-  41   2      //    SYS_SOURCE();
-  42   2      //    sys_flag = sys_flag | sys_volA;
-  43   2      //    VOL_level--;
-  44   2      //    SYS_VOL_A();
-  45   2          MUTE = 0;
-  46   2          
+  38   2          VOL_level = 22;
+  39   2          SYS_MODE();
+  40   2      //    sys_flag = sys_flag | sys_source;
+  41   2      //    source_in--;
+  42   2      //    SYS_SOURCE();
+  43   2      //    sys_flag = sys_flag | sys_volA;
+  44   2      //    VOL_level--;
+  45   2      //    SYS_VOL_A();
+  46   2          MUTE = 0;
   47   2          
-  48   2      //    set_TR0;
-  49   2        }
-  50   1        else if((sys_flag & sys_power_off)&&(power_flag == 0))
-  51   1        {
-  52   2          clr_EA;
-  53   2          MUTE = 1;
-  54   2          ST_BY = 0;
-C51 COMPILER V9.56.0.0   TASK_DEAL                                                         01/08/2018 16:11:08 PAGE 2   
+  48   2          
+  49   2      //    set_TR0;
+  50   2        }
+  51   1        else if((sys_flag & sys_power_off)&&(power_flag == 0))
+  52   1        {
+  53   2          clr_EA;
+  54   2          MUTE = 1;
+C51 COMPILER V9.56.0.0   TASK_DEAL                                                         01/08/2018 16:51:51 PAGE 2   
 
-  55   2          sys_flag = sys_flag & (~sys_power_off);
-  56   2          sys_flag = sys_flag | sys_power_on;
-  57   2          AUX1_LED = 1;AUX2_LED = 1;BT_LED = 1;
-  58   2          MUSIC_LED = 1;MOVIE_LED = 1;VOICE_LED = 1;
-  59   2          __delay_10ms(30);
-  60   2          set_EA;
-  61   2          
-  62   2      //    set_TR0;
-  63   2        }
-  64   1        
-  65   1      }
-  66          
-  67          void  SYS_SOURCE(void)
-  68          {
-  69   1        if(sys_flag & sys_source)
-  70   1        {
-  71   2          sys_flag = sys_flag & (~sys_source); 
-  72   2          BT_POWER = 0;
-  73   2          source_in++;
-  74   2          if(source_in>3)
-  75   2          {
-  76   3            source_in = 1;      
-  77   3          }
-  78   2          else if(source_in==3)   
-  79   2          {
-  80   3            BT_POWER = 1;
-  81   3          }
-  82   2          NPCA110P_SOURCE();
-  83   2          
-  84   2      //    set_TR0;
-  85   2          led_flag = 1;
-  86   2        }
-  87   1      }
-  88          
-  89          void  SYS_MODE(void)
-  90          {
-  91   1        if(sys_flag & sys_mode)
-  92   1        {
-  93   2          sys_flag = sys_flag & (~sys_mode);
-  94   2          mode_in++;
-  95   2          if(mode_in>3)
-  96   2          {
-  97   3            mode_in = 1;      
-  98   3          }
-  99   2          NPCA110P_init();
- 100   2          
- 101   2      //    set_TR0;
- 102   2          led_flag = 1;
- 103   2        }
- 104   1      }
- 105          
- 106          void  SYS_VOL_A(void)
- 107          {
- 108   1        if(sys_flag & sys_volA)
- 109   1        {
- 110   2          sys_flag = sys_flag & (~sys_volA);
- 111   2          if(VOL_level>=30)
- 112   2          {
- 113   3            VOL_level = 30;
- 114   3            return;
- 115   3          }
- 116   2          VOL_level++;
-C51 COMPILER V9.56.0.0   TASK_DEAL                                                         01/08/2018 16:11:08 PAGE 3   
+  55   2          ST_BY = 0;
+  56   2          sys_flag = sys_flag & (~sys_power_off);
+  57   2          sys_flag = sys_flag | sys_power_on;
+  58   2          AUX1_LED = 1;AUX2_LED = 1;BT_LED = 1;
+  59   2          MUSIC_LED = 1;MOVIE_LED = 1;VOICE_LED = 1;
+  60   2          __delay_10ms(30);
+  61   2          set_EA;
+  62   2          
+  63   2      //    set_TR0;
+  64   2        }
+  65   1        
+  66   1      }
+  67          
+  68          void  SYS_SOURCE(void)
+  69          {
+  70   1        if(sys_flag & sys_source)
+  71   1        {
+  72   2          sys_flag = sys_flag & (~sys_source); 
+  73   2          BT_POWER = 0;
+  74   2          source_in++;
+  75   2          if(source_in>3)
+  76   2          {
+  77   3            source_in = 1;      
+  78   3          }
+  79   2          else if(source_in==3)   
+  80   2          {
+  81   3            BT_POWER = 1;
+  82   3          }
+  83   2          NPCA110P_SOURCE();
+  84   2          
+  85   2      //    set_TR0;
+  86   2          led_flag = 1;
+  87   2        }
+  88   1      }
+  89          
+  90          void  SYS_MODE(void)
+  91          {
+  92   1        if(sys_flag & sys_mode)
+  93   1        {
+  94   2          sys_flag = sys_flag & (~sys_mode);
+  95   2          mode_in++;
+  96   2          if(mode_in>3)
+  97   2          {
+  98   3            mode_in = 1;      
+  99   3          }
+ 100   2          NPCA110P_init();
+ 101   2          
+ 102   2      //    set_TR0;
+ 103   2          led_flag = 1;
+ 104   2        }
+ 105   1      }
+ 106          
+ 107          void  SYS_VOL_A(void)
+ 108          {
+ 109   1        if(sys_flag & sys_volA)
+ 110   1        {
+ 111   2          sys_flag = sys_flag & (~sys_volA);
+ 112   2          if(VOL_level>=30)
+ 113   2          {
+ 114   3            VOL_level = 30;
+ 115   3            return;
+ 116   3          }
+C51 COMPILER V9.56.0.0   TASK_DEAL                                                         01/08/2018 16:51:51 PAGE 3   
 
- 117   2          NPCA110P_VOL();
- 118   2          
- 119   2      //    set_TR0;
- 120   2          led_flag = 1;
- 121   2          VOL_LED = 1;
- 122   2        }
- 123   1      }
- 124          
- 125          void  SYS_VOL_B(void)
- 126          {
- 127   1        if(sys_flag & sys_volB)
- 128   1        {
- 129   2          sys_flag = sys_flag & (~sys_volB);
- 130   2          if((VOL_level<=0)||(VOL_level>30))
- 131   2          {
- 132   3            VOL_level = 0;
- 133   3            return;
- 134   3          }
- 135   2          VOL_level--;
- 136   2          NPCA110P_VOL();
- 137   2          
- 138   2      //    set_TR0;
- 139   2          led_flag = 1;
- 140   2          VOL_LED = 1;
- 141   2        }
- 142   1      }
- 143          
- 144          void  GPIO_MUTE(void)
- 145          {
- 146   1        if(MUTE)MUTE = 0;
- 147   1        else  MUTE = 1;
- 148   1      //  MUTE = ~MUTE;
- 149   1      }
- 150          
- 151          void  LED_DISPLAY(void)
- 152          {
- 153   1          if(!BT_DET)
- 154   1          {
- 155   2            VOL_LED = 1;
- 156   2            led_flag = 1;
- 157   2            __delay_10ms(20);
- 158   2          }
- 159   1          if((MUTE)&&(ST_BY))
- 160   1          {
- 161   2            VOL_LED = 1;
- 162   2            led_flag = 1;
- 163   2            __delay_10ms(70);
- 164   2          }
- 165   1        if(led_flag)
- 166   1        {
- 167   2          if(VOL_LED)
- 168   2          {
- 169   3            AUX1_LED = 1;AUX2_LED = 1;BT_LED = 1;
- 170   3            __delay_10ms(70);
- 171   3          }
- 172   2          if(source_in == 1)
- 173   2          {
- 174   3            AUX1_LED = 0;AUX2_LED = 1;BT_LED = 1;
- 175   3            __delay_10ms(7);
- 176   3          }
- 177   2          if(source_in == 2)
- 178   2          {
-C51 COMPILER V9.56.0.0   TASK_DEAL                                                         01/08/2018 16:11:08 PAGE 4   
+ 117   2          VOL_level++;
+ 118   2          NPCA110P_VOL();
+ 119   2          
+ 120   2      //    set_TR0;
+ 121   2          led_flag = 1;
+ 122   2          VOL_LED = 1;
+ 123   2        }
+ 124   1      }
+ 125          
+ 126          void  SYS_VOL_B(void)
+ 127          {
+ 128   1        if(sys_flag & sys_volB)
+ 129   1        {
+ 130   2          sys_flag = sys_flag & (~sys_volB);
+ 131   2          if((VOL_level<=0)||(VOL_level>30))
+ 132   2          {
+ 133   3            VOL_level = 0;
+ 134   3            return;
+ 135   3          }
+ 136   2          VOL_level--;
+ 137   2          NPCA110P_VOL();
+ 138   2          
+ 139   2      //    set_TR0;
+ 140   2          led_flag = 1;
+ 141   2          VOL_LED = 1;
+ 142   2        }
+ 143   1      }
+ 144          
+ 145          void  GPIO_MUTE(void)
+ 146          {
+ 147   1        if(MUTE)MUTE = 0;
+ 148   1        else  MUTE = 1;
+ 149   1      //  MUTE = ~MUTE;
+ 150   1      }
+ 151          
+ 152          void  LED_DISPLAY(void)
+ 153          {
+ 154   1          if(!BT_DET)
+ 155   1          {
+ 156   2            VOL_LED = 1;
+ 157   2            led_flag = 1;
+ 158   2            __delay_10ms(20);
+ 159   2          }
+ 160   1          if((MUTE)&&(ST_BY))
+ 161   1          {
+ 162   2            VOL_LED = 1;
+ 163   2            led_flag = 1;
+ 164   2            __delay_10ms(70);
+ 165   2          }
+ 166   1        if(led_flag)
+ 167   1        {
+ 168   2          if(VOL_LED)
+ 169   2          {
+ 170   3            AUX1_LED = 1;AUX2_LED = 1;BT_LED = 1;
+ 171   3            __delay_10ms(70);
+ 172   3          }
+ 173   2          if(source_in == 1)
+ 174   2          {
+ 175   3            AUX1_LED = 0;AUX2_LED = 1;BT_LED = 1;
+ 176   3            __delay_10ms(7);
+ 177   3          }
+ 178   2          if(source_in == 2)
+C51 COMPILER V9.56.0.0   TASK_DEAL                                                         01/08/2018 16:51:51 PAGE 4   
 
- 179   3            AUX1_LED = 1;AUX2_LED = 0;BT_LED = 1;
- 180   3            __delay_10ms(7);
- 181   3          }
- 182   2          if(source_in == 3)
- 183   2          {
- 184   3            AUX1_LED = 1;AUX2_LED = 1;BT_LED = 0;
- 185   3            __delay_10ms(7);
- 186   3          }
- 187   2          if(mode_in == 1)
- 188   2          {
- 189   3            MUSIC_LED = 0;MOVIE_LED = 1;VOICE_LED = 1;
- 190   3            __delay_10ms(7);
- 191   3          }
- 192   2          if(mode_in == 2)
- 193   2          {
- 194   3            MUSIC_LED = 1;MOVIE_LED = 0;VOICE_LED = 1;
- 195   3            __delay_10ms(7);
- 196   3          }
- 197   2          if(mode_in == 3)
- 198   2          {
- 199   3            MUSIC_LED = 1;MOVIE_LED = 1;VOICE_LED = 0;
- 200   3            __delay_10ms(7);
- 201   3          }
- 202   2          led_flag = 0;
- 203   2        }
- 204   1        
- 205   1      }
- 206          
- 207          void  IR_EVENT(void)
- 208          {
- 209   1        switch(KEY_data)
- 210   1        {
- 211   2          case 0x01:              //BASS+
- 212   2          {
- 213   3              break;
- 214   3          }
- 215   2                    
- 216   2          case 0x02:              //BASS-
- 217   2          {
- 218   3            break;
- 219   3          }
- 220   2                  
- 221   2          case 0x03:              //TREBLE+
- 222   2          break;
- 223   2                  
- 224   2          case 0x04:              //TREBLE-
- 225   2          break;
- 226   2                  
- 227   2          case 0x0a:              //??BLUETOOTH??LINE IN
- 228   2          break;
- 229   2                  
- 230   2          case 0x0b:              //AUX IN
- 231   2          break;
- 232   2                              
- 233   2          case 0x0c:              //BLUETOOTH
- 234   2          break;
- 235   2      
- 236   2          case 0x0d:              //OPTICAL
- 237   2          break;
- 238   2                  
- 239   2          case 0x0E:              //COAXIAL
- 240   2          break;
-C51 COMPILER V9.56.0.0   TASK_DEAL                                                         01/08/2018 16:11:08 PAGE 5   
+ 179   2          {
+ 180   3            AUX1_LED = 1;AUX2_LED = 0;BT_LED = 1;
+ 181   3            __delay_10ms(7);
+ 182   3          }
+ 183   2          if(source_in == 3)
+ 184   2          {
+ 185   3            AUX1_LED = 1;AUX2_LED = 1;BT_LED = 0;
+ 186   3            __delay_10ms(7);
+ 187   3          }
+ 188   2          if(mode_in == 1)
+ 189   2          {
+ 190   3            MUSIC_LED = 0;MOVIE_LED = 1;VOICE_LED = 1;
+ 191   3            __delay_10ms(7);
+ 192   3          }
+ 193   2          if(mode_in == 2)
+ 194   2          {
+ 195   3            MUSIC_LED = 1;MOVIE_LED = 0;VOICE_LED = 1;
+ 196   3            __delay_10ms(7);
+ 197   3          }
+ 198   2          if(mode_in == 3)
+ 199   2          {
+ 200   3            MUSIC_LED = 1;MOVIE_LED = 1;VOICE_LED = 0;
+ 201   3            __delay_10ms(7);
+ 202   3          }
+ 203   2          led_flag = 0;
+ 204   2        }
+ 205   1        
+ 206   1      }
+ 207          
+ 208          void  IR_EVENT(void)
+ 209          {
+ 210   1        switch(KEY_data)
+ 211   1        {
+ 212   2          case 0x01:              //BASS+
+ 213   2          {
+ 214   3              break;
+ 215   3          }
+ 216   2                    
+ 217   2          case 0x02:              //BASS-
+ 218   2          {
+ 219   3            break;
+ 220   3          }
+ 221   2                  
+ 222   2          case 0x03:              //TREBLE+
+ 223   2          break;
+ 224   2                  
+ 225   2          case 0x04:              //TREBLE-
+ 226   2          break;
+ 227   2                  
+ 228   2          case 0x0a:              //??BLUETOOTH??LINE IN
+ 229   2          break;
+ 230   2                  
+ 231   2          case 0x0b:              //AUX IN
+ 232   2          break;
+ 233   2                              
+ 234   2          case 0x0c:              //BLUETOOTH
+ 235   2          break;
+ 236   2      
+ 237   2          case 0x0d:              //OPTICAL
+ 238   2          break;
+ 239   2                  
+ 240   2          case 0x0E:              //COAXIAL
+C51 COMPILER V9.56.0.0   TASK_DEAL                                                         01/08/2018 16:51:51 PAGE 5   
 
- 241   2      
- 242   2          case 0x12:              //VOL+
- 243   2          break;
- 244   2      
- 245   2          case 0x13:              //VOL-
- 246   2          break;
- 247   2      
- 248   2          case 0x14:              //ON-OFF
- 249   2          break;
- 250   2      
- 251   2          case 0x15:              //MUTE
- 252   2          break;
- 253   2      
- 254   2          case 0x18:              //HDMI
- 255   2          break;
- 256   2        }
- 257   1      }
- 258          
+ 241   2          break;
+ 242   2      
+ 243   2          case 0x12:              //VOL+
+ 244   2          break;
+ 245   2      
+ 246   2          case 0x13:              //VOL-
+ 247   2          break;
+ 248   2      
+ 249   2          case 0x14:              //ON-OFF
+ 250   2          break;
+ 251   2      
+ 252   2          case 0x15:              //MUTE
+ 253   2          break;
+ 254   2      
+ 255   2          case 0x18:              //HDMI
+ 256   2          break;
+ 257   2        }
+ 258   1      }
  259          
  260          
+ 261          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    391    ----
+   CODE SIZE        =    394    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
