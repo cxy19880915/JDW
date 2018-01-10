@@ -12,6 +12,7 @@ bit		_50ms_flag = 0,_50ms_ir=0;//,VA=0,VB=0,V_M = 0,V_S = 0,V_power = 0;
 bit		adc_PWM_flag = 0;
 //UINT8	u8TH0_Tmp_1ms,u8TL0_Tmp_1ms;
 UINT8	adc_flag=0,nm=0,mn=0,ir_n=0;
+extern	UINT8	source_in,mode_in;
 
 //#define	TH0_INIT_1ms	16000//13290
 //#define	TL0_INIT_1ms	16000//13290
@@ -93,11 +94,13 @@ void	KEY_SCAN(void)
 				{
 					key_flag = 1;
 					KEY_VALUE = SOURCE;
+//					source_in++;
 				}
 				if(key_status&0x10)
 				{
 					key_flag = 1;
-					KEY_VALUE = MODE;					
+					KEY_VALUE = MODE;	
+//					mode_in++;
 				}
 			}
 			key_status = key_status & 0x00;//key up

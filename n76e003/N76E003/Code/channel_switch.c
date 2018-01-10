@@ -47,7 +47,10 @@ void	NPCA110P_init(void)
 //	source_in = 1,mode_in = 1;
 //	GPIO_MUTE();
 //	MUTE = 1;
-	if(!MUTE){MUTE = 1;flag_s = 1;flag_m = 1;}
+//	if(!MUTE){MUTE = 1;flag_s = 1;flag_m = 1;}
+	sys_flag = sys_flag | sys_source;
+//	source_in--;
+	NPCA110P_SOURCE();
 	switch(mode_in)
 	{
 		case	1:
@@ -75,12 +78,10 @@ void	NPCA110P_init(void)
 			break;
 	}
 	
-//	sys_flag = sys_flag | sys_source;
-//	source_in--;
-//	NPCA110P_SOURCE();
+
 	
 	NPCA110P_VOL();
-	if((flag_s)||(flag_m)){MUTE = 0;flag_s = 0;flag_m = 0;}
+//	if((flag_s)||(flag_m)){MUTE = 0;flag_s = 0;flag_m = 0;}
 //	MUTE = 0;
 //	source_in--;
 //	NPCA110P_SOURCE();

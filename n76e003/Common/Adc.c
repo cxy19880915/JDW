@@ -48,12 +48,13 @@ void	KEY_EVENT(void)
 			
 			case	MODE:
 				sys_flag = sys_flag | sys_mode;
-//				mode_in++;
+				mode_in++;
 			break;
 			
 			case	SOURCE:
 				sys_flag = sys_flag | sys_source;
-//				source_in++;
+				source_in++;
+				led_flag = 1;
 			break;
 			
 			case	VOL_A:
@@ -84,25 +85,31 @@ void	KEY_EVENT(void)
 			
 			case	ir_hall:
 //				sys_flag = sys_flag | sys_hall;
+				MUTE = 1;
 				mode_in = 3;
 				NPCA110P_init();
 				led_flag = 1;
+				MUTE = 0;
 //				VOL_level--;
 			break;
 			
 			case	ir_music:
 //				sys_flag = sys_flag | sys_music;
+			MUTE = 1;
 				mode_in = 2;
 				NPCA110P_init();
 				led_flag = 1;
+			MUTE = 0;
 //				VOL_level--;
 			break;
 			
 			case	ir_speech:
 //				sys_flag = sys_flag | sys_speech;
+			MUTE = 1;
 				mode_in = 1;
 				NPCA110P_init();
 				led_flag = 1;
+			MUTE = 0;
 //				VOL_level--;
 			break;
 			

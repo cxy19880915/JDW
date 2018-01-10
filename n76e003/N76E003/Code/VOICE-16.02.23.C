@@ -42,8 +42,8 @@ const unsigned char code g_abMax1xDSPCommands[] =
     0x00, 0x12, 0x12, /*                                            */
     0xff, 0xad, 0x82, 
     0x00, 0x14, 0x14, /*                                            */
-    0xff, 0xad, 0x83, 
-    0x00, 0x00, 0x88, /*                                            */
+//    0xff, 0xad, 0x83, 
+//    0x00, 0x00, 0x88, /*                                            */
     0xff, 0xad, 0x80, 
     0x00, 0x54, 0x54, /*                                            */
     0xff, 0xad, 0x87, 
@@ -74,8 +74,9 @@ const unsigned char code g_abMax1xDSPCommands[] =
     0x00, 0xe5, 0x2f, /* Command MAXX_TREBLE_NG_GAP, Value = -47    */
     0x00, 0xe4, 0x70, /* Command MAXX_TREBLE_NG_THRESHOLD, Value = -100 */
     0x00, 0xd7, 0x30, /* Command SUB_FREQ, Value = 20.0             */
-    0x01, 0xd0, 0x9a, /* Command MAXX_VOLUME_SLIDER                 */
-    0x00, 0xc6, 0x01, /* Command LEVELER_ON_OFF                     */
+//    0x01, 0xd0, 0x9a, /* Command MAXX_VOLUME_SLIDER                 */
+    0x00, 0xd0, 0x00,
+		0x00, 0xc6, 0x01, /* Command LEVELER_ON_OFF                     */
     0x00, 0xdd, 0x01, /* Command HARD_KNEE                          */
     0x00, 0xd4, 0x00, /* Command VOLUME_DYN_RANGE                   */
     0x00, 0xda, 0x00, /* Command VOLUME_LOW_GAIN                    */

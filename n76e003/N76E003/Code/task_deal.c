@@ -12,9 +12,8 @@ extern	void __delay_10ms( UINT16 u16CNT );
 
 extern	void	NPCA110P_SOURCE(void);
 extern	void	NPCA110P_VOL(void);
-//extern	void	NPCA110P_VOL_B(void);
 extern	void	NPCA110P_MODE(void);
-
+//unsigned char volume_Control[];
 void	POWER_ON_OFF(void);
 void	SYS_SOURCE(void);
 void	SYS_VOL_A(void);
@@ -34,12 +33,13 @@ void	POWER_ON_OFF(void)
 		set_EA;
 		set_TR0;                             //Timer0 run
 		sys_flag = sys_flag | sys_mode;
-		mode_in--;
+//		mode_in=2;
+//		source_in= 1;
 		VOL_level = 22;
 		SYS_MODE();
-		sys_flag = sys_flag | sys_source;
-		source_in--;
-		SYS_SOURCE();
+//		sys_flag = sys_flag | sys_source;
+//		source_in--;
+//		SYS_SOURCE();
 //		sys_flag = sys_flag | sys_volA;
 //		VOL_level--;
 //		SYS_VOL_A();
@@ -72,7 +72,20 @@ void	SYS_SOURCE(void)
 		if(!MUTE){MUTE = 1;flag_s = 1;}
 		sys_flag = sys_flag & (~sys_source); 
 		BT_POWER = 0;
-		source_in++;
+//		switch(source_in)
+//		{
+//			case	0:
+//				source_in = 1;
+//			break;
+//			case 1:
+//				source_in = 2;
+//			break;
+//			case 2:
+//				source_in = 3;
+//			default:
+//				source_in = 0;
+//			break;
+//		}
 		if(source_in>3)
 		{
 			source_in = 1;			
@@ -94,8 +107,15 @@ void	SYS_MODE(void)
 	if(sys_flag & sys_mode)
 	{
 //		if(!MUTE){MUTE = 1;flag_m = 1;}
+		if(!MUTE){MUTE = 1;flag_s = 1;flag_m = 1;}
+//		if(ST_BY)
+//		{
+//			volume_Control[0]=0x00;
+//			volume_Control[2]=0x00;
+//			I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
+//		}
 		sys_flag = sys_flag & (~sys_mode);
-		mode_in++;
+//		mode_in++;
 		if(mode_in>3)
 		{
 			mode_in = 1;			
@@ -104,6 +124,10 @@ void	SYS_MODE(void)
 		
 //		set_TR0;
 		led_flag = 1;
+		if((flag_s)||(flag_m)){MUTE = 0;flag_s = 0;flag_m = 0;}
+//		sys_flag = sys_flag | sys_source;
+////		KEY_VALUE = ir_source;
+//		source_in--;
 //		if(flag_m){MUTE = 0;flag_m = 0;}
 	}
 }
