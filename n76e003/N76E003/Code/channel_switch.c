@@ -54,21 +54,21 @@ void	NPCA110P_init(void)
 				for(i=0;i<308;i++)
 				{
 					I2C_Write_Command(NPCA110P_EEPROM_SLA,(g_abMax1xDSPCommands+i*3),3);//924);
-					delay();delay();
+					delay();
 				}
 				break;
 		case	2:
 				for(i=0;i<308;i++)
 				{
 					I2C_Write_Command(NPCA110P_EEPROM_SLA,(g_abMax2xDSPCommands+i*3),3);//924);
-					delay();delay();
+					delay();
 				}
 				break;		
 		case	3:
 				for(i=0;i<308;i++)
 				{
 					I2C_Write_Command(NPCA110P_EEPROM_SLA,(g_abMax3xDSPCommands+i*3),3);//924);
-					delay();delay();
+					delay();
 				}
 				break;		
 		default:
