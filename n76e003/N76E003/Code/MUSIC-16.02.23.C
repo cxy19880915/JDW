@@ -1,6 +1,7 @@
 
 const unsigned char code g_abMax2xDSPCommands[] =
 {
+	0x00, 0xd0, 0x00,
     0x00, 0xa5, 0x00, /* Command DETECT                             */
     0x00, 0xa5, 0x00, /* Command DETECT                             */
 
@@ -75,7 +76,7 @@ const unsigned char code g_abMax2xDSPCommands[] =
     0x00, 0xe4, 0x70, /* Command MAXX_TREBLE_NG_THRESHOLD, Value = -100 */
     0x00, 0xd7, 0x30, /* Command SUB_FREQ, Value = 20.0             */
 //    0x01, 0xd0, 0x9a, /* Command MAXX_VOLUME_SLIDER                 */
-    0x00, 0xd0, 0x00,
+//    0x00, 0xd0, 0x00,
 		0x00, 0xc6, 0x01, /* Command LEVELER_ON_OFF                     */
     0x00, 0xdd, 0x01, /* Command HARD_KNEE                          */
     0x00, 0xd4, 0x00, /* Command VOLUME_DYN_RANGE                   */
