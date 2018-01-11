@@ -117,20 +117,20 @@ int32_t main(void)
 	POWER_FLAG = 0xff;
 	SYS_power_flag = 0;
 	LED_Flag = 0;
-	I2C_SW_Open(500000);
 	
 	#if 1
 	while(1)
 	{
 		if( POWER_FLAG && (SYS_power_flag == 0) )  		//power on 
 		{
+	I2C_SW_Open(500000);
 			_RST = 0;
+			Sys_power_on();
 			mute_flag = 1;
 			BT_REV = 0;
 			BT_FWD = 0;	
 			treble_level = 8;
 			bass_level = 8;
-			Sys_power_on();
 			TAS_5754_Init(slave_addr);
 			CLK_SysTickDelay(5000);	
 			Channel_select(Channel1);

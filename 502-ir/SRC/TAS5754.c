@@ -4935,10 +4935,10 @@ const Bass	Bass_TAS[17] =
 		0x00,0x00}	
 };
 
-uint8_t pii[34][2]=
+uint8_t pii[35][2]=
 {
 //	{0,255},//{0,255},
-	{32,0xAA},
+	{0,0xAA},
 	{1,202},//{0,202},
 	{2,162},//{0,162},
 	{3,132},
@@ -4967,44 +4967,45 @@ uint8_t pii[34][2]=
 	{26,32},
 	{27,31},
 	{28,30},
-	{29,1},
-	{30,8},
-	{31,3},
-	{32,0xaa},
-	{33,9}
-//	{29,29},
-//	{30,28},
-//	{31,1},
-//	{32,6},
-//	{33,0},
-//	{34,0}
+//	{29,1},
+//	{30,8},
+//	{31,3},
+//	{32,0xaa},
+//	{33,9}
+	{29,29},
+	{30,28},
+	{31,1},
+	{32,6},
+	{33,0},
+	{34,0}
 };
 
 void test_24c02(void)
 {
 	uint8_t i;
 	/* Programming EEPROM */
-	I2C_SW_Get(_24c02_addr,pii[32],1);
-	if(pii[32][1]==0xff)//255  24c02 has any data.	data flag
-	{
-		for(i=0;i<34;i++)
-		{
-//			pii[i][0]=i;
-			I2C_SW_Send(_24c02_addr,pii[i],2);//write data to 24c02.
-			CLK_SysTickDelay(2000);
-//			pii[i][1] = 0;
-		}
-	}
-	else if(pii[32][1]==0xaa)//170  24c02 has the data.	data flag
-	{
-		for(i=0;i<34;i++)
-		{
-//			pii[i][0]=i;
-			I2C_SW_Get(_24c02_addr,pii[i],1);
-		}
-	}
-		vol_level = pii[30][1];
-		Channel1 = pii[29][1];
+//	I2C_SW_Get(_24c02_addr,pii[0],1);
+//	CLK_SysTickDelay(20);
+//	if(pii[0][1]==0xff)//255  24c02 has any data.	data flag
+//	{
+//		for(i=0;i<35;i++)
+//		{
+////			pii[i][0]=i;
+//			I2C_SW_Send(_24c02_addr,pii[i],2);//write data to 24c02.
+//			CLK_SysTickDelay(2000);
+////			pii[i][1] = 0;
+//		}
+//	}
+//	else if(pii[32][1]==0xaa)//170  24c02 has the data.	data flag
+//	{
+//		for(i=0;i<34;i++)
+//		{
+////			pii[i][0]=i;
+//			I2C_SW_Get(_24c02_addr,pii[i],1);
+//		}
+//	}
+//		vol_level = pii[30][1];
+//		Channel1 = pii[29][1];
 //	for(i=0; i<35; i++)
 //	{
 //		pii[i][0] = i;
@@ -5012,33 +5013,42 @@ void test_24c02(void)
 //		I2C_SW_Send(_24c02_addr,pii[i],2);
 //		CLK_SysTickDelay(2000);
 //	}
-//  for(i=0; i<35; i++)
-//	{
-//		pii[i][0] = i;
-//		pii[i][1] = 0;
-//		I2C_SW_Get(_24c02_addr,pii[i],1);
-//	}
-//	vol_level = pii[32][1];
-//	Channel1 = pii[31][1];
+  for(i=0; i<35; i++)
+	{
+		pii[i][0] = i;
+		pii[i][1] = 0;
+		I2C_SW_Get(_24c02_addr,pii[i],1);
+		CLK_SysTickDelay(1500);
+	}
+	vol_level = pii[32][1];
+	Channel1 = pii[31][1];
 }
 
 void TAS_5754_Init(uint8_t Adds)
 {
     uint8_t buf[2];
     uint16_t index;
-
+	for(index=1; index<31; index++)
+	{
+		pii[index][0] = index;
+//		pii[index][1] = 0;
+		I2C_SW_Send(_24c02_addr,pii[index],2);
+		CLK_SysTickDelay(1200);
+	}
+	
 	for(index = 0;  index<4401; index++)
 	{
 		buf[0] = IIC_REG_5754[index][0];
 		buf[1] = IIC_REG_5754[index][1];
 		I2C_SW_Send(Adds,buf,2);	
+		CLK_SysTickDelay(1200);
 	}
 	test_24c02();
 	buf[0] = 0;buf[1] = 0;
 	I2C_SW_Send(slave_addr,buf,2);
-	buf[0] = 61;buf[1] = pii[(pii[30][1])][1];	//pii[32]  VOL
+	buf[0] = 61;buf[1] = pii[(pii[32][1])][1];	//pii[32]  VOL
 	I2C_SW_Send(slave_addr,buf,2);
-	buf[0] = 62;buf[1] = pii[(pii[30][1])][1];
+	buf[0] = 62;buf[1] = pii[(pii[32][1])][1];
 	I2C_SW_Send(slave_addr,buf,2);
 }
 
@@ -5406,9 +5416,9 @@ void Amplifier_VOL_A(void)
 {
 	uint8_t p[2];
 	vol_level++;
-	if(vol_level>=28)
+	if(vol_level>=30)
 	{
-		vol_level = 28;
+		vol_level = 30;
 	}
 	else
 	{
@@ -5418,7 +5428,7 @@ void Amplifier_VOL_A(void)
 		if(LED_G == 0){LED_G = ~LED_G;CLK_SysTickDelay(30000);LED_G = ~LED_G;}
 		if(LED_B == 0){LED_B = ~LED_B;CLK_SysTickDelay(30000);LED_B = ~LED_B;}		
 		vol_adjust();
-	p[0] = 30;
+	p[0] = 32;
 	p[1] = vol_level;
 	I2C_SW_Send(_24c02_addr,p,2);
 	CLK_SysTickDelay(2000);
@@ -5429,7 +5439,7 @@ void Amplifier_VOL_B(void)
 {
 	uint8_t p[2];
 	vol_level--;
-	if((vol_level>30) || (vol_level<=0))
+	if(vol_level>30)// || (vol_level<=0))
 	{
 		vol_level = 0;		
 	}	
@@ -5441,7 +5451,7 @@ void Amplifier_VOL_B(void)
 		if(LED_G == 0){LED_G = ~LED_G;CLK_SysTickDelay(30000);LED_G = ~LED_G;}
 		if(LED_B == 0){LED_B = ~LED_B;CLK_SysTickDelay(30000);LED_B = ~LED_B;}		
 		vol_adjust();
-	p[0] = 30;
+	p[0] = 32;
 	p[1] = vol_level;
 	I2C_SW_Send(_24c02_addr,p,2);
 	CLK_SysTickDelay(2000);
@@ -6227,7 +6237,7 @@ void treble_adjust(uint8_t level)
 void Amplifier_TREBLE_A(void)
 {
 	treble_level++;	
-	if(treble_level>=16)
+	if(treble_level>16)
 		treble_level = 16;
 	else
 	{
@@ -6241,7 +6251,7 @@ void Amplifier_TREBLE_A(void)
 void Amplifier_TREBLE_B(void)
 {
 	treble_level--;
-	if((treble_level>16) || (treble_level<=0))
+	if(treble_level>16)// || (treble_level<=0))
 		treble_level=0;
 	else
 	{
@@ -7022,7 +7032,7 @@ void bass_adjust(uint8_t level)
 
 			p[0] = Bass_TAS[16].page0_T.cmd;
 			p[1] = Bass_TAS[16].page0_T.page_value;
-			I2C_SW_Send(slave_addr,p,2);		
+			I2C_SW_Send(slave_addr,p,2);
 			break;
 		default:
 			break;
@@ -7031,7 +7041,7 @@ void bass_adjust(uint8_t level)
 void Amplifier_BASS_A(void)
 {
 	bass_level++;
-	if(bass_level>=16)
+	if(bass_level>16)
 		bass_level = 16;
 	else
 	{
@@ -7040,11 +7050,12 @@ void Amplifier_BASS_A(void)
 		if(LED_B == 0){LED_B = ~LED_B;CLK_SysTickDelay(30000);LED_B = ~LED_B;}		
 		bass_adjust(bass_level);
 	}
+	CLK_SysTickDelay(2000);
 }
 void Amplifier_BASS_B(void)
 {
 	bass_level--;
-	if((bass_level>16) || (bass_level<=0))
+	if(bass_level>16)// || (bass_level<0))
 		bass_level=0;
 	else
 	{
@@ -7053,6 +7064,7 @@ void Amplifier_BASS_B(void)
 		if(LED_B == 0){LED_B = ~LED_B;CLK_SysTickDelay(30000);LED_B = ~LED_B;}		
 		bass_adjust(bass_level);
 	}
+	CLK_SysTickDelay(2000);
 }
 
 //void Amplifier_DELAY_A(void)

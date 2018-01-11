@@ -47,7 +47,7 @@ void IR_test_task(void)
 			if(KEY_data==0x00)//key up
 			{
 				ir_static = ir_static | 0x04;
-				if((KEY_pre!=0x15)||(KEY_pre!=0x14))
+				if((KEY_pre!=0x15)&&(KEY_pre!=0x14)&&( SYS_power_flag ))
 				{
 					LED_Flag = 0;
 					_RST = 1;
@@ -68,6 +68,7 @@ void IR_test_task(void)
 				switch(KEY_pre)
 				{
 						case 0x0a:							//LINE IN
+							if( SYS_power_flag )
 							{
 								p[1] = Channel1 = 2;
 								Channel_select(Channel1);
@@ -76,6 +77,7 @@ void IR_test_task(void)
 						break;
 						
 						case 0x0b:							//AUX IN
+							if( SYS_power_flag )
 							{
 								p[1] = Channel1 = 1;
 								Channel_select(Channel1);
@@ -84,6 +86,8 @@ void IR_test_task(void)
 						break;
 												
 						case 0x0c:							//BLUETOOTH
+						if( SYS_power_flag )
+						{
 							if(Channel1)
 							{
 								p[1] = Channel1 = 0;
@@ -97,6 +101,7 @@ void IR_test_task(void)
 								LED_R = 1;LED_G = 1;LED_B = 1;
 								CLK_SysTickDelay(40000);LED_B = 0;									
 							}
+						}
 						break;
 
 //						case 0x0d:							//OPTICAL

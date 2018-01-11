@@ -89,7 +89,7 @@ void Sys_power_on( void )
 {
 	SYS_power_flag = 1;
 	ST_BY = 1;
-//	CLK_SysTickDelay(200000);	
+	CLK_SysTickDelay(200000);	
 }
 
 void Sys_power_off( void )
@@ -103,50 +103,56 @@ void Sys_power_off( void )
 void Channel_select( uint8_t Ch )
 {
 	uint8_t p[2];
-	p[0] = 29;
+	p[0] = 31;
 	_RST = 0;
 	switch( Ch )
 	{
 		case 2:
-			CLK_SysTickDelay(200000);
-			_4052_A = 0;
-			_4052_B = 0;
+//			CLK_SysTickDelay(200000);
 			if( SYS_power_flag )
 			{
-				BT_POWER = 0;
+				BT_patch();
 //				Power_Meter_Detect();
 				LED_R = 0;LED_B = 0;LED_G = 1;		
+				BT_POWER = 0;
 			}
+			_4052_A = 0;
+			_4052_B = 0;
 			p[1] = 2;
 			I2C_SW_Send(_24c02_addr,p,2);
+			CLK_SysTickDelay(20);
 			Channel1 = 0x02;
 			break;
 		case 0:		//Bluetooth
-			CLK_SysTickDelay(200000);
+//			CLK_SysTickDelay(200000);
 			_4052_A = 1;
 			_4052_B = 0;
 			if( SYS_power_flag )
 			{
 				BT_POWER = 1;
 //				Power_Meter_Detect();
-				LED_R = 1;LED_B = 0;LED_G = 1;		
+				LED_R = 1;LED_B = 0;LED_G = 1;	
+				BT_Play_Pause();
 			}
 			p[1] = 0;
 			I2C_SW_Send(_24c02_addr,p,2);
+			CLK_SysTickDelay(20);
 			Channel1 = 0x00;
 			break;
 		case 1:			//aux
-			CLK_SysTickDelay(200000);
-			_4052_A = 0;
-			_4052_B = 1;
+//			CLK_SysTickDelay(200000);
 			if( SYS_power_flag )
 			{
-				BT_POWER = 0;
+				BT_patch();
 //				Power_Meter_Detect();
 				LED_R = 1;LED_B = 1;LED_G = 0;		
+				BT_POWER = 0;
 			}
+			_4052_A = 0;
+			_4052_B = 1;
 			p[1] = 1;
 			I2C_SW_Send(_24c02_addr,p,2);
+			CLK_SysTickDelay(20);
 			Channel1 = 0x01;
 			break;
 		case 3:
@@ -158,6 +164,7 @@ void Channel_select( uint8_t Ch )
 			}
 			p[1] = 3;
 			I2C_SW_Send(_24c02_addr,p,2);
+			CLK_SysTickDelay(20);
 			Channel1 = 0x03;
 			break;
 		default:
