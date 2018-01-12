@@ -89,13 +89,13 @@ int32_t I2C_SW_Send(uint8_t u8Address, uint8_t* p8Data, uint32_t u32ByteSize)
 //    if(I2C_SW_Send_byte(u8Address<<1))
 	if(I2C_SW_Send_byte(u8Address&0xfe))
 	{
-        while(1);
+//        while(1);
 		goto I2C_SW_Stop_Send;
 	}
     while(u32count<u32ByteSize) {
         if(I2C_SW_Send_byte(*(p8Data+u32count++)))
 				{ 
-					while(1);
+//					while(1);
 				goto I2C_SW_Stop_Send;
 				}
     }

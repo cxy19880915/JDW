@@ -6237,8 +6237,8 @@ void treble_adjust(uint8_t level)
 void Amplifier_TREBLE_A(void)
 {
 	treble_level++;	
-	if(treble_level>16)
-		treble_level = 16;
+	if(treble_level>14)
+		treble_level = 14;
 	else
 	{
 //		if(LED_R == 0){LED_R = ~LED_R;CLK_SysTickDelay(40000);LED_R = ~LED_R;}
@@ -6251,7 +6251,7 @@ void Amplifier_TREBLE_A(void)
 void Amplifier_TREBLE_B(void)
 {
 	treble_level--;
-	if(treble_level>16)// || (treble_level<=0))
+	if(treble_level>14)// || (treble_level<=0))
 		treble_level=0;
 	else
 	{
@@ -7041,8 +7041,8 @@ void bass_adjust(uint8_t level)
 void Amplifier_BASS_A(void)
 {
 	bass_level++;
-	if(bass_level>16)
-		bass_level = 16;
+	if(bass_level>14)
+		bass_level = 14;
 	else
 	{
 //		if(LED_R == 0){LED_R = ~LED_R;CLK_SysTickDelay(40000);LED_R = ~LED_R;}
@@ -7055,7 +7055,7 @@ void Amplifier_BASS_A(void)
 void Amplifier_BASS_B(void)
 {
 	bass_level--;
-	if(bass_level>16)// || (bass_level<0))
+	if(bass_level>14)// || (bass_level<0))
 		bass_level=0;
 	else
 	{

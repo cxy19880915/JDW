@@ -1,4 +1,4 @@
-C51 COMPILER V9.56.0.0   I2C_M                                                             01/12/2018 13:27:30 PAGE 1   
+C51 COMPILER V9.56.0.0   I2C_M                                                             01/12/2018 13:51:23 PAGE 1   
 
 
 C51 COMPILER V9.56.0.0, COMPILATION OF MODULE I2C_M
@@ -62,7 +62,7 @@ line level    source
   43          //========================================================================================================
   44          void  delay(void)
   45          {
-C51 COMPILER V9.56.0.0   I2C_M                                                             01/12/2018 13:27:30 PAGE 2   
+C51 COMPILER V9.56.0.0   I2C_M                                                             01/12/2018 13:51:23 PAGE 2   
 
   46   1          UINT16 i = 0;
   47   1          for(i=0;i<50;i++);
@@ -73,125 +73,130 @@ line level    source
   52          {
   53   1      //    P3 = I2STAT;
   54   1      //    P3 = ERROR_CODE;
-  55   1          while (1)P12 = 0;    
-  56   1      }
-  57          
-  58          void Init_I2C(void)
-  59          {
-  60   1          SCL_I2C = 1;                                //set SDA and SCL pins high
-  61   1          delay();
-  62   1          SDA_I2C = 1;
-  63   1          delay();
-  64   1      }
-  65          //========================================================================================================
-  66          void start_I2C(void)
-  67          {
-  68   1          SDA_I2C = 1;
-  69   1          delay();
-  70   1          SCL_I2C = 1; 
-  71   1          delay();
-  72   1          SDA_I2C = 0;
-  73   1          delay();
-  74   1      }
-  75          
-  76          //========================================================================================================
-  77          void respons_I2C(void)
-  78          {
-  79   1          UINT16 i = 0;
-  80   1          SCL_I2C = 1;
-  81   1          delay();
-  82   1          while((SDA_I2C == 1)&&(i<50000))
-  83   1          {
-  84   2              i++;
-  85   2              if(i==5000)
-  86   2              {
-  87   3                  I2C_Error();
-  88   3              }
-  89   2          }
-  90   1          SCL_I2C = 0;
-  91   1          delay();
-  92   1      }
-  93          
-  94          //========================================================================================================
-  95          void stop_I2C(void)
-  96          {
-  97   1          SDA_I2C = 0;
-  98   1          delay();
-  99   1          SCL_I2C = 1;
- 100   1          delay();
- 101   1          SDA_I2C = 1;
- 102   1          delay();
- 103   1      }
- 104          
- 105          void writebyte_I2C(UINT8 data_I2C)
- 106          {
- 107   1          UINT8 i,temp;
-C51 COMPILER V9.56.0.0   I2C_M                                                             01/12/2018 13:27:30 PAGE 3   
+  55   1          while (1)P12 = 0; 
+  56   1      //    SDA_I2C = 0;
+  57   1      //    delay();
+  58   1      //    SCL_I2C = 1;
+  59   1      //    delay();
+  60   1      //    SDA_I2C = 1;
+  61   1      }
+  62          
+  63          void Init_I2C(void)
+  64          {
+  65   1          SCL_I2C = 1;                                //set SDA and SCL pins high
+  66   1          delay();
+  67   1          SDA_I2C = 1;
+  68   1          delay();
+  69   1      }
+  70          //========================================================================================================
+  71          void start_I2C(void)
+  72          {
+  73   1          SDA_I2C = 1;
+  74   1          delay();
+  75   1          SCL_I2C = 1; 
+  76   1          delay();
+  77   1          SDA_I2C = 0;
+  78   1          delay();
+  79   1      }
+  80          
+  81          //========================================================================================================
+  82          void respons_I2C(void)
+  83          {
+  84   1          UINT16 i = 0;
+  85   1          SCL_I2C = 1;
+  86   1          delay();
+  87   1          while((SDA_I2C == 1)&&(i<50000))
+  88   1          {
+  89   2              i++;
+  90   2              if(i==5000)
+  91   2              {
+  92   3                  I2C_Error();
+  93   3              }
+  94   2          }
+  95   1          SCL_I2C = 0;
+  96   1          delay();
+  97   1      }
+  98          
+  99          //========================================================================================================
+ 100          void stop_I2C(void)
+ 101          {
+ 102   1          SDA_I2C = 0;
+ 103   1          delay();
+ 104   1          SCL_I2C = 1;
+ 105   1          delay();
+ 106   1          SDA_I2C = 1;
+ 107   1          delay();
+C51 COMPILER V9.56.0.0   I2C_M                                                             01/12/2018 13:51:23 PAGE 3   
 
- 108   1          temp = data_I2C;
- 109   1          for(i = 0;i < 8;i++)
- 110   1          {
- 111   2              SCL_I2C = 0;
- 112   2              delay();
- 113   2              if(temp&0x80)
- 114   2              {
- 115   3                  SDA_I2C = 1;
- 116   3              }
- 117   2              else
- 118   2              {
- 119   3                  SDA_I2C = 0;
- 120   3              }
- 121   2              temp = temp << 1;
- 122   2              delay();
- 123   2              SCL_I2C = 1;
- 124   2              delay();
- 125   2          }
- 126   1          SCL_I2C = 0;
- 127   1          delay();
- 128   1          SDA_I2C = 1;
- 129   1          delay();
- 130   1      }
- 131          
- 132          UINT8 readbyte_I2C(bit SDA_I2C,bit SCL_I2C)
- 133          {
- 134   1          UINT8 i,k;
- 135   1          SCL_I2C = 0;
- 136   1          delay();
- 137   1          SDA_I2C = 1;
- 138   1          delay();
- 139   1          for(i = 0;i < 8;i++)
- 140   1          {
- 141   2              SCL_I2C = 1;
- 142   2              delay();
- 143   2              k = (k << 1)| SDA_I2C;
- 144   2              SCL_I2C = 0;
- 145   2              delay();
- 146   2          }
- 147   1          delay();
- 148   1          return k;
- 149   1      }
- 150          
- 151          void I2C_Write_Command(UINT8 u8Address, UINT8* p8Data, UINT32 u32ByteSize)
- 152          {
- 153   1          UINT8 i=0;
- 154   1          start_I2C();
- 155   1          writebyte_I2C(u8Address|EEPROM_WR);
- 156   1          respons_I2C();
- 157   1          for(i=0;i<u32ByteSize;i++)
- 158   1          {
- 159   2              writebyte_I2C(*p8Data++);
- 160   2              respons_I2C();
- 161   2          }
- 162   1          stop_I2C(); 
- 163   1      }
- 164          #endif
- 165          #if 0
+ 108   1      }
+ 109          
+ 110          void writebyte_I2C(UINT8 data_I2C)
+ 111          {
+ 112   1          UINT8 i,temp;
+ 113   1          temp = data_I2C;
+ 114   1          for(i = 0;i < 8;i++)
+ 115   1          {
+ 116   2              SCL_I2C = 0;
+ 117   2              delay();
+ 118   2              if(temp&0x80)
+ 119   2              {
+ 120   3                  SDA_I2C = 1;
+ 121   3              }
+ 122   2              else
+ 123   2              {
+ 124   3                  SDA_I2C = 0;
+ 125   3              }
+ 126   2              temp = temp << 1;
+ 127   2              delay();
+ 128   2              SCL_I2C = 1;
+ 129   2              delay();
+ 130   2          }
+ 131   1          SCL_I2C = 0;
+ 132   1          delay();
+ 133   1          SDA_I2C = 1;
+ 134   1          delay();
+ 135   1      }
+ 136          
+ 137          UINT8 readbyte_I2C(bit SDA_I2C,bit SCL_I2C)
+ 138          {
+ 139   1          UINT8 i,k;
+ 140   1          SCL_I2C = 0;
+ 141   1          delay();
+ 142   1          SDA_I2C = 1;
+ 143   1          delay();
+ 144   1          for(i = 0;i < 8;i++)
+ 145   1          {
+ 146   2              SCL_I2C = 1;
+ 147   2              delay();
+ 148   2              k = (k << 1)| SDA_I2C;
+ 149   2              SCL_I2C = 0;
+ 150   2              delay();
+ 151   2          }
+ 152   1          delay();
+ 153   1          return k;
+ 154   1      }
+ 155          
+ 156          void I2C_Write_Command(UINT8 u8Address, UINT8* p8Data, UINT32 u32ByteSize)
+ 157          {
+ 158   1          UINT8 i=0;
+ 159   1          start_I2C();
+ 160   1          writebyte_I2C(u8Address|EEPROM_WR);
+ 161   1          respons_I2C();
+ 162   1          for(i=0;i<u32ByteSize;i++)
+ 163   1          {
+ 164   2              writebyte_I2C(*p8Data++);
+ 165   2              respons_I2C();
+ 166   2          }
+ 167   1          stop_I2C(); 
+ 168   1      }
+ 169          #endif
+C51 COMPILER V9.56.0.0   I2C_M                                                             01/12/2018 13:51:23 PAGE 4   
+
+ 170          #if 0
               //========================================================================================================
               void Init_I2C(void)
               {
                   P13_OpenDrain_Mode;         // Modify SCL pin to Open drain mode. don't forget the pull high resister in cir
-C51 COMPILER V9.56.0.0   I2C_M                                                             01/12/2018 13:27:30 PAGE 4   
-
              -cuit
                   P14_OpenDrain_Mode;         // Modify SDA pin to Open drain mode. don't forget the pull high resister in cir
              -cuit
@@ -249,13 +254,13 @@ line level    source
                   }
                   
                   /* Step4 */
+C51 COMPILER V9.56.0.0   I2C_M                                                             01/12/2018 13:51:23 PAGE 5   
+
                   set_STO;                            /* Set I2C STOP Control Bit */
                   clr_SI;
                   while (STO);
               }
               //========================================================================================================
-C51 COMPILER V9.56.0.0   I2C_M                                                             01/12/2018 13:27:30 PAGE 5   
-
               UINT8 I2C_Receive_Command(UINT8 u8Address, UINT8* p8Data, UINT32 u32ByteSize)
               {
                 UINT8 xdata u8DAT[256];
@@ -313,13 +318,13 @@ line level    source
                   
                   /* Step6 */
                   clr_AA;
+C51 COMPILER V9.56.0.0   I2C_M                                                             01/12/2018 13:51:23 PAGE 6   
+
                   clr_SI;
                   while (!SI);                                //Check SI set or not
                   if (I2STAT != 0x58)              
                       I2C_Error();
               
-C51 COMPILER V9.56.0.0   I2C_M                                                             01/12/2018 13:27:30 PAGE 6   
-
                   /* Step7 */
                   set_STO;
                   clr_SI;
@@ -327,7 +332,7 @@ line level    source
                   return  u8DAT;
               }
               #endif
- 299          #if 0
+ 304          #if 0
               //========================================================================================================
               void I2C_Process(UINT8 u8DAT)
               {
@@ -377,13 +382,13 @@ line level    source
                       u8DAT = ~u8DAT;        
                   }
               
+C51 COMPILER V9.56.0.0   I2C_M                                                             01/12/2018 13:51:23 PAGE 7   
+
               //--------------------------------------------------------------------------------------------
               //----  Waitting the ready for I2C write------------------------------------------------------
               //--------------------------------------------------------------------------------------------
                   /* Step6 */
                   do{
-C51 COMPILER V9.56.0.0   I2C_M                                                             01/12/2018 13:27:30 PAGE 7   
-
                       set_STO;
                       clr_SI;
                       
@@ -441,13 +446,13 @@ line level    source
                   set_STA;                       
                   clr_SI;
                   while (!SI);                                //Check SI set or not
+C51 COMPILER V9.56.0.0   I2C_M                                                             01/12/2018 13:51:23 PAGE 8   
+
                   if (I2STAT != 0x10)                         //Check status value after every step
                       I2C_Error();
                   
                   /* Step13 */
                   clr_STA;                                    //STA needs to be cleared after START codition is generate
-C51 COMPILER V9.56.0.0   I2C_M                                                             01/12/2018 13:27:30 PAGE 8   
-
              -d
                   I2DAT = (EEPROM_SLA | EEPROM_RD);
                   clr_SI;
@@ -500,18 +505,18 @@ line level    source
               ///* =================== */
               //}
               #endif
- 466          
+ 471          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
    CODE SIZE        =    263    ----
+C51 COMPILER V9.56.0.0   I2C_M                                                             01/12/2018 13:51:23 PAGE 9   
+
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----       9
    IDATA SIZE       =   ----    ----
-C51 COMPILER V9.56.0.0   I2C_M                                                             01/12/2018 13:27:30 PAGE 9   
-
    BIT SIZE         =   ----       2
 END OF MODULE INFORMATION.
 

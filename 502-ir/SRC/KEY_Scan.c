@@ -122,7 +122,7 @@ void Channel_select( uint8_t Ch )
 			_4052_B = 0;
 			p[1] = 2;
 			I2C_SW_Send(_24c02_addr,p,2);
-			CLK_SysTickDelay(20);
+			CLK_SysTickDelay(200);
 			Channel1 = 0x02;
 			break;
 		case 0:		//Bluetooth
@@ -138,7 +138,7 @@ void Channel_select( uint8_t Ch )
 			}
 			p[1] = 0;
 			I2C_SW_Send(_24c02_addr,p,2);
-			CLK_SysTickDelay(20);
+			CLK_SysTickDelay(200);
 			Channel1 = 0x00;
 			break;
 		case 1:			//aux
@@ -155,7 +155,7 @@ void Channel_select( uint8_t Ch )
 			_4052_B = 1;
 			p[1] = 1;
 			I2C_SW_Send(_24c02_addr,p,2);
-			CLK_SysTickDelay(20);
+			CLK_SysTickDelay(200);
 			Channel1 = 0x01;
 			break;
 		case 3:
@@ -167,7 +167,7 @@ void Channel_select( uint8_t Ch )
 			}
 			p[1] = 3;
 			I2C_SW_Send(_24c02_addr,p,2);
-			CLK_SysTickDelay(20);
+			CLK_SysTickDelay(200);
 			Channel1 = 0x03;
 			break;
 		default:

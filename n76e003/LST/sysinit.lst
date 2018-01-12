@@ -1,4 +1,4 @@
-C51 COMPILER V9.56.0.0   SYSINIT                                                           01/12/2018 13:27:28 PAGE 1   
+C51 COMPILER V9.56.0.0   SYSINIT                                                           01/12/2018 13:51:21 PAGE 1   
 
 
 C51 COMPILER V9.56.0.0, COMPILATION OF MODULE SYSINIT
@@ -62,7 +62,7 @@ line level    source
   52   1      //  PLAY = 0; 
   53   1      //  REV = 0;      
   54   1      //  FWD = 0;      
-C51 COMPILER V9.56.0.0   SYSINIT                                                           01/12/2018 13:27:28 PAGE 2   
+C51 COMPILER V9.56.0.0   SYSINIT                                                           01/12/2018 13:51:21 PAGE 2   
 
   55   1      //  VOL_UP = 0;   
   56   1      //  VOL_DOWN = 0; 
@@ -82,28 +82,29 @@ line level    source
   70   1        Init_I2C();
   71   1        set_EA;                                     //enable interrupts
   72   1        set_TR0;                                    //Timer0 run
-  73   1      //  set_TR2;                                    // Timer2 run 
-  74   1      }
-  75          
-  76          //void  time0_init(void)
-  77          //{
-  78          //  TIMER0_MODE1_ENABLE;
-  79          //  u8TH0_Tmp = (65536-TH0_INIT)/256;
-  80          //    u8TL0_Tmp = (65536-TL0_INIT)%256;
-  81          //  TH0 = u8TH0_Tmp;
-  82          //    TL0 = u8TL0_Tmp;
-  83          //  set_ET0;
-  84          //}
-  85          
-  86          //void  adc_init(void)
-  87          //{
-  88          //  Enable_ADC_AIN0;
-  89          //}
-  90          
+  73   1        __delay_10ms(20);
+  74   1        //  set_TR2;                                    // Timer2 run 
+  75   1      }
+  76          
+  77          //void  time0_init(void)
+  78          //{
+  79          //  TIMER0_MODE1_ENABLE;
+  80          //  u8TH0_Tmp = (65536-TH0_INIT)/256;
+  81          //    u8TL0_Tmp = (65536-TL0_INIT)%256;
+  82          //  TH0 = u8TH0_Tmp;
+  83          //    TL0 = u8TL0_Tmp;
+  84          //  set_ET0;
+  85          //}
+  86          
+  87          //void  adc_init(void)
+  88          //{
+  89          //  Enable_ADC_AIN0;
+  90          //}
+  91          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     67    ----
+   CODE SIZE        =     73    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

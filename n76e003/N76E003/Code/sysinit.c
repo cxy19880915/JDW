@@ -70,7 +70,8 @@ void	sys_init(void)
 	Init_I2C();
 	set_EA;                                     //enable interrupts
 	set_TR0;                                    //Timer0 run
-//  set_TR2;                                    // Timer2 run	
+	__delay_10ms(20);
+	//  set_TR2;                                    // Timer2 run	
 }
 
 //void	time0_init(void)

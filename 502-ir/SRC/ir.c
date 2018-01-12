@@ -73,6 +73,7 @@ void IR_test_task(void)
 								p[1] = Channel1 = 2;
 								Channel_select(Channel1);
 								I2C_SW_Send(_24c02_addr,p,2);
+								CLK_SysTickDelay(1500);
 							}
 						break;
 						
@@ -82,6 +83,7 @@ void IR_test_task(void)
 								p[1] = Channel1 = 1;
 								Channel_select(Channel1);
 								I2C_SW_Send(_24c02_addr,p,2);
+								CLK_SysTickDelay(1500);
 							}
 						break;
 												
@@ -93,6 +95,7 @@ void IR_test_task(void)
 								p[1] = Channel1 = 0;
 								Channel_select(Channel1);
 								I2C_SW_Send(_24c02_addr,p,2);
+								CLK_SysTickDelay(1500);
 								pause_flag = 0;
 							}
 							else if(disp<3)

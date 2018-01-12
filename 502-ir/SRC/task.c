@@ -19,7 +19,7 @@ uint8_t disp_flag=0,disp=0;
 uint8_t KEY_data = 0,_100ms_flag=0;
 //uint8_t _channel=0;
 uint8_t	power_change=0;
-//uint8_t vol_n = 0xf0,treble_n = 0xf0,sub_n = 0xf0;
+uint8_t vol_n = 0xf0,treble_n = 0xf0,sub_n = 0xf0;
 uint8_t	VOL_F=0,TREBLE_F=0,SUB_F=0;
 extern	uint8_t	Channel1;
 extern	uint8_t	t_s;

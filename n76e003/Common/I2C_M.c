@@ -52,7 +52,12 @@ void I2C_Error(void)
 {
 //    P3 = I2STAT;
 //    P3 = ERROR_CODE;
-    while (1)P12 = 0;    
+    while (1)P12 = 0; 
+//		SDA_I2C = 0;
+//		delay();
+//		SCL_I2C = 1;
+//		delay();
+//		SDA_I2C = 1;
 }
 
 void Init_I2C(void)

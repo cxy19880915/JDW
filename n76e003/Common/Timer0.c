@@ -46,7 +46,7 @@ void	KEY_SCAN(void)
 			}
 			else if(adc_V > V_2_0)
 			{
-				if((key_status&0x02)&&(mn>8))
+				if((key_status&0x02)&&(mn>8)&&(power_flag))
 				{
 					key_flag = 1;
 					KEY_VALUE =  VOL_A;
@@ -55,7 +55,7 @@ void	KEY_SCAN(void)
 			}
 			else if(adc_V > V_1_5)
 			{
-				if((key_status&0x04)&&(mn>8))
+				if((key_status&0x04)&&(mn>8)&&(power_flag))
 				{
 					key_flag = 1;
 					KEY_VALUE =  VOL_B;
@@ -80,23 +80,23 @@ void	KEY_SCAN(void)
 					key_flag = 1;
 					KEY_VALUE =  POWER;
 				}	
-				if(key_status&0x02)
+				if((key_status&0x02)&&(power_flag))
 				{
 					key_flag = 1;
 					KEY_VALUE =  VOL_A;
 				}
-				if(key_status&0x04)
+				if((key_status&0x04)&&(power_flag))
 				{
 					key_flag = 1;
 					KEY_VALUE =  VOL_B;
 				}
-				if(key_status&0x08)
+				if((key_status&0x08)&&(power_flag))
 				{
 					key_flag = 1;
 					KEY_VALUE = SOURCE;
 //					source_in++;
 				}
-				if(key_status&0x10)
+				if((key_status&0x10)&&(power_flag))
 				{
 					key_flag = 1;
 					KEY_VALUE = MODE;	

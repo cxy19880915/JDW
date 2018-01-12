@@ -129,8 +129,8 @@ int32_t main(void)
 			mute_flag = 1;
 			BT_REV = 0;
 			BT_FWD = 0;	
-			treble_level = 8;
-			bass_level = 8;
+			treble_level = 7;
+			bass_level = 7;
 			TAS_5754_Init(slave_addr);
 			CLK_SysTickDelay(5000);	
 			Channel_select(Channel1);
