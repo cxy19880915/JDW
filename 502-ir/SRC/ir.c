@@ -189,6 +189,7 @@ void IR_test_task(void)
 //									LED_B = 0;
 								}
 							}
+							break;
 							
 						case 0x12:							//VOL+
 							if( SYS_power_flag )
