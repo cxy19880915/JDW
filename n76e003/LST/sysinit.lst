@@ -1,4 +1,4 @@
-C51 COMPILER V9.56.0.0   SYSINIT                                                           01/12/2018 12:00:46 PAGE 1   
+C51 COMPILER V9.56.0.0   SYSINIT                                                           01/12/2018 13:27:28 PAGE 1   
 
 
 C51 COMPILER V9.56.0.0, COMPILATION OF MODULE SYSINIT
@@ -62,7 +62,7 @@ line level    source
   52   1      //  PLAY = 0; 
   53   1      //  REV = 0;      
   54   1      //  FWD = 0;      
-C51 COMPILER V9.56.0.0   SYSINIT                                                           01/12/2018 12:00:46 PAGE 2   
+C51 COMPILER V9.56.0.0   SYSINIT                                                           01/12/2018 13:27:28 PAGE 2   
 
   55   1      //  VOL_UP = 0;   
   56   1      //  VOL_DOWN = 0; 

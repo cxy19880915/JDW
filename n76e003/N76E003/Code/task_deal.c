@@ -51,7 +51,9 @@ void	POWER_ON_OFF(void)
 	else if((sys_flag & sys_power_off)&&(power_flag == 0))
 	{
 		clr_EA;
+		BT_POWER = 0;
 		MUTE = 1;
+		__delay_10ms(20);
 		ST_BY = 0;
 		sys_flag = sys_flag & (~sys_power_off);
 		sys_flag = sys_flag | sys_power_on;
@@ -72,6 +74,7 @@ void	SYS_SOURCE(void)
 		if(!MUTE){MUTE = 1;flag_s = 1;}
 		sys_flag = sys_flag & (~sys_source); 
 		BT_POWER = 0;
+		__delay_10ms(20);
 //		switch(source_in)
 //		{
 //			case	0:
