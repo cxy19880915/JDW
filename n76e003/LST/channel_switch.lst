@@ -1,4 +1,4 @@
-C51 COMPILER V9.56.0.0   CHANNEL_SWITCH                                                    01/12/2018 13:51:23 PAGE 1   
+C51 COMPILER V9.56.0.0   CHANNEL_SWITCH                                                    01/12/2018 17:57:51 PAGE 1   
 
 
 C51 COMPILER V9.56.0.0, COMPILATION OF MODULE CHANNEL_SWITCH
@@ -62,7 +62,7 @@ line level    source
   51   1        sys_flag = sys_flag | sys_source;
   52   1      //  source_in--;
   53   1        NPCA110P_SOURCE();
-C51 COMPILER V9.56.0.0   CHANNEL_SWITCH                                                    01/12/2018 13:51:23 PAGE 2   
+C51 COMPILER V9.56.0.0   CHANNEL_SWITCH                                                    01/12/2018 17:57:51 PAGE 2   
 
   54   1        switch(mode_in)
   55   1        {
@@ -126,7 +126,7 @@ line level    source
  113   2          
  114   2          case  3:
  115   2            volume_Control[0]=0x00;
-C51 COMPILER V9.56.0.0   CHANNEL_SWITCH                                                    01/12/2018 13:51:23 PAGE 3   
+C51 COMPILER V9.56.0.0   CHANNEL_SWITCH                                                    01/12/2018 17:57:51 PAGE 3   
 
  116   2            volume_Control[2]=0x9a;
  117   2            I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
@@ -190,7 +190,7 @@ line level    source
  175   2            volume_Control[0]=0x01;
  176   2            volume_Control[2]=0x4f;
  177   2            I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
-C51 COMPILER V9.56.0.0   CHANNEL_SWITCH                                                    01/12/2018 13:51:23 PAGE 4   
+C51 COMPILER V9.56.0.0   CHANNEL_SWITCH                                                    01/12/2018 17:57:51 PAGE 4   
 
  178   2            break;
  179   2          
@@ -254,7 +254,7 @@ line level    source
  237   2            I2C_Write_Command(NPCA110P_EEPROM_SLA,volume_Control,3);
  238   2            break;
  239   2          
-C51 COMPILER V9.56.0.0   CHANNEL_SWITCH                                                    01/12/2018 13:51:23 PAGE 5   
+C51 COMPILER V9.56.0.0   CHANNEL_SWITCH                                                    01/12/2018 17:57:51 PAGE 5   
 
  240   2          case  24:
  241   2            volume_Control[0]=0x01;
@@ -318,7 +318,7 @@ line level    source
  299          {
  300   1      //  I2C_Write_Command(NPCA110P_EEPROM_SLA,g_abMax1xDSPCommands,10);
  301   1      }
-C51 COMPILER V9.56.0.0   CHANNEL_SWITCH                                                    01/12/2018 13:51:23 PAGE 6   
+C51 COMPILER V9.56.0.0   CHANNEL_SWITCH                                                    01/12/2018 17:57:51 PAGE 6   
 
  302          void  NPCA110P_MODE(void)
  303          {

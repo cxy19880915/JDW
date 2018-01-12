@@ -71,9 +71,9 @@ void	SYS_SOURCE(void)
 {
 	if(sys_flag & sys_source)
 	{
-		if(!MUTE){MUTE = 1;flag_s = 1;}
+//		if(!MUTE){MUTE = 1;flag_s = 1;}
 		sys_flag = sys_flag & (~sys_source); 
-		BT_POWER = 0;
+//		BT_POWER = 0;
 		__delay_10ms(20);
 //		switch(source_in)
 //		{
@@ -91,17 +91,22 @@ void	SYS_SOURCE(void)
 //		}
 		if(source_in>3)
 		{
-			source_in = 1;			
+			source_in = 1;
+			BT_POWER = 0;
 		}
 		else if(source_in==3)		
 		{
 			BT_POWER = 1;
 		}
+		else
+		{
+			BT_POWER = 0;
+		}
 		NPCA110P_SOURCE();
 		MUTE = 0;
 //		set_TR0;
 		led_flag = 1;
-		if(flag_s){MUTE = 0;flag_s = 0;}
+//		if(flag_s){MUTE = 0;flag_s = 0;}
 	}
 }
 
