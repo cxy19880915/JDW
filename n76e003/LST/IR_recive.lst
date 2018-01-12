@@ -1,4 +1,4 @@
-C51 COMPILER V9.56.0.0   IR_RECIVE                                                         01/10/2018 21:54:07 PAGE 1   
+C51 COMPILER V9.56.0.0   IR_RECIVE                                                         01/12/2018 12:00:47 PAGE 1   
 
 
 C51 COMPILER V9.56.0.0, COMPILATION OF MODULE IR_RECIVE
@@ -62,7 +62,7 @@ line level    source
   52          extern  UINT8 mode_in;
   53          extern  UINT8   key_flag;
   54          
-C51 COMPILER V9.56.0.0   IR_RECIVE                                                         01/10/2018 21:54:07 PAGE 2   
+C51 COMPILER V9.56.0.0   IR_RECIVE                                                         01/12/2018 12:00:47 PAGE 2   
 
   55          bit ir_long=0,ir_short=0;
   56          UINT8 ir_play_lg=0,ir_fwd_lg=0,ir_rev_lg=0,ir_source_lg=0,ir_hall_lg=0,ir_bluetooth=0;
@@ -126,7 +126,7 @@ line level    source
  114   4                  __delay_1ms(1);
  115   4                  if(ir_pin)                        //Êý¾Ý 1  high
  116   4                  {
-C51 COMPILER V9.56.0.0   IR_RECIVE                                                         01/10/2018 21:54:07 PAGE 3   
+C51 COMPILER V9.56.0.0   IR_RECIVE                                                         01/12/2018 12:00:47 PAGE 3   
 
  117   5                      dat[i] >>= 1;
  118   5                      dat[i] |= 0x80;
@@ -190,7 +190,7 @@ line level    source
               //        }
               //    }
                   while(ir_pin);                            //2ms   high
-C51 COMPILER V9.56.0.0   IR_RECIVE                                                         01/10/2018 21:54:07 PAGE 4   
+C51 COMPILER V9.56.0.0   IR_RECIVE                                                         01/12/2018 12:00:47 PAGE 4   
 
                   
                   while(!ir_pin);                         //0.56ms  low
@@ -254,7 +254,7 @@ line level    source
  238   5                  MUTE = 1;
  239   5              }
  240   4              switch(key_PRE)//switch(ir.dat.data0)
-C51 COMPILER V9.56.0.0   IR_RECIVE                                                         01/10/2018 21:54:07 PAGE 5   
+C51 COMPILER V9.56.0.0   IR_RECIVE                                                         01/12/2018 12:00:47 PAGE 5   
 
  241   4              {
  242   5                case  0x10:       //PLAY
@@ -318,95 +318,96 @@ line level    source
  300   5                default:
  301   5                  break;
  302   5              }
-C51 COMPILER V9.56.0.0   IR_RECIVE                                                         01/10/2018 21:54:07 PAGE 6   
+C51 COMPILER V9.56.0.0   IR_RECIVE                                                         01/12/2018 12:00:47 PAGE 6   
 
  303   4              ir_status = ir_status & 0x00;
- 304   4            }
- 305   3          }
- 306   2          if(Recive_flag)//key down
- 307   2          {
- 308   3            Recive_flag = 0;  
- 309   3            key_PRE = key_press;
- 310   3            if((key_PRE!=0x14)&&ST_BY)
- 311   3            {     
- 312   4              ir_status =ir_status | 0x80;
- 313   4            }
- 314   3            else if(key_PRE==0x14)
- 315   3            {
- 316   4              ir_status =ir_status | 0x80;
- 317   4            }
- 318   3      //      ir_status =ir_status | 0x80;
- 319   3            if(ir_count>2)
- 320   3            switch(key_press)//switch(ir.dat.data0)
- 321   3            {
- 322   4              case  0x10:       //PLAY
- 323   4                ir_bluetooth++;
- 324   4                if(ir_bluetooth>4)
- 325   4                {
- 326   5                  key_flag = 0x80;
- 327   5                  KEY_VALUE = ir_patch; 
- 328   5                }
- 329   4              break;
- 330   4      //        case  0x11:       //FWD
- 331   4      //            key_flag = 0x80;
- 332   4      //            KEY_VALUE = ir_fwd;
- 333   4      //          break;
- 334   4      //        case  0x16:       //REV
- 335   4      //            key_flag = 0x80;
- 336   4      //            KEY_VALUE = ir_rev;
- 337   4      //          break;
- 338   4      //        case  0x04:       //TREBLE-
- 339   4      //          break;
- 340   4      //        case  0x0a:       //LINE IN
- 341   4      //          break;
- 342   4      //        case  0x0b:       //AUX IN
- 343   4      //          break;
- 344   4      //        case  0x0c:       //BLUETOOTH
- 345   4      //          break;
- 346   4      //        case  0x41:       //SOURCE
- 347   4      //            key_flag = 0x80;
- 348   4      //            KEY_VALUE = ir_source;
- 349   4      //          break;
- 350   4      //        case  0x4a:       //HALL
- 351   4      //            key_flag = 0x80;
- 352   4      //            KEY_VALUE = ir_hall;
- 353   4      //          break;
- 354   4      //        case  0x4b:       //MUSIC
- 355   4      //            key_flag = 0x80;
- 356   4      //            KEY_VALUE = ir_music;
- 357   4      //          break;
- 358   4      //        case  0x4c:       //SPEECH
- 359   4      //            key_flag = 0x80;
- 360   4      //            ir_speech_lg++;
- 361   4      //            KEY_VALUE = ir_speech;      
- 362   4      //          break;
- 363   4              case  0x12:       //VOL+
- 364   4                  key_flag = 0x80;
-C51 COMPILER V9.56.0.0   IR_RECIVE                                                         01/10/2018 21:54:07 PAGE 7   
+ 304   4              key_PRE = 0x00;
+ 305   4            }
+ 306   3          }
+ 307   2          if(Recive_flag)//key down
+ 308   2          {
+ 309   3            Recive_flag = 0;  
+ 310   3            key_PRE = key_press;
+ 311   3            if((key_PRE!=0x14)&&ST_BY)
+ 312   3            {     
+ 313   4              ir_status =ir_status | 0x80;
+ 314   4            }
+ 315   3            else if(key_PRE==0x14)
+ 316   3            {
+ 317   4              ir_status =ir_status | 0x80;
+ 318   4            }
+ 319   3      //      ir_status =ir_status | 0x80;
+ 320   3            if(ir_count>2)
+ 321   3            switch(key_press)//switch(ir.dat.data0)
+ 322   3            {
+ 323   4              case  0x10:       //PLAY
+ 324   4                ir_bluetooth++;
+ 325   4                if(ir_bluetooth>4)
+ 326   4                {
+ 327   5                  key_flag = 0x80;
+ 328   5                  KEY_VALUE = ir_patch; 
+ 329   5                }
+ 330   4              break;
+ 331   4      //        case  0x11:       //FWD
+ 332   4      //            key_flag = 0x80;
+ 333   4      //            KEY_VALUE = ir_fwd;
+ 334   4      //          break;
+ 335   4      //        case  0x16:       //REV
+ 336   4      //            key_flag = 0x80;
+ 337   4      //            KEY_VALUE = ir_rev;
+ 338   4      //          break;
+ 339   4      //        case  0x04:       //TREBLE-
+ 340   4      //          break;
+ 341   4      //        case  0x0a:       //LINE IN
+ 342   4      //          break;
+ 343   4      //        case  0x0b:       //AUX IN
+ 344   4      //          break;
+ 345   4      //        case  0x0c:       //BLUETOOTH
+ 346   4      //          break;
+ 347   4      //        case  0x41:       //SOURCE
+ 348   4      //            key_flag = 0x80;
+ 349   4      //            KEY_VALUE = ir_source;
+ 350   4      //          break;
+ 351   4      //        case  0x4a:       //HALL
+ 352   4      //            key_flag = 0x80;
+ 353   4      //            KEY_VALUE = ir_hall;
+ 354   4      //          break;
+ 355   4      //        case  0x4b:       //MUSIC
+ 356   4      //            key_flag = 0x80;
+ 357   4      //            KEY_VALUE = ir_music;
+ 358   4      //          break;
+ 359   4      //        case  0x4c:       //SPEECH
+ 360   4      //            key_flag = 0x80;
+ 361   4      //            ir_speech_lg++;
+ 362   4      //            KEY_VALUE = ir_speech;      
+ 363   4      //          break;
+ 364   4              case  0x12:       //VOL+
+C51 COMPILER V9.56.0.0   IR_RECIVE                                                         01/12/2018 12:00:47 PAGE 7   
 
- 365   4                  KEY_VALUE = ir_volA;  
- 366   4                break;      
- 367   4              case  0x13:       //VOL-
- 368   4                  key_flag = 0x80;
- 369   4                  KEY_VALUE = ir_volB;
- 370   4                break;
- 371   4      //        case  0x14:       //ON-OFF
- 372   4      //            key_flag = 0x80;
- 373   4      //            KEY_VALUE = ir_power;
- 374   4      //          break;
- 375   4      //        case  0x15:       //MUTE
- 376   4      //            key_flag = 0x80;
- 377   4      //            KEY_VALUE = ir_mute;
- 378   4      //          break;
- 379   4      //        case  0x18:       //HDMI
- 380   4      //          break;
- 381   4              default:
- 382   4                break;
- 383   4            }
- 384   3            key_press = 0;
- 385   3      
- 386   3      //    }
- 387   3          #if 0
+ 365   4                  key_flag = 0x80;
+ 366   4                  KEY_VALUE = ir_volA;  
+ 367   4                break;      
+ 368   4              case  0x13:       //VOL-
+ 369   4                  key_flag = 0x80;
+ 370   4                  KEY_VALUE = ir_volB;
+ 371   4                break;
+ 372   4      //        case  0x14:       //ON-OFF
+ 373   4      //            key_flag = 0x80;
+ 374   4      //            KEY_VALUE = ir_power;
+ 375   4      //          break;
+ 376   4      //        case  0x15:       //MUTE
+ 377   4      //            key_flag = 0x80;
+ 378   4      //            KEY_VALUE = ir_mute;
+ 379   4      //          break;
+ 380   4      //        case  0x18:       //HDMI
+ 381   4      //          break;
+ 382   4              default:
+ 383   4                break;
+ 384   4            }
+ 385   3            key_press = 0;
+ 386   3      
+ 387   3      //    }
+ 388   3          #if 0
                   if(ir_status & 0x02)//long
                   {
                     switch(key_press)//switch(ir.dat.data0)
@@ -445,9 +446,9 @@ line level    source
                         break;
                       case  0x4c:       //SPEECH
                           key_flag = 0x80;
-                          ir_speech_lg++;
-C51 COMPILER V9.56.0.0   IR_RECIVE                                                         01/10/2018 21:54:07 PAGE 8   
+C51 COMPILER V9.56.0.0   IR_RECIVE                                                         01/12/2018 12:00:47 PAGE 8   
 
+                          ir_speech_lg++;
                           KEY_VALUE = ir_speech;      
                         break;
                       case  0x12:       //VOL+
@@ -473,14 +474,14 @@ line level    source
                     }     
                   }
                   #endif
- 452   3          }
- 453   2      //  ir_count = 0;
- 454   2        }
- 455   1      }
+ 453   3          }
+ 454   2      //  ir_count = 0;
+ 455   2        }
+ 456   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    545    ----
+   CODE SIZE        =    547    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

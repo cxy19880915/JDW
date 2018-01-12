@@ -89,12 +89,13 @@ void Sys_power_on( void )
 {
 	SYS_power_flag = 1;
 	ST_BY = 1;
-	CLK_SysTickDelay(200000);	
+	CLK_SysTickDelay(500000);	
 }
 
 void Sys_power_off( void )
 {
 	BT_POWER = 0;
+	CLK_SysTickDelay(200000);
 	ST_BY = 0;
 	SYS_power_flag = 0;
 	LED_R = 1;LED_B = 1;LED_G = 1;
@@ -111,8 +112,9 @@ void Channel_select( uint8_t Ch )
 //			CLK_SysTickDelay(200000);
 			if( SYS_power_flag )
 			{
-				BT_patch();
+//				BT_patch();
 //				Power_Meter_Detect();
+				CLK_SysTickDelay(200000);
 				LED_R = 0;LED_B = 0;LED_G = 1;		
 				BT_POWER = 0;
 			}
@@ -143,7 +145,8 @@ void Channel_select( uint8_t Ch )
 //			CLK_SysTickDelay(200000);
 			if( SYS_power_flag )
 			{
-				BT_patch();
+//				BT_patch();
+				CLK_SysTickDelay(200000);
 //				Power_Meter_Detect();
 				LED_R = 1;LED_B = 1;LED_G = 0;		
 				BT_POWER = 0;

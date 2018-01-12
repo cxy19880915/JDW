@@ -5041,7 +5041,7 @@ void TAS_5754_Init(uint8_t Adds)
 		buf[0] = IIC_REG_5754[index][0];
 		buf[1] = IIC_REG_5754[index][1];
 		I2C_SW_Send(Adds,buf,2);	
-		CLK_SysTickDelay(1200);
+//		CLK_SysTickDelay(1200);
 	}
 	test_24c02();
 	buf[0] = 0;buf[1] = 0;

@@ -5,7 +5,7 @@
 //uint8_t	tone;
 //uint8_t	tone_flag;
 //uint8_t	tone_1=0,tone_2=0,tone_3=0,tone_4=0,tone_5=0,tone_6=0;
-
+extern	uint8_t	Channel1;
 
 void Encoder_Task(void)
 {
@@ -38,5 +38,19 @@ void Encoder_Task(void)
 	{
 		Amplifier_BASS_B();
 		sub_n = 0xf0;
+	}
+			LED_Flag = 0;
+	_RST = 1;
+	if(Channel1==1)
+	{
+		LED_G = 0;LED_R = 1;LED_B = 1;
+	}
+	else	if(Channel1==2)
+	{
+		LED_R = 0;LED_B = 0;LED_G = 1;
+	}
+	else if((BT_DET)&&(Channel1==0))
+	{
+		LED_B = 0;LED_G = 1;LED_R = 1;
 	}
 }
